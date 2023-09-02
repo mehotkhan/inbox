@@ -1,0 +1,30 @@
+{
+    "nuxt.isNuxtApp": false,
+    "cSpell.words": [
+        "ALIZEMANI",
+        "backupkeys",
+        "bowser",
+        "chartjs",
+        "Decap",
+        "ensdomains",
+        "esbuild",
+        "ethersproject",
+        "giscus",
+        "iconify",
+        "jalaali",
+        "jalaliday",
+        "jamstack",
+        "localforage",
+        "nomicfoundation",
+        "nomiclabs",
+        "Nuxt",
+        "nuxtjs",
+        "pinia",
+        "treeshake",
+        "typechain",
+        "unplugin",
+        "vueuse",
+        "Webauth",
+        "windicss"
+    ]
+}
