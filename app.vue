@@ -28,14 +28,18 @@ useHead({
 </script>
 <template>
   <Html dir="rtl" lang="fa">
-    <Body>
-      <NuxtLayout>
-        <SeoKit />
-        <NuxtLoadingIndicator />
-        <UContainer>
-          <NuxtPage />
-        </UContainer>
-      </NuxtLayout>
-    </Body>
+  <SeoKit />
+  <NuxtLoadingIndicator />
+
+  <Body>
+    <NuxtLayout>
+      <UContainer>
+        <NuxtPage />
+      </UContainer>
+      <ContactStart />
+    </NuxtLayout>
+
+  </Body>
+
   </Html>
 </template>

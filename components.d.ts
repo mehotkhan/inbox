@@ -7,9 +7,21 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    'IconMdi:send': typeof import('~icons/mdi/send')['default']
     'IconUil:alignJustify': typeof import('~icons/uil/align-justify')['default']
+    'IconUil:angleDown': typeof import('~icons/uil/angle-down')['default']
+    'IconUil:arrowDown': typeof import('~icons/uil/arrow-down')['default']
+    'IconUil:arrowRight': typeof import('~icons/uil/arrow-right')['default']
+    'IconUil:check': typeof import('~icons/uil/check')['default']
+    'IconUil:coffee': typeof import('~icons/uil/coffee')['default']
+    'IconUil:commentsAlt': typeof import('~icons/uil/comments-alt')['default']
+    'IconUil:compressArrows': typeof import('~icons/uil/compress-arrows')['default']
+    'IconUil:envelopeAlt': typeof import('~icons/uil/envelope-alt')['default']
+    'IconUil:expandArrowsAlt': typeof import('~icons/uil/expand-arrows-alt')['default']
     'IconUil:githubAlt': typeof import('~icons/uil/github-alt')['default']
+    'IconUil:homeAlt': typeof import('~icons/uil/home-alt')['default']
     'IconUil:linkedinAlt': typeof import('~icons/uil/linkedin-alt')['default']
+    'IconUil:message': typeof import('~icons/uil/message')['default']
     'IconUil:twitterAlt': typeof import('~icons/uil/twitter-alt')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

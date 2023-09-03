@@ -7,7 +7,13 @@ import { GenerateRoutes } from "./tools/contentRoutes";
 export default defineNuxtConfig({
   ssr: true,
   css: ["@/assets/scss/base.scss", "@/assets/scss/extra.scss"],
-  modules: ["@nuxt/image", "@nuxthq/ui", "@nuxt/content"],
+  modules: [
+    "@nuxt/image",
+    "@nuxthq/ui",
+    "@nuxt/content",
+    "@nuxtjs/turnstile",
+    "@vueuse/nuxt",
+  ],
   extends: ["nuxt-seo-kit"],
   runtimeConfig: {
     app: {
@@ -83,5 +89,8 @@ export default defineNuxtConfig({
     compilerOptions: {
       isCustomElement: (tag) => ["giscus-widget"].includes(tag),
     },
+  },
+  turnstile: {
+    siteKey: "0x4AAAAAAAB-JPOdcz31l5yM",
   },
 });
