@@ -12,7 +12,7 @@ onMounted(() => {
     <div
       class="flex w-full justify-between items-center pb-3 border-b-2 mt-4 mb-0 border-brown"
     >
-      <h3>پرسش های متداول</h3>
+      <div>پرسش های متداول</div>
     </div>
     <div class="w-full mt-5">
       <button

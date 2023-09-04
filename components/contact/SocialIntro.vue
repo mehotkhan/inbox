@@ -1,15 +1,15 @@
 <script setup lang="ts">
 const { changeView } = useContact();
-const { startFeedStream } = useFeeds();
+// const { startFeedStream } = useFeeds();
 const { $dexieDb } = useNuxtApp();
 const { currentSpace } = useStream();
 const rawTimeline = ref<any | null>(null);
 
-onMounted(() => {
-  if (currentSpace.value?.relay) {
-    startFeedStream();
-  }
-});
+// onMounted(() => {
+//   if (currentSpace.value?.relay) {
+//     startFeedStream();
+//   }
+// });
 
 rawTimeline.value = useLiveQuery<any[]>(
   async () =>
@@ -34,7 +34,7 @@ const latestFeed = computed(() => rawTimeline?.value?.value?.[0]);
     <div
       class="flex w-full justify-between items-center text-md pb-3 border-b-2 mt-4 mb-0 border-brown"
     >
-      <h3>آخرین رخدادها</h3>
+      <div>آخرین رخدادها</div>
       <div
         class="text-sm cursor-pointer text-brown"
         @click="changeView('social')"

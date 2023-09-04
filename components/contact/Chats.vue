@@ -3,7 +3,7 @@ const { supportArchive, openSupportTicket } = useContact();
 </script>
 <template>
   <div class="h-full w-full bg-white">
-    <SocialStreamFilters class="border-b-[1px] py-1" />
+    <!-- <ContactStreamFilters class="border-b-[1px] py-1" /> -->
     <div class="h-full w-full overflow-x-auto">
       <div class="h-auto w-full">
         <div

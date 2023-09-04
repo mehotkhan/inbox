@@ -38,8 +38,8 @@ const { profile } = useUser();
             </div>
           </div>
           <!-- <div class="flex relative w-full justify-around">
-            <SocialStreamTabs class="w-full text-xl" />
-            <SocialStreamFilters class="w-70" />
+           <ContactStreamTabs class="w-full text-xl" />
+           <ContactStreamFilters class="w-70" />
           </div> -->
         </div>
 

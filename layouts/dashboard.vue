@@ -29,6 +29,8 @@
         </div>
       </section>
     </Suspense>
+    <slot name="app-after" />
+    <div id="app-after"></div>
     <ContactStart />
   </div>
 </template>

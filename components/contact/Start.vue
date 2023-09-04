@@ -56,18 +56,19 @@ onMounted(() => {
           padding: 'px-5 pt-4 pb-2',
         },
         footer: {
-          base: 'absolute bottom-0 w-full grid w-full grid-cols-3  items-center border-t-2 border-gray-100',
+          base: 'absolute bottom-0 w-full grid w-full grid-cols-4  items-center border-t-2 border-gray-100',
           background: 'bg-white',
-          padding: 'px-0 py-3',
+          padding: 'px-0 py-4 sm:px-0',
         },
       }"
       :class="
         expanded
           ? 'md:w-[50%] md:h-[97%] md:left-4 md:bottom-[1rem]'
-          : 'md:w-[23%] md:h-[80%] md:left-4 md:bottom-[4.5rem]'
+          : 'md:w-[28rem] md:h-[80%] md:left-4 md:bottom-[4.5rem]'
       "
       class="fixed z-[999] left-0 bottom-0 h-full w-full transition-all shadow-2xl border-0"
     >
+      <!-- : 'md:w-[23%] md:h-[80%] md:left-4 md:bottom-[4.5rem]' -->
       <div
         class="absolute h-[40rem] top-0 bg-gradient-to-b from-gray-200 from-30 to-white w-full z-0"
       ></div>
@@ -142,7 +143,7 @@ onMounted(() => {
                   size="xs"
                   :label="
                     ticketStatus.find(
-                      (item: any) => item.id === currentTicket.status,
+                      (item: any) => item.id === currentTicket.status
                     )?.label
                   "
                   color="gray"
@@ -173,10 +174,10 @@ onMounted(() => {
           @close-modal="closeModal"
         />
         <ContactHome v-if="modalMode === 'home'" @close-modal="closeModal" />
-        <!-- <ContactSocial
+        <ContactSocial
           v-if="modalMode === 'social'"
           @close-modal="closeModal"
-        /> -->
+        />
       </div>
       <template v-if="modalMode !== 'chat'" #footer>
         <div
@@ -206,6 +207,15 @@ onMounted(() => {
           <div :class="modalMode === 'social' ? 'text-gray-700' : 'text-black'">
             <IconUil:coffee class="w-full text-xl" aria-hidden="true" />
             <div class="pt-1 text-xs">افراد</div>
+          </div>
+        </div>
+        <div
+          class="cursor-pointer flex flex-col item-center justify-center text-center"
+          @click="changeView('social')"
+        >
+          <div :class="modalMode === 'social' ? 'text-gray-700' : 'text-black'">
+            <IconUil:user class="w-full text-xl" aria-hidden="true" />
+            <div class="pt-1 text-xs">پروفایل</div>
           </div>
         </div>
       </template>

@@ -13,12 +13,14 @@ const { createNewDefault } = useContact();
         </h4>
       </div>
       <div
-        class="bg-white cursor-pointer rounded-xl w-full p-4 my-3 transition-all shadow-2xl text-sm relative"
+        class="bg-white cursor-pointer rounded-xl w-full p-4 my-0 transition-all shadow-2xl text-sm relative"
         @click="createNewDefault()"
       >
-        <p>یک پیام ارسال کنید</p>
+        <div>یک پیام ارسال کنید</div>
 
-        <p class="text-gray-500 mt-1">در سریعترین زمان ممکن پاسخ می دهیم :)</p>
+        <div class="text-gray-500 mt-2">
+          در سریعترین زمان ممکن پاسخ می دیم :)
+        </div>
         <div class="absolute left-4 top-0 text-brown h-full flex items-center">
           <IconUil:message class="flex text-xl text-brown" aria-hidden="true" />
         </div>
@@ -26,7 +28,7 @@ const { createNewDefault } = useContact();
       <br />
       <ContactHelpIntro />
       <ContactContactsIntro />
-      <!-- <ContactSocialIntro /> -->
+      <ContactSocialIntro />
     </div>
   </div>
 </template>

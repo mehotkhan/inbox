@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useElementVisibility } from "@vueuse/core";
 
-const { startFeedStream } = useFeeds();
+// const { startFeedStream } = useFeeds();
 const { $dexieDb } = useNuxtApp();
 const { getSince, streamSorting, streamLimit, currentSpace } = useStream();
 const rawTimeline = ref<any | null>(null);
@@ -13,11 +13,11 @@ const loadMoreIsVisible = useElementVisibility(target);
 const isLoadMore = ref(true);
 nowSync.value = Date.now() / 1000;
 
-onMounted(() => {
-  if (currentSpace.value?.relay) {
-    startFeedStream();
-  }
-});
+// onMounted(() => {
+//   if (currentSpace.value?.relay) {
+//     startFeedStream();
+//   }
+// });
 
 rawTimeline.value = useLiveQuery<any[]>(async () => {
   const query = $dexieDb?.events
@@ -27,7 +27,7 @@ rawTimeline.value = useLiveQuery<any[]>(async () => {
         event.spaceId === currentSpace.value.spaceId &&
         event.tags.length === 0 &&
         event.created_at >= getSince.value &&
-        event.created_at < nowSync.value,
+        event.created_at < nowSync.value
     )
     .limit(streamLimit.value);
 
@@ -36,11 +36,11 @@ rawTimeline.value = useLiveQuery<any[]>(async () => {
     : await query?.reverse().toArray();
 }, [streamLimit, getSince, streamSorting, currentSpace, nowSync]);
 
-watch(currentSpace, (newSpace) => {
-  if (newSpace?.relay) {
-    startFeedStream();
-  }
-});
+// watch(currentSpace, (newSpace) => {
+//   if (newSpace?.relay) {
+//     startFeedStream();
+//   }
+// });
 
 watch(loadMoreIsVisible, async (newLoadMoreIsVisible) => {
   if (newLoadMoreIsVisible) {
@@ -63,7 +63,7 @@ const isMore = async () => {
       (event: any) =>
         event.spaceId === currentSpace.value.spaceId &&
         event.tags.length === 0 &&
-        event.created_at > getSince.value,
+        event.created_at > getSince.value
     )
     .count();
   const nowLength = rawTimeline.value.value;
@@ -77,11 +77,11 @@ const newIncoming: any = useLiveQuery(
         (event: any) =>
           event.spaceId === currentSpace.value.spaceId &&
           event.tags.length === 0 &&
-          event.created_at > nowSync.value,
+          event.created_at > nowSync.value
       )
       .count(),
 
-  [currentSpace, nowSync],
+  [currentSpace, nowSync]
 );
 watch(newIncoming, async (newNewIncoming: number) => {
   if (newNewIncoming > 0) {
@@ -169,8 +169,8 @@ const updateSync = () => {
       </p>
       <template #footer>
         <div class="border-r-2 pr-2 border-brown">
-          <SocialFeedMeta :parent="feed?.id" />
-          <SocialFeedLatestReplays :parent="feed?.id" />
+          <!-- <ContactFeedMeta :parent="feed?.id" /> -->
+          <!-- <ContactFeedLatestReplays :parent="feed?.id" /> -->
         </div>
       </template>
     </UCard>

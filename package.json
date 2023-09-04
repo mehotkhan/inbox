@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20230821.0",
-    "@iconify/json": "^2.2.110",
+    "@iconify/json": "^2.2.111",
     "@nuxt/content": "^2.8.2",
     "@nuxt/image": "1.0.0-rc.1",
     "@nuxthq/ui": "npm:@nuxthq/ui-edge@2.7.0-28223581.ead87a9",

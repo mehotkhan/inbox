@@ -10,9 +10,9 @@ onMounted(() => {
     class="bg-white rounded-xl w-full px-4 py-2 my-3 transition-all shadow-2xl relative text-sm"
   >
     <div
-      class="flex w-full justify-between items-center border-b-2 mt-4 mb-0 border-brown"
+      class="flex w-full justify-between items-center border-b-2 pb-3 mt-4 mb-0 border-brown"
     >
-      <h3>دفترچه تماس‌ها</h3>
+      <div>دفترچه تماس‌ها</div>
     </div>
     <ul class="mt-5 space-y-5 list-disc list-inside dark:text-gray-400">
       <div
