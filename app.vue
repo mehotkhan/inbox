@@ -1,5 +1,8 @@
 <script lang="ts" setup>
+import { useDark } from "@vueuse/core";
+
 const runtimeConfig = useRuntimeConfig();
+const isDark = useDark();
 
 useHead({
   title: runtimeConfig.app.title,
@@ -27,19 +30,13 @@ useHead({
 });
 </script>
 <template>
-  <Html dir="rtl" lang="fa">
-  <SeoKit />
-  <NuxtLoadingIndicator />
-
-  <Body>
-    <NuxtLayout>
-      <UContainer>
+  <Html dir="rtl" lang="fa" :class="isDark ? 'dark' : 'light'">
+    <Body class="dark:bg-slate-800">
+      <NuxtLayout>
+        <SeoKit />
+        <NuxtLoadingIndicator />
         <NuxtPage />
-      </UContainer>
-      <ContactStart />
-    </NuxtLayout>
-
-  </Body>
-
+      </NuxtLayout>
+    </Body>
   </Html>
 </template>

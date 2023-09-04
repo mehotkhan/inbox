@@ -29,7 +29,7 @@ onMounted(() => {
 <template>
   <div>
     <div
-      class="z-10 p-2 fixed left-2 bottom-2 bg-gray-200 shadow-md m-3 rounded-full cursor-pointer text-2xl"
+      class="z-10 p-2 fixed left-2 bottom-2 bg-gray-200 dark:bg-slate-800 shadow-md m-3 rounded-full cursor-pointer text-2xl"
       :class="
         modalBoxIsOpen
           ? 'text-brown bg-white border-2 border-brown'
@@ -44,20 +44,21 @@ onMounted(() => {
       v-if="modalBoxIsOpen"
       :ui="{
         body: {
-          base: 'h-full border-0 ',
+          base: 'h-full border-0 bg-white dark:bg-slate-700',
           padding: 'p-0 sm:p-0',
         },
         rounded: 'rounded md:rounded-2xl',
         divide: 'divide-0',
-        ring: 'ring-0',
+        ring: 'ring-1',
         header: {
           base: 'z-10 h-30 relative',
-          background: 'bg-gradient-to-b from-gray-200  to-transparent h-30',
+          background:
+            'bg-gradient-to-b_  dark:bg-gradient-to-slate from-gray-200_  to-transparent_ h-30 dark:bg-slate-700',
           padding: 'px-5 pt-4 pb-2',
         },
         footer: {
           base: 'absolute bottom-0 w-full grid w-full grid-cols-4  items-center border-t-2 border-gray-100',
-          background: 'bg-white',
+          background: 'bg-white dark:bg-slate-800',
           padding: 'px-0 py-4 sm:px-0',
         },
       }"
@@ -70,7 +71,7 @@ onMounted(() => {
     >
       <!-- : 'md:w-[23%] md:h-[80%] md:left-4 md:bottom-[4.5rem]' -->
       <div
-        class="absolute h-[40rem] top-0 bg-gradient-to-b from-gray-200 from-30 to-white w-full z-0"
+        class="absolute h-[40rem] top-0 bg-gradient-to-b_ from-gray-200_ from-30 to-white w-full z-0 dark:bg-slate-700"
       ></div>
       <template #header>
         <div class="flex justify-between items-center w-full z-10 relative">

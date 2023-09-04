@@ -3,6 +3,7 @@ import Components from "unplugin-vue-components/vite";
 import IconsResolver from "unplugin-icons/resolver";
 import viteCompression from "vite-plugin-compression";
 import { GenerateRoutes } from "./tools/contentRoutes";
+import { GenerateDecap } from "./tools/configs-generators";
 
 export default defineNuxtConfig({
   ssr: true,
@@ -93,4 +94,8 @@ export default defineNuxtConfig({
   turnstile: {
     siteKey: "0x4AAAAAAAB-JPOdcz31l5yM",
   },
+  hooks: {
+    "build:done": () => {
+      GenerateDecap();
+    }}
 });
