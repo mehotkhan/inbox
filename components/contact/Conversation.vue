@@ -11,7 +11,7 @@ onUpdated(() => {
 });
 </script>
 <template>
-  <div class="flex bg-white flex-col-reverse h-full">
+  <div class="flex bg-white dark:bg-slate-700 flex-col-reverse h-full">
     <div
       ref="conversation"
       class="w-full px-4 overflow-x-auto flex flex-col-reverse pb-5"

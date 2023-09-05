@@ -43,12 +43,7 @@ const { profile } = useUser();
           </div> -->
         </div>
 
-        <div class="flex dark:border-gray-50/[0.2] items-center">
-          <!-- <ThemeSwitcher /> -->
-
-          <!-- <ProfileUserNav /> -->
-          <!-- <LanguageSwitcher /> -->
-        </div>
+        <div class="flex dark:border-gray-50/[0.2] items-center"></div>
       </div>
     </div>
   </div>

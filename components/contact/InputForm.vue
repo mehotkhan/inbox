@@ -11,11 +11,11 @@ const send = () => {
 <template>
   <div
     :key="currentTicket.id"
-    class="w-full px-5 py-3 bg-gray-100 absolute bottom-0"
+    class="w-full px-5 py-3 bg-gray-100 dark:bg-slate-600 absolute bottom-0"
   >
     <div
       :class="[chatMessage.length && !isRTL(chatMessage) ? 'ltr' : 'rtl']"
-      class="min-h-12 flex justify-between px-3 items-center border-transparent bg-slate-50 border-0 focus-within:border-slate-300"
+      class="min-h-12 flex justify-between px-3 items-center border-transparent bg-slate-50 dark:bg-slate-500 border-0 focus-within:border-slate-300"
     >
       <input
         v-model="chatMessage"
@@ -30,7 +30,7 @@ const send = () => {
           class="text-gray-400 text-lg cursor-pointer"
           aria-hidden="true"
         />
-        <!-- <IconMdi:file
+        <IconMdi:file
           v-if="chatMessage.length === 0"
           class="text-gray-400 text-lg"
           aria-hidden="true"
@@ -39,7 +39,7 @@ const send = () => {
           v-if="chatMessage.length === 0"
           class="text-gray-400 text-lg mr-1"
           aria-hidden="true"
-        /> -->
+        />
       </div>
     </div>
   </div>

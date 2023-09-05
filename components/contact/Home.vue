@@ -13,7 +13,7 @@ const { createNewDefault } = useContact();
         </h4>
       </div>
       <div
-        class="bg-white cursor-pointer rounded-xl w-full p-4 my-0 transition-all shadow-2xl text-sm relative"
+        class="bg-white dark:bg-slate-800 cursor-pointer rounded-xl w-full p-4 my-0 transition-all shadow-2xl text-sm relative"
         @click="createNewDefault()"
       >
         <div>یک پیام ارسال کنید</div>

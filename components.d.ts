@@ -7,6 +7,8 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    'IconMdi:file': typeof import('~icons/mdi/file')['default']
+    'IconMdi:image': typeof import('~icons/mdi/image')['default']
     'IconMdi:send': typeof import('~icons/mdi/send')['default']
     'IconUil:alignJustify': typeof import('~icons/uil/align-justify')['default']
     'IconUil:angleDown': typeof import('~icons/uil/angle-down')['default']
@@ -21,6 +23,7 @@ declare module 'vue' {
     'IconUil:githubAlt': typeof import('~icons/uil/github-alt')['default']
     'IconUil:homeAlt': typeof import('~icons/uil/home-alt')['default']
     'IconUil:linkedinAlt': typeof import('~icons/uil/linkedin-alt')['default']
+    'IconUil:listUl': typeof import('~icons/uil/list-ul')['default']
     'IconUil:message': typeof import('~icons/uil/message')['default']
     'IconUil:moon': typeof import('~icons/uil/moon')['default']
     'IconUil:sun': typeof import('~icons/uil/sun')['default']

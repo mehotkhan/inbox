@@ -7,10 +7,10 @@ onMounted(() => {
 
 <template>
   <div
-    class="bg-white rounded-xl w-full px-4 py-2 my-3 transition-all shadow-2xl relative text-sm"
+    class="bg-white dark:bg-slate-800 rounded-xl w-full px-4 py-2 my-3 transition-all shadow-2xl relative text-sm"
   >
     <div
-      class="flex w-full justify-between items-center pb-3 border-b-2 mt-4 mb-0 border-brown"
+      class="flex w-full justify-between items-center pb-3 border-b-2 mt-4 mb-0 dark:border-slate-700"
     >
       <div>پرسش های متداول</div>
     </div>
@@ -18,7 +18,7 @@ onMounted(() => {
       <button
         v-for="item in qaLists"
         :key="item.id"
-        class="w-full mb-5 border-b-2 pb-3 border-gray-200 group focus:outline-none text-right last:border-0"
+        class="w-full mb-5 border-b-2 pb-3 border-gray-200 dark:border-slate-700 group focus:outline-none text-right last:border-0"
       >
         <div class="">
           {{ item.title }}

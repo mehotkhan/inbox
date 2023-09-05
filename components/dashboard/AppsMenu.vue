@@ -24,7 +24,7 @@ const isSuperuser = () => {
 <style scoped lang="scss">
 .router-link-active {
   position: relative;
-  color: black;
+  // color: black;
   &:before {
     position: absolute;
     content: "";

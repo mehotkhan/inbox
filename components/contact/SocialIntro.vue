@@ -18,27 +18,24 @@ rawTimeline.value = useLiveQuery<any[]>(
       .filter(
         (event: any) =>
           event.spaceId === currentSpace.value.spaceId &&
-          event.tags.length === 0,
+          event.tags.length === 0
       )
       .limit(1)
       .reverse()
       .toArray(),
-  [currentSpace],
+  [currentSpace]
 );
 const latestFeed = computed(() => rawTimeline?.value?.value?.[0]);
 </script>
 <template>
   <div
-    class="bg-white rounded-xl w-full px-4 py-2 my-5 transition-all shadow-2xl relative min-h-[10rem]"
+    class="bg-white dark:bg-slate-800 rounded-xl w-full px-4 py-2 my-5 transition-all shadow-2xl relative min-h-[10rem]"
   >
     <div
-      class="flex w-full justify-between items-center text-md pb-3 border-b-2 mt-4 mb-0 border-brown"
+      class="flex w-full justify-between items-center text-md pb-3 border-b-2 mt-4 mb-0 dark:border-slate-700"
     >
       <div>آخرین رخدادها</div>
-      <div
-        class="text-sm cursor-pointer text-brown"
-        @click="changeView('social')"
-      >
+      <div class="text-sm cursor-pointer" @click="changeView('social')">
         بیشتر
       </div>
     </div>
@@ -58,7 +55,7 @@ const latestFeed = computed(() => rawTimeline?.value?.value?.[0]);
         </div>
       </div>
     </div>
-    <div class="border-b border-gray-100"></div>
+    <div class="border-b border-gray-100 dark:border-slate-700"></div>
 
     <div
       class="text-gray-500 text-md mb-6 mx-3 px-2 text-right pt-4 break-words"

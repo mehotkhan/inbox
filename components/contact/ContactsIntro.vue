@@ -7,10 +7,10 @@ onMounted(() => {
 </script>
 <template>
   <div
-    class="bg-white rounded-xl w-full px-4 py-2 my-3 transition-all shadow-2xl relative text-sm"
+    class="bg-white dark:bg-slate-800 rounded-xl w-full px-4 py-2 my-3 transition-all shadow-2xl relative text-sm"
   >
     <div
-      class="flex w-full justify-between items-center border-b-2 pb-3 mt-4 mb-0 border-brown"
+      class="flex w-full justify-between items-center border-b-2 pb-3 mt-4 mb-0 dark:border-slate-700"
     >
       <div>دفترچه تماس‌ها</div>
     </div>

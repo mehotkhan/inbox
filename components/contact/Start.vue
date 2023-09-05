@@ -185,7 +185,13 @@ onMounted(() => {
           class="cursor-pointer flex flex-col item-center justify-center text-center"
           @click="changeView('home')"
         >
-          <div :class="modalMode === 'home' ? 'text-gray-700' : 'text-black'">
+          <div
+            :class="
+              modalMode === 'home'
+                ? 'text-gray-700 dark:text-white'
+                : 'text-black dark:text-gray-400'
+            "
+          >
             <IconUil:home-alt class="w-full text-xl" aria-hidden="true" />
             <div class="pt-1 text-xs">خانه</div>
           </div>
@@ -195,7 +201,13 @@ onMounted(() => {
           class="cursor-pointer flex flex-col item-center justify-center text-center"
           @click="changeView('chats')"
         >
-          <div :class="modalMode === 'chats' ? 'text-gray-700' : 'text-black'">
+          <div
+            :class="
+              modalMode === 'chats'
+                ? 'text-gray-700 dark:text-white'
+                : 'text-black dark:text-gray-400'
+            "
+          >
             <IconUil:envelope-alt class="w-full text-xl" aria-hidden="true" />
             <div class="pt-1 text-xs">پیام</div>
           </div>
@@ -205,7 +217,13 @@ onMounted(() => {
           class="cursor-pointer flex flex-col item-center justify-center text-center"
           @click="changeView('social')"
         >
-          <div :class="modalMode === 'social' ? 'text-gray-700' : 'text-black'">
+          <div
+            :class="
+              modalMode === 'social'
+                ? 'text-gray-700 dark:text-white'
+                : 'text-black dark:text-gray-400'
+            "
+          >
             <IconUil:coffee class="w-full text-xl" aria-hidden="true" />
             <div class="pt-1 text-xs">افراد</div>
           </div>
@@ -214,7 +232,13 @@ onMounted(() => {
           class="cursor-pointer flex flex-col item-center justify-center text-center"
           @click="changeView('social')"
         >
-          <div :class="modalMode === 'social' ? 'text-gray-700' : 'text-black'">
+          <div
+            :class="
+              modalMode === 'profile'
+                ? 'text-gray-700 dark:text-white'
+                : 'text-black dark:text-gray-400'
+            "
+          >
             <IconUil:user class="w-full text-xl" aria-hidden="true" />
             <div class="pt-1 text-xs">پروفایل</div>
           </div>
