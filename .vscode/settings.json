@@ -6,6 +6,7 @@
         "bowser",
         "chartjs",
         "Decap",
+        "Dexie",
         "ensdomains",
         "esbuild",
         "ethersproject",

@@ -179,6 +179,10 @@ onMounted(() => {
           v-if="modalMode === 'social'"
           @close-modal="closeModal"
         />
+        <ContactProfile
+          v-if="modalMode === 'profile'"
+          @close-modal="closeModal"
+        />
       </div>
       <template v-if="modalMode !== 'chat'" #footer>
         <div
@@ -230,7 +234,7 @@ onMounted(() => {
         </div>
         <div
           class="cursor-pointer flex flex-col item-center justify-center text-center"
-          @click="changeView('social')"
+          @click="changeView('profile')"
         >
           <div
             :class="

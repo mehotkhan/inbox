@@ -27,11 +27,14 @@ const sectionTitle = (mode: string) => {
       mode: "social",
       title: "افراد",
     },
+    {
+      mode: "profile",
+      title: "پروفایل",
+    },
   ];
   return map.find((item: any) => item.mode === mode)?.title;
 };
 export default () => {
-  const { $publishSupportTicket, $dexieDb } = useNuxtApp();
   const { getSince, streamSorting } = useStream();
   const { profile } = useUser();
 
@@ -116,10 +119,22 @@ export default () => {
 
   const sendTicket = async (message: string) => {
     if (!message.length) return;
-    await $publishSupportTicket(message, profile.value, currentTicket.value);
+
+    const data = {
+      id: new WebUUID().toString(),
+      owner: profile.value.pub,
+      created_at: Date.now(),
+      updated_at: Date.now(),
+      other: "test ",
+      message,
+      status: "new",
+    };
+    DexieDB.messages.put(data);
   };
 
-  const changeView = (mode: "home" | "chats" | "social" | "chat") => {
+  const changeView = (
+    mode: "home" | "chats" | "social" | "chat" | "profile"
+  ) => {
     modalMode.value = mode;
     if (mode === "social") {
       expanded.value = true;
@@ -131,13 +146,13 @@ export default () => {
   const viewTitle = computed(() => sectionTitle(modalMode.value));
 
   const supportTimeLine = useLiveQuery<any[]>(async () => {
-    const query = $dexieDb?.supportMessages
+    const query = DexieDB.messages
       .orderBy("created_at")
-      .filter(
-        (message: any) =>
-          message.ticketId === currentTicket.value.id &&
-          message.created_at >= getSince.value,
-      )
+      // .filter(
+      //   (message: any) =>
+      //     message.ticketId === currentTicket.value.id &&
+      //     message.created_at >= getSince.value
+      // )
       .limit(messageLimit.value);
 
     return streamSorting.value.filter === "asc"

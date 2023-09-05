@@ -1,24 +1,22 @@
 import Dexie, { Table } from "dexie";
 
-interface DashboardNotes {
+interface Message {
   id?: string;
-  title: string;
+  owner: string;
+  other: string;
   created_at?: number;
   updated_at?: number;
-  description: string;
-  poster: string;
-  body: any;
-  author: string;
-  status: "draft" | "publish" | "published";
+  message: string;
+  status: "new" | "send" | "receive" | "seen";
 }
 
 class DexieDatabase extends Dexie {
-  dashboardNotes!: Table<DashboardNotes & { id: string }>;
+  messages!: Table<Message & { id: string }>;
 
   constructor() {
-    super("dashboard");
-    this.version(1).stores({
-      dashboardNotes: "id, created_at, updated_at ,author ,status",
+    super("totoro");
+    this.version(2).stores({
+      messages: "id, created_at, updated_at ,owner ,status",
     });
   }
 }

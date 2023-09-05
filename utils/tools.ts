@@ -119,7 +119,7 @@ export const resizeImage = async (file: File, size: number): Promise<File> => {
     x,
     y,
     width * ratio,
-    height * ratio,
+    height * ratio
   );
 
   return new Promise((resolve) => {
@@ -128,13 +128,19 @@ export const resizeImage = async (file: File, size: number): Promise<File> => {
         resolve(blob);
       },
       "image/webp",
-      1,
+      1
     );
   });
 };
 
 export const validateEmail = (email: string) => {
   return email.match(
-    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   );
 };
+
+export function isRTL(s: string) {
+  const rtlChars = "\u0591-\u07FF\u200F\u202B\u202E\uFB1D-\uFDFD\uFE70-\uFEFC";
+  const rtlDirCheck = new RegExp("^[^" + rtlChars + "]*?[" + rtlChars + "]");
+  return rtlDirCheck.test(s);
+}
