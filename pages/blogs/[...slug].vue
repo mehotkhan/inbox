@@ -41,11 +41,9 @@ onUnmounted(() => {
               />
             </div>
           </div>
-          <div class="flex relative flex-col w-full md:m-0">
-            <ContentRenderer :value="doc" class="content mb-10" />
-            <LazyGiscus v-if="doc?.comment" />
-            <LazyBaseSidebar v-if="sidebarEnabled" :post="doc" />
-          </div>
+          <ContentRenderer :value="doc" class="content mb-10" />
+          <Comments v-if="doc?.comment" />
+          <LazyBaseSidebar v-if="sidebarEnabled" :post="doc" />
         </section>
       </template>
     </ContentDoc>
