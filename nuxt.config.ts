@@ -97,4 +97,9 @@ export default defineNuxtConfig({
       GenerateDecap();
     },
   },
+  content: {
+    highlight: {
+      theme: "github-dark",
+    },
+  },
 });
