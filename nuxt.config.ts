@@ -8,7 +8,7 @@ import { GenerateDecap } from "./tools/configs-generators";
 export default defineNuxtConfig({
   ssr: true,
   css: ["@/assets/scss/base.scss", "@/assets/scss/extra.scss"],
-  modules: ["@nuxt/image-edge", "@nuxthq/ui", "@nuxt/content"],
+  modules: ["@nuxt/image-edge", "@nuxt/ui", "@nuxt/content"],
   extends: ["nuxt-seo-kit"],
   runtimeConfig: {
     app: {
