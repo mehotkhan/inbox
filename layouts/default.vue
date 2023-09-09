@@ -1,6 +1,4 @@
-<script setup>
-import "vazirmatn/Vazirmatn-Variable-font-face.css";
-</script>
+<script setup></script>
 <template>
   <div class="flex-col flex">
     <slot name="app-before" />
