@@ -1,6 +1,7 @@
 ---
-name: فیزیک
-thumbnail: /content/totoro_render.webp
+title: فیزیک
+thumbnail: /content/totoro-image-12.webp
+menu: false
 ---
 
 فیزیک :)

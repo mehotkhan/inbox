@@ -7,15 +7,13 @@ export default defineAppConfig({
   menuItems: [
     {
       title: "صفحه‌نخست",
-      to: "/",
+      _path: "/",
+      menu_order: 0,
     },
     {
-      title: "بلاگ",
-      to: "/blogs",
-    },
-    {
-      title: "دسته‌بندی‌ها",
-      to: "/category",
+      title: "بایگانی",
+      _path: "/archive",
+      menu_order: 99,
     },
   ],
 });

@@ -33,9 +33,9 @@ collections:
           label: "سرویس",
           widget: "relation",
           collection: "category",
-          searchFields: ["name"],
-          valueField: "name",
-          displayFields: ["name"],
+          searchFields: ["title"],
+          valueField: "title",
+          displayFields: ["title"],
           required: true,
         }
 
@@ -65,7 +65,14 @@ collections:
           default: false,
           required: true,
         }
-
+      - {
+          label: "ترتیب منو",
+          name: "menu_order",
+          widget: "number",
+          default: 10,
+          required: false,
+        }
+        
   - name: category
     label: دسته‌بندی‌
     folder: content/category/
@@ -73,6 +80,20 @@ collections:
     slug: "{{slug}}"
     identifier_field: name
     fields:
-      - { name: "name", label: "نام", required: true }
+      - { name: "title", label: "نام", required: true }
       - { label: "پوستر", name: "thumbnail", widget: "image", required: true }
       - { label: "محتوا", name: "body", widget: "markdown", required: true }
+      - {
+          label: "افزودن به منو",
+          name: "menu",
+          widget: "boolean",
+          default: false,
+          required: true,
+        }
+      - {
+          label: "ترتیب منو",
+          name: "menu_order",
+          widget: "number",
+          default: 10,
+          required: false,
+        }

@@ -27,7 +27,7 @@
               />
             </div>
           </div>
-          <LazyBaseLatestItems :category="doc.name" class="mx-[4rem]" />
+          <LazyBaseLatestItems :category="doc.title" class="mx-[4rem]" />
         </section>
       </template>
     </ContentDoc>

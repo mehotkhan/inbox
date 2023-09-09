@@ -96,6 +96,9 @@ export default defineNuxtConfig({
     "build:done": () => {
       GenerateDecap();
     },
+    "nitro:init": () => {
+      GenerateDecap();
+    },
   },
   content: {
     highlight: {

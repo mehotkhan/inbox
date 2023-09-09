@@ -8,9 +8,9 @@ const { data }: any = useAsyncData("category", () =>
 </script>
 <template>
   <section class="flex flex-col">
-    <ContentDoc v-slot="{ doc }" path="/pages/category">
+    <!-- <ContentDoc v-slot="{ doc }" path="/pages/category">
       <LazyBasePageIntro :data="doc" />
-    </ContentDoc>
+    </ContentDoc> -->
 
     <div class="w-full grid grid-cols-3 gap-10 align-middle mt-0">
       <UCard
@@ -44,23 +44,19 @@ const { data }: any = useAsyncData("category", () =>
               height="auto"
             />
             <div>
-              <h3
-                class="font-semibold text-sm  leading-tight hover:underline"
-              >
+              <h3 class="font-semibold text-sm leading-tight hover:underline">
                 <NuxtLink :to="cat._path" class="">
                   # {{ cat.title }}
                 </NuxtLink>
               </h3>
 
-              <p
-                class="font-thin text-s  leading-tight"
-              >
+              <p class="font-thin text-s leading-tight">
                 <ContentRenderer :value="cat" class="content" />
               </p>
             </div>
           </div>
         </template>
-        <LazyBaseLatestItems :category="cat.name" />
+        <LazyBaseLatestItems :category="cat.title" />
       </UCard>
     </div>
   </section>

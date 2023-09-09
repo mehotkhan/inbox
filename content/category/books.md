@@ -1,6 +1,7 @@
 ---
-name: کتاب
-thumbnail: /content/totoro_render.webp
+title: کتاب
+thumbnail: /content/totoro-image-12.webp
+menu: false
 ---
 
 معرفی کتاب

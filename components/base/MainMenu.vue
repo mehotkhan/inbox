@@ -1,32 +1,17 @@
 <script lang="ts" setup>
-const appConfig = useAppConfig();
+const { menuItems } = useMainMenu();
 const route = useRoute();
-const { data }: any = useAsyncData("pages", () =>
-  queryContent("pages").where({ menu: true }).find()
-);
 </script>
 
 <template>
   <ul class="list-none flex mt-8">
-    <li v-for="menu in appConfig.menuItems" :key="menu.to">
+    <li v-for="menu in menuItems" :key="menu._path">
       <NuxtLink
         :external="false"
-        :to="menu.to"
+        :to="menu._path"
         class="hover:text-black py-1 px-5 dark:hover:text-gray-200"
-        :class="route.path == menu.to ? 'router-link-active' : ''"
+        :class="route.path == menu._path ? 'router-link-active' : ''"
         >{{ menu.title }}</NuxtLink
-      >
-    </li>
-    <li v-for="page in data" :key="page._path">
-      <NuxtLink
-        :to="page._path"
-        class="hover:text-black py-1 px-5 break-keep dark:hover:text-gray-200"
-        :class="
-          page.to !== '/' && route.path == page._path
-            ? 'router-link-active'
-            : ''
-        "
-        >{{ page.title.trim() }}</NuxtLink
       >
     </li>
   </ul>

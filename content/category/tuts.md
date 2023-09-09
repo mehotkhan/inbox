@@ -1,7 +1,8 @@
 ---
-title: پروژه
+title: آموزش
 thumbnail: /content/totoro-image-12.webp
-menu: false
+menu: true
+menu_order: 3
 ---
 
 پروژه ها

@@ -1,6 +1,8 @@
 ---
-name: یادداشت
-thumbnail: /content/totoro_render.webp
+title: یادداشت
+thumbnail: /content/totoro-image-12.webp
+menu: true
+menu_order: 2
 ---
 
-یادداشت ها
+آخرین یادداشت ها و نوشته ها
