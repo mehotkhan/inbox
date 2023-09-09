@@ -1,4 +1,5 @@
 import { useStorage } from "@vueuse/core";
+import { onMounted } from "vue";
 import { WebUUID } from "web-uuid";
 
 const modalMode = useStorage("support-help-desk-mode", "home");
@@ -34,10 +35,14 @@ const sectionTitle = (mode: string) => {
   ];
   return map.find((item: any) => item.mode === mode)?.title;
 };
+
 export default () => {
   const { getSince, streamSorting } = useStream();
   const { profile } = useUser();
-
+  onMounted(async () => {
+    console.log("messenger loaded");
+    await relay.connect();
+  });
   const welcomeMessage = async () => {
     if (firstVisit.value) {
       setTimeout(() => {

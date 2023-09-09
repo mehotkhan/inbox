@@ -11,8 +11,9 @@ export async function onRequest(context: any) {
   const [client, server] = Object.values(webSocketPair);
   server.accept();
   server.addEventListener("message", async ({ data }) => {
-    const id = new WebUUID();
-    server.send("NEW-MESSAGE" + id);
+    console.log("incoming from server", JSON.parse(data));
+    // const id = new WebUUID();
+    // server.send("NEW-MESSAGE" + id);
 
     // await context.env.ALIZEMANI.put(
     //   "messages/" + id,
@@ -43,3 +44,11 @@ export async function onRequest(context: any) {
     webSocket: client,
   });
 }
+
+const test = [
+  "REQ",
+  "9600211011305111",
+  {
+    ids: ["d7dd5eb3ab747e16f8d0212d53032ea2a7cadef53837e5a6c66d42849fcb9027"],
+  },
+];
