@@ -44,8 +44,10 @@ onUnmounted(() => {
               />
             </div>
           </div>
-          <ContentRenderer :value="doc" class="content mb-10" />
-          <Comments v-if="doc?.comment" />
+          <UContainer>
+            <ContentRenderer :value="doc" class="content mb-10" />
+            <Comments v-if="doc?.comment" />
+          </UContainer>
           <LazyBaseSidebar v-if="sidebarEnabled" :post="doc" />
         </section>
       </template>

@@ -60,9 +60,9 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="overflow-y-auto" :class="post.dir === 'ltr' ? 'ltr' : 'rtl'">
-    <h3 class="text-bold">سرفصل‌ها</h3>
-    <div class="flex h-full">
+  <div class="h-full relative" :class="post.dir === 'ltr' ? 'ltr' : 'rtl'">
+    <h3 class="text-bold text-xl">سرفصل‌ها</h3>
+    <div class="flex-col absolute top-10 overflow-y-auto bottom-0 w-full">
       <UAccordion
         default-open
         multiple
@@ -113,13 +113,13 @@ onUnmounted(() => {
           </ul>
         </template>
       </UAccordion>
-      <li
+      <div
         v-if="props.post?.comment"
         class="cursor-pointer pb-3 mb-2 last:mb-0 mx-3"
         @click.stop="onClick('comments')"
       >
         <span>دیدگاه ها</span>
-      </li>
+      </div>
     </div>
   </div>
 </template>

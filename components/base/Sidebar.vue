@@ -14,7 +14,7 @@ const { toggleSidebar, sidebarIsOpen } = useSidebar();
         width: 'w-10 max-w-[70%] md:max-w-md',
       }"
     >
-      <div class="flex flex-col p-5">
+      <div class="flex flex-col p-5 h-full">
         <div
           class="flex w-full justify-between"
           :class="post.dir !== 'ltr' ? 'flex-row' : 'flex-row-reverse'"
@@ -29,8 +29,8 @@ const { toggleSidebar, sidebarIsOpen } = useSidebar();
             @click="toggleSidebar()"
           />
         </div>
-        <div class="mt-5 border-t pt-5">
-          <LazyBaseContentToc :post="post" class="h-full" />
+        <div class="mt-5 border-t pt-5 h-full">
+          <LazyBaseContentToc :post="post" class="" />
         </div>
       </div>
     </USlideover>

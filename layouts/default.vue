@@ -6,7 +6,9 @@
     <BaseHeader />
     <main class="flex min-h-screen mt-20">
       <div class="container">
-        <div class="prose dark:prose-invert leading-10 text-justify">
+        <div
+          class="prose md:prose-xl dark:prose-invert leading-10 text-justify"
+        >
           <slot />
         </div>
       </div>
@@ -15,3 +17,9 @@
     </main>
   </div>
 </template>
+
+<style>
+.prose .content img {
+  margin: 0 auto;
+}
+</style>
