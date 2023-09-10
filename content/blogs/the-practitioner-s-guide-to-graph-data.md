@@ -14,9 +14,9 @@ description:
   you probably spent most of your time inspecting the “shared friends” section to
   understand how you knew someone.
 
-dir: ltr
 banner: false
-service: notes
+dir: ltr
+
 ---
 
 Applying Graph Thinking and Graph Technologies to Solve Complex Problems

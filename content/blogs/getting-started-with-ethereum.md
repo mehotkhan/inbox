@@ -1,7 +1,6 @@
 ---
 title: آشنایی با اتریوم - راهنمای قدم به قدم برای توسعه دهنده بلاک چین شدن
 url: getting-start-with-ethereum
-dir: ltr
 date: 2023-01-18T19:14:50.978Z
 category: کتاب
 tags:
@@ -23,7 +22,7 @@ description: Get started with blockchain development with this step-by-step
   Ethereum-related technologies broadly and not just focusing on Solidity.
 
 banner: false
-service: notes
+dir: ltr
 ---
 
 ## Introduction
