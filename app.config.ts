@@ -15,5 +15,15 @@ export default defineAppConfig({
       _path: "/archive",
       menu_order: 99,
     },
+    {
+      title: "درباره",
+      _path: "/about",
+      menu_order: 99,
+    },
+    {
+      title: "تماس‌با‌من",
+      _path: "/contact",
+      menu_order: 100,
+    },
   ],
 });
