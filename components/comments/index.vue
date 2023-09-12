@@ -11,6 +11,7 @@ const runtimeConfig = useRuntimeConfig();
 
     <Giscus
       id="comments"
+      class="w-full"
       :repo="runtimeConfig?.app.giscus_repo"
       :term="runtimeConfig?.app.giscus_term"
       :repo-id="runtimeConfig?.app.giscus_repo_id"
@@ -26,3 +27,9 @@ const runtimeConfig = useRuntimeConfig();
     />
   </div>
 </template>
+<style>
+giscus-widget {
+  display: flex;
+  margin: auto;
+}
+</style>
