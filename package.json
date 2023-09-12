@@ -13,7 +13,8 @@
   },
   "dependencies": {
     "@giscus/vue": "^2.3.0",
-    "moment-jalaali": "^0.10.0"
+    "moment-jalaali": "^0.10.0",
+    "nuxt-gtag": "^1.1.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20230904.0",

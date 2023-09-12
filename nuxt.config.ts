@@ -8,7 +8,7 @@ import { GenerateDecap } from "./tools/configs-generators";
 export default defineNuxtConfig({
   ssr: true,
   css: ["@/assets/scss/base.scss", "@/assets/scss/extra.scss"],
-  modules: ["@nuxt/image-edge", "@nuxt/ui", "@nuxt/content"],
+  modules: ["@nuxt/image-edge", "@nuxt/ui", "@nuxt/content", "nuxt-gtag"],
   extends: ["nuxt-seo-kit"],
   runtimeConfig: {
     app: {
@@ -99,6 +99,9 @@ export default defineNuxtConfig({
     "nitro:init": () => {
       GenerateDecap();
     },
+  },
+  gtag: {
+    id: "G-78646PGVN1",
   },
   content: {
     highlight: {
