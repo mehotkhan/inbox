@@ -1,6 +1,7 @@
 ---
-name: پروژه
-thumbnail: /content/totoro_render.webp
+title: پروژه
+thumbnail: /content/totoro-image-12.webp
+menu: false
 ---
 
-پروژه ها
+معرفی پروژه ها و سورس های جالب

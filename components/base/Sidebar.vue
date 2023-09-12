@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps({
+defineProps({
   post: { type: Object, required: true, default: Function },
 });
 const { toggleSidebar, sidebarIsOpen } = useSidebar();
@@ -8,26 +8,29 @@ const { toggleSidebar, sidebarIsOpen } = useSidebar();
   <div class="w-full">
     <USlideover
       v-model="sidebarIsOpen"
-      side="left"
+      :side="post.dir === 'ltr' ? 'right' : 'left'"
       :transition="false"
       :ui="{
         width: 'w-10 max-w-[70%] md:max-w-md',
       }"
     >
-      <div class="flex flex-col p-5">
-        <div class="flex w-full relative justify-between px-3">
-          <span>
-            {{ props.post.title }}
+      <div class="flex flex-col p-5 h-full">
+        <div
+          class="flex w-full justify-between"
+          :class="post.dir !== 'ltr' ? 'flex-row' : 'flex-row-reverse'"
+        >
+          <span class="block">
+            {{ post.title }}
           </span>
           <UButton
             label="بستن"
-            class="top-0 text-black z-50 absolute left-0 w-10"
+            class="block text-black z-50 w-10"
             variant="ghost"
             @click="toggleSidebar()"
           />
         </div>
-        <div class="mt-5 border-t pt-5">
-          <LazyBaseContentToc :post="props.post" />
+        <div class="mt-5 border-t pt-5 h-full">
+          <LazyBaseContentToc :post="post" class="" />
         </div>
       </div>
     </USlideover>

@@ -1,6 +1,8 @@
 ---
-name: یادداشت
-thumbnail: /content/totoro_render.webp
+title: یادداشت
+thumbnail: /content/Blogging.png
+menu: true
+menu_order: 2
 ---
 
-یادداشت ها
+یادداشت های پراکنده در حوزه های مختلف

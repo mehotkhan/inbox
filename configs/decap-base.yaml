@@ -12,9 +12,9 @@ locale: <%= process.env.APP_LOCALE %>
 collections:
   - name: "notes"
     label: "یادداشت"
-    folder: "content/blogs"
+    folder: "content/notes"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{slug}}"
     fields:
       - { label: "عنوان", name: "title", widget: "string", required: true }
       - { label: "پوستر", name: "thumbnail", widget: "image", required: true }
@@ -33,14 +33,18 @@ collections:
           label: "سرویس",
           widget: "relation",
           collection: "category",
-          searchFields: ["name"],
-          valueField: "name",
-          displayFields: ["name"],
+          searchFields: ["title"],
+          valueField: "title",
+          displayFields: ["title"],
           required: true,
         }
 
       - { label: "بنر", name: "banner", widget: "boolean", default: false }
       - { label: "دیدگاه", name: "comment", widget: "boolean", default: true }
+      - label: "جهت نوشتار"
+        name: "dir"
+        widget: "select"
+        options: ["ltr", "rtl"]
 
   - name: "page"
     label: "صفحه"
@@ -65,6 +69,18 @@ collections:
           default: false,
           required: true,
         }
+      - {
+          label: "ترتیب منو",
+          name: "menu_order",
+          widget: "number",
+          default: 10,
+          required: false,
+        }
+
+      - label: "جهت نوشتار"
+        name: "dir"
+        widget: "select"
+        options: ["ltr", "rtl"]
 
   - name: category
     label: دسته‌بندی‌
@@ -73,6 +89,20 @@ collections:
     slug: "{{slug}}"
     identifier_field: name
     fields:
-      - { name: "name", label: "نام", required: true }
+      - { name: "title", label: "نام", required: true }
       - { label: "پوستر", name: "thumbnail", widget: "image", required: true }
       - { label: "محتوا", name: "body", widget: "markdown", required: true }
+      - {
+          label: "افزودن به منو",
+          name: "menu",
+          widget: "boolean",
+          default: false,
+          required: true,
+        }
+      - {
+          label: "ترتیب منو",
+          name: "menu_order",
+          widget: "number",
+          default: 10,
+          required: false,
+        }

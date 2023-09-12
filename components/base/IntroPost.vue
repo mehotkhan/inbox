@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 const { data }: any = useAsyncData("banner", () =>
-  queryContent("blogs").where({ banner: true }).sort({ date: -1 }).findOne()
+  queryContent("notes").where({ banner: true }).sort({ date: -1 }).findOne()
 );
 </script>
 <template>
@@ -11,11 +11,7 @@ const { data }: any = useAsyncData("banner", () =>
       <div class="basis-2/2 md:basis-1/2 flex-col justify-start items-center">
         <div class="items-center flex gap-3">
           <h2 class="">
-            <NuxtLink
-              :external="false"
-              :to="data?._path"
-              class=""
-            >
+            <NuxtLink :external="false" :to="data?._path" class="">
               {{ data?.title }}
             </NuxtLink>
           </h2>
@@ -29,12 +25,8 @@ const { data }: any = useAsyncData("banner", () =>
             {{ data?.category }}
             <span class="font-bold text-sm">،</span>
           </li>
-          <li key="link" class="text-lg">
-            <NuxtLink
-              :external="false"
-              :to="data?._path"
-              class="underline "
-            >
+          <li key="link" class="text-lg underline">
+            <NuxtLink :external="false" :to="data?._path" class="underline">
               بیشتر
             </NuxtLink>
           </li>

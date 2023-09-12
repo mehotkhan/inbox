@@ -11,7 +11,10 @@ onUnmounted(() => {
   <section class="flex flex-col justify-center content-center pb-10">
     <ContentDoc>
       <template #default="{ doc }">
-        <section class="flex flex-col node-page">
+        <section
+          class="flex flex-col node-page"
+          :class="doc?.dir === 'ltr' ? 'ltr' : 'rtl'"
+        >
           <div
             class="flex flex-col-reverse md:flex-row justify-between items-center h-screen-sm border-b md:border-0"
           >
@@ -24,11 +27,12 @@ onUnmounted(() => {
               <p>
                 {{ doc?.description }}
               </p>
-              <ul class="flex flex-row mt-0 list-none items-center gap-1">
-                <li key="category" class="text-lg">
-                  {{ doc?.category }}
-                </li>
-              </ul>
+              <div class="flex flex-row mt-0 list-none items-center gap-2">
+                <span v-for="tag in doc?.tags" :key="tag" class="text-lg">
+                  <span class="font-bold text-xl"> # </span>
+                  {{ tag }}
+                </span>
+              </div>
             </div>
             <div class="basis-2/2 md:basis-1/2 flex justify-end items-center">
               <nuxt-img
@@ -41,11 +45,11 @@ onUnmounted(() => {
               />
             </div>
           </div>
-          <div class="flex relative flex-col w-full md:m-0">
+          <UContainer>
             <ContentRenderer :value="doc" class="content mb-10" />
-            <LazyGiscus v-if="doc?.comment" />
-            <LazyBaseSidebar v-if="sidebarEnabled" :post="doc" />
-          </div>
+            <Comments v-if="doc?.comment" />
+          </UContainer>
+          <LazyBaseSidebar v-if="sidebarEnabled" :post="doc" />
         </section>
       </template>
     </ContentDoc>

@@ -8,7 +8,7 @@ const props = defineProps({
   },
 });
 const query: QueryBuilderParams = {
-  path: "/blogs",
+  path: "/notes",
   limit: 10,
   sort: [{ date: -1 }],
   where: props.category ? [{ category: props.category }] : undefined,
@@ -24,15 +24,9 @@ const query: QueryBuilderParams = {
             :key="slug"
             class="mb-2"
           >
-            <NuxtLink
-              :external="false"
-              :to="slug"
-              class=""
-            >
+            <NuxtLink :external="false" :to="slug" class="">
               {{ title }}
-              <span v-if="!props.category" class="font-thin">
-                / {{ category }}
-              </span>
+              <span class="font-thin"> / {{ category }} </span>
               <span class="font-thin"> / {{ JalaliDate(date) }} </span>
             </NuxtLink>
           </li>

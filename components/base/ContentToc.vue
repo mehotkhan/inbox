@@ -60,64 +60,66 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="px-3 md:p-0 mb-5">
-    <h3 class="text-bold">سرفصل‌ها</h3>
-    <UAccordion
-      default-open
-      multiple
-      :items="items"
-      :ui="{ wrapper: 'flex flex-col w-full', item: { size: 'text-md' } }"
-    >
-      <template #default="{ item, open }">
-        <UButton
-          ref="tocLinksH2"
-          color="gray"
-          variant="ghost"
-          class="flex w-full text-right"
-          :ui="{ rounded: 'rounded-none', padding: { sm: 'p-3' } }"
-          :class="{
-            'font-bold': item.id === currentSection,
-          }"
-        >
-          <span class="whitespace-nowrap" @click="onClick(item.id)">{{
-            item.label
-          }}</span>
-
-          <template v-if="item.children" #trailing>
-            <UIcon
-              name="i-heroicons-chevron-right-20-solid"
-              class="w-5 h-5 ms-auto transform transition-transform duration-200"
-              :class="[open && 'rotate-90']"
-            />
-          </template>
-        </UButton>
-      </template>
-      <template #item="{ item }">
-        <ul v-if="item.children" class="mr-3 my-2">
-          <li
-            v-for="{ id: childId, text: childText } in item.children"
-            :id="`toc-${childId}`"
-            :key="childId"
-            ref="tocLinksH3"
-            class="cursor-pointer list-none ml-0 mb-2 last:mb-0"
+  <div class="h-full relative" :class="post.dir === 'ltr' ? 'ltr' : 'rtl'">
+    <h3 class="text-bold text-xl">سرفصل‌ها</h3>
+    <div class="flex-col absolute top-10 overflow-y-auto bottom-0 w-full">
+      <UAccordion
+        default-open
+        multiple
+        :items="items"
+        :ui="{ wrapper: 'flex flex-col w-full', item: { size: 'text-md' } }"
+      >
+        <template #default="{ item, open }">
+          <UButton
+            ref="tocLinksH2"
+            color="gray"
+            variant="ghost"
+            class="flex w-full text-right"
+            :ui="{ rounded: 'rounded-none', padding: { sm: 'p-3' } }"
             :class="{
-              'font-bold': childId === currentSection,
+              'font-bold': item.id === currentSection,
             }"
-            @click.stop="onClick(childId)"
           >
-            <span class="whitespace-nowrap text-sm">
-              {{ childText }}
-            </span>
-          </li>
-        </ul>
-      </template>
-    </UAccordion>
-    <li
-      v-if="props.post?.comment"
-      class="cursor-pointer pb-3 mb-2 last:mb-0 mx-3"
-      @click.stop="onClick('comments')"
-    >
-      <span>دیدگاه ها</span>
-    </li>
+            <span class="whitespace-nowrap" @click="onClick(item.id)">{{
+              item.label
+            }}</span>
+
+            <template v-if="item.children" #trailing>
+              <UIcon
+                name="i-heroicons-chevron-right-20-solid"
+                class="w-5 h-5 ms-auto transform transition-transform duration-200"
+                :class="[open && 'rotate-90']"
+              />
+            </template>
+          </UButton>
+        </template>
+        <template #item="{ item }">
+          <ul v-if="item.children" class="mr-3 my-2">
+            <li
+              v-for="{ id: childId, text: childText } in item.children"
+              :id="`toc-${childId}`"
+              :key="childId"
+              ref="tocLinksH3"
+              class="cursor-pointer list-none ml-0 mb-2 last:mb-0"
+              :class="{
+                'font-bold': childId === currentSection,
+              }"
+              @click.stop="onClick(childId)"
+            >
+              <span class="whitespace-nowrap text-sm">
+                {{ childText }}
+              </span>
+            </li>
+          </ul>
+        </template>
+      </UAccordion>
+      <div
+        v-if="props.post?.comment"
+        class="cursor-pointer pb-3 mb-2 last:mb-0 mx-3"
+        @click.stop="onClick('comments')"
+      >
+        <span>دیدگاه ها</span>
+      </div>
+    </div>
   </div>
 </template>
