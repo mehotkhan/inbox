@@ -17,20 +17,3 @@
     </main>
   </div>
 </template>
-
-<style lang="scss">
-.prose .content {
-  img {
-    margin: 0 auto;
-    border: 1px solid #ddd;
-    padding: 3px;
-    border-radius: 3px;
-    background: #f3f3f3;
-  }
-  pre {
-    max-width: 100%;
-    word-break: break-word;
-    white-space: pre-wrap;
-  }
-}
-</style>
