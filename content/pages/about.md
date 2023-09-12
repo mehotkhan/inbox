@@ -16,7 +16,7 @@ Ali has contributed in about 100 software projects during the last 10 years and 
 
 ## Contact Details
 
-- Email : Sallam@alizemani.ir
+- Email : sallam@alizemani.ir
 - Github : [AliZemani / Github](https://github.com/mehotkhan)
 - LinkedIn : [AliZemani / LinkedIn](https://www.linkedin.com/in/ali-zemani/)
 - Twitter :[AliZemani / Twitter](https://twitter.com/ZemaniAli/)

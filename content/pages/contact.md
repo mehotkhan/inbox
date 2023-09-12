@@ -9,7 +9,7 @@ menu_order: 100
 
 ## اطلاعات تماس
 
-- ایمیل : Sallam@alizemani.ir
+- ایمیل : sallam@alizemani.ir
 - گیت‌هاب : [AliZemani / Github](https://github.com/mehotkhan)
 - لینکداین : [AliZemani / LinkedIn](https://www.linkedin.com/in/ali-zemani/)
 - تویتر :[AliZemani / Twitter](https://twitter.com/ZemaniAli/)
