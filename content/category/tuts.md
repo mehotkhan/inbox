@@ -1,8 +1,8 @@
 ---
 title: آموزش
-thumbnail: /content/totoro-image-12.webp
+thumbnail: /content/Programming-Language-PNG-Download-Image.png
 menu: true
 menu_order: 3
 ---
 
-پروژه ها
+آموزش تکنولوژی ها و ابزار های کاربردی

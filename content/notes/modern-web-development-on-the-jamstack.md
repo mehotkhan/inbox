@@ -1,6 +1,5 @@
 ---
-title: Modern Web Development on the JAMstack-O’Reilly Media
-url: modern-web-development-on-the-jamstack
+title: Modern Web Development on the JAMstack
 date: 2021/08/11
 category: کتاب
 tags:
@@ -16,7 +15,6 @@ description: In just the past few years, a flurry of advancements has greatly
   frameworks and API-based services.
 banner: false
 dir: ltr
-
 ---
 
 ## Introduction

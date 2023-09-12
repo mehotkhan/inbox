@@ -14,29 +14,13 @@ banner: false
 
 ## پیشگفتار
 
-فیزیک ،‌به قولی دانش درک جهان پیرامون ،تجربه ای قطور از دانش بزرگانی که در حال حاضر ،‌قطعه قطع های تمدن رو بر اساس عقاید اونها ساختن
+فیزیک، ‌به قولی دانش درک جهان پیرامون، تجربه‌ای قطور از دانش بزرگانی که در حال حاضر، قطعه قطع‌های تمدن رو بر اساس عقاید اون‌ها ساختن. فیزیک علمی به شدت دقیق و زیباست، حالا بحث‌های همیشگی سیستم دانشگاهی و فرمول‌های درهم برهم فیزیک رو که بی‌خیال بشیم، همیشه جذاب بوده این موضوع. موضوعات سیاه چاله، ماده تاریک، سفر در زمان جهان‌های موازی و کوانتوم و خیلی موضوعات دیگه‌ای که الان بخشی از خرده فرهنگ گفتمان‌های علمی شدند. ولی فیزیک جدا از جذابیت و ظرأفتی که توی توضیح پدیده‌ها داره، ‌همیشه همراه بوده با سختی و پیچیدگی فیزیک و ریاضیات اونقدر به هم تنیده شده‌اند که خیلی سخت میشه برای توصیف پدیده‌ای فقط به یکی متکی بود.
 
-فیزیک علمی به شدت دقیق و زیباست ،حالا بحث های همیشگی سیستم دانشگاهی و فرمول های درهم برهم فیزیک رو که بی‌خیال بشیم،همیشه جذاب بوده این موضوع
-
-اگه اهل فیلم و سریال هم باشید ،موضوعات سیاه چاله ، ماده تاریک ،سفر در زمان جهان های موازی و کوانتوم و خیلی موضوعات دیگه ای که الان بخشی از خرده فرهنگ گفتمان های علمی شدند .
-
-ولی فیزیک جدا از جذابیت و ظرافتی که توی توضیح پدیده ها داره ،‌همیشه همراه بوده با سختی و پیچیدگی
-
-فیزیک و ریاضیات اونقدر به هم تنیده شده اند که خیلی سخت می شه برای توصیف پدیده ای فقط به یکی متکی بود .
-
-برای افرادی که وارد سیستم دانشگاهی میشوند ،حتی اونهایی که رشته تخصصی فیزیک داشتند ،درگیر شدن با این پیچیدگی ها ،بخش زیادی از لذت ظرافت و زیبایی فیزیک رو از دست می دادن.
-
-ایده ی اولیه نوشتن این یادداشت ،مقاله ای بود از خانم [Susan Rigetti](https://www.susanrigetti.com/) .ایشون لیستی از کتابها رو معرفی کردن برای افرادی که علاقه به فیزیک دارند ولی خب بنا به هر دلایلی نتونستن دنبالش کنن .
-
-یه سری دوره کتاب ،که اگر کسی علاقه داشته باشد خودش فیزیک رو یاد بگیرد ،می تونه دنبال کنه
+برای افرادی که وارد سیستم دانشگاهی می‌شوند، حتی اون‌هایی که رشته تخصصی فیزیک داشتند، درگیر شدن با این پیچیدگی‌ها، بخش زیادی از لذت ظرأفت و زیبایی فیزیک رو از دست می‌دادن. ایده‌ی اولیه نوشتن این یادداشت، مقاله‌ای بود از خانم [Susan Rigetti](https://www.susanrigetti.com/).‌ایشون لیستی از کتاب‌ها رو معرفی کردن برای افرادی که علاقه به فیزیک دارند ولی خب بنا به هر دلایلی نتونستن دنبالش کنن. یه سری دوره کتاب، که اگر کسی علاقه داشته باشد خودش فیزیک رو یاد بگیرد، می‌ تونه دنبال کنه .دوره‌ها از پایه‌های اولیه فیزیک شروع میشه و تا مباحث خیلی پیچیده مثل کوانتوم و نسبیت عام ادامه پیدا می‌کنه.
 
 لینک اصلی :‌
 
 [So You Want to Learn Physics…](https://www.susanrigetti.com/physics)
-
-دوره ها از پایه های اولیه فیزیک شروع میشه و تا مباحث خیلی پیچیده مثل کوانتوم و نسبیت عام ادامه پیدا می کنه
-
-این جا سعی میکنم این دوره رو برای خواننده فارسی زبان ترجمه و معرفی کنم
 
 <div class="ltr">
 
@@ -329,5 +313,3 @@ The graduate curriculum can be split into several categories: (i) the core cours
 - **Quantum Computing**:[Quantum Computation and Quantum Information by Michael A. Nielsen and Isaac L. Chuang](https://www.amazon.com/Quantum-Computation-Information-10th-Anniversary/dp/1107002176?dchild=1&keywords=quantum%20computing&language=en_US&linkCode=ll1&linkId=6071735407ef7522e21c19395a51322e&qid=1618965299&ref_=as_li_ss_tl&s=books&sr=1-30&tag=susanfowler-20). Also known as “Mike and Ike,” this is _the_ standard introduction to quantum information and computation.
 - **Solid-State Physics:** [Solid-State Physics by Ashcroft and Mermin](https://www.amazon.com/Solid-State-Physics-Neil-Ashcroft/dp/8131500527?crid=2S8RO77XRYDXS&dchild=1&keywords=ashcroft%20and%20mermin%20solid%20state%20physics&language=en_US&linkCode=ll1&linkId=ed543039975467b23595195e55fcdaaf&qid=1618977068&ref_=as_li_ss_tl&sprefix=ashcroft%20and%20mer%2Cdigital-text%2C222&sr=8-1&tag=susanfowler-20). The classic introductory solid-state textbook. Supplement with [Introduction to Solid State Physics by Kittel](https://www.amazon.com/Introduction-Solid-Physics-Charles-Kittel/dp/047141526X?crid=2ZLUATKWBISXC&dchild=1&keywords=kittel%20solid%20state%20physics&language=en_US&linkCode=ll1&linkId=9dc5ed44fcbf10f4ea8624a12feddbfc&qid=1619025990&ref_=as_li_ss_tl&s=books&sprefix=kittel%20%2Cstripbooks%2C227&sr=1-1&tag=susanfowler-20).
 - **String Theory:** [String Theory: Volume 1, An Introduction to the Bosonic String](https://www.amazon.com/gp/product/B00AKE1RLW?language=en_US&linkCode=ll1&linkId=f9dfb7bf40a0d71fa3fdd619c5ba240c&ref_=as_li_ss_tl&storeType=ebooks&tag=susanfowler-20) and [String Theory: Volume 2, Superstring Theory and Beyond](https://www.amazon.com/gp/product/B00AKE1ROO?language=en_US&linkCode=ll1&linkId=bd5385577fe6167771edf2b3f216950b&ref_=as_li_ss_tl&storeType=ebooks&tag=susanfowler-20), by the late [Joe Polchinski](https://www.quantamagazine.org/joe-polchinski-physicist-who-developed-deep-ideas-and-paradoxes-dies-at-63-20180220/); and [String Theory and M-Theory: A Modern Introduction](https://www.amazon.com/String-Theory-M-Theory-Modern-Introduction-ebook/dp/B00AKE1SA2?language=en_US&linkCode=ll1&linkId=cf6cb87bcf439b832507b213cb1c3625&pd_rd_i=B00AKE1SA2&pd_rd_r=2f8b30eb-52e9-4d68-be57-85266802700e&pd_rd_w=nnUNY&pd_rd_wg=OznzN&pf_rd_p=78971f67-4c78-4f07-b5c1-ee9acd72068c&pf_rd_r=XSE51QVTY28WEJEM35GP&psc=1&ref_=as_li_ss_tl&tag=susanfowler-20). I found it really enjoyable to pair Polchinski’s books with Becker Becker Schwarz when I was learning string theory — they complement each other well.
-
-<hr />

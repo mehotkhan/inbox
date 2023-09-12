@@ -69,7 +69,7 @@ export default defineNuxtConfig({
     minify: true,
     prerender: {
       crawlLinks: false,
-      routes: GenerateRoutes(["blogs", "pages", "category"]),
+      routes: GenerateRoutes(["notes", "pages", "category"]),
     },
   },
   experimental: {

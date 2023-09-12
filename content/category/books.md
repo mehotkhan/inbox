@@ -1,6 +1,6 @@
 ---
 title: کتاب
-thumbnail: /content/totoro-image-12.webp
+thumbnail: /content/library.jpg
 menu: true
 menu_order: 5
 ---

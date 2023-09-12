@@ -2,7 +2,7 @@
 title: درباره من
 menu: false
 date: 2023-08-12T04:29:59.358Z
-thumbnail: /content/physics.webp
+thumbnail: /content/cv-photo-new.webp
 description: اوپن سورس وب دولوپر :)
 menu_order: 100
 ---

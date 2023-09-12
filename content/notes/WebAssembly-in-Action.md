@@ -1,46 +1,46 @@
 ---
-title: وب‌اسمپلی در عمل
+title: WebAssembly in Action
 thumbnail: /content/wasm-in-actions.png
 description: WebAssembly in Action introduces the WebAssembly stack and walks
   you through the process of writing and running browser-based applications.
   Expert developer Gerard Gallant gives you a firm foundation of the structure
   of a module, HTML basics, JavaScript Promises, and the WebAssembly JavaScript
   API.
-date: 2023-09-10T08:47:23.697Z
+date: 2023-09-00
 category: کتاب
 banner: false
 comment: false
+dir: ltr
 tags:
   - wasm
   - golang
   - tinygo
-dir: ltr
 ---
-
-## About the Technology
-
-Write high-performance browser-based applications without relying only on JavaScript! By compiling to the WebAssembly binary format, your C, C++, or Rust code runs at near-native speed in the browser. WebAssembly delivers greater speed, opportunities to reuse existing code, and access to newer and faster libraries. Plus, you can easily interact with JavaScript when you need to.
 
 ## About the Book
 
 WebAssembly in Action teaches you how to write and run high-performance browser-based applications using C++ and other languages supported by WebAssembly. In it, you'll learn to create native WebAssembly modules, interact with JavaScript components, and maximize performance with web workers and pthreads. And you'll love how the clearly organized sections make it a breeze to find the important details about every function, feature, and technique.
 
-## What's inside
+### About the Technology
+
+Write high-performance browser-based applications without relying only on JavaScript! By compiling to the WebAssembly binary format, your C, C++, or Rust code runs at near-native speed in the browser. WebAssembly delivers greater speed, opportunities to reuse existing code, and access to newer and faster libraries. Plus, you can easily interact with JavaScript when you need to.
+
+### What's inside
 
 • Dynamic linking of multiple modules at runtime
 • Communicating between modules and JavaScript
 • Debugging with WebAssembly Text Format
 • Threading with web workers and pthreads
 
-## About the Reader
+### About the Reader
 
 Written for developers with a basic understanding of C/C++, JavaScript, and HTML.
 
-## About the Author
+### About the Author
 
 Gerard Gallant is a Microsoft Certified Professional and a Senior Software Developer at Dovico Software. He blogs regularly on Blogger.com and DZone.com.
 
-## Table of contents :
+## Table of contents
 
 ### PART 1 - FIRST STEPS
 

@@ -4,7 +4,6 @@ tags:
   - Graph Data
   - Graph Database
 title: The Practitioner’s Guide to Graph Data
-url: the-practitioner-s-guide-to-graph-data
 category: کتاب
 thumbnail: "/content/The-Practitioners-Guide-To-Graph-Data.webp"
 description:
@@ -16,12 +15,11 @@ description:
 
 banner: false
 dir: ltr
-
 ---
 
-Applying Graph Thinking and Graph Technologies to Solve Complex Problems
-
 ## Preface
+
+Applying Graph Thinking and Graph Technologies to Solve Complex Problems
 
 `From Book`
 
@@ -131,29 +129,41 @@ teaches you what you need to know to apply graph thinking to a technology decisi
 
 This book is organized roughly as follows:
 
-- Chapter 1 discusses graph thinking and provides detailed processes for its appli‐
-  cation to complex problems.
+### Chapter 1
 
-- Chapters 2 and 3 introduce fundamental graph concepts that will be used
-  throughout the rest of the book.
+Chapter 1 discusses graph thinking and provides detailed processes for its appli‐
+cation to complex problems.
 
-- Chapters 4 and 5 apply graph thinking and distributed graph technology to
-  building a Customer 360 banking application, the most popular use case for
-  graph data today.
+### Chapter 2,3
 
-- Chapters 6 and 7 into the world of hierarchical data and nested graph data
-  through a telecommunications use case. Chapter 6 sets the stage for a common
-  error that is resolved in Chapter 7.
+Chapters 2 and 3 introduce fundamental graph concepts that will be used
+throughout the rest of the book.
 
-- Chapters 8 and 9 discuss pathfinding across graph data in detail, using an exam‐
-  ple of quantifying trust in social transaction networks via paths.
+### Chapter 4,5
 
-- Chapters 10 and 12 teach you how to use collaborative filtering on graph data to
-  design a Netflix-inspired recommendation system.
+Chapters 4 and 5 apply graph thinking and distributed graph technology to
+building a Customer 360 banking application, the most popular use case for
+graph data today.
 
-- Chapter 11 can be thought of as a bonus chapter that illustrates how to apply
-  entity resolution to the merging of multiple datasets into one large graph for col‐
-  lective analysis.
+### Chapter 6,7
+
+Chapters 6 and 7 into the world of hierarchical data and nested graph data
+through a telecommunications use case. Chapter 6 sets the stage for a common
+error that is resolved in Chapter 7.
+
+### Chapter 8,9
+
+Chapters 8 and 9 discuss pathfinding across graph data in detail, using an exam‐
+ple of quantifying trust in social transaction networks via paths.
+
+### Chapter 10,11,12
+
+Chapters 10 and 12 teach you how to use collaborative filtering on graph data to
+design a Netflix-inspired recommendation system.
+
+Chapter 11 can be thought of as a bonus chapter that illustrates how to apply
+entity resolution to the merging of multiple datasets into one large graph for col‐
+lective analysis.
 
 Each chapter pair (4 and 5, 6 and 7, 8 and 9, 10 and 12) follows the same structure.
 The first chapter in each pair introduces new concepts and a new example use case in
@@ -165,5 +175,3 @@ issues, such as
 - Oreilly (Buy): [The Practitioner's Guide to Graph Dat: Applying Graph Thinking and Graph Technologies to Solve Complex Problems](https://www.oreilly.com/library/view/the-practitioners-guide/9781492044062/)
 
 - Download From libgen (PDF): [The Practitioner’s Guide To Graph Data: Applying Graph Thinking And Graph Technologies To Solve Complex Problems](http://libgen.is/book/index.php?md5=2F852C74D4139268D520CB3E4B1662D3)
-
-<hr />
