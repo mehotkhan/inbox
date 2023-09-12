@@ -11,10 +11,7 @@ onUnmounted(() => {
   <section class="flex flex-col justify-center content-center pb-10">
     <ContentDoc>
       <template #default="{ doc }">
-        <section
-          class="flex flex-col node-page"
-          :class="doc?.dir === 'ltr' ? 'ltr' : 'rtl'"
-        >
+        <section class="flex flex-col node-page">
           <div
             class="flex flex-col-reverse md:flex-row justify-between items-center h-screen-sm border-b md:border-0"
           >
