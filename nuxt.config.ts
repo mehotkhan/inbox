@@ -87,11 +87,6 @@ export default defineNuxtConfig({
       },
     },
   },
-  vue: {
-    compilerOptions: {
-      isCustomElement: (tag) => ["giscus-widget"].includes(tag),
-    },
-  },
   hooks: {
     "build:done": () => {
       GenerateDecap();
