@@ -8,7 +8,12 @@ import { GenerateDecap } from "./tools/configs-generators";
 export default defineNuxtConfig({
   ssr: true,
   css: ["@/assets/scss/base.scss", "@/assets/scss/extra.scss"],
-  modules: ["@nuxt/image-edge", "@nuxt/ui", "@nuxt/content", "nuxt-gtag"],
+  modules: [
+    "@nuxt/ui",
+    "@nuxt/content",
+    "nuxt-gtag",
+    "@nuxt/image"
+  ],
   extends: ["nuxt-seo-kit"],
   runtimeConfig: {
     app: {
@@ -77,16 +82,16 @@ export default defineNuxtConfig({
     treeshakeClientOnly: false,
     inlineSSRStyles: false,
   },
-  image: {
-    format: ["webp"],
-    provider: "ipx",
-    ipx: {
-      modifiers: {
-        quality: "80",
-        format: ["webp"],
-      },
-    },
-  },
+  // image: {
+  //   format: ["webp"],
+  //   provider: "ipx",
+  //   ipx: {
+  //     modifiers: {
+  //       quality: "80",
+  //       format: ["webp"],
+  //     },
+  //   },
+  // },
   hooks: {
     "build:done": () => {
       GenerateDecap();

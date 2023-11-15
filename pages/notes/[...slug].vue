@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { sidebarEnabled } = useSidebar();
 onMounted(() => {
-  sidebarEnabled.value = true;
+  sidebarEnabled.value = false;
 });
 onUnmounted(() => {
   sidebarEnabled.value = false;
