@@ -12,7 +12,8 @@ export default defineNuxtConfig({
     "@nuxt/ui",
     "@nuxt/content",
     "nuxt-gtag",
-    "@nuxt/image"
+    "@nuxt/image",
+    '@nuxtjs/i18n'
   ],
   extends: ["nuxt-seo-kit"],
   runtimeConfig: {
@@ -82,16 +83,16 @@ export default defineNuxtConfig({
     treeshakeClientOnly: false,
     inlineSSRStyles: false,
   },
-  // image: {
-  //   format: ["webp"],
-  //   provider: "ipx",
-  //   ipx: {
-  //     modifiers: {
-  //       quality: "80",
-  //       format: ["webp"],
-  //     },
-  //   },
-  // },
+  image: {
+    format: ["webp"],
+    provider: "ipx",
+    ipx: {
+      modifiers: {
+        quality: "80",
+        format: ["webp"],
+      },
+    },
+  },
   hooks: {
     "build:done": () => {
       GenerateDecap();
@@ -108,4 +109,7 @@ export default defineNuxtConfig({
       theme: "github-dark",
     },
   },
+  i18n: {
+    vueI18n: './i18n.config.ts' // if you are using custom path, default 
+  }
 });
