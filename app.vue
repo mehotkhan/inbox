@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useDark } from "@vueuse/core";
+const { locale } = useI18n();
 
 const runtimeConfig = useRuntimeConfig();
 const isDark = useDark();
@@ -30,13 +31,15 @@ useHead({
 });
 </script>
 <template>
-  <Html dir="rtl" lang="fa" :class="isDark ? 'dark' : 'light'">
-    <Body class="dark:bg-slate-800">
-      <NuxtLayout>
-        <SeoKit />
-        <NuxtLoadingIndicator />
-        <NuxtPage />
-      </NuxtLayout>
-    </Body>
+  <Html :dir="locale === 'fa' ? 'rtl' : 'ltr'" :lang="locale" :class="isDark ? 'dark' : 'light'">
+
+  <Body class="dark:bg-slate-800">
+    <NuxtLayout>
+      <SeoKit />
+      <NuxtLoadingIndicator />
+      <NuxtPage />
+    </NuxtLayout>
+  </Body>
+
   </Html>
 </template>

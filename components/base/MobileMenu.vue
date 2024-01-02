@@ -17,7 +17,9 @@ const items = computed(() => {
 </script>
 
 <template>
-  <UDropdown :items="items" :popper="{ placement: 'bottom-start' }">
-    <IconUil:align-justify class="text-md flex" aria-hidden="true" />
-  </UDropdown>
+  <ClientOnly>
+    <UDropdown :items="items" :popper="{ placement: 'bottom-start' }">
+      <IconUil:align-justify class="text-md flex" aria-hidden="true" />
+    </UDropdown>
+  </ClientOnly>
 </template>
