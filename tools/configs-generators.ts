@@ -5,10 +5,10 @@ require("dotenv").config();
 
 export const GenerateDecap = () => {
   const baseConfigString = ejs.render(
-    fs.readFileSync("configs/decap-base.yaml", "utf8")
+    fs.readFileSync("configs/decap-base.yaml", "utf8"),
   );
   const extraConfigString = ejs.render(
-    fs.readFileSync("decap-extra-config.yml", "utf8")
+    fs.readFileSync("decap-extra-config.yml", "utf8"),
   );
 
   // const extraConfigFile = fs.readFileSync("decap-extra-config.yml", "utf8");
@@ -27,7 +27,7 @@ export const GenerateDecap = () => {
       "utf8",
       (err) => {
         if (err) console.log(err);
-      }
+      },
     );
   } catch (e) {
     console.log(e);

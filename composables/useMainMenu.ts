@@ -1,10 +1,10 @@
 export default () => {
   const appConfig = useAppConfig();
   const pagesMenu: any = useAsyncData("menuPages", () =>
-    queryContent("pages").where({ menu: true }).find()
+    queryContent("pages").where({ menu: true }).find(),
   );
   const pagesCategory: any = useAsyncData("menuCategory", () =>
-    queryContent("category").where({ menu: true }).find()
+    queryContent("category").where({ menu: true }).find(),
   );
 
   const menuItems = computed(() => {

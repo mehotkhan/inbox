@@ -8,8 +8,8 @@ const { sidebarEnabled, toggleSidebar } = useSidebar();
     <UButton
       v-if="sidebarEnabled"
       variant="ghost"
-      @click="toggleSidebar"
       class="p-0"
+      @click="toggleSidebar"
     >
       <IconUil:list-ul aria-hidden="true" class="text-[1.1rem]" />
     </UButton>

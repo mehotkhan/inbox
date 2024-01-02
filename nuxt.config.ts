@@ -13,7 +13,7 @@ export default defineNuxtConfig({
     "@nuxt/content",
     "nuxt-gtag",
     "@nuxt/image",
-    '@nuxtjs/i18n'
+    "@nuxtjs/i18n",
   ],
   extends: ["nuxt-seo-kit"],
   runtimeConfig: {
@@ -110,6 +110,6 @@ export default defineNuxtConfig({
     },
   },
   i18n: {
-    vueI18n: './i18n.config.ts' // if you are using custom path, default 
-  }
+    vueI18n: "./i18n.config.ts", // if you are using custom path, default
+  },
 });
