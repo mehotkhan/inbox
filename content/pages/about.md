@@ -12,7 +12,6 @@
 - Python
 - C/C++ (Arduino ENV)
 - Golang
-- PHP
 
 ## Front-End Technologies
 
@@ -21,14 +20,12 @@
 - Nuxt3
 - Wasm Technology
 - React
-- Bootstrap (v3,v4) ,
+- Bootstrap,
 - AndD
-- Material UI
-- Redux enverioment
 
 ## Operations Systems
 
-Experience working in Unix/Linux server managment ,
+Experience working in Unix/Linux server management ,
 
 - Debian
 - FreeBSd
