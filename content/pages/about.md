@@ -1,19 +1,3 @@
----
-title: درباره من
-menu: false
-date: 2023-08-12T04:29:59.358Z
-thumbnail: /content/cv-photo-new.webp
-description: اوپن سورس وب دولوپر :)
-menu_order: 100
----
-
-<div class="ltr">
-
-## About
-
-Ali is an accomplished individual with a strong back-ground in software systems, software management, professional programming and software developing.
-Ali has contributed in about 100 software projects during the last 10 years and he is continually evaluating and upgrading his skills so that he stays at the cutting edge of web development. Ali is a quick learner who can generate new ideas and can communicate clearly and effectively. He has a great interest in open source technologies and dedicates his leisure time to study and research in this field.
-
 ## Contact Details
 
 - Email : sallam@alizemani.ir
@@ -30,6 +14,18 @@ Ali has contributed in about 100 software projects during the last 10 years and 
 - Golang
 - PHP
 
+## Front-End Technologies
+
+- Vue3
+- Tailwind CSS
+- Nuxt3
+- Wasm Technology
+- React
+- Bootstrap (v3,v4) ,
+- AndD
+- Material UI
+- Redux enverioment
+
 ## Operations Systems
 
 Experience working in Unix/Linux server managment ,
@@ -43,26 +39,10 @@ Experience working in Unix/Linux server managment ,
 ## Back-end Technologies
 
 - Django
-- Django DRF (django rest fremwork)
-- Django Channel
-- Flask microframwork
-- Celery,
+- Flask 
 - express.js
 - loopback(v3)
-- GraphQL
-
-## Front-End Technologies
-
-- Vue3
-- Tailwind CSS
-- Nuxt3
-- Wasm Technology
-- React
-- Hexo.js
-- Bootstrap (v3,v4) ,
-- AndD
-- Material UI
-- Redux enverioment
+- Cloudflare Worker
 
 ## Mobile App Technologies
 
@@ -72,11 +52,8 @@ Experience working in Unix/Linux server managment ,
 ## Dev-ops Technologies
 
 - Microservise Architecture
-- Messaging platform
-- Clustermanagment platform (k8s )
 - docker
 - Nginx
-- Kafka
 - EMQ (Mqtt broker)
 - RabbitMQ
 
@@ -104,12 +81,12 @@ Experience working in Unix/Linux server managment ,
 - Dexie.js(IndexedDB Wrapper)
 - Mongodb
 - Postgresql
-- Key-Value (redis)
+- Redis
 - Neo4j
 
 ## Social Data Analysis
 
-- Experience working in Twiter Api
+- Twiter Api
 - Telegram APi
 - Instagram Api
 - LinkedIn API
@@ -119,4 +96,3 @@ Experience working in Unix/Linux server managment ,
 - Ethereum smart contract
 - IPFS Data Storage
 
-</div>
