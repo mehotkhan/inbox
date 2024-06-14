@@ -15,7 +15,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxtjs/i18n",
   ],
-  extends: ["nuxt-seo-kit"],
+  // extends: ["nuxt-seo-kit"],
   runtimeConfig: {
     app: {
       title: process.env.SITE_NAME,
