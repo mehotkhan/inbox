@@ -36,7 +36,7 @@ Experience working in Unix/Linux server management ,
 ## Back-end Technologies
 
 - Django
-- Flask 
+- Flask
 - express.js
 - loopback(v3)
 - Cloudflare Worker
@@ -92,4 +92,3 @@ Experience working in Unix/Linux server management ,
 
 - Ethereum smart contract
 - IPFS Data Storage
-

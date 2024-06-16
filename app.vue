@@ -31,15 +31,17 @@ useHead({
 });
 </script>
 <template>
-  <Html :dir="locale === 'fa' ? 'rtl' : 'ltr'" :lang="locale" :class="isDark ? 'dark' : 'light'">
-
-  <Body class="dark:bg-slate-800">
-    <NuxtLayout>
-      <SeoKit />
-      <NuxtLoadingIndicator />
-      <NuxtPage />
-    </NuxtLayout>
-  </Body>
-
+  <Html
+    :dir="locale === 'fa' ? 'rtl' : 'ltr'"
+    :lang="locale"
+    :class="isDark ? 'dark' : 'light'"
+  >
+    <Body class="dark:bg-slate-800">
+      <NuxtLayout>
+        <!-- <SeoKit /> -->
+        <NuxtLoadingIndicator />
+        <NuxtPage />
+      </NuxtLayout>
+    </Body>
   </Html>
 </template>

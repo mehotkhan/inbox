@@ -3,16 +3,16 @@ export default defineI18nConfig(() => ({
   locale: "fa",
   messages: {
     en: {
-      siteName: 'Ali Zemani',
-      titleFirst: 'Ali',
-      titleSecond: 'Zemani',
-      description: 'Web Developer'
+      siteName: "Ali Zemani",
+      titleFirst: "Ali",
+      titleSecond: "Zemani",
+      description: "Web Developer",
     },
     fa: {
-      siteName: 'علی زِمانی',
-      titleFirst: 'علـی',
-      titleSecond: 'زِمـــانی',
-      description: 'توسعه دهنده وب'
+      siteName: "علی زِمانی",
+      titleFirst: "علـی",
+      titleSecond: "زِمـــانی",
+      description: "توسعه دهنده وب",
     },
   },
 }));

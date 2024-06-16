@@ -5,7 +5,9 @@ const { data }: any = useAsyncData("banner", () =>
 </script>
 <template>
   <ContentRenderer :value="data" class="">
-    <div class="flex flex-col-reverse md:flex-row justify-between items-center h-screen-md">
+    <div
+      class="flex flex-col-reverse md:flex-row justify-between items-center h-screen-md"
+    >
       <div class="basis-2/2 md:basis-1/2 flex-col justify-start items-center">
         <div class="items-center flex gap-3">
           <h2 class="">
@@ -31,8 +33,18 @@ const { data }: any = useAsyncData("banner", () =>
         </ul>
       </div>
       <div class="basis-2/2 md:basis-1/2 flex justify-end items-center">
-        <nuxt-img v-if="data?.thumbnail" preload loading="lazy" sizes="sm:100vw md:50vw lg:400px" class="flex"
-          :src="data?.thumbnail" :alt="data?.title" height="auto" :width="400" :placeholder="[50, 25]" />
+        <nuxt-img
+          v-if="data?.thumbnail"
+          preload
+          loading="lazy"
+          sizes="sm:100vw md:50vw lg:400px"
+          class="flex"
+          :src="data?.thumbnail"
+          :alt="data?.title"
+          height="auto"
+          :width="400"
+          :placeholder="[50, 25]"
+        />
       </div>
     </div>
   </ContentRenderer>

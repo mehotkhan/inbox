@@ -1,4 +1,10 @@
-<script setup></script>
+<script lang="ts" setup>
+const { welcomeMessage } = useSupport();
+
+onMounted(() => {
+  welcomeMessage();
+});
+</script>
 <template>
   <div class="flex-col flex">
     <slot name="app-before" />
@@ -16,4 +22,16 @@
       <div id="app-after"></div>
     </main>
   </div>
+  <SupportStart />
 </template>
+
+<style lang="css">
+body {
+  margin: 0;
+  font-family:
+    Vazir,
+    Helvetica Neue,
+    Helvetica,
+    sans-serif;
+}
+</style>

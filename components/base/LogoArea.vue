@@ -1,21 +1,20 @@
 <script lang="ts" setup>
 const runtimeConfig = useRuntimeConfig();
-const { locale } = useI18n()
-
+const { locale } = useI18n();
 </script>
 <template>
   <h1 class="flex text-2xl items-center mx-5">
     <NuxtLink :external="false" to="/">
       <div class="flex items-baseline">
         <div class="font-hairline">
-          {{ $t('titleFirst') + "" }}
+          {{ $t("titleFirst") + "" }}
         </div>
         <div class="font-bold">
-          {{ $t('titleSecond') }}
+          {{ $t("titleSecond") }}
         </div>
         <div class="font-hairline text-xl">://</div>
         <div class="font-hairline text-xl">
-          {{ " " + $t('description') }}
+          {{ " " + $t("description") }}
         </div>
       </div>
     </NuxtLink>

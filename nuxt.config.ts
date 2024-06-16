@@ -8,6 +8,8 @@ import { GenerateDecap } from "./tools/configs-generators";
 export default defineNuxtConfig({
   ssr: true,
   css: ["@/assets/scss/base.scss", "@/assets/scss/extra.scss"],
+  devtools: { enabled: false },
+
   modules: [
     "@nuxt/ui",
     "@nuxt/content",
@@ -68,8 +70,12 @@ export default defineNuxtConfig({
       rollupOptions: { treeshake: false },
     },
   },
-
   nitro: {
+    experimental: {
+      websocket: true,
+    },
+    preset: "cloudflare-pages",
+
     static: true,
     compressPublicAssets: true,
     minify: true,
@@ -78,21 +84,21 @@ export default defineNuxtConfig({
       routes: GenerateRoutes(["notes", "pages", "category"]),
     },
   },
-  experimental: {
-    payloadExtraction: false,
-    treeshakeClientOnly: false,
-    inlineSSRStyles: false,
-  },
-  image: {
-    format: ["webp"],
-    provider: "ipx",
-    ipx: {
-      modifiers: {
-        quality: "80",
-        format: ["webp"],
-      },
-    },
-  },
+  // experimental: {
+  //   payloadExtraction: false,
+  //   treeshakeClientOnly: false,
+  //   inlineSSRStyles: false,
+  // },
+  // image: {
+  //   format: ["webp"],
+  //   provider: "ipx",
+  //   ipx: {
+  //     modifiers: {
+  //       quality: "80",
+  //       format: ["webp"],
+  //     },
+  //   },
+  // },
   hooks: {
     "build:done": () => {
       GenerateDecap();
