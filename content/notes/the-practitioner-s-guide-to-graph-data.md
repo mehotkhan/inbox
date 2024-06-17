@@ -5,7 +5,7 @@ tags:
   - Graph Database
 title: The Practitioner’s Guide to Graph Data
 category: کتاب
-thumbnail: "/content/The-Practitioners-Guide-To-Graph-Data.webp"
+thumbnail: "The-Practitioners-Guide-To-Graph-Data.webp"
 description:
   Think about the last time you searched for someone on a social media platform.
   What did you look at on the results page?

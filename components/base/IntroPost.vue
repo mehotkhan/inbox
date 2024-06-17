@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 const { data }: any = useAsyncData("banner", () =>
-  queryContent("notes").where({ banner: true }).sort({ date: -1 }).findOne(),
+  queryContent("notes").where({ banner: true }).sort({ date: -1 }).findOne()
 );
 </script>
 <template>

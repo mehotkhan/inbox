@@ -1,6 +1,6 @@
 ---
 title: کتاب
-thumbnail: /content/library.jpg
+thumbnail: library.jpg
 menu: true
 menu_order: 5
 ---

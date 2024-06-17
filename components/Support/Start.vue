@@ -29,7 +29,7 @@ function toggleModal() {
 <template>
   <div>
     <div
-      class="fixed right-2 bottom-2 shadow-md rounded-full cursor-pointer text-4xl z-50 support-button p-3 transition-all text-white bg-slate-700 border-2 border-slate-800"
+      class="fixed left-2 bottom-2 shadow-md rounded-full cursor-pointer text-4xl z-50 support-button p-3 transition-all text-white bg-slate-700 border-2 border-slate-800"
       @click="toggleModal"
     >
       <UIcon name="i-heroicons-chat-bubble-left-right" v-if="!modalBoxIsOpen" />
@@ -129,7 +129,7 @@ function toggleModal() {
                   size="xs"
                   :label="
                     ticketStatus.find(
-                      (item: any) => item.id === currentTicket.status,
+                      (item: any) => item.id === currentTicket.status
                     )?.label
                   "
                   color="gray"

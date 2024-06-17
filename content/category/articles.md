@@ -1,6 +1,6 @@
 ---
 title: یادداشت
-thumbnail: /content/Blogging.png
+thumbnail: Blogging.png
 menu: true
 menu_order: 2
 ---

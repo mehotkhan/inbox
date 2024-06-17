@@ -1,6 +1,6 @@
 ---
 title: پروژه
-thumbnail: /content/totoro-image-12.webp
+thumbnail: totoro-image-12.webp
 menu: false
 ---
 

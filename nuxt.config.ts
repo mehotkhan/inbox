@@ -13,7 +13,7 @@ export default defineNuxtConfig({
   modules: [
     "@nuxt/ui",
     "@nuxt/content",
-    "nuxt-gtag",
+    // "nuxt-gtag",
     "@nuxt/image",
     "@nuxtjs/i18n",
   ],
@@ -74,7 +74,7 @@ export default defineNuxtConfig({
     experimental: {
       websocket: true,
     },
-    preset: "cloudflare-pages",
+    // preset: "cloudflare-pages",
 
     static: true,
     compressPublicAssets: true,
@@ -84,11 +84,11 @@ export default defineNuxtConfig({
       routes: GenerateRoutes(["notes", "pages", "category"]),
     },
   },
-  // experimental: {
-  //   payloadExtraction: false,
-  //   treeshakeClientOnly: false,
-  //   inlineSSRStyles: false,
-  // },
+  experimental: {
+    payloadExtraction: false,
+    treeshakeClientOnly: false,
+    inlineSSRStyles: false,
+  },
   // image: {
   //   format: ["webp"],
   //   provider: "ipx",
@@ -107,14 +107,17 @@ export default defineNuxtConfig({
       GenerateDecap();
     },
   },
-  gtag: {
-    id: "G-78646PGVN1",
+  image: {
+    dir: 'assets/content'
   },
-  content: {
-    highlight: {
-      theme: "github-dark",
-    },
-  },
+  // gtag: {
+  //   id: "G-78646PGVN1",
+  // },
+  // content: {
+  //   highlight: {
+  //     theme: "github-dark",
+  //   },
+  // },
   i18n: {
     vueI18n: "./i18n.config.ts", // if you are using custom path, default
   },

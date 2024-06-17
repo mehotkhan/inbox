@@ -4,5 +4,5 @@
 set -e
 
 # pnpm clean
-pnpm generate
-wrangler pages publish .output/public
+NITRO_PRESET=cloudflare-pages pnpm build
+npx wrangler pages publish dist/
