@@ -14,9 +14,10 @@ type Schema = z.infer<typeof schema>;
 
 const form = ref();
 
-async function onSubmit(event: FormSubmitEvent<Schema>) {
-  sendComment(event.data.message);
-}
+const onSubmit = async (event: FormSubmitEvent<Schema>) => {
+  await sendComment(event.data.message);
+  state.message = "";
+};
 </script>
 
 <template>

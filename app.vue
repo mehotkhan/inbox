@@ -1,10 +1,8 @@
 <script lang="ts" setup>
 import { useDark } from "@vueuse/core";
 const { locale } = useI18n();
-
+const { registerNew } = useUser();
 const runtimeConfig = useRuntimeConfig();
-const isDark = useDark();
-
 useHead({
   title: runtimeConfig.app.title,
   titleTemplate: `%s - ${runtimeConfig.app.title}:// ${runtimeConfig.app.description} `,
@@ -28,6 +26,11 @@ useHead({
       href: runtimeConfig.app.icon,
     },
   ],
+});
+
+const isDark = useDark();
+onMounted(() => {
+  registerNew();
 });
 </script>
 <template>

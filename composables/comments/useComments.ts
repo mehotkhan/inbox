@@ -1,12 +1,26 @@
 
+export default async () => {
+    const { profile } = useUser()
+    const { $dexie } = useNuxtApp()
 
-export default () => {
-    const sendComment = (message: string) => {
-        console.log(message)
+    const sendComment = async (message: string) => {
+        await $dexie.comments.add({
+            owner: profile.value.pub,
+            message: message,
+            create_at: 'sdss',
+            hash: 'sdss'
+        })
+        return
     }
 
-    const allComments = ref<any[]>([])
-
+    // const allComments = useLiveQuery(
+    //     async () =>
+    //         await $dexie.comments
+    //             .orderBy("created_at")
+    //             .toArray(),
+    //     [],
+    // );
+    const allComments: any[] = []
     return {
         sendComment,
         allComments

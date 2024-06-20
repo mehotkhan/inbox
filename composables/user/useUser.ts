@@ -21,7 +21,7 @@ export default () => {
     if (!loggedIn.value) {
       const priv = generateSecretKey(); // `sk` is a hex string
       const pub = getPublicKey(priv); // `pk` is a hex string
-      const randomName = SeedNames(pub);
+      const randomName = GenerateIdentity(pub, 'fa');
       const guestProfile = "guest";
 
       const newProfile = {
@@ -29,7 +29,7 @@ export default () => {
         lastName: randomName.split(" ")[1],
         displayName: randomName,
         name: guestProfile,
-        about: `an newcomer ${randomName}`,
+        about: `تازه${randomName}یک `,
         email: "guest@guest.guest",
         avatar: "",
       };
@@ -42,15 +42,11 @@ export default () => {
         ...user,
       };
       loggedIn.value = true;
-      // edgeStorage({
-      //   ...newProfile,
-      //   pub,
-      // });
+
     }
-    console.log("profile", profile.value);
   };
 
-  // const edgeStorage = async (member: any) => {
+
   //   const body: any = await useApi("/api/members/register", {
   //     method: "post",
   //     body: { ...member },

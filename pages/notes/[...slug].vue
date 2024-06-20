@@ -45,7 +45,7 @@ onUnmounted(() => {
               />
             </div>
           </div>
-          <UContainer>
+          <UContainer class="w-full mx-auto">
             <!-- <ContentRenderer :value="doc" class="content mb-10" /> -->
             <!-- <LazyComments v-if="doc?.comment" /> -->
             <LazyComments />

@@ -10,8 +10,8 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    "exclude": [
-      "functions/**/**"
-    ]
-  }
+  },
+  "includes": [
+    "types/*.d.ts"
+  ]
 }
