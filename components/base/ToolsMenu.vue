@@ -15,7 +15,7 @@ const { sidebarEnabled, toggleSidebar } = useSidebar();
       <IconUil:list-ul aria-hidden="true" class="text-[1.1rem]" />
     </UButton>
     <!-- <BaseMobileMenu class="text-md md:hidden" /> -->
-    <MemberNotificationButton />
-    <MemberAvatarButton />
+    <!-- <MemberNotificationButton /> -->
+    <!-- <MemberAvatarButton /> -->
   </div>
 </template>

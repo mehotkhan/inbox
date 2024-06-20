@@ -27,16 +27,6 @@ export default defineNuxtConfig({
       github: process.env.GITHUB,
       linkedin: process.env.LINKEDIN,
       twitter: process.env.TWITTER,
-      giscus: process.env.GISCUS,
-      giscus_term: process.env.GISCUS_TERM,
-      giscus_category: process.env.GISCUS_CATEGORY,
-      giscus_category_id: process.env.GISCUS_CATEGORY_ID,
-      giscus_repo: process.env.GISCUS_REPO,
-      giscus_repo_id: process.env.GISCUS_REPO_ID,
-      giscus_mapping: process.env.GISCUS_MAPPING,
-      giscus_theme: process.env.GISCUS_THEME,
-      giscus_reaction: process.env.GISCUS_REACTION,
-      giscus_locale: process.env.APP_LOCALE,
       favicon: "/favicon.ico",
       icon: "/icons.png",
       color: "#e5e7eb",
@@ -76,19 +66,19 @@ export default defineNuxtConfig({
     },
     // preset: "cloudflare-pages",
 
-    static: true,
-    compressPublicAssets: true,
-    minify: true,
-    prerender: {
-      crawlLinks: false,
-      routes: GenerateRoutes(["notes", "pages", "category"]),
-    },
+    // static: true,
+    // compressPublicAssets: true,
+    // minify: true,
+    // prerender: {
+    //   crawlLinks: false,
+    //   routes: GenerateRoutes(["notes", "pages", "category"]),
+    // },
   },
-  experimental: {
-    payloadExtraction: false,
-    treeshakeClientOnly: false,
-    inlineSSRStyles: false,
-  },
+  // experimental: {
+  //   payloadExtraction: false,
+  //   treeshakeClientOnly: false,
+  //   inlineSSRStyles: false,
+  // },
   // image: {
   //   format: ["webp"],
   //   provider: "ipx",
@@ -121,4 +111,9 @@ export default defineNuxtConfig({
   i18n: {
     vueI18n: "./i18n.config.ts", // if you are using custom path, default
   },
+  imports: {
+    dirs: [
+      'composables/**'
+    ]
+  }
 });

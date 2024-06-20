@@ -3,7 +3,7 @@ import throttle from "lodash/throttle";
 
 import { useStorage } from "@vueuse/core";
 import { WebUUID } from "web-uuid";
-import dexieDb from "./dexie-tools";
+import dexieDb from "../plugins/dexie/models";
 
 const profile: any = useStorage("current-user", {});
 
@@ -66,7 +66,7 @@ export const chatArchive = throttle(async (event: any) => {
         lastMessage: event.rawMessage,
       });
     }
-  } catch (error) {}
+  } catch (error) { }
 }, 100);
 
 export const incomingMessage = async (
@@ -105,7 +105,7 @@ export const incomingGroupCreate = async (
   if (!existEvent) {
     try {
       await dexieDb?.groups.add({ ...event, relayUrl, spaceId });
-    } catch (error) {}
+    } catch (error) { }
   }
 };
 
@@ -140,7 +140,7 @@ export const incomingSupportTicket = async (event: Event) => {
         ticketId: ticketData.id,
       });
       await supportArchive(event, ticketData);
-    } catch (error) {}
+    } catch (error) { }
   }
 };
 
@@ -166,5 +166,5 @@ export const supportArchive = throttle(async (event: any, ticket: any) => {
         status: ticket.status,
       });
     }
-  } catch (error) {}
+  } catch (error) { }
 }, 100);

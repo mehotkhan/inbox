@@ -3,6 +3,14 @@ export default defineAppConfig({
     primary: "gray",
     gray: "cool",
     icons: "all",
+    card: {
+      header: {
+        padding: 'px-3 py-3 sm:px-4',
+      },
+      footer: {
+        padding: 'px-3 py-3 sm:px-4',
+      },
+    }
   },
   menuItems: [
     {

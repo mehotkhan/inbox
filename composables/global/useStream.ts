@@ -1,5 +1,5 @@
 import { useStorage, useStorageAsync } from "@vueuse/core";
-import { defaultRelays } from "../libs/nostr-relay";
+import { defaultRelays } from "../../libs/nostr-relay";
 
 const streamTimeLimit = useStorageAsync("stream-time-limit", timeFilter?.[1]);
 const streamSorting = useStorageAsync("stream-sorting", streamOrder?.[0]);

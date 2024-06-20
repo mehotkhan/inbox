@@ -5,11 +5,11 @@
     "backupkeys",
     "bowser",
     "chartjs",
+    "composables",
     "Decap",
     "ensdomains",
     "esbuild",
     "ethersproject",
-    "giscus",
     "iconify",
     "jalaali",
     "jalaliday",
@@ -34,7 +34,13 @@
     "strings": true
   },
   "tailwindCSS.experimental.classRegex": [
-    ["ui:\\s*{([^)]*)\\s*}", "[\"'`]([^\"'`]*).*?[\"'`]"],
-    ["/\\*ui\\*/\\s*{([^;]*)}", ":\\s*[\"'`]([^\"'`]*).*?[\"'`]"]
+    [
+      "ui:\\s*{([^)]*)\\s*}",
+      "[\"'`]([^\"'`]*).*?[\"'`]"
+    ],
+    [
+      "/\\*ui\\*/\\s*{([^;]*)}",
+      ":\\s*[\"'`]([^\"'`]*).*?[\"'`]"
+    ]
   ]
 }

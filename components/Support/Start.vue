@@ -58,10 +58,10 @@ function toggleModal() {
       }"
       :class="
         expanded
-          ? 'md:w-[50%] md:h-[97%] md:right-4 md:bottom-[1rem]'
-          : 'md:w-[23%] md:h-[80%] md:right-4 md:bottom-[4.5rem]'
+          ? 'md:w-[50%] md:h-[97%] md:left-4 md:bottom-[1rem]'
+          : 'md:w-[23%] md:h-[80%] md:left-4 md:bottom-[4.5rem]'
       "
-      class="fixed z-40 right-0 bottom-0 h-full w-full transition-all shadow-2xl border-0"
+      class="fixed z-40 left-0 bottom-0 h-full w-full transition-all shadow-2xl border-0"
     >
       <div class="absolute h-[40rem] top-0 w-full z-0"></div>
       <template #header>

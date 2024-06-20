@@ -1,4 +1,4 @@
-import dexieDb from "../libs/dexie-tools";
+import dexieDb from "./models";
 
 export default defineNuxtPlugin(() => {
   return {
