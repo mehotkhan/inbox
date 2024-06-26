@@ -2,11 +2,12 @@ export { MyInterface };
 
 declare global {
     interface Comment {
-        id?: number
+        id: number
         hash: string
         owner: string
         message: string
-        create_at: string
+        created_at: number
+        status: 'draft' | 'sending' | 'send' | 'published' | 'spam'
 
     }
 }

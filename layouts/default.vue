@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-const { welcomeMessage } = useSupport();
+// const { welcomeMessage } = useSupport();
 
-onMounted(() => {
-  welcomeMessage();
-});
+// onMounted(() => {
+//   welcomeMessage();
+// });
 </script>
 <template>
   <div class="flex-col flex">
@@ -22,5 +22,5 @@ onMounted(() => {
       <div id="app-after"></div>
     </main>
   </div>
-  <SupportStart />
+  <!-- <SupportStart /> -->
 </template>

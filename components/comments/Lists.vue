@@ -1,13 +1,9 @@
 <script setup lang="ts">
 const { allComments } = useComments();
-
-watch(allComments, () => {
-  console.log(allComments.value);
-});
 </script>
 
 <template>
-  <div class="flex w-full">
+  <div class="flex w-full flex-col">
     <UCard
       v-for="comment in allComments"
       :key="comment.id"
@@ -74,7 +70,7 @@ watch(allComments, () => {
         </div>
       </template>
       <p class="text-gray-500 dark:text-gray-400">
-        {{ comment.text }}
+        {{ comment.message }}
       </p>
       <template #footer>
         <div class="flex justify-end gap-3">

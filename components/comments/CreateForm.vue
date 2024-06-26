@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { z } from "zod";
 import type { FormSubmitEvent } from "#ui/types";
-const { sendComment } = useComments();
+import { ref, reactive } from "vue";
+
+const { sendComment, sending } = useComments();
 const state = reactive({
-  message: undefined,
+  message: "",
 });
 
 const schema = z.object({
@@ -18,6 +20,13 @@ const onSubmit = async (event: FormSubmitEvent<Schema>) => {
   await sendComment(event.data.message);
   state.message = "";
 };
+
+const handleKeyDown = (event: KeyboardEvent) => {
+  if (event.key === "Enter" && !event.shiftKey) {
+    event.preventDefault();
+    form.value?.submit();
+  }
+};
 </script>
 
 <template>
@@ -31,11 +40,13 @@ const onSubmit = async (event: FormSubmitEvent<Schema>) => {
     <UCard class="mb-10">
       <template #header> ارسال دیدگاه </template>
       <UFormGroup name="textarea" label="دیدگاه شما">
-        <UTextarea v-model="state.message" />
+        <UTextarea v-model="state.message" @keydown="handleKeyDown" />
       </UFormGroup>
       <template #footer>
         <div class="flex justify-end gap-3">
-          <UButton variant="outline" size="xl" type="submit"> ارسال </UButton>
+          <UButton variant="outline" size="xl" type="submit" :loading="sending">
+            ارسال
+          </UButton>
         </div>
       </template>
     </UCard>

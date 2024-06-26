@@ -16,7 +16,7 @@ onUnmounted(() => {
           :class="doc?.dir === 'ltr' ? 'ltr' : 'rtl'"
         >
           <div
-            class="flex flex-col-reverse md:flex-row justify-between items-center h-screen-sm border-b md:border-0"
+            class="flex flex-col-reverse md:flex-row justify-between items-center h-screen-sm border-b md:border-0 hidden"
           >
             <div
               class="basis-2/2 md:basis-1/2 flex-col justify-start items-center"

@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "806b72f0-2a7c-420f-b50b-73b969ac39d3",
+  "id": "871c0240-00e2-462b-8c81-683d84743a9a",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "auth_key": {
@@ -35,8 +35,12 @@
           "name": "auth_key_owner_member_id_fk",
           "tableFrom": "auth_key",
           "tableTo": "member",
-          "columnsFrom": ["owner"],
-          "columnsTo": ["id"],
+          "columnsFrom": [
+            "owner"
+          ],
+          "columnsTo": [
+            "id"
+          ],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -44,131 +48,61 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "blog": {
-      "name": "blog",
+    "events": {
+      "name": "events",
       "columns": {
         "id": {
           "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "pubkey": {
+          "name": "pubkey",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
           "type": "integer",
           "primaryKey": false,
           "notNull": false,
-          "autoincrement": false,
-          "default": false
+          "autoincrement": false
         },
-        "uuid": {
-          "name": "uuid",
+        "kind": {
+          "name": "kind",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "tags": {
+          "name": "tags",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
         },
-        "title": {
-          "name": "title",
+        "content": {
+          "name": "content",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
         },
-        "poster": {
-          "name": "poster",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "summery": {
-          "name": "summery",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "body": {
-          "name": "body",
+        "sig": {
+          "name": "sig",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
         }
       },
-      "indexes": {
-        "blog_uuid_unique": {
-          "name": "blog_uuid_unique",
-          "columns": ["uuid"],
-          "isUnique": true
-        }
-      },
+      "indexes": {},
       "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
-    "comment": {
-      "name": "comment",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false,
-          "default": false
-        },
-        "blog": {
-          "name": "blog",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "story": {
-          "name": "story",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "uuid": {
-          "name": "uuid",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "body": {
-          "name": "body",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        }
-      },
-      "indexes": {
-        "comment_uuid_unique": {
-          "name": "comment_uuid_unique",
-          "columns": ["uuid"],
-          "isUnique": true
-        }
-      },
-      "foreignKeys": {
-        "comment_blog_blog_id_fk": {
-          "name": "comment_blog_blog_id_fk",
-          "tableFrom": "comment",
-          "tableTo": "blog",
-          "columnsFrom": ["blog"],
-          "columnsTo": ["id"],
-          "onDelete": "no action",
-          "onUpdate": "no action"
-        },
-        "comment_story_story_id_fk": {
-          "name": "comment_story_story_id_fk",
-          "tableFrom": "comment",
-          "tableTo": "story",
-          "columnsFrom": ["story"],
-          "columnsTo": ["id"],
-          "onDelete": "no action",
-          "onUpdate": "no action"
-        }
-      },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
@@ -243,80 +177,30 @@
       "indexes": {
         "member_uuid_unique": {
           "name": "member_uuid_unique",
-          "columns": ["uuid"],
+          "columns": [
+            "uuid"
+          ],
           "isUnique": true
         },
         "member_pub_unique": {
           "name": "member_pub_unique",
-          "columns": ["pub"],
+          "columns": [
+            "pub"
+          ],
           "isUnique": true
         },
         "member_userName_unique": {
           "name": "member_userName_unique",
-          "columns": ["userName"],
+          "columns": [
+            "userName"
+          ],
           "isUnique": true
         },
         "member_email_unique": {
           "name": "member_email_unique",
-          "columns": ["email"],
-          "isUnique": true
-        }
-      },
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
-    "story": {
-      "name": "story",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false,
-          "default": false
-        },
-        "uuid": {
-          "name": "uuid",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "title": {
-          "name": "title",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "intro": {
-          "name": "intro",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "poster": {
-          "name": "poster",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "page": {
-          "name": "page",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        }
-      },
-      "indexes": {
-        "story_uuid_unique": {
-          "name": "story_uuid_unique",
-          "columns": ["uuid"],
+          "columns": [
+            "email"
+          ],
           "isUnique": true
         }
       },
