@@ -47,8 +47,9 @@ export default defineWebSocketHandler({
           content: event.content,
           sig: event.sig,
         };
-        await db.insert(events).values(newEvent).run();
         peer.publish("events", JSON.stringify(["OK", event.id, true, ""]));
+        // peer.publish("events", JSON.stringify(["EVENT", "test-id", newEvent]));
+        await db.insert(events).values(newEvent).run();
         console.log("published");
       } else {
         peer.publish(
