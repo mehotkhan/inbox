@@ -98,7 +98,7 @@ export default defineNuxtConfig({
     },
   },
   image: {
-    dir: 'assets/content'
+    dir: "assets/content",
   },
   // gtag: {
   //   id: "G-78646PGVN1",
@@ -112,8 +112,6 @@ export default defineNuxtConfig({
     vueI18n: "./i18n.config.ts", // if you are using custom path, default
   },
   imports: {
-    dirs: [
-      'composables/**'
-    ]
-  }
+    dirs: ["composables/**"],
+  },
 });

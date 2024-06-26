@@ -21,7 +21,7 @@ export default () => {
     if (!loggedIn.value) {
       const priv = generateSecretKey(); // `sk` is a hex string
       const pub = getPublicKey(priv); // `pk` is a hex string
-      const randomName = GenerateIdentity(pub, 'fa');
+      const randomName = GenerateIdentity(pub, "fa");
       const guestProfile = "guest";
 
       const newProfile = {
@@ -42,10 +42,8 @@ export default () => {
         ...user,
       };
       loggedIn.value = true;
-
     }
   };
-
 
   //   const body: any = await useApi("/api/members/register", {
   //     method: "post",

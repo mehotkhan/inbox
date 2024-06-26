@@ -5,12 +5,12 @@ export default defineAppConfig({
     icons: "all",
     card: {
       header: {
-        padding: 'px-3 py-3 sm:px-4',
+        padding: "px-3 py-3 sm:px-4",
       },
       footer: {
-        padding: 'px-3 py-3 sm:px-4',
+        padding: "px-3 py-3 sm:px-4",
       },
-    }
+    },
   },
   menuItems: [
     {

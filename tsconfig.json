@@ -9,9 +9,7 @@
     "verbatimModuleSyntax": false,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,
+    "skipLibCheck": true
   },
-  "includes": [
-    "types/*.d.ts"
-  ]
+  "includes": ["types/*.d.ts"]
 }

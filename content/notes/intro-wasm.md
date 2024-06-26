@@ -125,7 +125,7 @@ const initWasm = () => {
       function (obj) {
         wasm = obj.instance;
         go.run(wasm);
-      }
+      },
     );
   }
 };

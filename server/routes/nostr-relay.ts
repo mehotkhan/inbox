@@ -2,8 +2,6 @@ import { events, InsertEvent } from "~/server/db/schema";
 import { DB } from "~/server/utils/db";
 import { verifyEvent } from "nostr-tools/pure";
 
-
-
 type NostrEvent = {
   id: string;
   pubkey: string;
@@ -51,9 +49,12 @@ export default defineWebSocketHandler({
         };
         await db.insert(events).values(newEvent).run();
         peer.publish("events", JSON.stringify(["OK", event.id, true, ""]));
-        console.log('published')
+        console.log("published");
       } else {
-        peer.publish("events", JSON.stringify(["OK", event.id, false, "invalid signature"]));
+        peer.publish(
+          "events",
+          JSON.stringify(["OK", event.id, false, "invalid signature"]),
+        );
       }
     } else if (msg[0] === "REQ") {
       try {
@@ -62,10 +63,11 @@ export default defineWebSocketHandler({
         console.log("filters", filters);
         const results = await db.select().from(events);
 
-
         for await (const result of results) {
-          peer.publish("events", JSON.stringify(['EVENT', subscriptionId, result]));
-
+          peer.publish(
+            "events",
+            JSON.stringify(["EVENT", subscriptionId, result]),
+          );
         }
         peer.publish("events", JSON.stringify(["EOSE", subscriptionId]));
       } catch (err) {
@@ -79,7 +81,6 @@ export default defineWebSocketHandler({
   },
 
   close(peer: any, event: any) {
-
     console.log("[ws] close", peer, event);
   },
 

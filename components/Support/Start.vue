@@ -129,7 +129,7 @@ function toggleModal() {
                   size="xs"
                   :label="
                     ticketStatus.find(
-                      (item: any) => item.id === currentTicket.status
+                      (item: any) => item.id === currentTicket.status,
                     )?.label
                   "
                   color="gray"

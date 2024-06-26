@@ -20,14 +20,13 @@ export const authKey = sqliteTable("auth_key", {
 });
 
 export const events = sqliteTable("events", {
-
-  id: text('id').primaryKey(),
-  pubkey: text('pubkey'),
-  created_at: integer('created_at'),
-  kind: integer('kind'),
-  tags: text('tags'),
-  content: text('content'),
-  sig: text('sig')
+  id: text("id").primaryKey(),
+  pubkey: text("pubkey"),
+  created_at: integer("created_at"),
+  kind: integer("kind"),
+  tags: text("tags"),
+  content: text("content"),
+  sig: text("sig"),
 });
 
 // Event
