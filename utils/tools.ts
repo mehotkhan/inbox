@@ -18,24 +18,7 @@ export const timeFilter = [
     filter: 365 * 24 * 60 * 60,
   },
 ];
-export const ticketStatus = [
-  {
-    id: "new",
-    label: "جدید",
-  },
-  {
-    id: "open",
-    label: "باز",
-  },
-  {
-    id: "on-going",
-    label: "در درست بررسی",
-  },
-  {
-    id: "close",
-    label: "بسته",
-  },
-];
+
 export const streamOrder = [
   {
     label: "جدیدترین",

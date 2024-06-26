@@ -22,17 +22,11 @@
     "@vueuse/rxjs": "^10.11.0",
     "@worker-tools/structured-json": "0.1.0-pre.4",
     "better-sqlite3": "^11.0.0",
-    "dayjs": "^1.11.11",
     "dexie": "^4.0.7",
     "h3-zod": "^0.5.3",
-    "jalaliday": "^2.3.0",
     "markdown-it": "^14.1.0",
-    "moment-jalaali": "^0.10.1",
-    "nostr-relaypool": "^0.6.30",
     "nostr-tools": "^2.7.0",
-    "vue-audio-tapir": "^1.6.1",
-    "vue3-perfect-scrollbar": "^2.0.0",
-    "web-uuid": "0.1.0-pre.1"
+    "nuxt": "^3.12.2"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240620.0",
@@ -44,8 +38,6 @@
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/i18n": "^8.3.1",
     "@types/node": "^20.14.9",
-    "crypto": "^1.0.1",
-    "dotenv": "^16.4.5",
     "drizzle-kit": "^0.22.7",
     "drizzle-orm": "^0.31.2",
     "ejs": "^3.1.10",
@@ -56,7 +48,6 @@
     "eslint-plugin-unicorn": "^54.0.0",
     "fido2-lib": "^3.5.3",
     "js-yaml": "^4.1.0",
-    "nuxt": "^3.12.2",
     "nuxt-gtag": "^2.0.6",
     "nuxt-seo-kit": "^1.3.13",
     "prettier": "^3.3.2",
@@ -70,7 +61,6 @@
     "vue": "^3.4.30",
     "vue-router": "^4.4.0",
     "wrangler": "^3.62.0",
-    "yup": "^1.4.0",
     "zod": "^3.23.8"
   }
 }
