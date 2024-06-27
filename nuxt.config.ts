@@ -64,15 +64,15 @@ export default defineNuxtConfig({
     experimental: {
       websocket: true,
     },
-    // preset: "cloudflare-pages",
+    preset: "cloudflare-pages",
 
-    // static: true,
-    // compressPublicAssets: true,
-    // minify: true,
-    // prerender: {
-    //   crawlLinks: false,
-    //   routes: GenerateRoutes(["notes", "pages", "category"]),
-    // },
+    static: true,
+    compressPublicAssets: true,
+    minify: true,
+    prerender: {
+      crawlLinks: false,
+      routes: GenerateRoutes(["notes", "pages", "category"]),
+    },
   },
   // experimental: {
   //   payloadExtraction: false,
