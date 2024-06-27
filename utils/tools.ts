@@ -29,3 +29,7 @@ export const streamOrder = [
     filter: "asc",
   },
 ];
+
+export const JalaliDate = (date: string) => {
+  return "Date";
+};

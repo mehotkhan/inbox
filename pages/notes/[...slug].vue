@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { sidebarEnabled } = useSidebar();
 onMounted(() => {
-  sidebarEnabled.value = false;
+  sidebarEnabled.value = true;
 });
 onUnmounted(() => {
   sidebarEnabled.value = false;
@@ -16,7 +16,7 @@ onUnmounted(() => {
           :class="doc?.dir === 'ltr' ? 'ltr' : 'rtl'"
         >
           <div
-            class="flex flex-col-reverse md:flex-row justify-between items-center h-screen-sm border-b md:border-0 hidden"
+            class="flex flex-col-reverse md:flex-row justify-between items-center h-screen-sm border-b pb-10"
           >
             <div
               class="basis-2/2 md:basis-1/2 flex-col justify-start items-center"
@@ -45,12 +45,18 @@ onUnmounted(() => {
               />
             </div>
           </div>
-          <UContainer class="w-full mx-auto">
-            <!-- <ContentRenderer :value="doc" class="content mb-10" /> -->
-            <!-- <LazyComments v-if="doc?.comment" /> -->
-            <LazyComments />
-          </UContainer>
-          <LazyBaseSidebar v-if="sidebarEnabled" :post="doc" />
+          <div class="flex">
+            <div class="basis-8/12 pl-4">
+              <ContentRenderer :value="doc" class="content mb-10" />
+              <LazyComments />
+            </div>
+
+            <div class="basis-4/12 pr-4">
+              <div class="sticky top-10 right-10 w-full flex justify-end">
+                <LazyBaseSidebar :post="doc" />
+              </div>
+            </div>
+          </div>
         </section>
       </template>
     </ContentDoc>

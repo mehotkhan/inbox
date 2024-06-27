@@ -6,16 +6,16 @@ const { sidebarEnabled, toggleSidebar } = useSidebar();
     <!-- <BaseSocial class="items-center hidden md:flex" /> -->
     <BaseLanguageSelector class="items-center" />
     <BaseDarkMode class="items-center" />
-    <UButton
+    <!-- <UButton
       v-if="sidebarEnabled"
       variant="ghost"
       class="p-0"
       @click="toggleSidebar"
     >
       <IconUil:list-ul aria-hidden="true" class="text-[1.1rem]" />
-    </UButton>
+    </UButton> -->
     <!-- <BaseMobileMenu class="text-md md:hidden" /> -->
     <!-- <MemberNotificationButton /> -->
-    <!-- <MemberAvatarButton /> -->
+    <MemberAvatarButton />
   </div>
 </template>

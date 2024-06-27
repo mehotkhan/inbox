@@ -60,14 +60,17 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="h-full relative" :class="post.dir === 'ltr' ? 'ltr' : 'rtl'">
-    <h3 class="text-bold text-xl">سرفصل‌ها</h3>
-    <div class="flex-col absolute top-10 overflow-y-auto bottom-0 w-full">
+  <div
+    class="h-full relative w-full"
+    :class="post.dir === 'ltr' ? 'ltr' : 'rtl'"
+  >
+    <h3 class="text-bold text-xs">سرفصل‌ها</h3>
+    <div class="flex-col overflow-y-auto bottom-0 w-full">
       <UAccordion
         default-open
         multiple
         :items="items"
-        :ui="{ wrapper: 'flex flex-col w-full', item: { size: 'text-md' } }"
+        :ui="{ wrapper: 'flex flex-col w-full', item: { size: 'text-xs' } }"
       >
         <template #default="{ item, open }">
           <UButton

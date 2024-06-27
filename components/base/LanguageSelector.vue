@@ -1,6 +1,17 @@
 <script setup>
 const { locale } = useI18n();
-const langs = ["fa", "en"];
+// const langs = ["fa", "en"];
+
+const langs = [
+  {
+    name: "فارسی",
+    value: "fa",
+  },
+  {
+    name: "English",
+    value: "en",
+  },
+];
 </script>
 
 <template>
@@ -8,6 +19,6 @@ const langs = ["fa", "en"];
     v-model="locale"
     :options="langs"
     variant="none"
-    :placeholder="locale"
+    option-attribute="name"
   />
 </template>

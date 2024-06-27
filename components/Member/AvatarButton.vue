@@ -50,11 +50,7 @@ onMounted(() => {
         :ui="{ item: { disabled: 'cursor-text select-text' } }"
         :popper="{ placement: 'bottom-start' }"
       >
-        <UAvatar
-          :alt="profile.displayName"
-          src="http://i.pravatar.cc/300"
-          size="sm"
-        />
+        <UAvatar :alt="profile.displayName" size="sm" />
 
         <template #account="{ item }">
           <div class="text-left">

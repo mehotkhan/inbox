@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240620.0",
-    "@iconify/json": "^2.2.222",
+    "@iconify/json": "^2.2.223",
     "@nuxt/content": "^2.13.0",
     "@nuxt/devtools": "latest",
     "@nuxt/image": "^1.7.0",
@@ -56,7 +56,7 @@
     "typed-array-utils": "^0.2.4",
     "typescript": "^5.5.2",
     "unplugin-icons": "0.19.0",
-    "unplugin-vue-components": "^0.27.1",
+    "unplugin-vue-components": "^0.27.2",
     "vite-plugin-compression": "^0.5.1",
     "vue": "^3.4.30",
     "vue-router": "^4.4.0",
