@@ -5,13 +5,15 @@ const relayURL = "ws://localhost:3000/nostr-relay";
 export default defineNuxtPlugin(() => {
   const { profile } = useUser();
   const { $dexie } = useNuxtApp();
-  let websocket: WebSocket | null = null;
+  const websocket: WebSocket = new WebSocket(relayURL);
   let retryCount = 3;
 
   const connectWebSocket = () => {
-    websocket = new WebSocket(relayURL);
+    // websocket =
     websocket.onopen = handleOpen;
-    websocket.onmessage = handleMessage;
+    websocket.onmessage = (data: any) => {
+      console.log("message", data);
+    };
     websocket.onclose = handleClose;
     websocket.onerror = handleError;
   };
@@ -70,6 +72,7 @@ export default defineNuxtPlugin(() => {
   };
 
   const handleIncomingEvent = (event: NostrEvent) => {
+    console.log("incoming", event);
     if (event?.kind === 1) {
       const newComment = {
         id: Date.now(),

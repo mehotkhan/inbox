@@ -17,6 +17,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxtjs/i18n",
   ],
+
   // extends: ["nuxt-seo-kit"],
   runtimeConfig: {
     app: {
@@ -38,9 +39,11 @@ export default defineNuxtConfig({
       language: process.env.SITE_LANGUAGE,
     },
   },
+
   app: {
     pageTransition: { name: "page", mode: "in-out" },
   },
+
   vite: {
     plugins: [
       viteCompression({ algorithm: "brotliCompress" }),
@@ -60,35 +63,40 @@ export default defineNuxtConfig({
       rollupOptions: { treeshake: false },
     },
   },
+
   nitro: {
     experimental: {
       websocket: true,
     },
     preset: "cloudflare-pages",
 
-    static: true,
-    compressPublicAssets: true,
-    minify: true,
+    // static: true,
+    // compressPublicAssets: true,
+    // minify: true,
     prerender: {
       crawlLinks: false,
       routes: GenerateRoutes(["notes", "pages", "category"]),
     },
   },
+
   // experimental: {
   //   payloadExtraction: false,
   //   treeshakeClientOnly: false,
   //   inlineSSRStyles: false,
   // },
-  // image: {
-  //   format: ["webp"],
-  //   provider: "ipx",
-  //   ipx: {
-  //     modifiers: {
-  //       quality: "80",
-  //       format: ["webp"],
-  //     },
-  //   },
-  // },
+  image: {
+    dir: "assets/content",
+
+    format: ["webp"],
+    // provider: "ipx",
+    // ipx: {
+    //   modifiers: {
+    //     quality: "80",
+    //     format: ["webp"],
+    //   },
+    // },
+  },
+
   hooks: {
     "build:done": () => {
       GenerateDecap();
@@ -97,9 +105,7 @@ export default defineNuxtConfig({
       GenerateDecap();
     },
   },
-  image: {
-    dir: "assets/content",
-  },
+
   // gtag: {
   //   id: "G-78646PGVN1",
   // },
@@ -109,10 +115,14 @@ export default defineNuxtConfig({
       preload: ["ts", "js", "css", "json", "go"],
     },
   },
+
   i18n: {
     vueI18n: "./i18n.config.ts", // if you are using custom path, default
   },
+
   imports: {
     dirs: ["composables/**"],
   },
+
+  compatibilityDate: "2024-07-04",
 });

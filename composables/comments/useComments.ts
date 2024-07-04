@@ -20,7 +20,7 @@ export default function useComments() {
         tags: [],
         content: message,
       },
-      hexToBytes(profile.value.priv),
+      hexToBytes(profile.value.priv)
     );
 
     const newComment = {
@@ -30,16 +30,16 @@ export default function useComments() {
       hash: "some_hash_generation_logic_here",
       status: "sending",
     };
-    $dexie.comments.add(newComment);
+    // $dexie.comments.add(newComment);
     try {
       console.log("sending");
       await $sendEVENTMessage(event);
 
       newComment.status = "send";
+      await $dexie.comments.put(newComment);
     } catch {
       console.error("WebSocket is not open. Cannot send event.");
     }
-    await $dexie.comments.put(newComment);
     sending.value = false;
   };
 
