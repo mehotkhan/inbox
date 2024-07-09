@@ -20,7 +20,7 @@ export default function useComments() {
         tags: [],
         content: message,
       },
-      hexToBytes(profile.value.priv)
+      hexToBytes(profile.value.priv),
     );
 
     const newComment = {

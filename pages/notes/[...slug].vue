@@ -1,12 +1,4 @@
-<script setup lang="ts">
-const { sidebarEnabled } = useSidebar();
-onMounted(() => {
-  sidebarEnabled.value = true;
-});
-onUnmounted(() => {
-  sidebarEnabled.value = false;
-});
-</script>
+<script setup lang="ts"></script>
 <template>
   <section class="flex flex-col justify-center content-center pb-10">
     <ContentDoc>
@@ -53,7 +45,7 @@ onUnmounted(() => {
 
             <div class="basis-4/12 pr-4">
               <div class="sticky top-10 right-10 w-full flex justify-end">
-                <LazyBaseSidebar :post="doc" />
+                <LazySidebar :post="doc" />
               </div>
             </div>
           </div>

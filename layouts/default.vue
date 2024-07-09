@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-// const { welcomeMessage } = useSupport();
+const { welcomeMessage } = useSupport();
 
-// onMounted(() => {
-//   welcomeMessage();
-// });
+onMounted(() => {
+  welcomeMessage();
+});
 </script>
 <template>
   <div class="flex-col flex">
     <slot name="app-before" />
     <div id="app-before"></div>
-    <BaseHeader />
+    <Header />
     <main class="flex min-h-screen mt-20">
       <div class="container">
         <div
@@ -22,5 +22,5 @@
       <div id="app-after"></div>
     </main>
   </div>
-  <!-- <SupportStart /> -->
+  <SupportStart />
 </template>

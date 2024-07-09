@@ -4,10 +4,10 @@
   >
     <div class="flex container justify-between items-center py-4">
       <div class="flex items-center">
-        <BaseLogoArea />
-        <BaseMainMenu class="text-md hidden md:text-sm lg:contents" />
+        <LogoArea />
+        <MainMenu class="text-md hidden md:text-sm lg:contents" />
       </div>
-      <BaseToolsMenu />
+      <ToolsMenu />
     </div>
   </header>
 </template>

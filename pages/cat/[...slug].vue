@@ -29,7 +29,7 @@
           </div>
           <h3 class="border-b pb-3">جدیدترین ورودی‌ها</h3>
 
-          <LazyBaseLatestItems :category="doc.title" class="mx-[4rem]" />
+          <LazyLatestItems :category="doc.title" class="mx-[4rem]" />
         </section>
       </template>
     </ContentDoc>

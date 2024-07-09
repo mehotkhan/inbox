@@ -1,9 +1,7 @@
 // <define:__ROUTES__>
 var define_ROUTES_default = {
   version: 1,
-  include: [
-    "/*"
-  ],
+  include: ["/*"],
   exclude: [
     "/_nuxt/*",
     "/",
@@ -103,8 +101,8 @@ var define_ROUTES_default = {
     "/_ipx/w_384/library.jpg",
     "/_ipx/w_384/Modern-Web-Development-on-the-JAMstack.webp",
     "/_ipx/w_384/physics.webp",
-    "/_ipx/w_384/positrondiscovery.webp"
-  ]
+    "/_ipx/w_384/positrondiscovery.webp",
+  ],
 };
 
 // node_modules/.pnpm/wrangler@3.62.0_@cloudflare+workers-types@4.20240620.0/node_modules/wrangler/templates/pages-dev-pipeline.ts
@@ -129,9 +127,7 @@ var pages_dev_pipeline_default = {
       }
     }
     return env.ASSETS.fetch(request);
-  }
+  },
 };
-export {
-  pages_dev_pipeline_default as default
-};
+export { pages_dev_pipeline_default as default };
 //# sourceMappingURL=sen6gi4332s.js.map

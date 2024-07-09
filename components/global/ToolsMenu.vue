@@ -1,11 +1,9 @@
-<script setup>
-const { sidebarEnabled, toggleSidebar } = useSidebar();
-</script>
+<script setup></script>
 <template>
   <div class="flex gap-2 text-md items-center">
-    <!-- <BaseSocial class="items-center hidden md:flex" /> -->
-    <BaseLanguageSelector class="items-center" />
-    <BaseDarkMode class="items-center" />
+    <!-- <Social class="items-center hidden md:flex" /> -->
+    <LanguageSelector class="items-center" />
+    <DarkMode class="items-center" />
     <!-- <UButton
       v-if="sidebarEnabled"
       variant="ghost"
@@ -14,7 +12,7 @@ const { sidebarEnabled, toggleSidebar } = useSidebar();
     >
       <IconUil:list-ul aria-hidden="true" class="text-[1.1rem]" />
     </UButton> -->
-    <!-- <BaseMobileMenu class="text-md md:hidden" /> -->
+    <!-- <MobileMenu class="text-md md:hidden" /> -->
     <!-- <MemberNotificationButton /> -->
     <MemberAvatarButton />
   </div>

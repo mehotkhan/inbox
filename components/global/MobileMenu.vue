@@ -1,9 +1,9 @@
 <script setup lang="ts">
-const { menuItems } = useMainMenu();
+const appConfig = useAppConfig();
 
 const items = computed(() => {
   const menus: any[] = [];
-  menuItems.value.forEach((menu: any) => {
+  appConfig.menuItems.forEach((menu: any) => {
     menus.push([
       {
         label: menu.title,

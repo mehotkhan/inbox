@@ -1,5 +1,5 @@
 import { useStorage } from "@vueuse/core";
-import { WebUUID } from "web-uuid";
+// import { WebUUID } from "web-uuid";
 
 const modalMode = useStorage("support-help-desk-mode", "home");
 const contactLists = useStorage("support-contact-lists", [{}]);
@@ -32,7 +32,7 @@ const sectionTitle = (mode: string) => {
 };
 export default () => {
   const { $publishSupportTicket, $dexieDb } = useNuxtApp();
-  const { getSince, streamSorting } = useStream();
+  // const { getSince, streamSorting } = useStream();
   const { profile } = useUser();
 
   const welcomeMessage = async () => {
@@ -84,28 +84,28 @@ export default () => {
   };
 
   const createNewDefault = async () => {
-    const id = String(new WebUUID());
-    const newTicket = {
-      id,
-      topic: defaultContact.value.name,
-      status: "new",
-      owner: profile.value.pub,
-      operator: defaultContact.value.pub,
-    };
-    currentTicket.value = newTicket;
+    // const id = String(new WebUUID());
+    // const newTicket = {
+    //   id,
+    //   topic: defaultContact.value.name,
+    //   status: "new",
+    //   owner: profile.value.pub,
+    //   operator: defaultContact.value.pub,
+    // };
+    // currentTicket.value = newTicket;
     changeView("chat");
   };
 
   const createNew = async (contact: any) => {
-    const id = String(new WebUUID());
-    const newTicket = {
-      id,
-      topic: contact.name,
-      status: "new",
-      owner: profile.value.pub,
-      operator: contact.pub,
-    };
-    currentTicket.value = newTicket;
+    // const id = String(new WebUUID());
+    // const newTicket = {
+    //   id,
+    //   topic: contact.name,
+    //   status: "new",
+    //   owner: profile.value.pub,
+    //   operator: contact.pub,
+    // };
+    // currentTicket.value = newTicket;
     changeView("chat");
   };
 
@@ -130,31 +130,9 @@ export default () => {
 
   const viewTitle = computed(() => sectionTitle(modalMode.value));
 
-  const supportTimeLine = useLiveQuery<any[]>(async () => {
-    const query = $dexieDb?.supportMessages
-      .orderBy("created_at")
-      .filter(
-        (message: any) =>
-          message.ticketId === currentTicket.value.id &&
-          message.created_at >= getSince.value,
-      )
-      .limit(messageLimit.value);
+  const supportTimeLine: any = [];
 
-    return streamSorting.value.filter === "asc"
-      ? await query.toArray()
-      : await query?.reverse().toArray();
-  }, [archiveLimit, getSince, streamSorting, currentTicket]);
-
-  const supportArchive = useLiveQuery<any[]>(async () => {
-    const query = $dexieDb?.supportArchive
-      .orderBy("created_at")
-      .filter((message: any) => message.created_at >= getSince.value)
-      .limit(archiveLimit.value);
-
-    return streamSorting.value.filter === "asc"
-      ? await query?.toArray()
-      : await query?.reverse().toArray();
-  }, [archiveLimit, getSince, streamSorting]);
+  const supportArchive: any = [];
 
   const expandView = () => {
     expanded.value = !expanded.value;

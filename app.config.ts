@@ -19,6 +19,11 @@ export default defineAppConfig({
       menu_order: 0,
     },
     {
+      title: "یادداشت",
+      _path: "/notes",
+      menu_order: 99,
+    },
+    {
       title: "درباره",
       _path: "/about",
       menu_order: 99,

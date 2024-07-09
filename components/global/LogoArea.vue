@@ -1,7 +1,3 @@
-<script lang="ts" setup>
-const runtimeConfig = useRuntimeConfig();
-const { locale } = useI18n();
-</script>
 <template>
   <h1 class="flex text-2xl items-center mx-5">
     <NuxtLink :external="false" to="/">

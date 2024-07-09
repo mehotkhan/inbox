@@ -95,7 +95,7 @@ export default defineNuxtPlugin(() => {
     }, 30000);
   };
 
-  connectWebSocket();
+  // connectWebSocket();
 
   return {
     provide: {
