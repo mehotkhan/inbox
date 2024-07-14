@@ -8,7 +8,7 @@
           :class="doc?.dir === 'ltr' ? 'ltr' : 'rtl'"
         >
           <div
-            class="flex flex-col-reverse md:flex-row justify-between items-center h-screen-sm border-b pb-10"
+            class="hidden flex flex-col-reverse md:flex-row justify-between items-center h-screen-sm border-b pb-10"
           >
             <div
               class="basis-2/2 md:basis-1/2 flex-col justify-start items-center"
@@ -39,7 +39,7 @@
           </div>
           <div class="flex">
             <div class="basis-8/12 pl-4">
-              <ContentRenderer :value="doc" class="content mb-10" />
+              <!-- <ContentRenderer :value="doc" class="content mb-10" /> -->
               <LazyComments />
             </div>
 

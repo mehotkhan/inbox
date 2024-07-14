@@ -75,7 +75,7 @@ export default defineNuxtConfig({
     // minify: true,
     prerender: {
       crawlLinks: false,
-      routes: GenerateRoutes(["notes", "pages", "category"]),
+      routes: GenerateRoutes(["notes", "cat"]),
     },
   },
 
