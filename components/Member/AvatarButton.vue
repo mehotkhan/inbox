@@ -16,18 +16,7 @@ const items = [
       to: "profile",
     },
   ],
-  [
-    {
-      label: "Story Dash",
-      icon: "i-heroicons-user",
-      to: "profile",
-    },
-    {
-      label: "Admin Dash",
-      icon: "i-heroicons-user",
-      to: "profile",
-    },
-  ],
+
   [
     {
       label: "Sign out",
