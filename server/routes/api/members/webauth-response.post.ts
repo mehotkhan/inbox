@@ -1,7 +1,6 @@
-import crypto from "crypto";
 import * as Structured from "@worker-tools/structured-json";
+import crypto from "crypto";
 import { Fido2Lib } from "fido2-lib";
-import { WebUUID } from "web-uuid";
 
 if (process.env.NODE_ENV !== "production") {
   global.crypto = global.crypto || crypto;
@@ -10,7 +9,7 @@ if (process.env.NODE_ENV !== "production") {
 // // FIXME: Need to provide correct location here when running Deno without `--location`.
 const location =
   process.env.NODE_ENV == "production"
-    ? new URL("https://hekayat.pages.dev")
+    ? new URL("https://inbox.pages.dev")
     : new URL("http://localhost:3000");
 
 const fido2 = new Fido2Lib({

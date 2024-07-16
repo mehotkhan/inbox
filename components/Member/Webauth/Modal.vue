@@ -1,28 +1,32 @@
 <script setup lang="ts">
+import { z } from "zod";
 import type { FormSubmitEvent } from "#ui/types";
-import { object, string, type InferType } from "yup";
 import * as Structured from "@worker-tools/structured-json";
 const { profile } = useUser();
+
 const toast = useToast();
 const submitting = ref(false);
 const isOpen = ref(false);
-const state = reactive({
-  title: "",
+
+const schema = z.object({
+  username: z.string().min(3, "Must be at least 3 characters"),
 });
 
-const schema = object({
-  username: string()
-    .min(3, "Must be at least 3 characters")
-    .required("Required"),
+type Schema = z.output<typeof schema>;
+
+const state = reactive({
+  username: undefined,
 });
-type Schema = InferType<typeof schema>;
 
 const Register = async (event: FormSubmitEvent<Schema>) => {
   try {
     submitting.value = true;
-    const body: any = await useApi("/api/members/register", {
+    const body: any = await $fetch("/api/members/webauth-enable", {
       method: "post",
-      body: { username: event.data.username, displayName: profile.displayName },
+      body: {
+        username: event.data.username,
+        displayName: profile.value.displayName,
+      },
     });
     const publicKey = await Structured.fromJSON(body);
     console.log("public key: ", publicKey);
@@ -41,24 +45,24 @@ const Register = async (event: FormSubmitEvent<Schema>) => {
   }
 };
 
-const Login = async (username: string) => {
-  try {
-    submitting.value = true;
-    const body: any = await useApi("/api/members/login", {
-      method: "post",
-      body: { username: "test" },
-    });
-    const publicKey = await Structured.fromJSON(body);
-    console.log("public key: ", publicKey);
+// const Login = async (username: string) => {
+//   try {
+//     submitting.value = true;
+//     const body: any = await useApi("/api/members/login", {
+//       method: "post",
+//       body: { username: "test" },
+//     });
+//     const publicKey = await Structured.fromJSON(body);
+//     console.log("public key: ", publicKey);
 
-    await handleResponse(publicKey);
+//     await handleResponse(publicKey);
 
-    submitting.value = false;
-  } catch (error) {
-    console.log(error);
-    submitting.value = false;
-  }
-};
+//     submitting.value = false;
+//   } catch (error) {
+//     console.log(error);
+//     submitting.value = false;
+//   }
+// };
 
 const handleResponse = async (publicKey: any) => {
   if (publicKey) {
@@ -101,7 +105,10 @@ const handleResponse = async (publicKey: any) => {
           @submit="Register"
         >
           <UFormGroup label="User Name" name="username">
-            <UInput v-model="state.title" placeholder="write your username" />
+            <UInput
+              v-model="state.username"
+              placeholder="write your username"
+            />
           </UFormGroup>
           <template #header>
             <h4 class="text-xl">Webauth</h4>
@@ -111,16 +118,15 @@ const handleResponse = async (publicKey: any) => {
           </div>
 
           <div class="flex justify-start space-x-3">
-            <!-- <UButton label="Enable WebAuth" @click="Register" size="xl" :loading="submitting" /> -->
             <UButton
-              label="Login"
+              type="submit"
+              label="Enable WebAuth"
               size="xl"
               :loading="submitting"
-              @click="Login"
+              @click="Register()"
+              color="primary"
+              variant="ghost"
             />
-            <UButton type="submit" size="xl" :loading="submitting">
-              Register
-            </UButton>
           </div>
         </UForm>
       </UCard>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { createNewDefault } = useSupport()
+const { createNewDefault } = useSupport();
 </script>
 <template>
   <div class="w-full flex flex-col h-full overflow-x-auto">
@@ -12,13 +12,19 @@ const { createNewDefault } = useSupport()
           چه کمکی از من بر می یاد ؟
         </h4>
       </div>
-      <div class="bg-white cursor-pointer rounded-xl w-full p-4 my-3 transition-all shadow-2xl text-sm relative"
-        @click="createNewDefault()">
+      <div
+        class="bg-white cursor-pointer rounded-xl w-full p-4 my-3 transition-all shadow-2xl text-sm relative"
+        @click="createNewDefault()"
+      >
         <p>یک پیام ارسال کنید</p>
 
         <p class="text-gray-500 mt-1">در سریعترین زمان ممکن پاسخ می دهیم :)</p>
         <div class="absolute left-4 top-0 text-brown h-full flex items-center">
-          <UIcon name="i-heroicons-message class=" flex text-xl text-brown" aria-hidden="true" />
+          <UIcon
+            name="i-heroicons-message"
+            class="flex text-xl text-brown"
+            aria-hidden="true"
+          />
         </div>
       </div>
       <br />
