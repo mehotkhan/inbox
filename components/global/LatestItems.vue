@@ -27,7 +27,7 @@ const query: QueryBuilderParams = {
             <NuxtLink :external="false" :to="slug" class="">
               {{ title }}
               <span class="font-thin"> / {{ category }} </span>
-              <span class="font-thin"> / {{ JalaliDate(date) }} </span>
+              <span class="font-thin"> / {{ formatDateTime(date) }} </span>
             </NuxtLink>
           </li>
         </ul>

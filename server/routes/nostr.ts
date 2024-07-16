@@ -15,19 +15,8 @@ export default defineWebSocketHandler({
       // Verify the event signature
       if (verifyEvent(event)) {
         // Save event to the database
-        const newEvent: InsertEvent = {
-          id: event.id,
-          pubkey: event.pubkey,
-          created_at: event.created_at,
-          kind: event.kind,
-          tags: JSON.stringify(event.tags),
-          content: event.content,
-          sig: event.sig,
-        };
-        peer.send(JSON.stringify(["OK", event.id, true, ""]));
+        const newEvent = setEvents(event);
         peer.send(JSON.stringify(["EVENT", "test-id", newEvent]));
-        drizzleDb.insert(events).values(newEvent).run();
-        console.log("published");
       } else {
         peer.publish(
           "events",
@@ -38,9 +27,8 @@ export default defineWebSocketHandler({
       try {
         const subscriptionId = msg[1];
         const filters: NostrFilter[] = msg.slice(2);
-        console.log("filters", filters);
-        const results = await drizzleDb.select().from(events);
 
+        const results = await getFilteredEvents(filters);
         for await (const result of results) {
           peer.send(JSON.stringify(["EVENT", subscriptionId, result]));
         }

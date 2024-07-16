@@ -7,3 +7,4 @@ node_modules
 dist
 pnpm-lock.yaml
 public/admin/config.yml
+main.db

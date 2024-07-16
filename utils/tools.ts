@@ -1,5 +1,4 @@
 export const isDev = () => process.env.NODE_ENV !== "production";
-export const baseApiURL = () => "/api/";
 export const timeFilter = [
   {
     label: "امروز",
@@ -29,7 +28,3 @@ export const streamOrder = [
     filter: "asc",
   },
 ];
-
-export const JalaliDate = (date: string) => {
-  return "Date";
-};
