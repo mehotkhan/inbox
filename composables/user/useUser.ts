@@ -16,7 +16,7 @@ const profile: any = useStorage("current-user", {
   firstName: "",
   lastName: "",
   displayName: "",
-  name: "",
+  userName: "",
   about: "",
   email: "",
   avatar: null,
@@ -52,7 +52,7 @@ export default () => {
 
       userPub.value = pub;
       await registerToServer();
-      // loggedIn.value = true;
+      loggedIn.value = true;
     }
   };
   const registerToServer = async () => {
@@ -63,7 +63,7 @@ export default () => {
         tags: [],
         content: JSON.stringify(profile.value),
       },
-      hexToBytes(certs.value.priv),
+      hexToBytes(certs.value.priv)
     );
     const body: any = await $fetch("/api/members/register", {
       method: "post",

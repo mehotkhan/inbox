@@ -50,16 +50,17 @@ export default defineNuxtPlugin(() => {
   const handleIncomingEvent = (event: NostrEvent) => {
     if (event?.kind === 1) {
       const newComment = {
-        id: Date.now(),
         hash: "some_hash", // Use actual hash logic
         owner: event.pubkey,
         message: event.content,
         created_at: event.created_at,
         status: "published",
       };
-      $dexie.comments.put(newComment);
+      $dexie.comments.add(newComment);
     } else if (event?.kind === 0) {
-      console.log("new profile", event);
+      const userProfile = JSON.parse(event.content);
+      console.log(userProfile);
+      $dexie.members.put({ ...userProfile });
     }
   };
 

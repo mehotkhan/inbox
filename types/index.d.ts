@@ -28,4 +28,17 @@ declare global {
     created_at: number;
     status: "draft" | "sending" | "send" | "published" | "spam";
   }
+
+  interface MemberProfile {
+    id?: number;
+    firstName: string;
+    lastName: string;
+    displayName: string;
+    userName: string;
+    about: string;
+    email: string;
+    avatar: string;
+    pub: string;
+    priv: string;
+  }
 }
