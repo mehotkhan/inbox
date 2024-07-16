@@ -38,25 +38,5 @@ export default defineAppConfig({
       _path: "/dashboard",
       menu_order: 101,
     },
-    {
-      title: "پروفایل",
-      _path: "/dashboard/profile",
-      menu_order: 102,
-    },
-    {
-      title: "سفارش ها",
-      _path: "/dashboard/orders",
-      menu_order: 103,
-    },
-    {
-      title: "دیدگاه ها",
-      _path: "/dashboard/comments",
-      menu_order: 104,
-    },
-    {
-      title: "پیام ها",
-      _path: "/dashboard/messages",
-      menu_order: 104,
-    },
   ],
 });

@@ -6,7 +6,7 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div class="flex-col flex">
+  <div class="flex-col flex blog">
     <slot name="app-before" />
     <div id="app-before"></div>
     <Header />
