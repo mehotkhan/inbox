@@ -4,6 +4,7 @@
 set -e
 
 rm main.db
-rm -rf server/db/migrations
+rm -rf ./migrations
 npx drizzle-kit generate
+npx drizzle-kit migrate
 npx drizzle-kit push

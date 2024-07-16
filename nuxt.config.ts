@@ -68,7 +68,7 @@ export default defineNuxtConfig({
     experimental: {
       websocket: true,
     },
-    preset: "cloudflare-pages",
+    // preset: "cloudflare-pages",
 
     // static: true,
     // compressPublicAssets: true,
