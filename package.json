@@ -27,7 +27,8 @@
     "luxon": "^3.4.4",
     "markdown-it": "^14.1.0",
     "nostr-tools": "^2.7.1",
-    "nuxt": "^3.12.3"
+    "nuxt": "^3.12.3",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240712.0",

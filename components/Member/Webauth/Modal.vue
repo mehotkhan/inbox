@@ -79,7 +79,13 @@ const handleResponse = async (publicKey: any) => {
 
 <template>
   <div>
-    <UButton label="Webauth" size="md" @click="isOpen = true" />
+    <UButton
+      label="Webauth"
+      size="md"
+      @click="isOpen = true"
+      color="primary"
+      variant="ghost"
+    />
 
     <UModal v-model="isOpen">
       <UCard

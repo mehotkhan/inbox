@@ -22,7 +22,13 @@ const Update = async () => {
 
 <template>
   <div>
-    <UButton label="Update Profile" size="md" @click="isOpen = true" />
+    <UButton
+      label="Update Profile"
+      size="md"
+      @click="isOpen = true"
+      color="primary"
+      variant="ghost"
+    />
 
     <UModal v-model="isOpen">
       <UCard

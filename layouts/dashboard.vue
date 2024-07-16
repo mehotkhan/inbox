@@ -10,21 +10,16 @@ onMounted(() => {
   <div class="flex-col flex">
     <slot name="app-before" />
     <div id="app-before"></div>
-    <Header />
-    <section class="flex flex-col flex min-h-screen mt-[4rem]">
-      <div
-        class="flex bg-gray-50 dark:bg-gray-900"
-        :class="{ 'overflow-hidden': isSideMenuOpen }"
-      >
+    <section class="flex flex-col flex h-screen relative">
+      <Header />
+      <div class="flex bg-gray-50 dark:bg-gray-900 overflow-hidden pt-20">
         <!-- Desktop sidebar -->
-        <aside
-          class="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0"
-        >
-          <div class="py-4 text-gray-500 dark:text-gray-400">
-            <DashboardSidebar />
-          </div>
+        <aside class="w-64 bg-white dark:bg-gray-800 md:bl">
+          <DashboardSidebar />
         </aside>
-        <slot />
+        <div class="min-h-screen w-full overflow-y-auto">
+          <slot />
+        </div>
       </div>
       <slot name="app-after" />
       <div id="app-after"></div>

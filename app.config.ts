@@ -1,6 +1,6 @@
 export default defineAppConfig({
   ui: {
-    primary: "gray",
+    primary: "black",
     gray: "cool",
     icons: "all",
     card: {
