@@ -16,18 +16,19 @@ CREATE TABLE `events` (
 );
 --> statement-breakpoint
 CREATE TABLE `member` (
-	`id` integer DEFAULT false,
-	`uuid` text,
+	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`pub` text,
-	`userName` text,
-	`email` text,
+	`isAdmin` integer DEFAULT false,
+	`isVerified` integer DEFAULT false,
 	`firstName` text,
 	`lastName` text,
+	`displayName` text,
+	`userName` text,
 	`about` text,
+	`email` text,
 	`avatar` text
 );
 --> statement-breakpoint
-CREATE UNIQUE INDEX `member_uuid_unique` ON `member` (`uuid`);--> statement-breakpoint
 CREATE UNIQUE INDEX `member_pub_unique` ON `member` (`pub`);--> statement-breakpoint
 CREATE UNIQUE INDEX `member_userName_unique` ON `member` (`userName`);--> statement-breakpoint
 CREATE UNIQUE INDEX `member_email_unique` ON `member` (`email`);

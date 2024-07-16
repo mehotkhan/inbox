@@ -22,5 +22,7 @@ export const GenerateIdentity = (seed: any, lang = "fa") => {
     lang == "fa"
       ? JunglesJson.animalsFa[hash[1] % JunglesJson.animalsFa.length]
       : JunglesJson.animalsEn[hash[1] % JunglesJson.animalsEn.length];
-  return `${capitalize(adjective)} ${capitalize(animal)}`;
+  return lang == "fa"
+    ? `${capitalize(animal)} ${capitalize(adjective)}`
+    : `${capitalize(adjective)} ${capitalize(animal)}`;
 };

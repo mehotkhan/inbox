@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "536a5ae3-f460-4576-89d7-7d835bea8aba",
+  "id": "6a51d08e-b8db-4bf6-9a95-9ef78e11fe18",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "auth_key": {
@@ -108,17 +108,9 @@
         "id": {
           "name": "id",
           "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false,
-          "default": false
-        },
-        "uuid": {
-          "name": "uuid",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
         },
         "pub": {
           "name": "pub",
@@ -127,19 +119,21 @@
           "notNull": false,
           "autoincrement": false
         },
-        "userName": {
-          "name": "userName",
-          "type": "text",
+        "isAdmin": {
+          "name": "isAdmin",
+          "type": "integer",
           "primaryKey": false,
           "notNull": false,
-          "autoincrement": false
+          "autoincrement": false,
+          "default": false
         },
-        "email": {
-          "name": "email",
-          "type": "text",
+        "isVerified": {
+          "name": "isVerified",
+          "type": "integer",
           "primaryKey": false,
           "notNull": false,
-          "autoincrement": false
+          "autoincrement": false,
+          "default": false
         },
         "firstName": {
           "name": "firstName",
@@ -155,8 +149,29 @@
           "notNull": false,
           "autoincrement": false
         },
+        "displayName": {
+          "name": "displayName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "userName": {
+          "name": "userName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
         "about": {
           "name": "about",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "email": {
+          "name": "email",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
@@ -171,11 +186,6 @@
         }
       },
       "indexes": {
-        "member_uuid_unique": {
-          "name": "member_uuid_unique",
-          "columns": ["uuid"],
-          "isUnique": true
-        },
         "member_pub_unique": {
           "name": "member_pub_unique",
           "columns": ["pub"],

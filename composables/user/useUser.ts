@@ -1,9 +1,17 @@
-import { bytesToHex } from "@noble/hashes/utils";
+import { bytesToHex, hexToBytes } from "@noble/hashes/utils";
 import { useStorage } from "@vueuse/core";
-import { generateSecretKey, getPublicKey } from "nostr-tools";
+import {
+  Event as NostrEvent,
+  finalizeEvent,
+  generateSecretKey,
+  getPublicKey,
+} from "nostr-tools";
 
 const loggedIn = useStorage("loggedIn", false);
-
+const certs: any = useStorage("current-certs", {
+  pub: "",
+  priv: "",
+});
 const profile: any = useStorage("current-user", {
   firstName: "",
   lastName: "",
@@ -17,42 +25,55 @@ const profile: any = useStorage("current-user", {
 });
 
 export default () => {
+  const userPub = useCookie("userPub", {
+    default: () => "",
+    watch: true,
+  });
   const registerNew = async () => {
     if (!loggedIn.value) {
       const priv = generateSecretKey(); // `sk` is a hex string
       const pub = getPublicKey(priv); // `pk` is a hex string
       const randomName = GenerateIdentity(pub, "fa");
-      const guestProfile = "guest";
 
-      const newProfile = {
+      profile.value = {
         firstName: randomName.split(" ")[0],
         lastName: randomName.split(" ")[1],
         displayName: randomName,
-        name: guestProfile,
+        userName: "",
         about: `تازه${randomName}یک `,
-        email: "guest@guest.guest",
+        email: "",
         avatar: "",
+        pub,
       };
-      const user = {
+      certs.value = {
         pub,
         priv: bytesToHex(priv),
       };
-      profile.value = {
-        ...newProfile,
-        ...user,
-      };
-      loggedIn.value = true;
+
+      userPub.value = pub;
+      await registerToServer();
+      // loggedIn.value = true;
     }
   };
-
-  //   const body: any = await useApi("/api/members/register", {
-  //     method: "post",
-  //     body: { ...member },
-  //   });
-  //   console.log(body);
-  // };
+  const registerToServer = async () => {
+    const event: NostrEvent = finalizeEvent(
+      {
+        kind: 0,
+        created_at: Math.floor(Date.now() / 1000),
+        tags: [],
+        content: JSON.stringify(profile.value),
+      },
+      hexToBytes(certs.value.priv),
+    );
+    const body: any = await $fetch("/api/members/register", {
+      method: "post",
+      body: event,
+    });
+    console.log(body);
+  };
 
   return {
+    certs,
     profile,
     registerNew,
   };

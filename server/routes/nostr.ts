@@ -1,9 +1,21 @@
 import { verifyEvent } from "nostr-tools/pure";
 
+// const extractCookies = (cookieStr: any) => {
+//   let output: any = {};
+
+//   cookieStr.split(/\s*;\s*/).forEach(function (pair: any) {
+//     pair = pair.split(/\s*=\s*/);
+//     output[pair[0]] = pair.splice(1).join("=");
+//   });
+//   return JSON.stringify(output, null, 4);
+// };
 export default defineWebSocketHandler({
   open(peer: any) {
-    console.log("[ws] open", peer);
-    // peer.subscribe("events");
+    // if (peer.ctx.node.req.rawHeaders) {
+    //   console.log(extractCookies(peer.ctx.node.req.rawHeaders[21]));
+    // }
+    // rawHeaders;
+    // peer.send(JSON.stringify(peer.ctx.node.HeadersList));
   },
 
   async message(peer, message) {

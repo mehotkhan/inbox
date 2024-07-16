@@ -1,8 +1,15 @@
-import { schnorr } from "@noble/curves/secp256k1";
+// import { schnorr } from "@noble/curves/secp256k1";
 import { sha256 } from "@noble/hashes/sha256";
 import { bytesToHex } from "@noble/hashes/utils";
 
 export default defineEventHandler(async (event) => {
+  // let loggedUser: any = getCookie(event, "current-user");
+  // const requestURl = getRequestURL(event);
+  // console.log("middle ware pathname", event);
+  // if (loggedUser) {
+  // const profile = JSON.parse(loggedUser);
+  // console.log("middle ware pub", profile.pub, requestURl.pathname);
+  // }
   // const requestURl = getRequestURL(event);
   // if (requestURl.pathname.startsWith("/api/")) {
   // const requestSign = getRequestHeader(event, "requestSign");

@@ -2,14 +2,15 @@ import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
 
 export const member = sqliteTable("member", {
   id: integer("id").primaryKey({ autoIncrement: true }),
-  uuid: text("uuid").unique(),
   pub: text("pub").unique(),
-  isAdmin: integer("id", { mode: "boolean" }).default(false),
-  userName: text("userName").unique(),
-  email: text("email").unique(),
+  isAdmin: integer("isAdmin", { mode: "boolean" }).default(false),
+  isVerified: integer("isVerified", { mode: "boolean" }).default(false),
   firstName: text("firstName"),
   lastName: text("lastName"),
+  displayName: text("displayName"),
+  userName: text("userName").unique(),
   about: text("about"),
+  email: text("email").unique(),
   avatar: text("avatar"),
 });
 

@@ -1,5 +1,5 @@
 export const getFilteredEvents = async (filters: NostrFilter[]) => {
-  console.log("filters", filters);
+  // console.log("filters", filters);
   return await drizzleDb.select().from(events);
 };
 
@@ -14,4 +14,5 @@ export const setEvents = (event: NostrEvent) => {
     sig: event.sig,
   };
   drizzleDb.insert(events).values(newEvent).run();
+  return newEvent;
 };

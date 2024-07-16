@@ -2,13 +2,13 @@ import { Event as NostrEvent, finalizeEvent } from "nostr-tools";
 import { hexToBytes } from "@noble/hashes/utils";
 
 export default function useComments() {
-  const { profile } = useUser();
+  const { certs } = useUser();
   const { $dexie, $sendEVENTMessage } = useNuxtApp();
   const sending = ref(false);
 
   const sendComment = async (message: string) => {
     sending.value = true;
-    if (!profile.value?.pub) {
+    if (!certs.value?.pub) {
       sending.value = false;
       throw new Error("User profile is not loaded");
     }
@@ -20,11 +20,11 @@ export default function useComments() {
         tags: [],
         content: message,
       },
-      hexToBytes(profile.value.priv),
+      hexToBytes(certs.value.priv),
     );
 
     const newComment = {
-      owner: String(profile.value.pub),
+      owner: String(certs.value.pub),
       message,
       created_at: Date.now(),
       hash: "some_hash_generation_logic_here",
@@ -36,7 +36,7 @@ export default function useComments() {
       await $sendEVENTMessage(event);
 
       newComment.status = "send";
-      await $dexie.comments.put(newComment);
+      // await $dexie.comments.put(newComment);
     } catch {
       console.error("WebSocket is not open. Cannot send event.");
     }
