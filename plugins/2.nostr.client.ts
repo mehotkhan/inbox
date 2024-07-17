@@ -3,13 +3,13 @@ import { Event as NostrEvent } from "nostr-tools";
 
 export default defineNuxtPlugin(() => {
   const BASEURL = useRequestURL();
-  console.log(BASEURL);
   const relayURL = `${BASEURL.protocol === "http:" ? "ws" : "wss"}://${BASEURL.host}/nostr`;
 
   const { $dexie } = useNuxtApp();
-  const { profile } = useUser();
+  const { loggedIn, profile } = useUser();
 
   const { status, data, send, open, close } = useWebSocket(relayURL, {
+    immediate: false,
     autoReconnect: {
       retries: 3,
       delay: 1000,
@@ -19,9 +19,19 @@ export default defineNuxtPlugin(() => {
     },
   });
 
-  watch(status, (newStatus) => {
-    // console.log("socket open", status.value);
+  if (loggedIn.value) {
+    console.log("connect");
+    open();
+  }
+  console.log("mount", loggedIn.value);
 
+  watch(loggedIn, (newStatus) => {
+    if (loggedIn.value) {
+      open();
+    }
+  });
+
+  watch(status, (newStatus) => {
     if (status.value === "OPEN") {
       sendREQMessage();
     }

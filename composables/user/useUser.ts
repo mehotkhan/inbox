@@ -63,7 +63,7 @@ export default () => {
         tags: [],
         content: JSON.stringify(profile.value),
       },
-      hexToBytes(certs.value.priv),
+      hexToBytes(certs.value.priv)
     );
     const body: any = await $fetch("/api/members/register", {
       method: "post",
@@ -73,6 +73,7 @@ export default () => {
   };
 
   return {
+    loggedIn,
     certs,
     profile,
     registerNew,
