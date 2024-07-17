@@ -69,8 +69,7 @@ export default defineNuxtPlugin(() => {
       $dexie.comments.add(newComment);
     } else if (event?.kind === 0) {
       const userProfile = JSON.parse(event.content);
-      console.log(userProfile);
-      $dexie.members.put({ ...userProfile });
+      $dexie.members.put(userProfile);
     }
   };
 

@@ -55,7 +55,7 @@ const { allComments } = useComments();
               src="https://avatars.githubusercontent.com/u/739984?v=4"
               alt="Avatar"
             />
-            <NuxtLink to="/dashboard/profile"> username </NuxtLink>
+            <NuxtLink to="/profile"> username </NuxtLink>
             <span class="font-thin text-xs">سه ساعت پیش</span>
           </div>
           <UDropdown :items="items" :popper="{ placement: 'bottom-start' }">

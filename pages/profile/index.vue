@@ -35,22 +35,13 @@ const { profile } = useUser();
             </div>
           </div>
           <div class="basis-2/2 md:basis-1/2 flex justify-end items-center">
-            <div
-              class="w-48 h-48 bg-indigo-100 rounded-full shadow-2xl flex items-center justify-center text-indigo-500"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-24 w-24"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </div>
+            <UAvatar
+              class="h-20 w-60"
+              chip-position="top-left"
+              size="4xl"
+              src="https://avatars.githubusercontent.com/u/739984?v=4"
+              :alt="profile.displayName"
+            />
           </div>
         </div>
         <div class="flex border-t pt-2">
