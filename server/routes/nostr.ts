@@ -41,7 +41,7 @@ export default defineWebSocketHandler({
           } else {
             peer.publish(
               "events",
-              JSON.stringify(["OK", event.id, false, "invalid signature"])
+              JSON.stringify(["OK", event.id, false, "invalid signature"]),
             );
           }
         } else if (msg[0] === "REQ") {

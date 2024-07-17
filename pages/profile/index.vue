@@ -5,7 +5,7 @@ const { profile } = useUser();
   <section class="flex flex-col justify-center content-center pb-10">
     <UCard class="">
       <template #header>
-        <div class="flex justify-between">
+        <div class="flex justify-between pt-5">
           <DashboardBreadcrumb />
 
           <div class="flex gap-4">
@@ -19,7 +19,7 @@ const { profile } = useUser();
           class="flex flex-col-reverse md:flex-row justify-between items-center h-screen-sm pb-10"
         >
           <div
-            class="basis-2/2 md:basis-1/2 flex-col justify-around items-center min-h-[25rem]"
+            class="basis-2/2 md:basis-1/2 flex-col justify-around items-center min-h-[18rem]"
           >
             <h2 class="">
               {{ profile.displayName }}
@@ -53,14 +53,14 @@ const { profile } = useUser();
             </div>
           </div>
         </div>
-        <div class="flex">
-          <div class="basis-2/12 ml-5">
+        <div class="flex border-t pt-2">
+          <div class="basis-10/12 pl-4">
+            <DashboardTable />
+          </div>
+          <div class="basis-2/12">
             <div class="sticky top-20 right-10 w-full flex">
               <DashboardSidebar />
             </div>
-          </div>
-          <div class="basis-10/12 pl-4">
-            <DashboardTable />
           </div>
         </div>
       </section>

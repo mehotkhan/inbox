@@ -40,7 +40,7 @@ export default () => {
         lastName: randomName.split(" ")[1],
         displayName: randomName,
         userName: "",
-        about: `تازه${randomName}یک `,
+        about: `یک ${randomName} تازه وارد :)`,
         email: "",
         avatar: "",
         pub,

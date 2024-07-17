@@ -11,13 +11,16 @@ export default defineAppConfig({
       ol: "order-none",
     },
     card: {
+      divide: "divide-none",
+
       background: "bg-white dark:bg-gray-900",
       rounded: "rounded-sm",
-      ring: "ring-1 ring-gray-200 dark:ring-gray-800",
-      shadow: "shadow-none",
+      ring: "ring-0 ring-gray-200 dark:ring-gray-800",
+      shadow: "shadow-md",
 
       header: {
         padding: "px-3 py-3 sm:px-4",
+        base: "border-0",
       },
       footer: {
         padding: "px-3 py-3 sm:px-4",

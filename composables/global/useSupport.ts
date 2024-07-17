@@ -36,12 +36,12 @@ export default () => {
   const { profile } = useUser();
 
   const welcomeMessage = async () => {
-    if (firstVisit.value) {
-      setTimeout(() => {
-        modalBoxIsOpen.value = true;
-        firstVisit.value = false;
-      }, 7000);
-    }
+    // if (firstVisit.value) {
+    //   setTimeout(() => {
+    //     modalBoxIsOpen.value = true;
+    //     firstVisit.value = false;
+    //   }, 7000);
+    // }
     // first visit time !!!
     /*
       basic flow of supporting systems
