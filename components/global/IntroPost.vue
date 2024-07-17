@@ -7,7 +7,7 @@ const { data }: any = useAsyncData("banner", () =>
   queryContent("notes")
     .where({ banner: props.banner })
     .sort({ date: -1 })
-    .findOne()
+    .findOne(),
 );
 </script>
 <template>
