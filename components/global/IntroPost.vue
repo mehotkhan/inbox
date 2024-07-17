@@ -1,6 +1,13 @@
 <script lang="ts" setup>
+const props = defineProps({
+  banner: { type: Boolean, required: false, default: true },
+});
+
 const { data }: any = useAsyncData("banner", () =>
-  queryContent("notes").where({ banner: true }).sort({ date: -1 }).findOne(),
+  queryContent("notes")
+    .where({ banner: props.banner })
+    .sort({ date: -1 })
+    .findOne()
 );
 </script>
 <template>
@@ -38,12 +45,10 @@ const { data }: any = useAsyncData("banner", () =>
           preload
           loading="lazy"
           sizes="sm:100vw md:50vw lg:400px"
-          class="flex"
+          class="flex max-h-[30rem]"
           :src="data?.thumbnail"
           :alt="data?.title"
-          height="auto"
-          :width="400"
-          :placeholder="[50, 25]"
+          :placeholder="[300, 300]"
         />
       </div>
     </div>

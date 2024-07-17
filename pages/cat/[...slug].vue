@@ -1,5 +1,5 @@
 <template>
-  <section class="flex flex-col justify-center content-center">
+  <main>
     <ContentDoc>
       <template #default="{ doc }">
         <section class="flex flex-col">
@@ -33,5 +33,5 @@
         </section>
       </template>
     </ContentDoc>
-  </section>
+  </main>
 </template>

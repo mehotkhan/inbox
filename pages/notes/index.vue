@@ -4,9 +4,9 @@ useHead({
 });
 </script>
 <template>
-  <section class="flex flex-col">
-    <IntroPost />
+  <main>
+    <IntroPost :banner="false" />
     <h3 class="border-b pb-3">جدیدترین ورودی‌ها</h3>
     <LazyLatestItems />
-  </section>
+  </main>
 </template>

@@ -15,7 +15,21 @@ onMounted(() => {
         <div
           class="prose md:prose-xl dark:prose-invert leading-10 text-justify"
         >
-          <slot />
+          <section class="flex flex-col justify-center content-center pb-10">
+            <UCard class="">
+              <template #header>
+                <div class="flex justify-between pt-5">
+                  <DashboardBreadcrumb />
+
+                  <div class="flex gap-4">
+                    <MemberUpdateProfile />
+                    <MemberWebauthModal />
+                  </div>
+                </div>
+              </template>
+              <slot />
+            </UCard>
+          </section>
         </div>
       </div>
       <slot name="app-after" />
@@ -23,5 +37,4 @@ onMounted(() => {
     </main>
   </div>
   <SupportStart />
-  <!-- class="prose md:prose-xl dark:prose-invert leading-10 text-justify" -->
 </template>

@@ -1,3 +1,10 @@
+---
+title: درباره من
+date: 2023-08-12T04:29:59.358Z
+thumbnail: physics.webp
+description: روزمه و تجربیات کاری
+---
+
 ## Contact Details
 
 - Email : sallam@alizemani.ir

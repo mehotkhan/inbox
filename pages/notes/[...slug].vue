@@ -1,6 +1,6 @@
 <script setup lang="ts"></script>
 <template>
-  <section class="flex flex-col justify-center content-center pb-10">
+  <main>
     <ContentDoc>
       <template #default="{ doc }">
         <section
@@ -34,6 +34,7 @@
                 class="flex max-h-[30rem]"
                 :src="doc?.thumbnail"
                 :alt="doc?.title"
+                :placeholder="[300, 300]"
               />
             </div>
           </div>
@@ -52,7 +53,7 @@
         </section>
       </template>
     </ContentDoc>
-  </section>
+  </main>
 </template>
 <style lang="scss">
 .content {

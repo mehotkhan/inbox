@@ -17,7 +17,7 @@ const query: QueryBuilderParams = {
 <template>
   <ContentList :query="query" class="nuxt-content">
     <template #default="{ list }">
-      <div class="latest mr-5 md:m-0">
+      <div class="latest px-5 md:m-0">
         <ul>
           <li
             v-for="{ _path: slug, title, date, category } in list"
