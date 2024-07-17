@@ -6,7 +6,7 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div class="flex-col flex blog">
+  <div class="flex-col flex blog bg-gray-50 dark:bg-gray-00">
     <slot name="app-before" />
     <div id="app-before"></div>
     <Header />
@@ -23,4 +23,5 @@ onMounted(() => {
     </main>
   </div>
   <SupportStart />
+  <!-- class="prose md:prose-xl dark:prose-invert leading-10 text-justify" -->
 </template>

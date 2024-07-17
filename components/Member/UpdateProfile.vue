@@ -23,7 +23,7 @@ const Update = async () => {
 <template>
   <div>
     <UButton
-      label="Update Profile"
+      label="تنظیمات حساب"
       size="md"
       @click="isOpen = true"
       color="primary"
@@ -38,7 +38,7 @@ const Update = async () => {
         }"
       >
         <template #header>
-          <h4 class="text-xl">Update profile</h4>
+          <h4 class="text-xl">تنظیمات حساب</h4>
         </template>
         <div class="min-h-[20rem]">
           <Placeholder />

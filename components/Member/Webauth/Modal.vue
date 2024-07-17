@@ -84,7 +84,7 @@ const handleResponse = async (publicKey: any) => {
 <template>
   <div>
     <UButton
-      label="Webauth"
+      label="فعال سازی حساب"
       size="md"
       @click="isOpen = true"
       color="primary"

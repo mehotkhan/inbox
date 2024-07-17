@@ -2,32 +2,34 @@
 const links = [
   {
     label: "داشبورد",
-    to: "/dashboard",
+    to: "/profile",
     icon: "i-heroicons-home",
   },
   {
     label: "دیدگاه ها",
-    to: "/dashboard/comments",
+    to: "/profile/comments",
     icon: "i-heroicons-home",
   },
   {
     label: "سفارش ها",
-    to: "/dashboard/orders",
+    to: "/profile/orders",
     icon: "i-heroicons-home",
   },
   {
     label: "پیام ها",
-    to: "/dashboard/messages",
-    icon: "i-heroicons-home",
-  },
-  {
-    label: "پروفایل",
-    to: "/dashboard/profile",
+    to: "/profile/messages",
     icon: "i-heroicons-home",
   },
 ];
 </script>
 
 <template>
-  <UVerticalNavigation :links="links" />
+  <UVerticalNavigation :links="links" class="w-full vertical-nav" />
 </template>
+<style lang="scss">
+.vertical-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+</style>

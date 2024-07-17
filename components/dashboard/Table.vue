@@ -25,7 +25,7 @@ const columns = [
 
 const selectedColumns = ref(columns);
 const columnsTable = computed(() =>
-  columns.filter((column) => selectedColumns.value.includes(column)),
+  columns.filter((column) => selectedColumns.value.includes(column))
 );
 
 // Selected Rows
@@ -98,7 +98,7 @@ const pageCount = ref(10);
 const pageTotal = ref(200); // This value should be dynamic coming from the API
 const pageFrom = computed(() => (page.value - 1) * pageCount.value + 1);
 const pageTo = computed(() =>
-  Math.min(page.value * pageCount.value, pageTotal.value),
+  Math.min(page.value * pageCount.value, pageTotal.value)
 );
 
 // Data
@@ -121,21 +121,22 @@ const { data: todos, pending } = await useLazyAsyncData<
           _sort: sort.value.column,
           _order: sort.value.direction,
         },
-      },
+      }
     ),
   {
     default: () => [],
     watch: [page, search, searchStatus, pageCount, sort],
-  },
+  }
 );
 </script>
 
 <template>
   <UCard
-    class="w-full p-2"
     :ui="{
       divide: 'divide-y divide-gray-200 dark:divide-gray-700',
-      header: { padding: 'px-4 py-5' },
+      header: { padding: 'px-0 py-5' },
+      ring: 'ring-0',
+      shadow: 'shadow-none',
       body: {
         padding: '',
         base: 'divide-y divide-gray-200 dark:divide-gray-700',

@@ -3,7 +3,19 @@ export default defineAppConfig({
     primary: "black",
     gray: "cool",
     icons: "all",
+    breadcrumb: {
+      ol: "p-0 m-0",
+    },
+    verticalNavigation: {
+      size: "text-md",
+      ol: "order-none",
+    },
     card: {
+      background: "bg-white dark:bg-gray-900",
+      rounded: "rounded-sm",
+      ring: "ring-1 ring-gray-200 dark:ring-gray-800",
+      shadow: "shadow-none",
+
       header: {
         padding: "px-3 py-3 sm:px-4",
       },
@@ -32,11 +44,6 @@ export default defineAppConfig({
       title: "تماس‌با‌من",
       _path: "/contact",
       menu_order: 100,
-    },
-    {
-      title: "داشبورد",
-      _path: "/dashboard",
-      menu_order: 101,
     },
   ],
 });
