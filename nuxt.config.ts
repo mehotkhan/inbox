@@ -56,12 +56,12 @@ export default defineNuxtConfig({
       }),
       Icons(),
     ],
-    build: {
-      watch: {},
-      sourcemap: false,
-      minify: true,
-      rollupOptions: { treeshake: false },
-    },
+    // build: {
+    // watch: {},
+    // sourcemap: false,
+    // minify: true,
+    // rollupOptions: { treeshake: false },
+    // },
   },
 
   nitro: {
@@ -80,32 +80,23 @@ export default defineNuxtConfig({
     },
   },
 
-  // experimental: {
-  //   payloadExtraction: false,
-  //   treeshakeClientOnly: false,
-  //   inlineSSRStyles: false,
-  // },
+  experimental: {
+    renderJsonPayloads: true,
+    viewTransition: true,
+  },
   image: {
     dir: "assets/content",
-
     format: ["webp"],
-    // provider: "ipx",
-    // ipx: {
-    //   modifiers: {
-    //     quality: "80",
-    //     format: ["webp"],
-    //   },
-    // },
   },
 
-  hooks: {
-    "build:done": () => {
-      GenerateDecap();
-    },
-    "nitro:init": () => {
-      GenerateDecap();
-    },
-  },
+  // hooks: {
+  //   "build:done": () => {
+  //     GenerateDecap();
+  //   },
+  //   "nitro:init": () => {
+  //     GenerateDecap();
+  //   },
+  // },
 
   // gtag: {
   //   id: "G-78646PGVN1",
@@ -118,9 +109,20 @@ export default defineNuxtConfig({
   },
 
   i18n: {
-    vueI18n: "./i18n.config.ts", // if you are using custom path, default
+    locales: [
+      {
+        code: "fa",
+        file: "fa.json",
+      },
+      {
+        code: "en",
+        file: "en.json",
+      },
+    ],
+    // lazy: true,
+    langDir: "locales",
+    defaultLocale: "en",
   },
-
   imports: {
     dirs: ["composables/**"],
   },
