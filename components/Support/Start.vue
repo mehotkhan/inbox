@@ -29,7 +29,7 @@ function toggleModal() {
 <template>
   <div>
     <div
-      class="fixed left-2 bottom-2 shadow-md rounded-full cursor-pointer text-4xl z-50 support-button p-3 transition-all text-white bg-slate-700 border-2 border-slate-800"
+      class="fixed left-2 bottom-2 shadow-md rounded-full cursor-pointer text-4xl z-50 support-button p-3 transition-all text-black bg-slate-700 border-2 border-slate-800"
       @click="toggleModal"
     >
       <UIcon name="i-heroicons-chat-bubble-left-right" v-if="!modalBoxIsOpen" />
@@ -39,20 +39,20 @@ function toggleModal() {
       v-if="modalBoxIsOpen"
       :ui="{
         body: {
-          base: 'h-full border-0 ',
-          padding: 'p-0',
+          base: 'h-full border-0 overflow-hidden',
+          padding: 'p-0 sm:p-0',
         },
         rounded: 'rounded md:rounded-2xl',
         divide: 'divide-0',
-        ring: 'ring-0',
+        ring: 'ring-1',
         header: {
           base: 'z-10 h-30 relative',
-          background: ' h-30',
+          background: 'bg-gray-300 h-30',
           padding: 'px-5 pt-4 pb-2',
         },
         footer: {
           base: 'absolute bottom-0 w-full grid w-full grid-cols-3  items-center border-t-2 border-gray-100 ',
-          background: 'bg-',
+          background: 'bg-gray-100',
           padding: 'px-0 py-3',
         },
       }"
@@ -66,13 +66,13 @@ function toggleModal() {
       <div class="absolute h-[40rem] top-0 w-full z-0"></div>
       <template #header>
         <div
-          class="flex justify-between items-center w-full z-10 relative text-white"
+          class="flex justify-between items-center w-full z-10 relative text-black"
         >
           <div class="flex items-center">
             <UTooltip v-if="modalMode === 'chat'" text="پیام ها">
               <UIcon
                 name="i-heroicons-chevron-double-right"
-                class="z-10 text-2xl text-white cursor-pointer"
+                class="z-10 text-2xl text-black cursor-pointer"
                 @click="changeView('chats')"
               />
             </UTooltip>
@@ -80,7 +80,7 @@ function toggleModal() {
             <UTooltip v-if="modalMode === 'home'" text="بستن">
               <UIcon
                 name="i-heroicons-chevron-double-down"
-                class="text-xl text-white cursor-pointer"
+                class="text-xl text-black cursor-pointer"
                 aria-hidden="true"
                 @click="toggleModal()"
               />
@@ -88,12 +88,12 @@ function toggleModal() {
 
             <div
               v-if="modalMode !== 'home' && modalMode !== 'chat'"
-              class="text-xl flex text-white z-10 w-full font-bold mr-3"
+              class="text-xl flex text-black z-10 w-full font-bold mr-3"
             >
               {{ viewTitle }}
             </div>
 
-            <!-- <span v-if="modalMode === 'chat'" class="text-xl flex text-white z-10 w-full font-bold items-center">
+            <!-- <span v-if="modalMode === 'chat'" class="text-xl flex text-black z-10 w-full font-bold items-center">
               <ProfileUserAvatar :pub="currentTicket.operator" size="md" />
               <ProfileUserName :pub="currentTicket.operator" :support="true" class="mr-2" />
             </span> -->
@@ -104,7 +104,7 @@ function toggleModal() {
               <UTooltip v-if="!expanded" text="بزرگ‌نمایی">
                 <UIcon
                   name="i-heroicons-arrows-pointing-out"
-                  class="text-md text-white cursor-pointer"
+                  class="text-md text-black cursor-pointer"
                   aria-hidden="true"
                   @click="expandView()"
                 />
@@ -112,7 +112,7 @@ function toggleModal() {
               <UTooltip v-else text="کوچک‌نمایی">
                 <UIcon
                   name="i-heroicons-arrows-pointing-in"
-                  class="text-md text-white cursor-pointer"
+                  class="text-md text-black cursor-pointer"
                   aria-hidden="true"
                   @click="expandView()"
                 />
@@ -129,7 +129,7 @@ function toggleModal() {
                   size="xs"
                   :label="
                     ticketStatus.find(
-                      (item: any) => item.id === currentTicket.status,
+                      (item: any) => item.id === currentTicket.status
                     )?.label
                   "
                   color="gray"
@@ -140,7 +140,7 @@ function toggleModal() {
             <UTooltip v-if="modalMode !== 'home'" text="بستن">
               <UIcon
                 name="i-heroicons-chevron-double-down"
-                class="text-2xl text-white cursor-pointer"
+                class="text-2xl text-black cursor-pointer"
                 aria-hidden="true"
                 @click="toggleModal()"
               />
@@ -150,19 +150,29 @@ function toggleModal() {
       </template>
 
       <div class="absolute w-full top-[4rem] bottom-[4rem]">
-        body
-        <!-- <SupportConversation v-if="modalMode === 'chat'" @close-modal="closeModal" /> -->
+        <!-- <SupportConversation
+          v-if="modalMode === 'chat'"
+          @close-modal="closeModal"
+        />
 
-        <!-- <SupportChats v-if="modalMode === 'chats'" class=" " @close-modal="closeModal" /> -->
-        <!-- <SupportHome v-if="modalMode === 'home'" @close-modal="closeModal" /> -->
-        <!-- <SupportSocial v-if="modalMode === 'social'" @close-modal="closeModal" /> -->
+        <SupportChats
+          v-if="modalMode === 'chats'"
+          class=" "
+          @close-modal="closeModal"
+        /> -->
+        <SupportHome v-if="modalMode === 'home'" @close-modal="closeModal" />
+        <!-- <SupportSocial
+          v-if="modalMode === 'social'"
+          @close-modal="closeModal"
+        /> -->
       </div>
+
       <template v-if="modalMode !== 'chat'" #footer>
         <div
           class="cursor-pointer flex flex-col item-center justify-center text-center"
           @click="changeView('home')"
         >
-          <div :class="modalMode === 'home' ? 'text-white' : 'text-red-300'">
+          <div :class="modalMode === 'home' ? 'text-black' : 'text-gray-600'">
             <UIcon
               name="i-heroicons-home-alt"
               class="w-full text-xl"
@@ -176,7 +186,7 @@ function toggleModal() {
           class="cursor-pointer flex flex-col item-center justify-center text-center"
           @click="changeView('chats')"
         >
-          <div :class="modalMode === 'chats' ? 'text-white' : 'text-red-300'">
+          <div :class="modalMode === 'chats' ? 'text-black' : 'text-gray-600'">
             <UIcon
               name="i-heroicons-envelope-alt"
               class="w-full text-xl"
@@ -190,7 +200,7 @@ function toggleModal() {
           class="cursor-pointer flex flex-col item-center justify-center text-center"
           @click="changeView('social')"
         >
-          <div :class="modalMode === 'social' ? 'text-white' : 'text-red-300'">
+          <div :class="modalMode === 'social' ? 'text-black' : 'text-gray-600'">
             <UIcon
               name="i-heroicons-coffee"
               class="w-full text-xl"
@@ -201,7 +211,7 @@ function toggleModal() {
         </div>
       </template>
       <template v-else #footer>
-        <!-- <SupportInputForm /> -->
+        <SupportInputForm />
       </template>
     </UCard>
   </div>

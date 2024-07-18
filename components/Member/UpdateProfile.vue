@@ -41,7 +41,7 @@ const Update = async () => {
           <h4 class="text-xl">تنظیمات حساب</h4>
         </template>
         <div class="min-h-[20rem]">
-          <Placeholder />
+          <UPlaceholder />
         </div>
 
         <template #footer>
