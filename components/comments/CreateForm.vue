@@ -41,7 +41,7 @@ const handleKeyDown = (event: KeyboardEvent) => {
       <template #header>
         <div class="flex justify-between">
           <span> ارسال دیدگاه </span>
-          <spa class="font-thin text-sm">۲ نفر در حال نوشتن ۰۰۰</spa>
+          <span class="font-thin text-sm">۲ نفر در حال نوشتن ۰۰۰</span>
         </div>
       </template>
       <UFormGroup name="textarea" label="دیدگاه شما">

@@ -1,5 +1,5 @@
 module.exports = {
-  darkMode: "class",
+  darkMode: "selector",
   mode: "jit",
   attributify: false,
   extract: {
