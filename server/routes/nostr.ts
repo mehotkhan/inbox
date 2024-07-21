@@ -15,6 +15,7 @@ export default defineWebSocketHandler({
   // },
   open(peer: any) {
     console.log("WS connected");
+    console.log(peer.ctx.node.cloudflare);
 
     // if (peer.ctx.node.req.rawHeaders) {
     //   console.log(extractCookies(peer.ctx.node.req.rawHeaders[21]));
@@ -41,7 +42,7 @@ export default defineWebSocketHandler({
           } else {
             peer.publish(
               "events",
-              JSON.stringify(["OK", event.id, false, "invalid signature"]),
+              JSON.stringify(["OK", event.id, false, "invalid signature"])
             );
           }
         } else if (msg[0] === "REQ") {

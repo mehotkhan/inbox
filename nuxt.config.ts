@@ -16,6 +16,7 @@ export default defineNuxtConfig({
     // "nuxt-gtag",
     "@nuxt/image",
     "@nuxtjs/i18n",
+    "nitro-cloudflare-dev",
   ],
 
   // extends: ["nuxt-seo-kit"],
@@ -121,7 +122,7 @@ export default defineNuxtConfig({
     ],
     // lazy: true,
     langDir: "locales",
-    defaultLocale: "en",
+    defaultLocale: "fa",
   },
   imports: {
     dirs: ["composables/**"],
