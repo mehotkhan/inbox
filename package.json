@@ -2,15 +2,16 @@
   "name": "AliZemani.ir",
   "private": false,
   "description": "my Personal Inbox Page",
+  "type": "module",
   "scripts": {
     "build": "nuxt build",
     "clean": "rm -rf .nuxt dist .output",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "postinstall": "nuxt prepare",
-    "preview": "nuxt preview",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "preview": "nuxt preview"
   },
   "dependencies": {
     "@noble/curves": "^1.4.2",
