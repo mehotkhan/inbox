@@ -28,3 +28,8 @@ export const streamOrder = [
     filter: "asc",
   },
 ];
+export const Capitalize = (string: string) => {
+  return string?.length
+    ? string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
+    : "";
+};

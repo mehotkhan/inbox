@@ -19,7 +19,7 @@ onMounted(() => {
             <UCard class="">
               <template #header>
                 <div class="flex justify-between pt-5">
-                  <DashboardBreadcrumb />
+                  <Breadcrumb />
 
                   <div class="flex gap-4">
                     <span class="text-md font-thin"> ۶ کاربر آنلاین </span>
