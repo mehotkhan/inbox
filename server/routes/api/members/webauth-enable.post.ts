@@ -19,6 +19,9 @@ const fido2 = new Fido2Lib({
 });
 
 export default defineEventHandler(async (event) => {
+  console.log(event.context.cloudflare.env);
+  console.log(process.env.d1_database);
+
   try {
     const body = await readBody(event);
 

@@ -22,6 +22,8 @@ onMounted(() => {
                   <DashboardBreadcrumb />
 
                   <div class="flex gap-4">
+                    <span class="text-md font-thin"> ۶ کاربر آنلاین </span>
+
                     <MemberUpdateProfile />
                     <MemberWebauthModal />
                   </div>

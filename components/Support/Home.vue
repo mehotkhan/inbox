@@ -5,10 +5,10 @@ const { createNewDefault } = useSupport();
   <div class="w-full flex flex-col h-full overflow-x-auto">
     <div class="p-5 flex flex-col justify-start">
       <div class="mb-5">
-        <h3 class="text-white text-2xl mb-5 mt-5 font-bold opacity-80">
+        <h3 class="text-gray-600 text-2xl mb-5 mt-5 font-bold opacity-80">
           سلام، خوش آمدید .
         </h3>
-        <h4 class="text-white text-2xl font-bold text-shadow">
+        <h4 class="text-gray-600 text-2xl font-bold text-shadow">
           چه کمکی از من بر می یاد ؟
         </h4>
       </div>
@@ -28,9 +28,9 @@ const { createNewDefault } = useSupport();
         </div>
       </div>
       <br />
-      <SupportHelpIntro />
+      <!-- <SupportHelpIntro /> -->
       <SupportContactsIntro />
-      <SupportSocialIntro />
+      <!-- <SupportSocialIntro /> -->
     </div>
   </div>
 </template>

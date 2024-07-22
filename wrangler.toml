@@ -1,5 +1,6 @@
 compatibility_date = "2024-06-17"
+
 [[d1_databases]]
-binding = "DB"                                       # available in your Worker on env.DB
-database_name = "hekayat"
+binding = "d1_database"                              # available in your Worker on env.DB
+database_name = "inbox"
 database_id = "de41103f-3be2-4d6f-b713-3507a7ba8b99"

@@ -7,6 +7,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    'IconMdi:send': typeof import('~icons/mdi/send')['default']
     'IconUil:alignJustify': typeof import('~icons/uil/align-justify')['default']
     'IconUil:githubAlt': typeof import('~icons/uil/github-alt')['default']
     'IconUil:linkedinAlt': typeof import('~icons/uil/linkedin-alt')['default']

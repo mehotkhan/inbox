@@ -7,24 +7,23 @@ import {
   getPublicKey,
 } from "nostr-tools";
 
-const loggedIn = useStorage("loggedIn", false);
-const certs: any = useStorage("current-certs", {
-  pub: "",
-  priv: "",
-});
-const profile: any = useStorage("current-user", {
-  firstName: "",
-  lastName: "",
-  displayName: "",
-  userName: "",
-  about: "",
-  email: "",
-  avatar: null,
-  pub: "",
-  priv: "",
-});
-
 export default () => {
+  const loggedIn = useStorage("loggedIn", false);
+  const certs: any = useStorage("current-certs", {
+    pub: "",
+    priv: "",
+  });
+  const profile: any = useStorage("current-user", {
+    firstName: "",
+    lastName: "",
+    displayName: "",
+    userName: "",
+    about: "",
+    email: "",
+    avatar: null,
+    pub: "",
+    priv: "",
+  });
   const userPub = useCookie("userPub", {
     default: () => "",
     watch: true,
