@@ -25,9 +25,9 @@ const Update = async () => {
     <UButton
       label="تنظیمات حساب"
       size="md"
-      @click="isOpen = true"
       color="primary"
       variant="ghost"
+      @click="isOpen = true"
     />
 
     <UModal v-model="isOpen">

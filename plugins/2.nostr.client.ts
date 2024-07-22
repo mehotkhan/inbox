@@ -1,5 +1,5 @@
 import { useWebSocket } from "@vueuse/core";
-import { Event as NostrEvent } from "nostr-tools";
+import type { Event as NostrEvent } from "nostr-tools";
 
 export default defineNuxtPlugin(() => {
   const BASEURL = useRequestURL();

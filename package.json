@@ -8,11 +8,9 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "postinstall": "nuxt prepare",
-    "lint": "pnpm lint:js && pnpm lint:prettier",
-    "lint:fix": "prettier --write --list-different . && pnpm lint:js --fix",
-    "lint:js": "eslint --ext \".ts,.vue\" --ignore-path .gitignore .",
-    "lint:prettier": "prettier --check .",
-    "preview": "nuxt preview"
+    "preview": "nuxt preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@noble/curves": "^1.4.2",
@@ -41,18 +39,14 @@
     "@iconify/json": "^2.2.230",
     "@nuxt/content": "^2.13.2",
     "@nuxt/devtools": "latest",
-    "@nuxt/image": "^1.7.0",
+    "@nuxt/eslint": "^0.3.13",
+    "@nuxt/image": "npm:@nuxt/image-nightly@latest",
     "@nuxt/ui": "^2.17.0",
-    "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/i18n": "^8.3.1",
     "@types/luxon": "^3.4.2",
     "@types/node": "^20.14.11",
     "ejs": "^3.1.10",
     "eslint": "^9.7.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-nuxt": "^4.0.0",
-    "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-unicorn": "^54.0.0",
     "js-yaml": "^4.1.0",
     "nitro-cloudflare-dev": "^0.1.6",
     "nuxt-gtag": "^2.0.7",
@@ -65,18 +59,5 @@
     "vite-plugin-compression": "^0.5.1",
     "vue-router": "^4.4.0",
     "wrangler": "^3.65.1"
-  },
-  "overrides": {
-    "sharp": "0.33.4"
-  },
-  "supportedArchitectures": {
-    "os": [
-      "current",
-      "linux"
-    ],
-    "cpu": [
-      "current",
-      "x64"
-    ]
   }
 }

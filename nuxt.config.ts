@@ -17,6 +17,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxtjs/i18n",
     "nitro-cloudflare-dev",
+    "@nuxt/eslint",
   ],
 
   // extends: ["nuxt-seo-kit"],

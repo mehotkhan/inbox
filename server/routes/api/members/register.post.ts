@@ -1,4 +1,4 @@
-import { Event as NostrEvent } from "nostr-tools";
+import type { Event as NostrEvent } from "nostr-tools";
 
 export default defineEventHandler(async (event) => {
   try {

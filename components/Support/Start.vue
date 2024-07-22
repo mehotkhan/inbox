@@ -32,8 +32,8 @@ function toggleModal() {
       class="fixed left-2 bottom-2 shadow-md rounded-full cursor-pointer text-4xl z-50 support-button p-3 transition-all text-black bg-slate-700 border-2 border-slate-800"
       @click="toggleModal"
     >
-      <UIcon name="i-heroicons-chat-bubble-left-right" v-if="!modalBoxIsOpen" />
-      <UIcon name="i-heroicons-chevron-double-up" v-else />
+      <UIcon v-if="!modalBoxIsOpen" name="i-heroicons-chat-bubble-left-right" />
+      <UIcon v-else name="i-heroicons-chevron-double-up" />
     </div>
     <UCard
       v-if="modalBoxIsOpen"
@@ -63,7 +63,7 @@ function toggleModal() {
       "
       class="fixed z-40 left-0 bottom-0 h-full w-full transition-all shadow-2xl border-0"
     >
-      <div class="absolute h-[40rem] top-0 w-full z-0"></div>
+      <div class="absolute h-[40rem] top-0 w-full z-0"/>
       <template #header>
         <div
           class="flex justify-between items-center w-full z-10 relative text-black"
@@ -129,7 +129,7 @@ function toggleModal() {
                   size="xs"
                   :label="
                     ticketStatus.find(
-                      (item: any) => item.id === currentTicket.status
+                      (item: any) => item.id === currentTicket.status,
                     )?.label
                   "
                   color="gray"

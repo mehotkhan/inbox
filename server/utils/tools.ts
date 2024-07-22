@@ -6,7 +6,7 @@ export const isJsonStringified = (value: string) => {
 };
 
 export const extractCookies = (cookieStr: any) => {
-  let output: any = {};
+  const output: any = {};
 
   cookieStr.split(/\s*;\s*/).forEach(function (pair: any) {
     pair = pair.split(/\s*=\s*/);

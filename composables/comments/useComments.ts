@@ -1,4 +1,5 @@
-import { Event as NostrEvent, finalizeEvent } from "nostr-tools";
+import type { Event as NostrEvent} from "nostr-tools";
+import { finalizeEvent } from "nostr-tools";
 import { hexToBytes } from "@noble/hashes/utils";
 
 export default function useComments() {

@@ -24,7 +24,7 @@ const send = () => {
         placeholder="پاسختان را بنویسید ..."
         @keyup.enter="send"
         @click="send"
-      />
+      >
       <div class="flex items-center justify-around mr-3">
         <IconMdi:send
           class="text-gray-400 text-lg cursor-pointer"

@@ -1,7 +1,8 @@
 import { bytesToHex, hexToBytes } from "@noble/hashes/utils";
 import { useStorage } from "@vueuse/core";
+import type {
+  Event as NostrEvent} from "nostr-tools";
 import {
-  Event as NostrEvent,
   finalizeEvent,
   generateSecretKey,
   getPublicKey,
@@ -62,7 +63,7 @@ export default () => {
         tags: [],
         content: JSON.stringify(profile.value),
       },
-      hexToBytes(certs.value.priv)
+      hexToBytes(certs.value.priv),
     );
     const body: any = await $fetch("/api/members/register", {
       method: "post",

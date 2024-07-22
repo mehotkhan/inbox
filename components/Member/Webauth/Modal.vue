@@ -86,9 +86,9 @@ const handleResponse = async (publicKey: any) => {
     <UButton
       label="فعال سازی حساب"
       size="md"
-      @click="isOpen = true"
       color="primary"
       variant="ghost"
+      @click="isOpen = true"
     />
 
     <UModal v-model="isOpen">
@@ -123,9 +123,9 @@ const handleResponse = async (publicKey: any) => {
               label="Enable WebAuth"
               size="xl"
               :loading="submitting"
-              @click="Register()"
               color="primary"
               variant="ghost"
+              @click="Register()"
             />
           </div>
         </UForm>

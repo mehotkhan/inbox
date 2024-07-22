@@ -56,10 +56,10 @@ onUpdated(() => {
               :class="message?.send ? 'text-green-500' : 'text-gray-400'"
             >
               <UIcon
+                v-if="message?.send"
                 name="i-heroicons-check />
                <UIcon name="
                 i-heroicons-check
-                v-if="message?.send"
                 class="-mr-3"
               />
             </span>

@@ -35,12 +35,8 @@
           "name": "auth_key_owner_member_id_fk",
           "tableFrom": "auth_key",
           "tableTo": "member",
-          "columnsFrom": [
-            "owner"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["owner"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -192,23 +188,17 @@
       "indexes": {
         "member_pub_unique": {
           "name": "member_pub_unique",
-          "columns": [
-            "pub"
-          ],
+          "columns": ["pub"],
           "isUnique": true
         },
         "member_userName_unique": {
           "name": "member_userName_unique",
-          "columns": [
-            "userName"
-          ],
+          "columns": ["userName"],
           "isUnique": true
         },
         "member_email_unique": {
           "name": "member_email_unique",
-          "columns": [
-            "email"
-          ],
+          "columns": ["email"],
           "isUnique": true
         }
       },
