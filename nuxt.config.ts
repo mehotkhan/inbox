@@ -6,6 +6,7 @@ import { GenerateRoutes } from "./tools/contentRoutes";
 import { GenerateDecap } from "./tools/configs-generators";
 
 export default defineNuxtConfig({
+  future: { compatibilityVersion: 4 },
   ssr: true,
   css: ["@/assets/scss/base.scss", "@/assets/scss/extra.scss"],
   devtools: { enabled: false },

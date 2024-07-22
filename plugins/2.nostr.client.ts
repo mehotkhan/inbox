@@ -3,7 +3,7 @@ import type { Event as NostrEvent } from "nostr-tools";
 
 export default defineNuxtPlugin(() => {
   const BASEURL = useRequestURL();
-  const relayURL = `${BASEURL.protocol === "http:" ? "ws" : "wss"}://${BASEURL.host}/relay`;
+  const relayURL = `${BASEURL.protocol === "http:" ? "ws" : "wss"}://${BASEURL.host}/nostr`;
 
   const { $dexie } = useNuxtApp();
   const { loggedIn, profile } = useUser();

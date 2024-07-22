@@ -6,7 +6,7 @@
   "scripts": {
     "build": "nuxt build",
     "clean": "rm -rf .nuxt dist .output",
-    "dev": "nuxt dev",
+    "dev": "VITE_CJS_IGNORE_WARNING=1 nuxt dev",
     "generate": "nuxt generate",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
