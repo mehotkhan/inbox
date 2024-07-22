@@ -29,16 +29,17 @@
     "h3-zod": "^0.5.3",
     "luxon": "^3.4.4",
     "markdown-it": "^14.1.0",
+    "nitro-cloudflare-dev": "^0.1.6",
     "nostr-tools": "^2.7.1",
-    "nuxt": "^3.12.3",
+    "nuxt": "^3.12.4",
     "sass": "^1.77.8",
     "web-uuid": "0.1.0-pre.1",
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20240712.0",
-    "@iconify/json": "^2.2.228",
-    "@nuxt/content": "^2.13.1",
+    "@cloudflare/workers-types": "^4.20240718.0",
+    "@iconify/json": "^2.2.229",
+    "@nuxt/content": "^2.13.2",
     "@nuxt/devtools": "latest",
     "@nuxt/image": "^1.7.0",
     "@nuxt/ui": "^2.17.0",
@@ -62,7 +63,7 @@
     "unplugin-vue-components": "^0.27.3",
     "vite-plugin-compression": "^0.5.1",
     "vue-router": "^4.4.0",
-    "wrangler": "^3.65.0"
+    "wrangler": "^3.65.1"
   },
   "overrides": {
     "sharp": "0.33.4"

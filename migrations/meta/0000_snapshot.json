@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "709e0b40-18a2-42cd-9835-5c378508d322",
+  "id": "a6ab32c6-22f4-4dc8-b641-d0fdaddfeddb",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "auth_key": {
@@ -35,8 +35,12 @@
           "name": "auth_key_owner_member_id_fk",
           "tableFrom": "auth_key",
           "tableTo": "member",
-          "columnsFrom": ["owner"],
-          "columnsTo": ["id"],
+          "columnsFrom": [
+            "owner"
+          ],
+          "columnsTo": [
+            "id"
+          ],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -188,17 +192,23 @@
       "indexes": {
         "member_pub_unique": {
           "name": "member_pub_unique",
-          "columns": ["pub"],
+          "columns": [
+            "pub"
+          ],
           "isUnique": true
         },
         "member_userName_unique": {
           "name": "member_userName_unique",
-          "columns": ["userName"],
+          "columns": [
+            "userName"
+          ],
           "isUnique": true
         },
         "member_email_unique": {
           "name": "member_email_unique",
-          "columns": ["email"],
+          "columns": [
+            "email"
+          ],
           "isUnique": true
         }
       },
