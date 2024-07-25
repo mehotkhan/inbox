@@ -7,8 +7,8 @@ const toggleDark = useToggle(isDark);
 <template>
   <div class="flex items-center">
     <UButton variant="ghost" class="text-md" @click="toggleDark()">
-      <IconUil:moon v-if="!isDark" class="cursor-pointer" />
-      <IconUil:sun v-else class="cursor-pointer" />
+      <UIcon name="i-heroicons-moon" v-if="!isDark" class="cursor-pointer" />
+      <UIcon name="i-heroicons-sun" v-else class="cursor-pointer" />
     </UButton>
   </div>
 </template>

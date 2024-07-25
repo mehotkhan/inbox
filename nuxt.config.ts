@@ -1,9 +1,6 @@
-import Icons from "unplugin-icons/vite";
-import Components from "unplugin-vue-components/vite";
-import IconsResolver from "unplugin-icons/resolver";
 import viteCompression from "vite-plugin-compression";
 import { GenerateRoutes } from "./tools/contentRoutes";
-import { GenerateDecap } from "./tools/configs-generators";
+// import { GenerateDecap } from "./tools/configs-generators";
 
 export default defineNuxtConfig({
   ssr: true,
@@ -16,7 +13,7 @@ export default defineNuxtConfig({
     // "nuxt-gtag",
     "@nuxt/image",
     "@nuxtjs/i18n",
-    "nitro-cloudflare-dev",
+    // "nitro-cloudflare-dev",
     "@nuxt/eslint",
   ],
 
@@ -47,23 +44,13 @@ export default defineNuxtConfig({
   },
 
   vite: {
-    plugins: [
-      viteCompression({ algorithm: "brotliCompress" }),
-      Components({
-        resolvers: [
-          IconsResolver({
-            prefix: "Icon",
-          }),
-        ],
-      }),
-      Icons(),
-    ],
-    // build: {
-    // watch: {},
-    // sourcemap: false,
-    // minify: true,
-    // rollupOptions: { treeshake: false },
-    // },
+    plugins: [viteCompression({ algorithm: "brotliCompress" })],
+    build: {
+      watch: {},
+      sourcemap: false,
+      minify: true,
+      rollupOptions: { treeshake: false },
+    },
   },
 
   nitro: {
@@ -72,10 +59,9 @@ export default defineNuxtConfig({
       tasks: true,
     },
     // preset: "cloudflare-pages",
-
     // static: true,
-    // compressPublicAssets: true,
-    // minify: true,
+    compressPublicAssets: true,
+    minify: true,
     prerender: {
       crawlLinks: false,
       routes: GenerateRoutes(["notes", "cat"]),

@@ -11,7 +11,7 @@ const runtimeConfig = useRuntimeConfig();
       rel="noopener"
       class="p-1 flex"
     >
-      <IconUil:github-alt />
+      <UIcon name="i-heroicons-github-alt" />
     </a>
     <a
       v-if="runtimeConfig.app.linkedin"
@@ -21,7 +21,7 @@ const runtimeConfig = useRuntimeConfig();
       rel="noopener"
       class="p-1 flex"
     >
-      <IconUil:linkedin-alt />
+      <UIcon name="i-heroicons-linkedin-alt" />
     </a>
     <a
       v-if="runtimeConfig.app.twitter"
@@ -31,7 +31,7 @@ const runtimeConfig = useRuntimeConfig();
       rel="noopener"
       class="p-1 flex"
     >
-      <IconUil:twitter-alt />
+      <UIcon name="i-heroicons-twitter-alt" />
     </a>
   </div>
 </template>

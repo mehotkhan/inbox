@@ -24,18 +24,19 @@ const send = () => {
         placeholder="پاسختان را بنویسید ..."
         @keyup.enter="send"
         @click="send"
-      >
+      />
       <div class="flex items-center justify-around mr-3">
-        <IconMdi:send
+        <UIcon
+          name="i-heroicons-send"
           class="text-gray-400 text-lg cursor-pointer"
           aria-hidden="true"
         />
-        <!-- <IconMdi:file
+        <!-- <UIcon name="i-heroicons-file"
           v-if="chatMessage.length === 0"
           class="text-gray-400 text-lg"
           aria-hidden="true"
         />
-        <IconMdi:image
+     <UIcon name="i-heroicons-image
           v-if="chatMessage.length === 0"
           class="text-gray-400 text-lg mr-1"
           aria-hidden="true"

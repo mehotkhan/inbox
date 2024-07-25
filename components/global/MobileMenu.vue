@@ -18,6 +18,10 @@ const items = computed(() => {
 
 <template>
   <UDropdown :items="items" :popper="{ placement: 'bottom-start' }">
-    <IconUil:align-justify class="text-md flex" aria-hidden="true" />
+    <UIcon
+      name="i-heroicons-align-justify"
+      class="text-md flex"
+      aria-hidden="true"
+    />
   </UDropdown>
 </template>
