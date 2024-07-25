@@ -11,7 +11,7 @@ const runtimeConfig = useRuntimeConfig();
       rel="noopener"
       class="p-1 flex"
     >
-      <UIcon name="i-heroicons-github-alt" />
+      <UIcon name="i-heroicons-github" />
     </a>
     <a
       v-if="runtimeConfig.app.linkedin"
