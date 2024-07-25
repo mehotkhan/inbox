@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
       pub: userProfile.pub,
     };
 
-    setEvents(bodyEvent);
+    createNewEvent(bodyEvent);
     drizzleDb.insert(member).values(newUser).run();
     const res = drizzleDb.select().from(member).all();
     console.log("register");

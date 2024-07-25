@@ -57,6 +57,9 @@ const { allComments } = useComments();
             />
             <NuxtLink to="/profile"> username </NuxtLink>
             <span class="font-thin text-xs">سه ساعت پیش</span>
+            <span class="font-thin text-xs">
+              {{ comment.seen ? "Send" : "Sending" }}</span
+            >
           </div>
           <UDropdown :items="items" :popper="{ placement: 'bottom-start' }">
             <UButton
@@ -69,7 +72,7 @@ const { allComments } = useComments();
         </div>
       </template>
       <p class="text-gray-500 dark:text-gray-400">
-        {{ comment.message }}
+        {{ comment.content }}
       </p>
       <template #footer>
         <div class="flex justify-end gap-3">پاسخ</div>

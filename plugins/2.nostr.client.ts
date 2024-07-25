@@ -3,7 +3,7 @@ import type { Event as NostrEvent } from "nostr-tools";
 
 export default defineNuxtPlugin(() => {
   const BASEURL = useRequestURL();
-  const relayURL = `${BASEURL.protocol === "http:" ? "ws" : "wss"}://${BASEURL.host}/nostr`;
+  const relayURL = `${BASEURL.protocol === "http:" ? "ws" : "wss"}://${BASEURL.host}/nostr/nostr`;
 
   const { $dexie } = useNuxtApp();
   const { loggedIn, profile } = useUser();
@@ -59,14 +59,10 @@ export default defineNuxtPlugin(() => {
 
   const handleIncomingEvent = (event: NostrEvent) => {
     if (event?.kind === 1) {
-      const newComment = {
-        hash: "some_hash", // Use actual hash logic
-        owner: event.pubkey,
-        message: event.content,
-        created_at: event.created_at,
-        status: "published",
-      };
-      $dexie.comments.add(newComment);
+      $dexie.events.add({
+        ...event,
+        seen: true,
+      });
     } else if (event?.kind === 0) {
       const userProfile = JSON.parse(event.content);
       $dexie.members.put(userProfile);
@@ -75,7 +71,6 @@ export default defineNuxtPlugin(() => {
 
   const sendEVENTMessage = async (event: NostrEvent) => {
     send(JSON.stringify(["EVENT", event]));
-    // console.log("EVENT message sent:", event);
   };
   return {
     provide: {

@@ -37,12 +37,12 @@ export default defineWebSocketHandler({
           // Verify the event signature
           if (verifyEvent(event)) {
             // Save event to the database
-            const newEvent = setEvents(event);
+            const newEvent = createNewEvent(event);
             peer.send(JSON.stringify(["EVENT", "test-id", newEvent]));
           } else {
             peer.publish(
               "events",
-              JSON.stringify(["OK", event.id, false, "invalid signature"]),
+              JSON.stringify(["OK", event.id, false, "invalid signature"])
             );
           }
         } else if (msg[0] === "REQ") {

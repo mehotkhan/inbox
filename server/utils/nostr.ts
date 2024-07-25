@@ -3,7 +3,7 @@ export const getFilteredEvents = async (filters: NostrFilter[]) => {
   return await drizzleDb.select().from(events);
 };
 
-export const setEvents = (event: NostrEvent) => {
+export const createNewEvent = (event: NostrEvent) => {
   const newEvent: InsertEvent = {
     id: event.id,
     pubkey: event.pubkey,
