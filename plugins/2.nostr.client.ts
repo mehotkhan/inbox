@@ -1,5 +1,6 @@
 import { useWebSocket } from "@vueuse/core";
 import type { Event as NostrEvent } from "nostr-tools";
+import { verifyEvent } from "nostr-tools/pure";
 
 export default defineNuxtPlugin(() => {
   const BASEURL = useRequestURL();
@@ -57,15 +58,29 @@ export default defineNuxtPlugin(() => {
     // console.log("REQ message sent:", reqMessage);
   };
 
-  const handleIncomingEvent = (event: NostrEvent) => {
-    if (event?.kind === 1) {
-      $dexie.events.add({
-        ...event,
-        seen: true,
-      });
-    } else if (event?.kind === 0) {
-      const userProfile = JSON.parse(event.content);
-      $dexie.members.put(userProfile);
+  const handleIncomingEvent = async (event: NostrEvent) => {
+    try {
+      // verifyEvent(event);
+      if (event?.id) {
+        const dbEvent = await $dexie.events.get({
+          id: event.id,
+        });
+        if (dbEvent) {
+          // update seen feild in db
+          await $dexie.events.update(event.id, { seen: true });
+        } else {
+          $dexie.events.add({
+            ...event,
+            seen: true,
+          });
+        }
+        if (event?.kind === 0) {
+          const userProfile = JSON.parse(event.content);
+          $dexie.members.put(userProfile);
+        }
+      }
+    } catch (error) {
+      console.log("bad event", error);
     }
   };
 

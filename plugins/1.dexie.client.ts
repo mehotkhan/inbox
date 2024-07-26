@@ -1,9 +1,9 @@
-import type { Table } from "dexie";
-import Dexie, {
+import type { Table ,
   DBCore,
   DBCoreMutateRequest,
   DBCoreMutateResponse,
 } from "dexie";
+import Dexie from "dexie";
 import type { Event as NostrEvent } from "nostr-tools";
 
 interface ExtendedEvent extends NostrEvent {
@@ -47,7 +47,7 @@ export default defineNuxtPlugin(() => {
                     for (const event of events) {
                       if (!event.seen) {
                         try {
-                          const body: any = await $fetch("/nostr/create", {
+                          const body = await $fetch("/nostr/create", {
                             method: "post",
                             body: event,
                           });

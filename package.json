@@ -36,7 +36,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20240722.0",
+    "@cloudflare/workers-types": "^4.20240725.0",
     "@nuxt/content": "^2.13.2",
     "@nuxt/eslint": "^0.3.13",
     "@nuxt/image": "npm:@nuxt/image-nightly@latest",
@@ -48,12 +48,11 @@
     "eslint": "^9.7.0",
     "js-yaml": "^4.1.0",
     "nitro-cloudflare-dev": "^0.1.6",
-    "nuxt-gtag": "^2.0.7",
     "prettier": "^3.3.3",
     "typed-array-utils": "^0.2.4",
     "typescript": "^5.5.4",
     "vite-plugin-compression": "^0.5.1",
     "vue-router": "^4.4.0",
-    "wrangler": "^3.66.0"
+    "wrangler": "^3.67.1"
   }
 }

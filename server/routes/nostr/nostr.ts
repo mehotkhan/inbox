@@ -49,12 +49,31 @@ export default defineWebSocketHandler({
           try {
             const subscriptionId = msg[1];
             const filters: NostrFilter[] = msg.slice(2);
-
+            let currentEvents = 0;
             const results = await getFilteredEvents(filters);
-            for await (const result of results) {
-              peer.send(JSON.stringify(["EVENT", subscriptionId, result]));
+
+            if (results?.length !== currentEvents) {
+              // method to be executed;
+              for await (const result of results) {
+                peer.send(JSON.stringify(["EVENT", subscriptionId, result]));
+              }
+              peer.send(JSON.stringify(["EOSE", subscriptionId]));
+              currentEvents = results?.length;
+              console.log(currentEvents);
             }
-            peer.send(JSON.stringify(["EOSE", subscriptionId]));
+            setInterval(async () => {
+              const results = await getFilteredEvents(filters);
+
+              if (results?.length !== currentEvents) {
+                // method to be executed;
+                for await (const result of results) {
+                  peer.send(JSON.stringify(["EVENT", subscriptionId, result]));
+                }
+                peer.send(JSON.stringify(["EOSE", subscriptionId]));
+                currentEvents = results?.length;
+                console.log(currentEvents);
+              }
+            }, 1000);
           } catch (err) {
             console.log(err);
           }

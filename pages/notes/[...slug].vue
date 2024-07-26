@@ -7,11 +7,11 @@
           class="flex flex-col node-page"
           :class="doc?.dir === 'ltr' ? 'ltr' : 'rtl'"
         >
-          <LazyPageIntro :data="doc" />
+          <!-- <LazyPageIntro :data="doc" /> -->
 
           <div class="flex">
             <div class="basis-8/12 pl-4">
-              <ContentRenderer :value="doc" class="content mb-10" />
+              <!-- <ContentRenderer :value="doc" class="content mb-10" /> -->
               <LazyComments />
             </div>
 
