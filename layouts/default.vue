@@ -8,7 +8,7 @@ onMounted(() => {
 <template>
   <div class="flex-col flex blog bg-gray-50 dark:bg-gray-800">
     <slot name="app-before" />
-    <div id="app-before"/>
+    <div id="app-before" />
     <Header />
     <main class="flex min-h-screen mt-[3rem]">
       <div class="container">
@@ -17,11 +17,12 @@ onMounted(() => {
         >
           <section class="flex flex-col justify-center content-center pb-10">
             <UCard class="">
-              <template #header> <div class="flex justify-between pt-5">
-            <Breadcrumb />   <div class="flex gap-4">
+              <template #header>
+                <div class="flex justify-between pt-5">
+                  <Breadcrumb />
+                  <div class="flex gap-4">
                     <span class="text-md font-thin"> ۶ کاربر آنلاین </span>
 
-                    <MemberUpdateProfile />
                     <MemberWebauthModal />
                   </div>
                 </div>
@@ -32,8 +33,8 @@ onMounted(() => {
         </div>
       </div>
       <slot name="app-after" />
-      <div id="app-after"/>
+      <div id="app-after" />
     </main>
+    <SupportStart />
   </div>
-  <SupportStart />
 </template>

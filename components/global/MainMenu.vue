@@ -5,7 +5,12 @@ const route = useRoute();
 
 <template>
   <ul class="list-none flex mt-8">
-    <li v-for="menu in appConfig.menuItems" :key="menu._path">
+    <li
+      v-for="menu in route.path.startsWith('/dash')
+        ? appConfig.dashboardItems
+        : appConfig.menuItems"
+      :key="menu._path"
+    >
       <NuxtLink
         :external="false"
         :to="menu._path"

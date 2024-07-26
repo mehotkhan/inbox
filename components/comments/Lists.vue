@@ -55,7 +55,7 @@ const { allComments } = useComments();
               src="https://avatars.githubusercontent.com/u/739984?v=4"
               alt="Avatar"
             />
-            <NuxtLink to="/profile"> username </NuxtLink>
+            <span> username </span>
             <span class="font-thin text-xs">سه ساعت پیش</span>
             <span class="font-thin text-xs">
               {{ comment.seen ? "Send" : "Sending" }}</span
