@@ -3,10 +3,7 @@
   <main>
     <ContentDoc>
       <template #default="{ doc }">
-        <section
-          class="flex flex-col node-page"
-          :class="doc?.dir === 'ltr' ? 'ltr' : 'rtl'"
-        >
+        <section class="flex flex-col node-page">
           <!-- <LazyPageIntro :data="doc" /> -->
 
           <div class="flex">
