@@ -60,6 +60,7 @@ export default defineNuxtPlugin(() => {
 
   const handleIncomingEvent = async (event: NostrEvent) => {
     try {
+      console.log();
       // verifyEvent(event);
       if (event?.id) {
         const dbEvent = await $dexie.events.get({
@@ -71,6 +72,7 @@ export default defineNuxtPlugin(() => {
         } else {
           $dexie.events.add({
             ...event,
+            tags: JSON.parse(event.tags),
             seen: true,
           });
         }
