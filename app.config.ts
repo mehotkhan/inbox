@@ -91,9 +91,14 @@ export default defineAppConfig({
       menu_order: 100,
     },
     {
+      title: "استریم",
+      _path: "/dash/stream",
+      menu_order: 101,
+    },
+    {
       title: "تنظیمات",
       _path: "/dash/settings",
-      menu_order: 100,
+      menu_order: 102,
     },
   ],
 });

@@ -28,7 +28,7 @@ export default defineNuxtConfig({
       linkedin: process.env.LINKEDIN,
       twitter: process.env.TWITTER,
       favicon: "/favicon.ico",
-      icon: "/icons.png",
+      // icon: "/icons.png",
       color: "#e5e7eb",
     },
     public: {
