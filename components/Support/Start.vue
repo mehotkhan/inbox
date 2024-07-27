@@ -28,21 +28,21 @@ function toggleModal() {
 
 <template>
   <div>
-    <div
-      class="fixed left-2 bottom-2 shadow-md rounded-full cursor-pointer text-4xl z-50 support-button p-3 transition-all text-black bg-slate-700 border-2 border-slate-800"
+    <UButton
+      class="fixed left-2 bottom-2 shadow-md rounded-full cursor-pointer text-4xl z-20 support-button p-3 transition-all text-black bg-gray-200 dark:bg-slate-700 border-2 border-gray-300 dark:border-slate-800"
       @click="toggleModal"
     >
       <UIcon v-if="!modalBoxIsOpen" name="i-heroicons-chat-bubble-left-right" />
-      <UIcon v-else name="i-heroicons-chevron-double-up" />
-    </div>
+      <UIcon v-else name="i-heroicons-chevron-double-down" />
+    </UButton>
     <UCard
       v-if="modalBoxIsOpen"
       :ui="{
         body: {
-          base: 'h-full border-0 overflow-hidden',
+          base: 'h-full border-0 overflow-hidden bg-gray-100',
           padding: 'p-0 sm:p-0',
         },
-        rounded: 'rounded md:rounded-2xl',
+        rounded: 'rounded-xl md:rounded-xl',
         divide: 'divide-0',
         ring: 'ring-1',
         header: {
@@ -58,12 +58,12 @@ function toggleModal() {
       }"
       :class="
         expanded
-          ? 'md:w-[50%] md:h-[97%] md:left-4 md:bottom-[1rem]'
+          ? 'md:w-[60%] md:h-[97%] md:left-4 md:bottom-[1rem]'
           : 'md:w-[23%] md:h-[80%] md:left-4 md:bottom-[4.5rem]'
       "
-      class="fixed z-40 left-0 bottom-0 h-full w-full transition-all shadow-2xl border-0"
+      class="fixed z-40 left-0 bottom-0 h-full w-full transition-all shadow-2xl border-0 overflow-hidden"
     >
-      <div class="absolute h-[40rem] top-0 w-full z-0"/>
+      <div class="absolute h-[40rem] top-0 w-full z-0" />
       <template #header>
         <div
           class="flex justify-between items-center w-full z-10 relative text-black"
@@ -124,16 +124,16 @@ function toggleModal() {
             </div>
             <div v-if="modalMode === 'chat'" class="flex items-center">
               <div class="flex gap-2">
-                <UBadge size="xs" :label="currentTicket.topic" color="gray" />
+                <!-- <UBadge size="xs" :label="currentTicket.topic" color="gray" />
                 <UBadge
                   size="xs"
                   :label="
                     ticketStatus.find(
-                      (item: any) => item.id === currentTicket.status,
+                      (item: any) => item.id === currentTicket.status
                     )?.label
                   "
                   color="gray"
-                />
+                /> -->
               </div>
             </div>
 
@@ -150,7 +150,7 @@ function toggleModal() {
       </template>
 
       <div class="absolute w-full top-[4rem] bottom-[4rem]">
-        <!-- <SupportConversation
+        <SupportConversation
           v-if="modalMode === 'chat'"
           @close-modal="closeModal"
         />
@@ -159,7 +159,7 @@ function toggleModal() {
           v-if="modalMode === 'chats'"
           class=" "
           @close-modal="closeModal"
-        /> -->
+        />
         <SupportHome v-if="modalMode === 'home'" @close-modal="closeModal" />
         <!-- <SupportSocial
           v-if="modalMode === 'social'"
@@ -178,7 +178,7 @@ function toggleModal() {
               class="w-full text-xl"
               aria-hidden="true"
             />
-            <div class="pt-1 text-xs">خانه</div>
+            <div class="pt-1 text-md">خانه</div>
           </div>
         </div>
 
@@ -192,7 +192,7 @@ function toggleModal() {
               class="w-full text-xl"
               aria-hidden="true"
             />
-            <div class="pt-1 text-xs">پیام</div>
+            <div class="pt-1 text-md">پیام</div>
           </div>
         </div>
 
@@ -206,7 +206,7 @@ function toggleModal() {
               class="w-full text-xl"
               aria-hidden="true"
             />
-            <div class="pt-1 text-xs">افراد</div>
+            <div class="pt-1 text-md">افراد</div>
           </div>
         </div>
       </template>

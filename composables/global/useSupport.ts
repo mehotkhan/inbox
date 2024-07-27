@@ -31,9 +31,9 @@ const sectionTitle = (mode: string) => {
   return map.find((item: any) => item.mode === mode)?.title;
 };
 export default () => {
-  const { $publishSupportTicket, $dexieDb } = useNuxtApp();
+  // const { $publishSupportTicket, $dexieDb } = useNuxtApp();
   // const { getSince, streamSorting } = useStream();
-  const { profile } = useUser();
+  // const { profile } = useUser();
 
   const welcomeMessage = async () => {
     // if (firstVisit.value) {
