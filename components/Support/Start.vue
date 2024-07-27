@@ -93,10 +93,39 @@ function toggleModal() {
               {{ viewTitle }}
             </div>
 
-            <!-- <span v-if="modalMode === 'chat'" class="text-xl flex text-black z-10 w-full font-bold items-center">
-              <ProfileUserAvatar :pub="currentTicket.operator" size="md" />
-              <ProfileUserName :pub="currentTicket.operator" :support="true" class="mr-2" />
-            </span> -->
+            <span
+              v-if="modalMode === 'chat'"
+              class="text-md flex text-black z-10 w-full font-bold items-center gap-3 mr-2"
+            >
+              <UAvatar
+                chip-color="primary"
+                chip-text=""
+                chip-position="top-right"
+                size="sm"
+                src="https://avatars.githubusercontent.com/u/739984?v=4"
+                alt="Avatar"
+              />
+              <span> username </span>
+
+              <div v-if="modalMode === 'chat'" class="flex items-center">
+                <div class="flex gap-2">
+                  <UBadge
+                    size="xs"
+                    :label="currentTicket?.topic"
+                    color="gray"
+                  />
+                  <!-- <UBadge
+                  size="xs"
+                  :label="
+                    ticketStatus.find(
+                      (item: any) => item.id === currentTicket?.status
+                    )?.label
+                  "
+                  color="gray"
+                /> -->
+                </div>
+              </div>
+            </span>
           </div>
 
           <div class="flex items-center gap-1">
@@ -117,24 +146,6 @@ function toggleModal() {
                   @click="expandView()"
                 />
               </UTooltip>
-            </div>
-
-            <div v-if="modalMode === 'home'" class="flex items-center">
-              <!-- <ProfileUserAvatar v-for="user in cleanedSupportLists" :key="user" :pub="user" size="md" /> -->
-            </div>
-            <div v-if="modalMode === 'chat'" class="flex items-center">
-              <div class="flex gap-2">
-                <!-- <UBadge size="xs" :label="currentTicket.topic" color="gray" />
-                <UBadge
-                  size="xs"
-                  :label="
-                    ticketStatus.find(
-                      (item: any) => item.id === currentTicket.status
-                    )?.label
-                  "
-                  color="gray"
-                /> -->
-              </div>
             </div>
 
             <UTooltip v-if="modalMode !== 'home'" text="بستن">

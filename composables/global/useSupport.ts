@@ -1,5 +1,5 @@
 import { useStorage } from "@vueuse/core";
-// import { WebUUID } from "web-uuid";
+import { WebUUID } from "web-uuid";
 
 const modalMode = useStorage("support-help-desk-mode", "home");
 const contactLists = useStorage("support-contact-lists", [{}]);
@@ -33,7 +33,7 @@ const sectionTitle = (mode: string) => {
 export default () => {
   // const { $publishSupportTicket, $dexieDb } = useNuxtApp();
   // const { getSince, streamSorting } = useStream();
-  // const { profile } = useUser();
+  const { certs } = useUser();
 
   const welcomeMessage = async () => {
     // if (firstVisit.value) {
@@ -71,41 +71,41 @@ export default () => {
   };
 
   const getContactLists = async () => {
-    try {
-      const api: any = await $fetch(baseApiURL() + "support/contact-lists", {
-        method: "GET",
-      });
-      const response: any[] = await JSON.parse(api);
-      contactLists.value = response?.filter((item: any) => !item.default);
-      defaultContact.value = response?.find((item: any) => item.default);
-    } catch (error) {
-      // contactLists.value = []
-    }
+    // try {
+    //   const api: any = await $fetch(baseApiURL() + "support/contact-lists", {
+    //     method: "GET",
+    //   });
+    //   const response: any[] = await JSON.parse(api);
+    //   contactLists.value = response?.filter((item: any) => !item.default);
+    //   defaultContact.value = response?.find((item: any) => item.default);
+    // } catch (error) {
+    //   // contactLists.value = []
+    // }
   };
 
   const createNewDefault = async () => {
-    // const id = String(new WebUUID());
-    // const newTicket = {
-    //   id,
-    //   topic: defaultContact.value.name,
-    //   status: "new",
-    //   owner: profile.value.pub,
-    //   operator: defaultContact.value.pub,
-    // };
-    // currentTicket.value = newTicket;
+    const id = String(new WebUUID());
+    const newTicket = {
+      id,
+      topic: "support",
+      status: "new",
+      owner: certs.value.pub,
+      operator: "adminPub",
+    };
+    currentTicket.value = newTicket;
     changeView("chat");
   };
 
   const createNew = async (contact: any) => {
-    // const id = String(new WebUUID());
-    // const newTicket = {
-    //   id,
-    //   topic: contact.name,
-    //   status: "new",
-    //   owner: profile.value.pub,
-    //   operator: contact.pub,
-    // };
-    // currentTicket.value = newTicket;
+    const id = String(new WebUUID());
+    const newTicket = {
+      id,
+      topic: contact.name,
+      status: "new",
+      owner: certs.value.pub,
+      operator: contact.pub,
+    };
+    currentTicket.value = newTicket;
     changeView("chat");
   };
 
@@ -138,15 +138,15 @@ export default () => {
     expanded.value = !expanded.value;
   };
   const getQaLists = async () => {
-    try {
-      const api: any = await $fetch(baseApiURL() + "manage/qa-lists", {
-        method: "GET",
-      });
-      const response: string[] = await JSON.parse(api);
-      qaLists.value = response;
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   const api: any = await $fetch(baseApiURL() + "manage/qa-lists", {
+    //     method: "GET",
+    //   });
+    //   const response: string[] = await JSON.parse(api);
+    //   qaLists.value = response;
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
   return {
     welcomeMessage,
