@@ -32,6 +32,7 @@
     "nitro-cloudflare-dev": "^0.1.6",
     "nostr-tools": "^2.7.1",
     "nuxt": "^3.12.4",
+    "nuxt-tiptap-editor": "^1.1.2",
     "sass": "^1.77.8",
     "web-uuid": "0.1.0-pre.1",
     "zod": "^3.23.8"

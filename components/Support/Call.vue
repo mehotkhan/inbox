@@ -1,58 +1,3 @@
-<template>
-  <main
-    class="h-screen flex flex-col items-center justify-center bg-gray-100 p-4"
-  >
-    <!-- Video elements -->
-    <div class="flex w-full max-w-4xl space-x-4 mb-4">
-      <video
-        ref="localVideo"
-        class="w-1/2 rounded shadow-lg"
-        autoplay
-        playsinline
-      />
-      <video
-        ref="remoteVideo"
-        class="w-1/2 rounded shadow-lg"
-        autoplay
-        playsinline
-      />
-    </div>
-    <!-- Control buttons -->
-    <div class="flex space-x-4">
-      <button
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        @click="startCall"
-      >
-        Start Stream
-      </button>
-      <button
-        class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded"
-        @click="enterRoom"
-      >
-        Enter Room
-      </button>
-      <button
-        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-        @click="endCall"
-      >
-        End Stream
-      </button>
-      <button
-        class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded"
-        @click="toggleAudio"
-      >
-        Mute Audio
-      </button>
-      <button
-        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-        @click="toggleVideo"
-      >
-        Mute Video
-      </button>
-    </div>
-  </main>
-</template>
-
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from "vue";
 
@@ -210,8 +155,51 @@ onBeforeUnmount(() => {
 });
 </script>
 
-<style scoped>
-body {
-  background-color: #f3f4f6; /* Tailwind's gray-100 */
-}
-</style>
+<template>
+  <div class="flex bg-white h-full flex-col">
+    <div class="flex mb-4 bg-gray-300 h-full w-full flex-col">
+      <video ref="remoteVideo" class="rounded shadow-lg" autoplay playsinline />
+      <video
+        ref="localVideo"
+        class="rounded shadow-lg w-1/3 m-auto"
+        autoplay
+        playsinline
+      />
+    </div>
+    <!-- Control buttons -->
+    <div
+      class="flex gap-3 absolute bottom-0 w-full text-xs text-white left-0 right-0"
+    >
+      <button
+        class="bg-blue-500 hover:bg-blue-700 font-bold py-1 px-2 rounded"
+        @click="startCall"
+      >
+        Start Stream
+      </button>
+      <button
+        class="bg-indigo-500 hover:bg-indigo-700 font-bold py-1 px-2 rounded"
+        @click="enterRoom"
+      >
+        Enter Room
+      </button>
+      <button
+        class="bg-red-500 hover:bg-red-700 font-bold py-1 px-2 rounded"
+        @click="endCall"
+      >
+        End Stream
+      </button>
+      <button
+        class="bg-yellow-500 hover:bg-yellow-700 font-bold py-1 px-2 rounded"
+        @click="toggleAudio"
+      >
+        Mute Audio
+      </button>
+      <button
+        class="bg-green-500 hover:bg-green-700 font-bold py-1 px-2 rounded"
+        @click="toggleVideo"
+      >
+        Mute Video
+      </button>
+    </div>
+  </div>
+</template>

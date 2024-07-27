@@ -15,6 +15,7 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     // "nitro-cloudflare-dev",
     "@nuxt/eslint",
+    "nuxt-tiptap-editor",
   ],
 
   // extends: ["nuxt-seo-kit"],
@@ -114,6 +115,8 @@ export default defineNuxtConfig({
   imports: {
     dirs: ["composables/**"],
   },
-
+  tiptap: {
+    prefix: "Tiptap", //prefix for Tiptap imports, composables not included
+  },
   compatibilityDate: "2024-07-04",
 });

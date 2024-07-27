@@ -24,15 +24,15 @@ const sectionTitle = (mode: string) => {
       title: "پیام ها",
     },
     {
-      mode: "social",
-      title: "افراد",
+      mode: "call",
+      title: "تماس",
     },
   ];
   return map.find((item: any) => item.mode === mode)?.title;
 };
 export default () => {
   // const { $publishSupportTicket, $dexieDb } = useNuxtApp();
-  // const { getSince, streamSorting } = useStream();
+  // const { getSince, callSorting } = usecall();
   const { certs } = useUser();
 
   const welcomeMessage = async () => {
@@ -119,7 +119,7 @@ export default () => {
     // await $publishSupportTicket(message, profile.value, currentTicket.value)
   };
 
-  const changeView = (mode: "home" | "chats" | "social" | "chat") => {
+  const changeView = (mode: "home" | "chats" | "call" | "chat") => {
     modalMode.value = mode;
     // if (mode === 'social') {
     //   expanded.value = true
