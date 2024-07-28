@@ -3,11 +3,15 @@ import type { Event as NostrEvent } from "nostr-tools";
 import { finalizeEvent, generateSecretKey, getPublicKey } from "nostr-tools";
 
 export default () => {
-  const loggedIn = useCookie("loggedIn", { default: () => false });
+  const loggedIn = useCookie("loggedIn", {
+    default: () => false,
+    maxAge: cookieExpire,
+  });
   const certs = useCookie("current-certs", {
     default: () => {
       return { pub: "", priv: "" };
     },
+    maxAge: cookieExpire,
   });
   const profile = useCookie("current-user", {
     default: () => {
@@ -22,9 +26,11 @@ export default () => {
         pub: "",
       };
     },
+    maxAge: cookieExpire,
   });
   const userPub = useCookie("userPub", {
     default: () => "",
+    maxAge: cookieExpire,
     watch: true,
   });
   const registerNew = async () => {

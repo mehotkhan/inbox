@@ -1,5 +1,9 @@
 export default () => {
-  const isDark = useCookie("loggedIn", { default: () => false, watch: true });
+  const isDark = useCookie("loggedIn", {
+    default: () => false,
+    watch: true,
+    maxAge: cookieExpire,
+  });
 
   const toggleDark = () => {
     isDark.value = !isDark.value;

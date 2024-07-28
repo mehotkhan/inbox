@@ -1,27 +1,6 @@
-import { verifyEvent } from "nostr-tools/pure";
-
 export default defineWebSocketHandler({
-  // upgrade(req) {
-  //   const headers: any = req.headers;
-  //   if (headers["cookie"]) {
-  //     const cookie: any = JSON.parse(extractCookies(headers["cookie"]));
-  //     if (cookie.userPub) {
-  //       console.log(cookie.userPub);
-  //     }
-  //   }
-  //   return {
-  //     headers,
-  //   };
-  // },
-  open(peer: any) {
+  open(peer) {
     console.log("WS connected");
-    console.log(peer.ctx.node.cloudflare);
-
-    // if (peer.ctx.node.req.rawHeaders) {
-    //   console.log(extractCookies(peer.ctx.node.req.rawHeaders[21]));
-    // }
-    // rawHeaders;
-    // peer.send(JSON.stringify(peer.ctx.node.HeadersList));
   },
 
   async message(peer, message) {

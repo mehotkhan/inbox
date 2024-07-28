@@ -1,6 +1,5 @@
 import viteCompression from "vite-plugin-compression";
 import { GenerateRoutes } from "./tools/contentRoutes";
-// import { GenerateDecap } from "./tools/configs-generators";
 
 export default defineNuxtConfig({
   ssr: true,
@@ -77,15 +76,6 @@ export default defineNuxtConfig({
     dir: "assets/content",
     format: ["webp"],
   },
-
-  // hooks: {
-  //   "build:done": () => {
-  //     GenerateDecap();
-  //   },
-  //   "nitro:init": () => {
-  //     GenerateDecap();
-  //   },
-  // },
 
   // gtag: {
   //   id: "G-78646PGVN1",

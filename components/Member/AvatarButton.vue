@@ -11,9 +11,9 @@ const items = [
   ],
   [
     {
-      label: "تنظیمات",
+      label: "پروفایل",
       icon: "i-heroicons-user",
-      to: "/settings",
+      to: "/profile",
     },
   ],
 

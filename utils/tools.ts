@@ -1,4 +1,6 @@
 export const isDev = () => process.env.NODE_ENV !== "production";
+
+export const cookieExpire = 60 + 60 + 24;
 export const timeFilter = [
   {
     label: "امروز",
