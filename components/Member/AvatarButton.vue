@@ -13,7 +13,7 @@ const items = [
     {
       label: "تنظیمات",
       icon: "i-heroicons-user",
-      to: "/dash/settings",
+      to: "/settings",
     },
   ],
 
@@ -28,7 +28,6 @@ const items = [
     },
   ],
 ];
-// const { registerNew } = useUser();
 </script>
 
 <template>

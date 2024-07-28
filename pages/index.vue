@@ -2,11 +2,9 @@
 useHead({
   title: "صفحه نخست",
 });
+const { isOwner } = useOwner();
 </script>
 <template>
-  <main>
-    <IntroPost />
-    <h3 class="border-b pb-3">جدیدترین ورودی‌ها</h3>
-    <LazyLatestItems />
-  </main>
+  <HomeAdmin v-if="isOwner" />
+  <HomePublic v-else />
 </template>

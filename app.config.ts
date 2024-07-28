@@ -49,52 +49,9 @@ export default defineAppConfig({
       menu_order: 99,
     },
     {
-      title: "تماس‌با‌من",
+      title: "تماس",
       _path: "/contact",
       menu_order: 100,
-    },
-    {
-      title: "مدیریت",
-      _path: "/dash",
-      menu_order: 100,
-    },
-  ],
-  dashboardItems: [
-    {
-      title: "داشبورد",
-      _path: "/dash",
-      menu_order: 0,
-    },
-    {
-      title: "بلاگ",
-      _path: "/dash/notes",
-      menu_order: 99,
-    },
-    {
-      title: "فروشگاه",
-      _path: "/dash/shop",
-      menu_order: 99,
-    },
-    {
-      title: "تسک ها",
-      _path: "/dash/tasks",
-      menu_order: 100,
-    },
-    {
-      title: "نظرات",
-      _path: "/dash/comments",
-      menu_order: 100,
-    },
-    {
-      title: "پیام ها",
-      _path: "/dash/messages",
-      menu_order: 100,
-    },
-
-    {
-      title: "تنظیمات",
-      _path: "/dash/settings",
-      menu_order: 102,
     },
   ],
 });
