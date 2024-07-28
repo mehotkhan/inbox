@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from "vue";
+import { useWebSocket } from "@vueuse/core";
 
 const localVideo = ref<HTMLVideoElement | null>(null);
 const remoteVideo = ref<HTMLVideoElement | null>(null);
 let localStream: MediaStream;
 let peerConnection: RTCPeerConnection;
-let websocket: WebSocket;
+const BASEURL = useRequestURL();
+const signalingURL = `${BASEURL.protocol === "http:" ? "ws" : "wss"}://${BASEURL.host}/webrtc/signaling`;
 
 const iceServers = {
   iceServers: [
@@ -14,7 +15,82 @@ const iceServers = {
   ],
 };
 
+const { status, data, send, close, open } = useWebSocket(signalingURL, {
+  immediate: false,
+  autoReconnect: {
+    retries: 3,
+    delay: 1000,
+    onFailed() {
+      console.log("Failed to connect WebSocket after 3 retries");
+    },
+  },
+});
+
+watch(status, (newData) => {
+  console.log(" rtc status:", newData);
+});
+
+watch(data, (newData) => {
+  try {
+    const data = JSON.parse(newData);
+    handleWebSocketMessage(data);
+  } catch (error) {
+    console.error("Failed to parse incoming message", error, newData);
+  }
+});
+
+onMounted(() => {
+  open();
+  // Initialize remote stream
+  peerConnection = new RTCPeerConnection(iceServers);
+  peerConnection.ontrack = ({ streams }) => {
+    if (remoteVideo.value) {
+      remoteVideo.value.srcObject = streams[0];
+    }
+  };
+});
+
+onBeforeUnmount(() => {
+  if (status.value === "OPEN") {
+    close();
+  }
+  handleLeave();
+});
+
+const handleWebSocketMessage = async (data: any) => {
+  switch (data.type) {
+    case "offer": {
+      await peerConnection.setRemoteDescription(
+        new RTCSessionDescription(data.offer)
+      );
+      const answer = await peerConnection.createAnswer();
+      await peerConnection.setLocalDescription(answer);
+      send(JSON.stringify({ type: "answer", answer }));
+      break;
+    }
+
+    case "answer":
+      await peerConnection.setRemoteDescription(
+        new RTCSessionDescription(data.answer)
+      );
+      break;
+
+    case "candidate": {
+      const candidate = new RTCIceCandidate(data.candidate);
+      await peerConnection.addIceCandidate(candidate);
+      break;
+    }
+
+    case "leave":
+      handleLeave();
+      break;
+
+    default:
+      break;
+  }
+};
 const startCall = async () => {
+  open();
   try {
     localStream = await navigator.mediaDevices.getUserMedia({
       video: true,
@@ -28,7 +104,7 @@ const startCall = async () => {
 
     peerConnection.onicecandidate = ({ candidate }) => {
       if (candidate) {
-        websocket.send(JSON.stringify({ type: "candidate", candidate }));
+        send(JSON.stringify({ type: "candidate", candidate }));
       }
     };
 
@@ -44,7 +120,7 @@ const startCall = async () => {
 
     const offer = await peerConnection.createOffer();
     await peerConnection.setLocalDescription(offer);
-    websocket.send(JSON.stringify({ type: "offer", offer }));
+    send(JSON.stringify({ type: "offer", offer }));
   } catch (error) {
     console.error("Error starting call:", error);
   }
@@ -56,7 +132,7 @@ const enterRoom = async () => {
 
     peerConnection.onicecandidate = ({ candidate }) => {
       if (candidate) {
-        websocket.send(JSON.stringify({ type: "candidate", candidate }));
+        send(JSON.stringify({ type: "candidate", candidate }));
       }
     };
 
@@ -72,8 +148,8 @@ const enterRoom = async () => {
 
 const endCall = () => {
   handleLeave();
-  if (websocket) {
-    websocket.send(JSON.stringify({ type: "leave" }));
+  if (status.value === "OPEN") {
+    send(JSON.stringify({ type: "leave" }));
   }
 };
 
@@ -91,39 +167,6 @@ const toggleVideo = () => {
   }
 };
 
-const handleWebSocketMessage = async (message: MessageEvent) => {
-  const data = JSON.parse(message.data);
-
-  switch (data.type) {
-    case "offer":
-      await peerConnection.setRemoteDescription(
-        new RTCSessionDescription(data.offer)
-      );
-      const answer = await peerConnection.createAnswer();
-      await peerConnection.setLocalDescription(answer);
-      websocket.send(JSON.stringify({ type: "answer", answer }));
-      break;
-
-    case "answer":
-      await peerConnection.setRemoteDescription(
-        new RTCSessionDescription(data.answer)
-      );
-      break;
-
-    case "candidate":
-      const candidate = new RTCIceCandidate(data.candidate);
-      await peerConnection.addIceCandidate(candidate);
-      break;
-
-    case "leave":
-      handleLeave();
-      break;
-
-    default:
-      break;
-  }
-};
-
 const handleLeave = () => {
   if (peerConnection) {
     peerConnection.close();
@@ -133,26 +176,6 @@ const handleLeave = () => {
     localStream.getTracks().forEach((track) => track.stop());
   }
 };
-
-onMounted(() => {
-  websocket = new WebSocket(`ws://${window.location.host}/webrtc/signaling`);
-  websocket.onmessage = handleWebSocketMessage;
-
-  // Initialize remote stream
-  peerConnection = new RTCPeerConnection(iceServers);
-  peerConnection.ontrack = ({ streams }) => {
-    if (remoteVideo.value) {
-      remoteVideo.value.srcObject = streams[0];
-    }
-  };
-});
-
-onBeforeUnmount(() => {
-  if (websocket) {
-    websocket.close();
-  }
-  handleLeave();
-});
 </script>
 
 <template>

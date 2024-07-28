@@ -8,3 +8,5 @@ dist
 pnpm-lock.yaml
 public/admin/config.yml
 main.db
+deploy.sh
+dist.zip

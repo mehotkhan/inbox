@@ -1,18 +1,18 @@
-import * as cookie from "cookie";
+// import * as cookie from "cookie";
 export default defineWebSocketHandler({
   upgrade: (req) => {
-    const cookies = cookie.parse(req.headers.cookie || "");
-    console.log(`[ws] upgrading ${req.url} :`, cookies.userPub);
+    // const cookies = cookie.parse(req.headers.cookie || "");
+    // console.log(`[ws] upgrading ${req.url} :`, cookies.userPub);
   },
   open: (peer) => {
-    const cookies = cookie.parse(peer.headers.cookie || "");
-    console.log(`[ws] open: ${cookies.userPub}`);
+    // const cookies = cookie.parse(peer.headers.cookie || "");
+    // console.log(`[ws] open: ${cookies.userPub}`);
     peer.subscribe("meeting");
   },
 
   message: (peer, message: string) => {
-    const cookies = cookie.parse(peer.headers.cookie || "");
-    console.log(`[ws] message from  :`, cookies.userPub);
+    // const cookies = cookie.parse(peer.headers.cookie || "");
+    // console.log(`[ws] message from  :`, message);
     const data = JSON.parse(message);
 
     switch (data.type) {
