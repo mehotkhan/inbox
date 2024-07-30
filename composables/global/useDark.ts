@@ -1,6 +1,7 @@
 export default () => {
   const isDark = useCookie("isDark", {
-    default: () => false,
+    default: () =>
+      window?.matchMedia?.("(prefers-color-scheme: dark)").matches ?? false,
     watch: true,
     maxAge: cookieExpire,
   });

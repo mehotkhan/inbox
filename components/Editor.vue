@@ -21,9 +21,7 @@ const editor = useEditor({
     }),
   ],
   onUpdate({ editor }) {
-    console.log("new data", editor.getHTML());
     emit("update", editor.getHTML());
-    // The content has changed.
   },
 });
 
@@ -33,7 +31,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div v-if="editor">
+  <div v-if="editor" class="relative">
     <bubble-menu :editor="editor" :tippy-options="{ duration: 100 }">
       <UButtonGroup
         class="flex justify-center bg-yellow-200 rounded-md p-1"
@@ -75,7 +73,7 @@ onBeforeUnmount(() => {
       </UButtonGroup>
     </bubble-menu>
     <UButtonGroup
-      class="flex justify-center text-cyan-800 bg-gray-100 border-gray-50 border-y rounded-none"
+      class="flex justify-center border-gray-50 border-y rounded-none dark:border-cyan-800 dark:text-white"
       size="md"
     >
       <UButton
@@ -195,6 +193,9 @@ onBeforeUnmount(() => {
 <style lang="scss">
 /* Basic editor styles */
 .tiptap {
+  &:focus {
+    outline: none;
+  }
   :first-child {
     margin-top: 0;
   }
@@ -289,13 +290,8 @@ onBeforeUnmount(() => {
     content: attr(data-placeholder);
     height: 0;
     pointer-events: none;
-  }
-
-  p.is-editor-empty:first-child::before {
-    color: #adb5bd;
-    content: attr(data-placeholder);
-    height: 0;
-    pointer-events: none;
+    float: right;
+    font-weight: 100;
   }
 }
 /* Bubble menu */

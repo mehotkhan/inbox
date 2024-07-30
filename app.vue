@@ -34,7 +34,6 @@ registerNew();
   <Html
     :dir="locale === 'fa' ? 'rtl' : 'ltr'"
     :lang="locale"
-    class="light"
     :class="isDark ? 'dark' : 'light'"
   >
     <Body class="dark:bg-slate-800">
