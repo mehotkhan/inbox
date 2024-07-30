@@ -34,13 +34,13 @@ const items = [
     },
   ],
 ];
-const { allComments } = useComments();
+const { currentComments } = useComments();
 </script>
 
 <template>
   <div class="flex w-full flex-col">
     <UCard
-      v-for="comment in allComments"
+      v-for="comment in currentComments"
       :key="comment.id"
       class="text-base bg-white rounded-lg dark:bg-gray-900 mb-10 w-full"
     >

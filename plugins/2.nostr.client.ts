@@ -26,13 +26,13 @@ export default defineNuxtPlugin(() => {
   console.log("mount", loggedIn.value);
 
   watch(loggedIn, (newStatus) => {
-    if (loggedIn.value) {
+    if (newStatus) {
       open();
     }
   });
 
   watch(status, (newStatus) => {
-    if (status.value === "OPEN") {
+    if (newStatus === "OPEN") {
       sendREQMessage();
     }
   });

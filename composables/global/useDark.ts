@@ -1,5 +1,5 @@
 export default () => {
-  const isDark = useCookie("loggedIn", {
+  const isDark = useCookie("isDark", {
     default: () => false,
     watch: true,
     maxAge: cookieExpire,
