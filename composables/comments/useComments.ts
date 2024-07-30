@@ -123,12 +123,14 @@ export default function useComments() {
       .limit(count.value)
       .toArray();
   }, [count]);
+
   const allCommentsCount = useLiveQuery(async () => {
     return await $dexie.events
       .orderBy("created_at")
       .filter((event: NostrEvent) => event.kind == 42)
       .count();
   }, []);
+  
   return {
     allCommentsCount,
     count,
