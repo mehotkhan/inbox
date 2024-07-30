@@ -31,7 +31,7 @@ const { profile } = useUser();
           sizes="sm:100vw md:50vw lg:400px"
           class="flex w-[20rem] rounded-full"
           src="https://avatars.githubusercontent.com/u/739984?v=4"
-          :alt="profile.displayName"
+          :alt="profile?.displayName"
           :placeholder="[300, 300]"
         />
       </div>
@@ -40,7 +40,9 @@ const { profile } = useUser();
 
     <!--content section -->
     <div class="flex border-t pt-2">
-      <DashboardTable />
+      <ClientOnly>
+        <LatestComments />
+      </ClientOnly>
     </div>
     <!-- /content section -->
   </main>

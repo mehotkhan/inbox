@@ -2,6 +2,7 @@ import viteCompression from "vite-plugin-compression";
 import { GenerateRoutes } from "./tools/contentRoutes";
 
 export default defineNuxtConfig({
+  future: { compatibilityVersion: 4 },
   ssr: true,
   css: ["@/assets/scss/base.scss", "@/assets/scss/extra.scss"],
   devtools: { enabled: false },
@@ -106,7 +107,10 @@ export default defineNuxtConfig({
     dirs: ["composables/**"],
   },
   tiptap: {
-    prefix: "Tiptap", //prefix for Tiptap imports, composables not included
+    prefix: "Tiptap",
+    lowlight: {
+      theme: "github-dark",
+    },
   },
   compatibilityDate: "2024-07-04",
 });
