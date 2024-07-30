@@ -1,14 +1,14 @@
 <script setup lang="ts">
 const { supportTimeLine, currentTicket } = useSupport();
-const { profile } = useUser();
+const { certs } = useUser();
 
 const conversation = ref();
 
-onUpdated(() => {
-  if (supportTimeLine?.value.length > 0 && conversation?.value) {
-    conversation.value.scrollTop = conversation?.value?.scrollHeight - 20;
-  }
-});
+// onUpdated(() => {
+//   if (supportTimeLine?.value?.length > 0 && conversation?.value) {
+//     conversation.value.scrollTop = conversation?.value?.scrollHeight - 20;
+//   }
+// });
 </script>
 <template>
   <div class="flex bg-white flex-col-reverse h-full">
@@ -41,13 +41,13 @@ onUpdated(() => {
             </p>
             <div class="flex items-center">
               <h3
-                v-if="message.pubkey === profile.pub"
+                v-if="message.pubkey === certs.pub"
                 class="text-sm text-gray-500"
               >
                 شما
               </h3>
               <h3 v-else class="text-sm text-gray-500">
-                {{ currentTicket.topic }}
+                {{ currentTicket?.topic }}
               </h3>
             </div>
 

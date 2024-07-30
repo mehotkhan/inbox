@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useDark } from "@vueuse/core";
+const { isDark } = useDark();
 const { locale } = useI18n();
 const { registerNew } = useUser();
 const runtimeConfig = useRuntimeConfig();
@@ -28,10 +28,7 @@ useHead({
   ],
 });
 
-const isDark = useDark();
-onMounted(() => {
-  registerNew();
-});
+registerNew();
 </script>
 <template>
   <Html

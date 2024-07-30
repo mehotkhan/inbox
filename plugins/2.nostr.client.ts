@@ -3,7 +3,7 @@ import type { Event as NostrEvent } from "nostr-tools";
 
 export default defineNuxtPlugin(() => {
   const BASEURL = useRequestURL();
-  const relayURL = `${BASEURL.protocol === "http:" ? "ws" : "wss"}://${BASEURL.host}/nostr`;
+  const relayURL = `${BASEURL.protocol === "http:" ? "ws" : "wss"}://${BASEURL.host}/nostr/nostr`;
 
   const { $dexie } = useNuxtApp();
   const { loggedIn, profile } = useUser();
@@ -57,25 +57,36 @@ export default defineNuxtPlugin(() => {
     // console.log("REQ message sent:", reqMessage);
   };
 
-  const handleIncomingEvent = (event: NostrEvent) => {
-    if (event?.kind === 1) {
-      const newComment = {
-        hash: "some_hash", // Use actual hash logic
-        owner: event.pubkey,
-        message: event.content,
-        created_at: event.created_at,
-        status: "published",
-      };
-      $dexie.comments.add(newComment);
-    } else if (event?.kind === 0) {
-      const userProfile = JSON.parse(event.content);
-      $dexie.members.put(userProfile);
+  const handleIncomingEvent = async (event: NostrEvent) => {
+    try {
+      console.log();
+      // verifyEvent(event);
+      if (event?.id) {
+        const dbEvent = await $dexie.events.get({
+          id: event.id,
+        });
+        if (dbEvent) {
+          // update seen feild in db
+          await $dexie.events.update(event.id, { seen: true });
+        } else {
+          $dexie.events.add({
+            ...event,
+            tags: JSON.parse(event.tags),
+            seen: true,
+          });
+        }
+        if (event?.kind === 0) {
+          const userProfile = JSON.parse(event.content);
+          $dexie.members.put(userProfile);
+        }
+      }
+    } catch (error) {
+      console.log("bad event", error);
     }
   };
 
   const sendEVENTMessage = async (event: NostrEvent) => {
     send(JSON.stringify(["EVENT", event]));
-    // console.log("EVENT message sent:", event);
   };
   return {
     provide: {

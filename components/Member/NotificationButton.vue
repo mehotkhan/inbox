@@ -17,7 +17,7 @@ const items = [
         :ui="{ item: { disabled: 'cursor-text select-text' } }"
         :popper="{ placement: 'bottom-start' }"
       >
-        <UIcon name="i-ph-bell" dynamic class="text-xl" />
+        <UIcon name="i-heroicons-bell" dynamic class="text-xl" />
 
         <template #item="{ item }">
           <span class="truncate">{{ item.label }}</span>

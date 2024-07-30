@@ -1,9 +1,5 @@
-import Icons from "unplugin-icons/vite";
-import Components from "unplugin-vue-components/vite";
-import IconsResolver from "unplugin-icons/resolver";
 import viteCompression from "vite-plugin-compression";
 import { GenerateRoutes } from "./tools/contentRoutes";
-import { GenerateDecap } from "./tools/configs-generators";
 
 export default defineNuxtConfig({
   future: { compatibilityVersion: 4 },
@@ -17,8 +13,9 @@ export default defineNuxtConfig({
     // "nuxt-gtag",
     "@nuxt/image",
     "@nuxtjs/i18n",
-    "nitro-cloudflare-dev",
+    // "nitro-cloudflare-dev",
     "@nuxt/eslint",
+    "nuxt-tiptap-editor",
   ],
 
   // extends: ["nuxt-seo-kit"],
@@ -32,7 +29,7 @@ export default defineNuxtConfig({
       linkedin: process.env.LINKEDIN,
       twitter: process.env.TWITTER,
       favicon: "/favicon.ico",
-      icon: "/icons.png",
+      // icon: "/icons.png",
       color: "#e5e7eb",
     },
     public: {
@@ -48,23 +45,13 @@ export default defineNuxtConfig({
   },
 
   vite: {
-    plugins: [
-      viteCompression({ algorithm: "brotliCompress" }),
-      Components({
-        resolvers: [
-          IconsResolver({
-            prefix: "Icon",
-          }),
-        ],
-      }),
-      Icons(),
-    ],
-    // build: {
-    // watch: {},
-    // sourcemap: false,
-    // minify: true,
-    // rollupOptions: { treeshake: false },
-    // },
+    plugins: [viteCompression({ algorithm: "brotliCompress" })],
+    build: {
+      watch: {},
+      sourcemap: false,
+      minify: true,
+      rollupOptions: { treeshake: false },
+    },
   },
 
   nitro: {
@@ -73,10 +60,9 @@ export default defineNuxtConfig({
       tasks: true,
     },
     // preset: "cloudflare-pages",
-
     // static: true,
-    // compressPublicAssets: true,
-    // minify: true,
+    compressPublicAssets: true,
+    minify: true,
     prerender: {
       crawlLinks: false,
       routes: GenerateRoutes(["notes", "cat"]),
@@ -91,15 +77,6 @@ export default defineNuxtConfig({
     dir: "assets/content",
     format: ["webp"],
   },
-
-  // hooks: {
-  //   "build:done": () => {
-  //     GenerateDecap();
-  //   },
-  //   "nitro:init": () => {
-  //     GenerateDecap();
-  //   },
-  // },
 
   // gtag: {
   //   id: "G-78646PGVN1",
@@ -129,6 +106,8 @@ export default defineNuxtConfig({
   imports: {
     dirs: ["composables/**"],
   },
-
+  tiptap: {
+    prefix: "Tiptap", //prefix for Tiptap imports, composables not included
+  },
   compatibilityDate: "2024-07-04",
 });

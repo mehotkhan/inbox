@@ -15,7 +15,7 @@ const send = () => {
   >
     <div
       :class="[chatMessage.length && !isRTL(chatMessage) ? 'ltr' : 'rtl']"
-      class="min-h-12 flex justify-between px-3 items-center border-transparent bg-slate-50 border-0 focus-within:border-slate-300"
+      class="min-h-12 flex justify-between items-center border-transparent bg-slate-50 border-0 focus-within:border-slate-300"
     >
       <input
         v-model="chatMessage"
@@ -25,21 +25,26 @@ const send = () => {
         @keyup.enter="send"
         @click="send"
       >
-      <div class="flex items-center justify-around mr-3">
-        <IconMdi:send
-          class="text-gray-400 text-lg cursor-pointer"
+      <div
+        class="flex items-center justify-around mr-3 text-gray-500 gap-2 text-xl"
+      >
+        <UIcon
+          name="i-heroicons-paper-airplane"
+          class="cursor-pointer"
           aria-hidden="true"
         />
-        <!-- <IconMdi:file
+        <UIcon
           v-if="chatMessage.length === 0"
-          class="text-gray-400 text-lg"
+          name="i-heroicons-paper-clip"
+          class="text-lg"
           aria-hidden="true"
         />
-        <IconMdi:image
+        <UIcon
           v-if="chatMessage.length === 0"
-          class="text-gray-400 text-lg mr-1"
+          name="i-heroicons-photo"
+          class="mr-1"
           aria-hidden="true"
-        /> -->
+        />
       </div>
     </div>
   </div>

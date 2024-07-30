@@ -21,7 +21,7 @@ onMounted(() => {
         class="flex justify-start items-center cursor-pointer border-b-2 pb-2 last:border-0 relative"
         @click="createNew(contact)"
       >
-        <ProfileUserAvatar size="sm" :pub="contact.pub" class="w-10" />
+        <!-- <ProfileUserAvatar size="sm" :pub="contact.pub" class="w-10" /> -->
         <div class="flex mr-4 flex-col">
           <span class="">
             {{ contact.name }}

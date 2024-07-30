@@ -11,9 +11,9 @@ const items = [
   ],
   [
     {
-      label: "حساب کاربری",
+      label: "پروفایل",
       icon: "i-heroicons-user",
-      to: "profile",
+      to: "/profile",
     },
   ],
 
@@ -28,11 +28,6 @@ const items = [
     },
   ],
 ];
-const { registerNew } = useUser();
-
-onMounted(() => {
-  registerNew();
-});
 </script>
 
 <template>
@@ -42,13 +37,13 @@ onMounted(() => {
       :ui="{ item: { disabled: 'cursor-text select-text' } }"
       :popper="{ placement: 'bottom-start' }"
     >
-      <UAvatar :alt="profile.displayName" size="sm" />
+      <UAvatar :alt="profile?.displayName" size="sm" />
 
       <template #account="{ item }">
         <div class="text-right w-full">
           <p>ورود به عنوان</p>
           <p class="truncate font-medium text-gray-900 dark:text-white">
-            {{ profile.displayName }}
+            {{ profile?.displayName }}
           </p>
         </div>
       </template>

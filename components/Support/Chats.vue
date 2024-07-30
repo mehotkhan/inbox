@@ -3,7 +3,7 @@ const { supportArchive, openSupportTicket } = useSupport();
 </script>
 <template>
   <div class="h-full w-full bg-white">
-    <SocialStreamFilters class="border-b-[1px] py-1" />
+    <!-- <SocialStreamFilters class="border-b-[1px] py-1" /> -->
     <div class="h-full w-full overflow-x-auto">
       <div class="h-auto w-full">
         <div
@@ -13,12 +13,12 @@ const { supportArchive, openSupportTicket } = useSupport();
           @click="openSupportTicket(chat)"
         >
           <div class="flex items-center justify-start">
-            <ProfileUserAvatar :pub="chat?.operator" size="sm" />
+            <!-- <ProfileUserAvatar :pub="chat?.operator" size="sm" />
             <ProfileUserName
               :support="true"
               :pub="chat?.operator"
               class="text-sm font-semibold text-slate-600 m-0 p-0 mr-3"
-            />
+            /> -->
             <div
               class="mr-3 text-xs text-slate-400 -mt-0.5 font-semibold break-words overflow-hidden flex items-center"
             >

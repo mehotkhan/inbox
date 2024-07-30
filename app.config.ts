@@ -39,18 +39,18 @@ export default defineAppConfig({
       menu_order: 99,
     },
     {
+      title: "فروشگاه",
+      _path: "/shop",
+      menu_order: 99,
+    },
+    {
       title: "درباره",
       _path: "/about",
       menu_order: 99,
     },
     {
-      title: "تماس‌با‌من",
+      title: "تماس",
       _path: "/contact",
-      menu_order: 100,
-    },
-    {
-      title: "پروفایل",
-      _path: "/profile",
       menu_order: 100,
     },
   ],

@@ -1,32 +1,36 @@
 import { bytesToHex, hexToBytes } from "@noble/hashes/utils";
-import { useStorage } from "@vueuse/core";
-import type {
-  Event as NostrEvent} from "nostr-tools";
-import {
-  finalizeEvent,
-  generateSecretKey,
-  getPublicKey,
-} from "nostr-tools";
+import type { Event as NostrEvent } from "nostr-tools";
+import { finalizeEvent, generateSecretKey, getPublicKey } from "nostr-tools";
 
 export default () => {
-  const loggedIn = useStorage("loggedIn", false);
-  const certs: any = useStorage("current-certs", {
-    pub: "",
-    priv: "",
+  const loggedIn = useCookie("loggedIn", {
+    default: () => false,
+    maxAge: cookieExpire,
   });
-  const profile: any = useStorage("current-user", {
-    firstName: "",
-    lastName: "",
-    displayName: "",
-    userName: "",
-    about: "",
-    email: "",
-    avatar: null,
-    pub: "",
-    priv: "",
+  const certs = useCookie("current-certs", {
+    default: () => {
+      return { pub: "", priv: "" };
+    },
+    maxAge: cookieExpire,
+  });
+  const profile = useCookie("current-user", {
+    default: () => {
+      return {
+        firstName: "",
+        lastName: "",
+        displayName: "",
+        userName: "",
+        about: "",
+        email: "",
+        avatar: "",
+        pub: "",
+      };
+    },
+    maxAge: cookieExpire,
   });
   const userPub = useCookie("userPub", {
     default: () => "",
+    maxAge: cookieExpire,
     watch: true,
   });
   const registerNew = async () => {
@@ -63,13 +67,13 @@ export default () => {
         tags: [],
         content: JSON.stringify(profile.value),
       },
-      hexToBytes(certs.value.priv),
+      hexToBytes(certs.value.priv)
     );
-    const body: any = await $fetch("/api/members/register", {
+    await $fetch("/api/members/register", {
       method: "post",
       body: event,
     });
-    console.log(body);
+    // console.log(body);
   };
 
   return {

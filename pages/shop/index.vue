@@ -2,7 +2,7 @@
 const { isOwner } = useOwner();
 
 useHead({
-  title: "صفحه نخست",
+  title: "فروشگاه",
 });
 </script>
 <template>
@@ -10,8 +10,8 @@ useHead({
     <IntroPost :banner="false" />
     <div class="border-b pb-3 flex justify-between w-full items-end">
       <h3>جدیدترین ورودی‌ها</h3>
-      <UButton v-if="isOwner" variant="outline" size="xl" to="/notes/create">
-        افزودن یادداشت
+      <UButton v-if="isOwner" variant="outline" size="xl" to="/shop/create">
+        افزودن کالا
       </UButton>
     </div>
     <LazyLatestItems />
