@@ -1,7 +1,7 @@
 import { useStorage } from "@vueuse/core";
 import { WebUUID } from "web-uuid";
 
-const modalMode = useStorage("support-help-desk-mode", "home");
+const modalMode = useStorage("support-help-desk-mode", "chat");
 const contactLists = useStorage("support-contact-lists", [{}]);
 const qaLists = useStorage("support-qa-lists", [{}]);
 const defaultContact: any = useStorage("support-default-contact", {});
@@ -11,7 +11,7 @@ const firstVisit = useStorage("support-first-visit", true);
 
 const messageLimit = ref(200);
 const archiveLimit = ref(20);
-const modalBoxIsOpen = ref(false);
+const modalBoxIsOpen = ref(true);
 
 const sectionTitle = (mode: string) => {
   const map = [
@@ -31,9 +31,8 @@ const sectionTitle = (mode: string) => {
   return map.find((item: any) => item.mode === mode)?.title;
 };
 export default () => {
-  // const { $publishSupportTicket, $dexieDb } = useNuxtApp();
-  // const { getSince, callSorting } = usecall();
   const { certs } = useUser();
+  const { sendMessage } = useMessages();
 
   const welcomeMessage = async () => {
     // if (firstVisit.value) {
@@ -116,16 +115,11 @@ export default () => {
 
   const sendTicket = async (message: string) => {
     if (!message.length) return;
-    // await $publishSupportTicket(message, profile.value, currentTicket.value)
+    await sendMessage(certs.value.priv, certs.value.pub, message);
   };
 
   const changeView = (mode: "home" | "chats" | "call" | "chat") => {
     modalMode.value = mode;
-    // if (mode === 'social') {
-    //   expanded.value = true
-    // } else {
-    //   expanded.value = false
-    // }
   };
 
   const viewTitle = computed(() => sectionTitle(modalMode.value));

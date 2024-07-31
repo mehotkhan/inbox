@@ -35,12 +35,12 @@ export const eventFormatTimeAgo = (inputDate: number) => {
   console.log(inputDate);
   const { locale } = useI18n();
   if (locale.value == "fa") {
-    return DateTime.fromSeconds(inputDate * 1000)
+    return DateTime.fromSeconds(inputDate)
       .reconfigure({ outputCalendar: "persian" })
       .setLocale("fa")
       .toRelative({ unit: "minutes" });
   } else {
-    return DateTime.fromSeconds(inputDate * 1000)
+    return DateTime.fromSeconds(inputDate)
       .reconfigure({ outputCalendar: "iso8601" })
       .setLocale("en")
       .toRelative({ unit: "minutes" });

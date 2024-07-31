@@ -36,7 +36,7 @@ const conversation = ref();
               "
             >
               <span class="text-slate-400 text-xs">
-                {{ FromNow(message?.created_at * 1000) }}
+                {{ FromNow(message?.created_at) }}
               </span>
             </p>
             <div class="flex items-center">

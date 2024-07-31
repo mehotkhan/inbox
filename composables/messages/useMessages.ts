@@ -1,82 +1,46 @@
-import { ref } from "vue";
-import { schnorr } from "@noble/curves/secp256k1";
-import { finalizeEvent, validateEvent, nip44 } from "nostr-tools";
-import { bytesToHex, hexToBytes } from "@noble/hashes/utils";
+import { hexToBytes } from "@noble/hashes/utils";
 import type { Event as NostrEvent } from "nostr-tools";
+import { finalizeEvent, nip44, validateEvent } from "nostr-tools";
+import { ref } from "vue";
 
 const v2 = nip44.v2;
 
-const str2ab = (str: string): Uint8Array => {
-  const buf = new ArrayBuffer(str.length);
-  const bufView = new Uint8Array(buf);
-  for (let i = 0; i < str.length; i++) {
-    bufView[i] = str.charCodeAt(i);
-  }
-  return bufView;
-};
-
-const ab2str = (buf: Uint8Array): string => {
-  return String.fromCharCode(...buf);
-};
-
-export const useNostrMessaging = () => {
-  const privateKey = ref<string>(bytesToHex(schnorr.utils.randomPrivateKey()));
-  const publicKey = ref<string>(
-    bytesToHex(schnorr.getPublicKey(hexToBytes(privateKey.value)))
-  );
-
+export default () => {
   const encryptedMessage = ref<string | null>(null);
   const decryptedMessage = ref<string | null>(null);
 
-  const getConversationKey = (
-    privateKey: string,
-    receiverPublicKey: string
-  ): Uint8Array => {
-    return v2.utils.getConversationKey(
-      hexToBytes(privateKey),
-      hexToBytes(receiverPublicKey)
-    );
-  };
-
-  const encryptMessage = async (
-    message: string,
-    receiverPublicKey: string
-  ): Promise<string> => {
-    const conversationKey = getConversationKey(
-      privateKey.value,
-      receiverPublicKey
-    );
-    const encrypted = v2.encrypt(str2ab(message), conversationKey);
-    encryptedMessage.value = bytesToHex(encrypted);
-    return encryptedMessage.value;
-  };
-
   const decryptMessage = async (
-    encrypted: string,
-    senderPublicKey: string
+    privateKey: string,
+    senderPublicKey: string,
+    encrypted: string
   ): Promise<string> => {
-    const conversationKey = getConversationKey(
-      privateKey.value,
+    const conversationKey = v2.utils.getConversationKey(
+      hexToBytes(privateKey),
       senderPublicKey
     );
-    const decrypted = v2.decrypt(hexToBytes(encrypted), conversationKey);
-    decryptedMessage.value = ab2str(decrypted);
-    return decryptedMessage.value;
+    const decrypted = v2.decrypt(encrypted, conversationKey);
+    return decrypted;
   };
 
   const sendMessage = async (
     senderPrivateKey: string,
     receiverPublicKey: string,
     message: string
-  ): Promise<NostrEvent> => {
-    const encryptedContent = await encryptMessage(message, receiverPublicKey);
+  ): Promise<boolean> => {
+    const conversationKey = v2.utils.getConversationKey(
+      hexToBytes(senderPrivateKey),
+      receiverPublicKey
+    );
+    const encrypted = v2.encrypt(message, conversationKey);
     const event = {
-      kind: 42, // Custom kind for messages, update as necessary
-      created_at: Math.floor(Date.now() / 1000),
-      content: encryptedContent,
+      kind: 14, // Custom kind for messages, update as necessary
+      created_at: Math.floor(Date.now()),
+      content: encrypted,
       tags: [["p", receiverPublicKey]], // Tagging receiver's public key
     };
-    return finalizeEvent(event, hexToBytes(senderPrivateKey));
+    const eventF = finalizeEvent(event, hexToBytes(senderPrivateKey));
+    console.log(eventF);
+    return true;
   };
 
   const readMessage = async (
@@ -90,12 +54,14 @@ export const useNostrMessaging = () => {
     if (!senderPublicKey) {
       throw new Error("Sender public key not found in tags");
     }
-    return decryptMessage(eventBody.content, senderPublicKey);
+    return decryptMessage(
+      receiverPrivateKey,
+      senderPublicKey,
+      eventBody.content
+    );
   };
 
   return {
-    privateKey,
-    publicKey,
     encryptedMessage,
     decryptedMessage,
     sendMessage,

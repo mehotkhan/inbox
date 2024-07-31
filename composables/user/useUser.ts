@@ -63,7 +63,7 @@ export default () => {
     const event: NostrEvent = finalizeEvent(
       {
         kind: 0,
-        created_at: Math.floor(Date.now() / 1000),
+        created_at: Math.floor(Date.now()),
         tags: [],
         content: JSON.stringify(profile.value),
       },

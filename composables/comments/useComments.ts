@@ -29,7 +29,7 @@ export default function useComments() {
     const event: NostrEvent = finalizeEvent(
       {
         kind: 42,
-        created_at: Math.floor(Date.now() / 1000),
+        created_at: Math.floor(Date.now()),
         content: message,
         tags: [["e", currentChannelId.value as string]],
       },
@@ -60,7 +60,7 @@ export default function useComments() {
           ["e", currentChannelId.value as string],
           ["e", parentId],
         ],
-        created_at: Math.floor(Date.now() / 1000),
+        created_at: Math.floor(Date.now()),
         content: message,
       },
       hexToBytes(certs.value.priv)
@@ -83,7 +83,7 @@ export default function useComments() {
       const channelEvent: NostrEvent = finalizeEvent(
         {
           kind: 40,
-          created_at: Math.floor(Date.now() / 1000),
+          created_at: Math.floor(Date.now()),
           tags: [],
           content: path,
         },
@@ -130,7 +130,7 @@ export default function useComments() {
       .filter((event: NostrEvent) => event.kind == 42)
       .count();
   }, []);
-  
+
   return {
     allCommentsCount,
     count,

@@ -16,7 +16,7 @@ const loadMore = () => {
           {{ comment.content }}
           <span class="font-thin"> / {{ comment.pubkey }} </span>
           <span class="font-thin">
-            / {{ eventFormatTimeAgo(comment.created_at / 1000) }}
+            / {{ eventFormatTimeAgo(comment.created_at) }}
           </span>
           <span class="font-thin"> / {{ comment.tags[0][1] }} </span>
         </span>
