@@ -11,7 +11,7 @@ const firstVisit = useStorage("support-first-visit", true);
 
 const messageLimit = ref(200);
 const archiveLimit = ref(20);
-const modalBoxIsOpen = ref(true);
+const modalBoxIsOpen = ref(false);
 
 const sectionTitle = (mode: string) => {
   const map = [

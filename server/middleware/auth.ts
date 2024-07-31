@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
   // console.log("middle ware pub", profile.pub, requestURl.pathname);
   // }
   // const requestURl = getRequestURL(event);
-  // if (requestURl.pathname.startsWith("/api/")) {
+  // if (requestURl.pathname.With("/api/")) {
   // const requestSign = getRequestHeader(event, "requestSign");
   // const ownerpub = getRequestHeader(event, "ownerpub");
   // first validator

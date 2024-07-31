@@ -40,7 +40,7 @@ const { profile } = useUser();
 
     <!--content section -->
     <div class="flex border-t pt-2">
-      <DashboardTable />
+      <Table />
     </div>
     <!-- /content section -->
   </main>

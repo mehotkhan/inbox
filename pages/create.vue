@@ -27,6 +27,6 @@ const { isOwner } = useOwner();
       </div>
     </template>
 
-    <CreateForm />
+    <AdminCreatePost />
   </UCard>
 </template>

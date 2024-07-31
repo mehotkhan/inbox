@@ -10,9 +10,12 @@ const props = defineProps({
 const emit = defineEmits<{
   (e: "update", value: string): void;
 }>();
-
+// console.log(props.body);
 const editor = useEditor({
-  content: props.body,
+  content: {
+    type: "doc",
+    content: props.body,
+  },
   extensions: [
     TiptapStarterKit,
     BubbleMenu,
