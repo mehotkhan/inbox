@@ -8,12 +8,12 @@ export default defineWebSocketHandler({
   },
   open(peer: any) {
     // const { D1 } = peer.ctx;
-    try {
-      fs.writeFileSync("dump.json", inspect(peer.ctx));
-    } catch (err) {
-      console.error(err);
-    }
-    // console.log("WS connected", peer.ctx.cloudflare);
+    // try {
+    //   fs.writeFileSync("dump.json", inspect(peer.ctx));
+    // } catch (err) {
+    //   console.error(err);
+    // }
+    console.log("WS connected", peer);
   },
 
   async message(peer: any, message) {

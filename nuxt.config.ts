@@ -13,7 +13,7 @@ export default defineNuxtConfig({
     // "nuxt-gtag",
     "@nuxt/image",
     "@nuxtjs/i18n",
-    "nitro-cloudflare-dev",
+    // "nitro-cloudflare-dev",
     "@nuxt/eslint",
     "nuxt-tiptap-editor",
   ],
@@ -75,7 +75,7 @@ export default defineNuxtConfig({
   },
   image: {
     dir: "assets/content",
-    format: ["webp"],
+    // format: ["webp"],
   },
 
   // gtag: {

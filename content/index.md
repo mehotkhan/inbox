@@ -5,8 +5,8 @@ description: "صندوق ورودی :)"
 
 امروز چند شنبه چندم چند دوازدهم است :)
 
-...<LazyIntroPost />
+<IntroPost />
 
 ## جدیدترین ورودی ها
 
-...<LazyPostArchives />
+...<PostArchives />

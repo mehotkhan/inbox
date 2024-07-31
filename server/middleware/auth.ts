@@ -3,8 +3,9 @@ import { sha256 } from "@noble/hashes/sha256";
 import { bytesToHex } from "@noble/hashes/utils";
 
 export default defineEventHandler(async (event) => {
-  // let loggedUser: any = getCookie(event, "current-user");
   // const requestURl = getRequestURL(event);
+  // console.log("new event,", requestURl.pathname);
+  // let loggedUser: any = getCookie(event, "current-user");
   // console.log("middle ware pathname", event);
   // if (loggedUser) {
   // const profile = JSON.parse(loggedUser);
