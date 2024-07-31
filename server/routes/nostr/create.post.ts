@@ -12,9 +12,9 @@ export default defineEventHandler(async (event) => {
     }
 
     // Execute the query to check if the event exists using drizzle's `get` method
-    const { D1 } = event.context.cloudflare.env;
+    // const { D1 } = event?.context?.cloudflare?.env ?? undefined;
 
-    const drizzleDb = initDrizzle(D1);
+    const drizzleDb = initDrizzle();
     const existingEvent = await drizzleDb
       .select()
       .from(events)

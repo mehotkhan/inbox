@@ -32,13 +32,12 @@ export const formatTimeAgo = (inputDate: string) => {
 };
 
 export const eventFormatTimeAgo = (inputDate: number) => {
-  console.log(inputDate);
   const { locale } = useI18n();
   if (locale.value == "fa") {
-    return DateTime.fromSeconds(inputDate)
+    return DateTime.fromMillis(inputDate)
       .reconfigure({ outputCalendar: "persian" })
       .setLocale("fa")
-      .toRelative({ unit: "minutes" });
+      .toRelative({ unit: "minutes", round: false });
   } else {
     return DateTime.fromSeconds(inputDate)
       .reconfigure({ outputCalendar: "iso8601" })

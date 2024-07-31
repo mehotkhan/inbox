@@ -1,8 +1,6 @@
 <script setup lang="ts">
-const { supportTimeLine, currentTicket } = useSupport();
+const { currentTicket, currentChat } = useSupport();
 const { certs } = useUser();
-
-const conversation = ref();
 
 // onUpdated(() => {
 //   if (supportTimeLine?.value?.length > 0 && conversation?.value) {
@@ -17,7 +15,7 @@ const conversation = ref();
       class="w-full px-4 overflow-x-auto flex flex-col-reverse pb-5"
     >
       <div
-        v-for="message in supportTimeLine"
+        v-for="message in currentChat"
         :key="message?.id"
         class="w-full flex mt-4 last:bg-red"
         :class="!message?.selfAuthored ? 'justify-start' : 'justify-end'"
@@ -36,7 +34,7 @@ const conversation = ref();
               "
             >
               <span class="text-slate-400 text-xs">
-                {{ FromNow(message?.created_at) }}
+                {{ eventFormatTimeAgo(message?.created_at) }}
               </span>
             </p>
             <div class="flex items-center">
@@ -49,6 +47,9 @@ const conversation = ref();
               <h3 v-else class="text-sm text-gray-500">
                 {{ currentTicket?.topic }}
               </h3>
+              <span>
+                {{ message.seen ? "Send" : "Sending" }}
+              </span>
             </div>
 
             <span
@@ -71,15 +72,14 @@ const conversation = ref();
               message?.selfAuthored
                 ? 'bg-gray-200 border-brown border-r-4 rounded-tl-xl rounded-bl-xl'
                 : 'bg-brown-100 border-brown border-l-4  rounded-tr-xl rounded-br-xl',
-              !isRTL(message?.rawMessage) ? 'ltr' : 'rtl',
             ]"
           >
-            <p class="text-md break-words">
-              {{ message?.rawMessage }}
-            </p>
+            <p class="text-md break-words">متن پیام</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<!-- !isRTL(message?.rawMessage) ? 'ltr' : 'rtl', -->

@@ -1,13 +1,11 @@
 import { hexToBytes } from "@noble/hashes/utils";
 import type { Event as NostrEvent } from "nostr-tools";
 import { finalizeEvent, nip44, validateEvent } from "nostr-tools";
-import { ref } from "vue";
 
 const v2 = nip44.v2;
 
 export default () => {
-  const encryptedMessage = ref<string | null>(null);
-  const decryptedMessage = ref<string | null>(null);
+  const { $dexie } = useNuxtApp();
 
   const decryptMessage = async (
     privateKey: string,
@@ -39,7 +37,10 @@ export default () => {
       tags: [["p", receiverPublicKey]], // Tagging receiver's public key
     };
     const eventF = finalizeEvent(event, hexToBytes(senderPrivateKey));
-    console.log(eventF);
+    $dexie.events.add({
+      ...eventF,
+      seen: false,
+    });
     return true;
   };
 
@@ -62,8 +63,6 @@ export default () => {
   };
 
   return {
-    encryptedMessage,
-    decryptedMessage,
     sendMessage,
     readMessage,
   };

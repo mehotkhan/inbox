@@ -3,7 +3,7 @@ import type { Event as NostrEvent } from "nostr-tools";
 export default defineEventHandler(async (event) => {
   try {
     const bodyEvent: NostrEvent = await readBody(event);
-    const { D1 } = event.context.cloudflare.env;
+    // const { D1 } = event.context.cloudflare.env;
 
     const userProfile = JSON.parse(bodyEvent.content);
     const newUser: InsertMember = {
@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) => {
       content: bodyEvent.content,
       sig: bodyEvent.sig,
     };
-    const drizzleDb = initDrizzle(D1);
+    const drizzleDb = initDrizzle();
     drizzleDb.insert(events).values(newEvent).run();
     drizzleDb.insert(member).values(newUser).run();
     return newEvent;

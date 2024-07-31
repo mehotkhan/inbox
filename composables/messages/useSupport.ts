@@ -31,6 +31,7 @@ const sectionTitle = (mode: string) => {
   return map.find((item: any) => item.mode === mode)?.title;
 };
 export default () => {
+  const { $dexie } = useNuxtApp();
   const { certs } = useUser();
   const { sendMessage } = useMessages();
 
@@ -142,6 +143,19 @@ export default () => {
     //   console.log(error);
     // }
   };
+  const currentChat = useLiveQuery(async () => {
+    return await $dexie.events
+      .orderBy("created_at")
+      .filter(
+        (event: NostrEvent) => event.kind == 14
+        // event.tags.some(
+        //   (tag) => tag[0] === "e" && tag[1] === currentChannelId.value
+        // )
+      )
+      .reverse()
+      .toArray();
+  }, []);
+
   return {
     welcomeMessage,
     changeView,
@@ -162,5 +176,6 @@ export default () => {
     currentTicket,
     getQaLists,
     qaLists,
+    currentChat,
   };
 };

@@ -6,7 +6,7 @@ import Database from "better-sqlite3";
 export const initDrizzle: BetterSQLite3Database | DrizzleD1Database = (
   cloudflare?: any
 ) => {
-  if (false) {
+  if (cloudflare) {
     return D1Drizzle(cloudflare);
   } else {
     const betterSqlite = new Database("main.db");
