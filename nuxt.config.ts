@@ -1,5 +1,5 @@
-import viteCompression from "vite-plugin-compression";
-// import { GenerateRoutes } from "./tools/contentRoutes";
+// import viteCompression from "vite-plugin-compression";
+import { GenerateRoutes } from "./tools/contentRoutes";
 
 export default defineNuxtConfig({
   future: { compatibilityVersion: 4 },
@@ -44,15 +44,15 @@ export default defineNuxtConfig({
     pageTransition: { name: "page", mode: "in-out" },
   },
 
-  vite: {
-    plugins: [viteCompression({ algorithm: "brotliCompress" })],
-    build: {
-      watch: {},
-      sourcemap: false,
-      minify: true,
-      rollupOptions: { treeshake: false },
-    },
-  },
+  // vite: {
+  //   plugins: [viteCompression({ algorithm: "brotliCompress" })],
+  //   build: {
+  //     watch: {},
+  //     sourcemap: false,
+  //     minify: true,
+  //     rollupOptions: { treeshake: false },
+  //   },
+  // },
 
   nitro: {
     experimental: {
@@ -61,11 +61,11 @@ export default defineNuxtConfig({
     },
     // preset: "cloudflare-pages",
     // static: true,
-    compressPublicAssets: true,
-    minify: true,
+    // compressPublicAssets: true,
+    // minify: true,
     prerender: {
       crawlLinks: true,
-      // routes: GenerateRoutes(["notes", "cat", "shop"]),
+      routes: GenerateRoutes(["notes", "shop"]),
     },
   },
 
@@ -81,12 +81,13 @@ export default defineNuxtConfig({
   // gtag: {
   //   id: "G-78646PGVN1",
   // },
+
   // routeRules: {
   //   "/**": { prerender: true },
-  //   "/blog/**": { ssr: true },
-  //   "/blogs/**": { ssr: true },
+  //   "/notes/**": { ssr: true },
+  //   "/shop/**": { ssr: true },
   //   "/dashboard/**": { ssr: false },
-  //   "/account/**": { ssr: false },
+  //   "/profile/**": { ssr: false },
   // },
   content: {
     experimental: {
