@@ -2,16 +2,14 @@
 const { isDark, toggleDark } = useDark();
 </script>
 <template>
-  <ClientOnly>
-    <div class="flex items-center">
-      <UButton
-        variant="ghost"
-        class="text-md cursor-pointer"
-        @click="toggleDark()"
-      >
-        <UIcon v-if="!isDark" name="i-heroicons-moon" />
-        <UIcon v-else name="i-heroicons-sun" />
-      </UButton>
-    </div>
-  </ClientOnly>
+  <div class="flex items-center">
+    <UButton
+      variant="ghost"
+      class="text-md cursor-pointer"
+      @click="toggleDark()"
+    >
+      <UIcon v-if="isDark" name="i-heroicons-sun" />
+      <UIcon v-else name="i-heroicons-moon" />
+    </UButton>
+  </div>
 </template>

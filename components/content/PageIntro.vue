@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-const props = defineProps({
-  data: { type: Object, required: true, default: {} },
-});
+// const props = defineProps({
+// data: { type: Object, required: true, default: {} },
+// });
 </script>
 <template>
-  <ContentRenderer :value="props.data">
+  <ContentQuery v-slot="{ data }" :path="$route.path" find="one">
     <div
-      class="flex flex-col-reverse md:flex-row justify-between items-center h-screen-md border-b py-5"
+      class="flex flex-col-reverse md:flex-row justify-between items-center h-screen-md py-5"
     >
       <div class="basis-2/2 md:basis-1/2 flex-col justify-start items-center">
         <div class="items-center flex gap-3">
@@ -14,7 +14,6 @@ const props = defineProps({
             {{ data?.title }}
           </h2>
         </div>
-
         <p>
           {{ data?.description }}
         </p>
@@ -32,5 +31,5 @@ const props = defineProps({
         />
       </div>
     </div>
-  </ContentRenderer>
+  </ContentQuery>
 </template>

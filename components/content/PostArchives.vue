@@ -24,7 +24,7 @@ const query: QueryBuilderParams = {
     <ContentList :query="query" class="nuxt-content">
       <template #default="{ list }">
         <div class="latest px-5 md:m-0">
-          <ul>
+          <ol>
             <li
               v-for="{ _path: slug, title, date, category } in list"
               :key="slug"
@@ -36,7 +36,7 @@ const query: QueryBuilderParams = {
                 <span class="font-thin"> / {{ formatDateTime(date) }} </span>
               </NuxtLink>
             </li>
-          </ul>
+          </ol>
         </div>
       </template>
       <template #not-found>

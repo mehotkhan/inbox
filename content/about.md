@@ -7,6 +7,9 @@ description: روزمه و تجربیات کاری
 
 ## Contact Details
 
+...
+<PageIntro />
+
 - Email : sallam@alizemani.ir
 - Github : [AliZemani / Github](https://github.com/mehotkhan)
 - LinkedIn : [AliZemani / LinkedIn](https://www.linkedin.com/in/ali-zemani/)

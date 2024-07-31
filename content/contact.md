@@ -7,6 +7,9 @@ description: اوپن سورس وب دولوپر :)
 
 ## اطلاعات تماس
 
+...
+<PageIntro />
+
 - ایمیل : sallam@alizemani.ir
 - گیت‌هاب : [AliZemani / Github](https://github.com/mehotkhan)
 - لینکداین : [AliZemani / LinkedIn](https://www.linkedin.com/in/ali-zemani/)

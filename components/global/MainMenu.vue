@@ -6,7 +6,7 @@ const { isOwner } = useOwner();
 
 <template>
   <ul class="list-none flex mt-8">
-    <li key="dashboard" v-if="isOwner">
+    <li v-if="isOwner" key="dashboard">
       <NuxtLink
         :external="false"
         to="/dashboard"

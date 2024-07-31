@@ -29,36 +29,33 @@ html {
   background-color: theme("colors.slate.400");
 }
 
-.blog ul {
-  padding-right: 10px;
-  // list-style: lower-alpha;
+ol {
+  padding: 0 10px;
 
   li::marker {
-    // background-color: #d1d5db;
+    background-color: #d1d5db;
     color: rgb(53, 53, 53);
   }
 }
 
-.rtl {
+.rtl,
+[dir=rtl] {
   direction: rtl;
 
-  .latest ul,
-  ul {
-    list-style: persian;
+  ol {
+    list-style: persian !important;
   }
 }
 
-.ltr {
+.ltr,
+[dir=ltr] {
   direction: ltr;
 
-  ul {
+  ol {
     list-style: auto;
   }
 }
 
-.logo-area {
-  overflow: clip;
-}
 
 .prose {
   max-width: none;
@@ -67,9 +64,7 @@ html {
     text-decoration: none;
   }
 
-  li::before {
-    display: none;
-  }
+
 }
 
 blockquote {
@@ -94,15 +89,6 @@ blockquote p {
   display: inline;
 }
 
-.latest {
-  ul {
-    list-style-type: persian;
-
-    ::marker {
-      font-size: 1.7rem;
-    }
-  }
-}
 
 img.poster-front {
   max-width: 300px;
@@ -115,10 +101,6 @@ img.poster-single {
   max-width: inherit;
 }
 
-button.disabled {
-  opacity: 0.4;
-  cursor: no-drop;
-}
 
 ::selection {
   color: gray;
@@ -141,15 +123,5 @@ code {
     max-width: 100%;
     word-break: break-word;
     white-space: pre-wrap;
-  }
-}
-
-.dark {
-  blockquote {
-    background: #00000033;
-  }
-
-  ::marker {
-    color: white;
   }
 }

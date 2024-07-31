@@ -1,23 +1,35 @@
 <script lang="ts" setup>
-useHead({
-  title: "صفحه نخست",
-});
-// const { isOwner } = useOwner();
+const { isOwner } = useOwner();
 </script>
 <template>
   <UCard class="min-h-screen">
-    <!-- <template #header>
+    <template #header>
       <div class="flex justify-between pt-5">
         <Breadcrumb />
-        <div class="flex gap-4">
-          <span class="text-md font-thin"> ۶ کاربر آنلاین </span>
-
-          <MemberWebauthModal />
+        <div class="flex gap-4 items-center">
+          <UButton
+            v-if="isOwner"
+            label="افزودن یادداشت"
+            size="md"
+            color="primary"
+            variant="ghost"
+            to="/create"
+          />
+          <UButton
+            v-if="isOwner"
+            label="افزودن محصول"
+            size="md"
+            color="primary"
+            variant="ghost"
+            to="/create"
+          />
+          <span class="text-[.98rem]"> ۶ کاربر آنلاین </span>
         </div>
-      </div> -->
-    <!-- </template> -->
+      </div>
+    </template>
     <ContentDoc />
-    <!-- <HomeAdmin v-if="isOwner" /> -->
-    <!-- <HomePublic v-else /> -->
+    <template #footer>
+      <div class="flex justify-between pt-5">مثلا کپی رایت :)</div>
+    </template>
   </UCard>
 </template>

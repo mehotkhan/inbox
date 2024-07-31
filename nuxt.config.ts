@@ -1,4 +1,4 @@
-import viteCompression from "vite-plugin-compression";
+// import viteCompression from "vite-plugin-compression";
 import { GenerateRoutes } from "./tools/contentRoutes";
 
 export default defineNuxtConfig({
@@ -44,15 +44,15 @@ export default defineNuxtConfig({
     pageTransition: { name: "page", mode: "in-out" },
   },
 
-  vite: {
-    plugins: [viteCompression({ algorithm: "brotliCompress" })],
-    build: {
-      watch: {},
-      sourcemap: false,
-      minify: true,
-      rollupOptions: { treeshake: false },
-    },
-  },
+  // vite: {
+  // plugins: [viteCompression({ algorithm: "brotliCompress" })],
+  // build: {
+  //   watch: {},
+  //   sourcemap: false,
+  //   minify: true,
+  //   rollupOptions: { treeshake: false },
+  // },
+  // },
 
   nitro: {
     experimental: {
@@ -61,18 +61,18 @@ export default defineNuxtConfig({
     },
     // preset: "cloudflare-pages",
     // static: true,
-    compressPublicAssets: true,
-    minify: true,
+    // compressPublicAssets: true,
+    // minify: true,
     prerender: {
-      crawlLinks: false,
-      routes: GenerateRoutes(["notes", "cat"]),
+      crawlLinks: true,
+      routes: GenerateRoutes(["notes", "cat", "shop"]),
     },
   },
 
-  experimental: {
-    renderJsonPayloads: true,
-    viewTransition: true,
-  },
+  // experimental: {
+  //   renderJsonPayloads: true,
+  //   viewTransition: true,
+  // },
   image: {
     dir: "assets/content",
     format: ["webp"],
