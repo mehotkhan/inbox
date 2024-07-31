@@ -1,10 +1,20 @@
 <script lang="ts" setup>
 const appConfig = useAppConfig();
 const route = useRoute();
+const { isOwner } = useOwner();
 </script>
 
 <template>
   <ul class="list-none flex mt-8">
+    <li key="dashboard" v-if="isOwner">
+      <NuxtLink
+        :external="false"
+        to="/dashboard"
+        class="hover:text-black py-1 px-5 dark:hover:text-gray-200"
+        :class="route.path == '/dashboard' ? 'router-link-active' : ''"
+        >داشبورد</NuxtLink
+      >
+    </li>
     <li v-for="menu in appConfig.menuItems" :key="menu._path">
       <NuxtLink
         :external="false"

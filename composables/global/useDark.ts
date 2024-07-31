@@ -1,6 +1,6 @@
 import { useStorage } from "@vueuse/core";
 
-export default async () => {
+export default () => {
   const osDark = window?.matchMedia?.("(prefers-color-scheme: dark)").matches;
   const isDark = useStorage("isDark", osDark);
 

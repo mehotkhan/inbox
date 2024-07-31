@@ -14,7 +14,7 @@ useHead({
         افزودن یادداشت
       </UButton>
     </div>
-    <LazyLatestItems />
+    <!-- <LazyLatestItems /> -->
   </main>
 </template>
 <style lang="scss" scoped>
