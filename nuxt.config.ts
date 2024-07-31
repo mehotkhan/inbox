@@ -1,5 +1,5 @@
-// import viteCompression from "vite-plugin-compression";
-import { GenerateRoutes } from "./tools/contentRoutes";
+import viteCompression from "vite-plugin-compression";
+// import { GenerateRoutes } from "./tools/contentRoutes";
 
 export default defineNuxtConfig({
   future: { compatibilityVersion: 4 },
@@ -44,15 +44,15 @@ export default defineNuxtConfig({
     pageTransition: { name: "page", mode: "in-out" },
   },
 
-  // vite: {
-  // plugins: [viteCompression({ algorithm: "brotliCompress" })],
-  // build: {
-  //   watch: {},
-  //   sourcemap: false,
-  //   minify: true,
-  //   rollupOptions: { treeshake: false },
-  // },
-  // },
+  vite: {
+    plugins: [viteCompression({ algorithm: "brotliCompress" })],
+    build: {
+      watch: {},
+      sourcemap: false,
+      minify: true,
+      rollupOptions: { treeshake: false },
+    },
+  },
 
   nitro: {
     experimental: {
@@ -61,18 +61,18 @@ export default defineNuxtConfig({
     },
     // preset: "cloudflare-pages",
     // static: true,
-    // compressPublicAssets: true,
-    // minify: true,
+    compressPublicAssets: true,
+    minify: true,
     prerender: {
       crawlLinks: true,
-      routes: GenerateRoutes(["notes", "cat", "shop"]),
+      // routes: GenerateRoutes(["notes", "cat", "shop"]),
     },
   },
 
-  // experimental: {
-  //   renderJsonPayloads: true,
-  //   viewTransition: true,
-  // },
+  experimental: {
+    renderJsonPayloads: true,
+    viewTransition: true,
+  },
   image: {
     dir: "assets/content",
     format: ["webp"],
@@ -81,7 +81,20 @@ export default defineNuxtConfig({
   // gtag: {
   //   id: "G-78646PGVN1",
   // },
+  // routeRules: {
+  //   "/**": { prerender: true },
+  //   "/blog/**": { ssr: true },
+  //   "/blogs/**": { ssr: true },
+  //   "/dashboard/**": { ssr: false },
+  //   "/account/**": { ssr: false },
+  // },
   content: {
+    experimental: {
+      clientDb: true,
+    },
+    markdown: {
+      toc: { depth: 3, searchDepth: 3 },
+    },
     highlight: {
       theme: "github-dark",
       preload: ["ts", "js", "css", "json", "go"],
