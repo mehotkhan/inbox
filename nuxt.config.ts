@@ -1,9 +1,9 @@
 // import viteCompression from "vite-plugin-compression";
-import { GenerateRoutes } from "./tools/contentRoutes";
+// import { GenerateRoutes } from "./tools/contentRoutes";
 
 export default defineNuxtConfig({
   future: { compatibilityVersion: 4 },
-  ssr: true,
+  // ssr: true,
   css: ["@/assets/scss/base.scss", "@/assets/scss/extra.scss"],
   devtools: { enabled: false },
 
@@ -13,7 +13,7 @@ export default defineNuxtConfig({
     // "nuxt-gtag",
     "@nuxt/image",
     "@nuxtjs/i18n",
-    // "nitro-cloudflare-dev",
+    "nitro-cloudflare-dev",
     "@nuxt/eslint",
     "nuxt-tiptap-editor",
   ],
@@ -65,7 +65,7 @@ export default defineNuxtConfig({
     // minify: true,
     prerender: {
       crawlLinks: true,
-      routes: GenerateRoutes(["notes", "shop"]),
+      // routes: GenerateRoutes(["notes", "shop"]),
     },
   },
 
@@ -90,9 +90,9 @@ export default defineNuxtConfig({
   //   "/profile/**": { ssr: false },
   // },
   content: {
-    experimental: {
-      clientDb: true,
-    },
+    // experimental: {
+    //   clientDb: true,
+    // },
     markdown: {
       toc: { depth: 3, searchDepth: 3 },
     },

@@ -3,6 +3,8 @@ import type { Event as NostrEvent } from "nostr-tools";
 export default defineEventHandler(async (event) => {
   try {
     const bodyEvent: NostrEvent = await readBody(event);
+    const { D1 } = event.context.cloudflare.env;
+
     const userProfile = JSON.parse(bodyEvent.content);
     const newUser: InsertMember = {
       firstName: userProfile.firstName,
@@ -13,10 +15,19 @@ export default defineEventHandler(async (event) => {
       pub: userProfile.pub,
     };
 
-    createNewEvent(bodyEvent);
+    const newEvent: InsertEvent = {
+      id: bodyEvent.id,
+      pubkey: bodyEvent.pubkey,
+      created_at: bodyEvent.created_at,
+      kind: bodyEvent.kind,
+      tags: JSON.stringify(bodyEvent.tags),
+      content: bodyEvent.content,
+      sig: bodyEvent.sig,
+    };
+    const drizzleDb = initDrizzle(D1);
+    drizzleDb.insert(events).values(newEvent).run();
     drizzleDb.insert(member).values(newUser).run();
-    const res = drizzleDb.select().from(member).all();
-    return { res };
+    return newEvent;
   } catch (e: any) {
     throw createError({
       statusCode: 400,

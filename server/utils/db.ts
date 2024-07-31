@@ -1,27 +1,15 @@
-import Database from "better-sqlite3";
-import type { BetterSQLite3Database} from "drizzle-orm/better-sqlite3";
+import type { BetterSQLite3Database } from "drizzle-orm/better-sqlite3";
+import { drizzle as D1Drizzle, DrizzleD1Database } from "drizzle-orm/d1";
 import { drizzle } from "drizzle-orm/better-sqlite3";
+import Database from "better-sqlite3";
 
-export const betterSqlite = new Database("main.db");
-export const drizzleDb: BetterSQLite3Database = drizzle(betterSqlite);
-
-// import Database from "better-sqlite3";
-// import { drizzle as D1Drizzle, DrizzleD1Database } from "drizzle-orm/d1";
-
-// import {
-//   BetterSQLite3Database,
-//   drizzle as SQLDrizzle,
-// } from "drizzle-orm/better-sqlite3";
-
-// export const betterSqlite = new Database("main.db");
-// // export const drizzleDb: BetterSQLite3Database = SQLDrizzle(betterSqlite);
-
-// export const drizzleDb: BetterSQLite3Database | DrizzleD1Database | any = (
-//   cloudflare?: any
-// ) => {
-//   if (cloudflare) {
-//     return D1Drizzle(cloudflare);
-//   } else {
-//     return SQLDrizzle(betterSqlite);
-//   }
-// };
+export const initDrizzle: BetterSQLite3Database | DrizzleD1Database = (
+  cloudflare?: any
+) => {
+  if (cloudflare) {
+    return D1Drizzle(cloudflare);
+  } else {
+    const betterSqlite = new Database("main.db");
+    return drizzle(betterSqlite);
+  }
+};

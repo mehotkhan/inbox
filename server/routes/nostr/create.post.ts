@@ -12,6 +12,9 @@ export default defineEventHandler(async (event) => {
     }
 
     // Execute the query to check if the event exists using drizzle's `get` method
+    const { D1 } = event.context.cloudflare.env;
+
+    const drizzleDb = initDrizzle(D1);
     const existingEvent = await drizzleDb
       .select()
       .from(events)
@@ -24,9 +27,18 @@ export default defineEventHandler(async (event) => {
       console.log("Event already exists");
       return { status: "Dump" };
     } else {
-      createNewEvent(bodyEvent);
+      const newEvent: InsertEvent = {
+        id: bodyEvent.id,
+        pubkey: bodyEvent.pubkey,
+        created_at: bodyEvent.created_at,
+        kind: bodyEvent.kind,
+        tags: JSON.stringify(bodyEvent.tags),
+        content: bodyEvent.content,
+        sig: bodyEvent.sig,
+      };
+      const dbSave = drizzleDb.insert(events).values(newEvent).run();
       console.log("New event added");
-      return { status: "success" };
+      return dbSave;
     }
   } catch (e) {
     console.error(e); // Log the error for debugging purposes

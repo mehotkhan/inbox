@@ -1,6 +1,6 @@
 compatibility_date = "2024-06-17"
 
 [[d1_databases]]
-binding = "d1_database"                              # available in your Worker on env.DB
+binding = "D1"                                       # available in your Worker on env.DB
 database_name = "inbox"
-database_id = "de41103f-3be2-4d6f-b713-3507a7ba8b99"
+database_id = "9a4c5463-2684-4973-8a04-6c3f5886924c"
