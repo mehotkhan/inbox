@@ -1,10 +1,17 @@
 <script setup lang="ts">
 import type { FormSubmitEvent } from "#ui/types";
+import { encode, decode } from "js-base64";
+
 import { z } from "zod";
 const route = useRoute();
 const { data } = await useAsyncData("page-data", () =>
   queryContent(route.path).findOne()
 );
+
+const fileData = await $fetch("/api/github/get-file-data", {
+  method: "post",
+  body: { name: data.value._file },
+});
 
 const options = [
   { label: "Option 1", value: "option-1" },
@@ -17,6 +24,8 @@ const state = reactive({
   category: data.value.category,
   body: "## سلام",
 });
+
+state.body = decode(fileData.content);
 
 const schema = z.object({
   title: z.string().min(5),

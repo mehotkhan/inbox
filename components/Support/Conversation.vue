@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { currentTicket, currentChat } = useSupport();
 const { certs } = useUser();
-// const { decryptMessage } = useMessages();
+const { decryptMessage } = useMessages();
 
 // onUpdated(() => {
 //   if (supportTimeLine?.value?.length > 0 && conversation?.value) {
@@ -76,7 +76,7 @@ const { certs } = useUser();
             ]"
           >
             <p class="text-md break-words">
-              <!-- {{ decryptMessage(message.content) }} -->
+              {{ decryptMessage(message.content) }}
             </p>
           </div>
         </div>

@@ -20,6 +20,8 @@ export default defineNuxtConfig({
 
   // extends: ["nuxt-seo-kit"],
   runtimeConfig: {
+    githubToken: process.env.GITHUB_TOKEN,
+    githubRepo: process.env.GITHUB_REPO,
     app: {
       title: process.env.SITE_NAME,
       description: process.env.SITE_DESCRIPTIONS,

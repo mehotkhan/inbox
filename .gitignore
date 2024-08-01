@@ -10,3 +10,4 @@ public/admin/config.yml
 main.db
 deploy.sh
 dist.zip
+.env
