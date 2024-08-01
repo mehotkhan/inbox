@@ -1,7 +1,8 @@
 import { useStorage } from "@vueuse/core";
 import { WebUUID } from "web-uuid";
 
-const modalMode = useStorage("support-help-desk-mode", "chat");
+// const modalMode = useStorage("support-help-desk-mode", "home");
+const modalMode = ref("home");
 const contactLists = useStorage("support-contact-lists", [{}]);
 const qaLists = useStorage("support-qa-lists", [{}]);
 const defaultContact: any = useStorage("support-default-contact", {});
@@ -11,7 +12,7 @@ const firstVisit = useStorage("support-first-visit", true);
 
 const messageLimit = ref(200);
 const archiveLimit = ref(20);
-const modalBoxIsOpen = ref(false);
+const modalBoxIsOpen = ref(true);
 
 const sectionTitle = (mode: string) => {
   const map = [

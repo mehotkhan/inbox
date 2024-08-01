@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const { currentTicket, currentChat } = useSupport();
 const { certs } = useUser();
+const { decryptMessage } = useMessages();
 
 // onUpdated(() => {
 //   if (supportTimeLine?.value?.length > 0 && conversation?.value) {
@@ -74,7 +75,9 @@ const { certs } = useUser();
                 : 'bg-brown-100 border-brown border-l-4  rounded-tr-xl rounded-br-xl',
             ]"
           >
-            <p class="text-md break-words">متن پیام</p>
+            <p class="text-md break-words">
+              {{ decryptMessage(message.content) }}
+            </p>
           </div>
         </div>
       </div>
