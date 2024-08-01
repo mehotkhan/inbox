@@ -15,7 +15,7 @@ const options = [
 const state = reactive({
   title: data.value.title,
   category: data.value.category,
-  body: data.value.body.children,
+  body: "## سلام",
 });
 
 const schema = z.object({

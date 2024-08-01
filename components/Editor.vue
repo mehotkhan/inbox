@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Placeholder from "@tiptap/extension-placeholder";
 import { BubbleMenu } from "@tiptap/vue-3";
+import { Markdown } from "tiptap-markdown";
 
 const props = defineProps({
   body: { type: String, required: true, default: "" },
@@ -12,19 +13,17 @@ const emit = defineEmits<{
 }>();
 // console.log(props.body);
 const editor = useEditor({
-  content: {
-    type: "doc",
-    content: props.body,
-  },
+  content: props.body,
   extensions: [
     TiptapStarterKit,
     BubbleMenu,
+    Markdown,
     Placeholder.configure({
       placeholder: "چیزی بنویسید ...",
     }),
   ],
   onUpdate({ editor }) {
-    emit("update", editor.getHTML());
+    emit("update", editor.storage.markdown.getMarkdown());
   },
 });
 
