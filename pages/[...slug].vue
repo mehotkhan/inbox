@@ -2,9 +2,10 @@
 const { isOwner } = useOwner();
 const route = useRoute();
 const editEnable = ref(false);
-const nodeEdit = () => {
-  return route.path.startsWith("/notes/") || route.path.startsWith("/shop/");
-};
+// const nodeEdit = () => {
+// return route.path.startsWith("/notes/") || route.path.startsWith("/shop/");
+
+// };
 </script>
 <template>
   <UCard class="min-h-screen">
@@ -12,7 +13,7 @@ const nodeEdit = () => {
       <div class="flex justify-between pt-5">
         <Breadcrumb />
         <div class="flex gap-4 items-center">
-          <div v-if="nodeEdit()">
+          <div v-if="isOwner">
             <UButton
               v-if="isOwner"
               :label="editEnable ? 'بستن ویرایش' : 'ویرایش'"
@@ -21,10 +22,8 @@ const nodeEdit = () => {
               variant="ghost"
               @click="editEnable = !editEnable"
             />
-          </div>
-          <div v-else>
+
             <UButton
-              v-if="isOwner"
               label="افزودن یادداشت"
               size="md"
               color="primary"
@@ -32,7 +31,6 @@ const nodeEdit = () => {
               to="/create"
             />
             <UButton
-              v-if="isOwner"
               label="افزودن محصول"
               size="md"
               color="primary"

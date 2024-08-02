@@ -22,12 +22,12 @@ export const formatTimeAgo = (inputDate: string) => {
     return DateTime.fromISO(inputDate)
       .reconfigure({ outputCalendar: "persian" })
       .setLocale("fa")
-      .toRelative({ unit: "minutes" });
+      .toRelative();
   } else {
     return DateTime.fromISO(inputDate)
       .reconfigure({ outputCalendar: "iso8601" })
       .setLocale("en")
-      .toRelative({ unit: "minutes" });
+      .toRelative();
   }
 };
 
@@ -42,6 +42,6 @@ export const eventFormatTimeAgo = (inputDate: number) => {
     return DateTime.fromSeconds(inputDate)
       .reconfigure({ outputCalendar: "iso8601" })
       .setLocale("en")
-      .toRelative({ unit: "minutes" });
+      .toRelative();
   }
 };

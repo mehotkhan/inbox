@@ -5,12 +5,8 @@ description: "صندوق ورودی :)"
 
 امروز چند شنبه چندم چند دوازدهم است :)
 
-...<LazyAdminIntro />
-
-## دیدگاه ها
+<!-- ...<LazyAdminIntro /> -->
 
 ...<LazyCommentsArchive />
 
 ...
-
-##### مثلا کپی رایت :)
