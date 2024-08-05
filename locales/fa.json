@@ -2,5 +2,12 @@
   "siteName": "علی زِمانی",
   "titleFirst": "علـی",
   "titleSecond": "زِمـــانی",
-  "description": "توسعه دهنده وب"
+  "description": "توسعه دهنده وب",
+  "home": "خانه",
+  "dashboard": "مدیریت",
+  "notes": "یادداشت",
+  "shop": "فروشگاه",
+  "about": "درباره",
+  "contact": "تماس",
+  "profile": "حساب کاربری"
 }

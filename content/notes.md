@@ -1,6 +1,8 @@
 ---
 title: "یادداشت ها"
 description: "بایگانی و آرشیو"
+thumbnail: library.jpg
+
 ---
 
 ...

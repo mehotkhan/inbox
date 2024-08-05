@@ -1,6 +1,8 @@
 ---
-title: "یادداشت ها"
-description: "بایگانی و آرشیو"
+title: "فروشگاه"
+description: "محصولات و خدمات"
+thumbnail: bagche.webp
+
 ---
 
 ...

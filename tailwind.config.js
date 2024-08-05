@@ -28,6 +28,7 @@ module.exports = {
       bold: 700,
       extrabold: 800,
       black: 900,
+      extrablack: 1000,
     },
     container: {
       center: true,

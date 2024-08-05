@@ -5,7 +5,7 @@ thumbnail: physics.webp
 description: اوپن سورس وب دولوپر :)
 ---
 
-## اطلاعات تماس
+## تماس
 
 ...
 <PageIntro />

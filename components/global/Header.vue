@@ -7,7 +7,11 @@
         <LogoArea />
         <MainMenu class="text-md hidden md:text-sm lg:contents" />
       </div>
-      <ToolsMenu />
+      <div class="flex gap-2 text-md items-center">
+        <LanguageSelector class="items-center" />
+        <DarkMode class="items-center" />
+        <MemberAvatarButton />
+      </div>
     </div>
   </header>
 </template>

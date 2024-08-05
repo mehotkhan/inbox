@@ -5,7 +5,7 @@ thumbnail: physics.webp
 description: روزمه و تجربیات کاری
 ---
 
-## Contact Details
+## درباره
 
 ...
 <PageIntro />

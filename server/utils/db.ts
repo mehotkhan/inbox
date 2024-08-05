@@ -1,5 +1,6 @@
 import type { BetterSQLite3Database } from "drizzle-orm/better-sqlite3";
-import { drizzle as D1Drizzle, DrizzleD1Database } from "drizzle-orm/d1";
+import type { DrizzleD1Database } from "drizzle-orm/d1";
+import { drizzle as D1Drizzle } from "drizzle-orm/d1";
 import { drizzle } from "drizzle-orm/better-sqlite3";
 import Database from "better-sqlite3";
 

@@ -1,12 +1,8 @@
 <script setup lang="ts">
 const route = useRoute();
 const crumbs = ref<any[]>([]);
-
+const { t } = useI18n();
 const GenerateCrumbs = (fullPath: string) => {
-  crumbs.value.push({
-    label: "خانه",
-    to: "/",
-  });
   const params = fullPath.startsWith("/")
     ? fullPath.substring(1).split("/")
     : fullPath.split("/");
@@ -16,7 +12,7 @@ const GenerateCrumbs = (fullPath: string) => {
     path = `${path}/${param}`;
     const label = param
       .split("-")
-      .map((item) => Capitalize(item))
+      .map((item) => Capitalize(t(item) ?? item))
       .join(" ");
     crumbs.value.push({
       label,
@@ -31,10 +27,14 @@ watch(nowRoute, (newRoute) => {
   crumbs.value = [];
   GenerateCrumbs(newRoute);
 });
+console.log(crumbs.value.length);
 </script>
 
 <template>
-  <UBreadcrumb :links="crumbs" class="breadcrumb" />
+  <div>
+    <UBreadcrumb v-if="crumbs.length >= 2" :links="crumbs" class="breadcrumb" />
+    <div v-else />
+  </div>
 </template>
 <style lang="scss">
 .breadcrumb {

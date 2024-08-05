@@ -8,7 +8,13 @@ const editEnable = ref(false);
 // };
 </script>
 <template>
-  <UCard class="min-h-screen">
+  <UCard
+    :ui="{
+      body: {
+        base: 'min-h-screen',
+      },
+    }"
+  >
     <template #header>
       <div class="flex justify-between pt-5">
         <Breadcrumb />
@@ -46,7 +52,11 @@ const editEnable = ref(false);
     <ContentDoc v-if="!editEnable" />
     <AdminEditPost v-else />
     <template #footer>
-      <div class="flex justify-between pt-5">مثلا کپی رایت :)</div>
+      <div class="flex justify-between pt-5 border-t">
+        مثلا کپی رایت :)
+
+        <Social class="items-center hidden md:flex" />
+      </div>
     </template>
   </UCard>
 </template>

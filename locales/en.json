@@ -2,5 +2,12 @@
   "siteName": "Ali Zemani",
   "titleFirst": "Ali",
   "titleSecond": "Zemani",
-  "description": "Web Developer"
+  "description": "Web Developer",
+  "home": "home",
+  "dashboard": "dashboard",
+  "notes": "notes",
+  "shop": "shop",
+  "about": "about",
+  "contact": "contact",
+  "profile": "profile"
 }

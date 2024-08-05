@@ -1,6 +1,5 @@
 <script setup>
 const { locale } = useI18n();
-// const langs = ["fa", "en"];
 
 const langs = [
   {
