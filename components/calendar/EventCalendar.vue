@@ -28,10 +28,13 @@ onMounted(() => {
   );
 });
 
-watch(props, async (newProps) => {
-  const localParts = newProps.inputDate.toLocaleParts();
-  dayOffset.value = localParts[2].value;
-});
+watch(
+  () => props.inputDate,
+  async (newInput: any) => {
+    const localParts = newInput.toLocaleParts();
+    dayOffset.value = localParts[2].value;
+  }
+);
 
 const weekdaysShort = computed(() => {
   return weekDayShift(
