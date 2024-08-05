@@ -3,10 +3,15 @@ title: "صفحه نخست"
 description: "صندوق ورودی :)"
 ---
 
-امروز چند شنبه چندم چند دوازدهم است :)
+<div class="mt-3">
 
-<!-- ...<LazyAdminIntro /> -->
-
-...<LazyCommentsArchive />
+<LazyAdminIntro />
+</div>
 
 ...
+
+<div class="mt-3">
+
+<LazyCommentsArchive />
+
+</div>
