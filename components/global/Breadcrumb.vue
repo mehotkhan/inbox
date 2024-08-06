@@ -27,7 +27,6 @@ watch(nowRoute, (newRoute) => {
   crumbs.value = [];
   GenerateCrumbs(newRoute);
 });
-console.log(crumbs.value.length);
 </script>
 
 <template>

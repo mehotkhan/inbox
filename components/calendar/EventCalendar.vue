@@ -19,13 +19,13 @@ onMounted(() => {
   const localParts = props.inputDate.toLocaleParts();
   dayOffset.value = localParts[2].value;
 
-  console.log(
-    Info.months("narrow", {
-      locale: props.locale,
-      useLocaleWeeks: true,
-      outputCalendar: "persian",
-    })
-  );
+  // console.log(
+  //   Info.months("narrow", {
+  //     locale: props.locale,
+  //     useLocaleWeeks: true,
+  //     outputCalendar: "persian",
+  //   })
+  // );
 });
 
 watch(
@@ -97,7 +97,6 @@ weekGenerator(range.value);
 
 watch(range, async (newRange) => {
   weekGenerator(newRange);
-  console.log(props.inputDate);
 });
 
 const inputClick = () => {

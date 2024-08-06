@@ -45,7 +45,7 @@ const editEnable = ref(false);
             />
           </div>
 
-          <span class="text-[.98rem]"> ۶ کاربر آنلاین </span>
+          <span class="text-[.98rem] p-2"> ۶ کاربر آنلاین </span>
         </div>
       </div>
     </template>

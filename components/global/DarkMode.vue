@@ -8,8 +8,8 @@ const { isDark, toggleDark } = useDark();
       class="text-md cursor-pointer"
       @click="toggleDark()"
     >
-      <UIcon v-if="isDark" name="i-heroicons-sun" />
-      <UIcon v-else name="i-heroicons-moon" />
+      <UIcon v-if="isDark" name="i-heroicons-moon" />
+      <UIcon v-else name="i-heroicons-sun" />
     </UButton>
   </div>
 </template>
