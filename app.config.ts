@@ -29,27 +29,27 @@ export default defineAppConfig({
   },
   menuItems: [
     {
-      title: "صفحه‌نخست",
+      title: "home",
       _path: "/",
       menu_order: 0,
     },
     {
-      title: "یادداشت",
+      title: "notes",
       _path: "/notes",
       menu_order: 99,
     },
     {
-      title: "فروشگاه",
+      title: "shop",
       _path: "/shop",
       menu_order: 99,
     },
     {
-      title: "درباره",
+      title: "about",
       _path: "/about",
       menu_order: 99,
     },
     {
-      title: "تماس",
+      title: "contact",
       _path: "/contact",
       menu_order: 100,
     },

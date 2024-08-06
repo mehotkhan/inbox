@@ -2,6 +2,7 @@
 const appConfig = useAppConfig();
 const route = useRoute();
 const { isOwner } = useOwner();
+const { locale } = useI18n();
 </script>
 
 <template>
@@ -9,19 +10,27 @@ const { isOwner } = useOwner();
     <li v-if="isOwner" key="dashboard">
       <NuxtLink
         :external="false"
-        to="/dashboard"
+        :to="`/${locale}/dashboard`"
         class="hover:text-black py-1 px-5 dark:hover:text-gray-200"
-        :class="route.path == '/dashboard' ? 'router-link-active' : ''"
-        >داشبورد</NuxtLink
+        :class="
+          locale + route.path === locale + '/dashboard'
+            ? 'router-link-active'
+            : ''
+        "
+        >{{ $t("dashboard") }}</NuxtLink
       >
     </li>
     <li v-for="menu in appConfig.menuItems" :key="menu._path">
       <NuxtLink
         :external="false"
-        :to="menu._path"
+        :to="'/' + locale + menu._path"
         class="hover:text-black py-1 px-5 dark:hover:text-gray-200"
-        :class="route.path == menu._path ? 'router-link-active' : ''"
-        >{{ menu.title }}</NuxtLink
+        :class="
+          locale + route.path === locale + menu._path
+            ? 'router-link-active'
+            : ''
+        "
+        >{{ $t(menu.title) }}</NuxtLink
       >
     </li>
   </ul>

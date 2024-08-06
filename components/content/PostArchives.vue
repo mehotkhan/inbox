@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { QueryBuilderParams } from "@nuxt/content/dist/runtime/types";
+const { locale } = useI18n();
 const props = defineProps({
   category: {
     type: String,
@@ -13,7 +14,7 @@ const props = defineProps({
   },
 });
 const query: QueryBuilderParams = {
-  path: props.path,
+  path: locale.value + props.path,
   limit: 10,
   sort: [{ date: -1 }],
   where: props.category ? [{ category: props.category }] : undefined,

@@ -77,7 +77,7 @@ export default defineNuxtConfig({
   },
   image: {
     dir: "assets/content",
-    // format: ["webp"],
+    format: ["webp"],
   },
 
   // gtag: {
@@ -92,9 +92,6 @@ export default defineNuxtConfig({
   //   "/profile/**": { ssr: false },
   // },
   content: {
-    // experimental: {
-    //   clientDb: true,
-    // },
     markdown: {
       toc: { depth: 3, searchDepth: 3 },
     },
@@ -107,10 +104,14 @@ export default defineNuxtConfig({
   i18n: {
     locales: [
       {
+        name: "فارسی",
+        dir: "rtl",
         code: "fa",
         file: "fa.json",
       },
       {
+        name: "English",
+        dir: "ltr",
         code: "en",
         file: "en.json",
       },
@@ -118,6 +119,7 @@ export default defineNuxtConfig({
     // lazy: true,
     langDir: "locales",
     defaultLocale: "fa",
+    strategy: "prefix",
   },
   imports: {
     dirs: ["composables/**"],

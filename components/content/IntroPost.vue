@@ -2,8 +2,8 @@
 const props = defineProps({
   banner: { type: Boolean, required: false, default: true },
 });
-
-const data = await queryContent("notes")
+const { locale } = useI18n();
+const data = await queryContent(locale.value + "/notes")
   .where({ banner: props.banner })
   .sort({ date: -1 })
   .findOne();
@@ -29,11 +29,11 @@ const data = await queryContent("notes")
           <ul class="flex flex-row mt-0 list-none items-center">
             <li key="category" class="text-lg">
               {{ data?.category }}
-              <span class="font-bold text-sm">،</span>
+              <span class="font-bold text-sm">.</span>
             </li>
             <li key="link" class="text-lg underline">
               <NuxtLink :external="false" :to="data?._path" class="underline">
-                بیشتر
+                {{ $t("more") }}
               </NuxtLink>
             </li>
           </ul>

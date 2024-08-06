@@ -1,11 +1,7 @@
 <script lang="ts" setup>
 const { isOwner } = useOwner();
-const route = useRoute();
+const { locale } = useI18n();
 const editEnable = ref(false);
-// const nodeEdit = () => {
-// return route.path.startsWith("/notes/") || route.path.startsWith("/shop/");
-
-// };
 </script>
 <template>
   <UCard

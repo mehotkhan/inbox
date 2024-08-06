@@ -1,23 +1,18 @@
-<script setup>
-const { locale } = useI18n();
+<script setup lang="ts">
+const { locale, locales } = useI18n();
+const switchLocalePath = useSwitchLocalePath();
 
-const langs = [
-  {
-    name: "فارسی",
-    value: "fa",
-  },
-  {
-    name: "English",
-    value: "en",
-  },
-];
+const availableLocales = computed(() => {
+  return locales.value.filter((i) => i.code !== locale.value);
+});
 </script>
 
 <template>
-  <USelect
-    v-model="locale"
-    :options="langs"
-    variant="none"
-    option-attribute="name"
-  />
+  <NuxtLink
+    v-for="loc in availableLocales"
+    :key="loc.code"
+    :to="switchLocalePath(loc.code)"
+  >
+    {{ loc.name }}
+  </NuxtLink>
 </template>
