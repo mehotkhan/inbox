@@ -2,8 +2,8 @@
 // import { GenerateRoutes } from "./tools/contentRoutes";
 
 export default defineNuxtConfig({
+  ssr: true,
   future: { compatibilityVersion: 4 },
-  // ssr: true,
   css: ["@/assets/scss/base.scss", "@/assets/scss/extra.scss"],
   devtools: { enabled: false },
 
