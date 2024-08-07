@@ -7,9 +7,9 @@
         <LogoArea />
         <MainMenu class="text-md hidden md:text-sm lg:contents" />
       </div>
-      <div class="flex gap-2 text-md items-center">
-        <LanguageSelector class="items-center" />
-        <DarkMode class="items-center" />
+      <div class="flex gap-2 text-md">
+        <LanguageSelector class="" />
+        <DarkMode class="" />
         <MemberAvatarButton />
       </div>
     </div>

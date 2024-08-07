@@ -1,24 +1,30 @@
 <script setup lang="ts">
 const route = useRoute();
-const crumbs = ref<any[]>([]);
-const { t } = useI18n();
+const { t, locale } = useI18n();
+const crumbs = ref([
+  {
+    label: "^_^",
+    to: "/",
+  },
+]);
 const GenerateCrumbs = (fullPath: string) => {
   const params = fullPath.startsWith("/")
-    ? fullPath.substring(1).split("/")
+    ? fullPath.substring(4).split("/")
     : fullPath.split("/");
-
   let path = "";
-  params.forEach((param) => {
-    path = `${path}/${param}`;
-    const label = param
-      .split("-")
-      .map((item) => Capitalize(t(item) ?? item))
-      .join(" ");
-    crumbs.value.push({
-      label,
-      to: path,
+  params
+    .filter((item) => (item.length > 1 ? item : undefined))
+    .forEach((param) => {
+      path = `${path}/${param}`;
+      const label = param
+        .split("-")
+        .map((item) => Capitalize(t(item) ?? item))
+        .join(" ");
+      crumbs.value.push({
+        label,
+        to: "/" + locale.value + path,
+      });
     });
-  });
 };
 // init
 GenerateCrumbs(route.fullPath);

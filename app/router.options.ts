@@ -1,14 +1,31 @@
 import type { RouterConfig } from "@nuxt/schema";
+import type { RouteRecordRaw } from "vue-router";
 
-export default {
-  scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition;
-    } else {
-      return {
-        top: 0,
-        behavior: "smooth",
-      };
-    }
+// 👉 Redirects
+const redirects: RouteRecordRaw[] = [
+  // {
+  //   path: "/",
+  //   name: "index",
+  //   meta: {
+  //     middleware: (to) => {
+  //       // const loggedIn = cookieRef<boolean | null>("user-logged-in", false);
+  //       // if (loggedIn.value) return { name: "dashboard" };
+  //       return { name: "login", query: to.query };
+  //     },
+  //   },
+  //   component: h("div"),
+  // },
+  {
+    path: "/",
+    name: "index",
+    redirect: (to) => {
+      return "/fa";
+    },
   },
-} as RouterConfig;
+];
+
+// https://router.vuejs.org/api/interfaces/routeroptions.html
+export default <RouterConfig>{
+  routes: (scannedRoutes) => [...redirects, ...scannedRoutes],
+  scrollBehaviorType: "smooth",
+};

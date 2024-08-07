@@ -3,12 +3,12 @@
   "titleFirst": "Ali",
   "titleSecond": "Zemani",
   "description": "Web Developer",
-  "home": "home",
-  "dashboard": "dashboard",
-  "notes": "notes",
-  "shop": "shop",
-  "about": "about",
-  "contact": "contact",
-  "profile": "profile",
-  "more": "more"
+  "home": "Home",
+  "dashboard": "Dashboard",
+  "notes": "Notes",
+  "shop": "Shop",
+  "about": "About",
+  "contact": "Contact",
+  "profile": "Profile",
+  "more": "More"
 }
