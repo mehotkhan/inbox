@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { FormSubmitEvent } from "#ui/types";
-import { encode, decode } from "js-base64";
+import { decode } from "js-base64";
 
 import { z } from "zod";
 const route = useRoute();
@@ -13,19 +13,21 @@ const fileData = await $fetch("/api/github/get-file-data", {
   body: { name: data.value._file },
 });
 
-const options = [
-  { label: "Option 1", value: "option-1" },
-  { label: "Option 2", value: "option-2" },
-  { label: "Option 3", value: "option-3" },
-];
+const testData = await extractMarkdownData(decode(fileData.content));
+
+console.log(testData);
+
+// const options = [
+//   { label: "Option 1", value: "option-1" },
+//   { label: "Option 2", value: "option-2" },
+//   { label: "Option 3", value: "option-3" },
+// ];
 
 const state = reactive({
   title: data.value.title,
-  category: data.value.category,
-  body: "## سلام",
+  category: testData.frontmatter.category,
+  body: testData.body,
 });
-
-state.body = decode(fileData.content);
 
 const schema = z.object({
   title: z.string().min(5),
@@ -65,11 +67,12 @@ const isTyping = (data: string) => {
           class="basis-2/12"
           size="md"
         >
-          <USelect
+          <!-- <USelect
             v-model="state.category"
             placeholder="Select..."
             :options="options"
-          />
+          />    -->
+          <UInput v-model="state.category" placeholder="Select..." />
         </UFormGroup>
         <UButtonGroup
           orientation="horizontal"
