@@ -8,9 +8,7 @@ const loadMore = () => {
 };
 </script>
 <template>
-  <div class="latest px-5 md:m-0">
-    <h3>دیدگاه ها</h3>
-    <SocialStreamFilters />
+  <div>
     <ul v-if="allComments?.length > 0">
       <li v-for="comment in allComments" :key="comment.id" class="mb-2 group">
         <div class="flex justify-between">
@@ -28,7 +26,7 @@ const loadMore = () => {
               / <SocialChannelDetails :pub="comment.tags[0][1]" />
             </span>
           </span>
-          <div class="text-sm flex gap-2 hidden group-hover:flex">
+          <div class="text-xs flex gap-2 group-hover:flex">
             <span>تایید</span>
             <span>اسپم</span>
             <span>حذف</span>

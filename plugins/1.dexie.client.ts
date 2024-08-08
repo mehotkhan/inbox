@@ -1,7 +1,8 @@
-import type { Table ,
+import type {
   DBCore,
   DBCoreMutateRequest,
   DBCoreMutateResponse,
+  Table,
 } from "dexie";
 import Dexie from "dexie";
 import type { Event as NostrEvent } from "nostr-tools";
@@ -16,7 +17,7 @@ interface MemberProfile {
 }
 
 export default defineNuxtPlugin(() => {
-  class BlogDatabase extends Dexie {
+  class Database extends Dexie {
     events!: Table<ExtendedEvent, number>;
     members!: Table<MemberProfile, number>;
 
@@ -79,7 +80,7 @@ export default defineNuxtPlugin(() => {
     }
   }
 
-  const dexie = new BlogDatabase();
+  const dexie = new Database();
 
   return {
     provide: {

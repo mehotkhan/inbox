@@ -1,33 +1,36 @@
-import { remark } from "remark";
-import frontmatter from "remark-frontmatter";
-import { parse as parseYaml } from "yaml";
-
 interface ExtractedData {
   frontmatter: Record<string, any>;
   body: string;
 }
 
-export const extractMarkdownData = async (
-  markdown: string
-): Promise<ExtractedData> => {
-  let frontmatterContent = "";
-  let bodyContent = "";
+export const extractMarkdownData = (markdown: string): ExtractedData => {
+  const yamlRegex = /^---\n([\s\S]+?)\n---/;
+  const match = markdown.match(yamlRegex);
 
-  const processor = remark().use(frontmatter, ["yaml"]);
+  let frontmatterContent: any = "";
+  let bodyContent = markdown;
 
-  const file = processor.processSync(markdown);
-  const content = file.toString();
-
-  // Separate frontmatter and body content
-  const match: any = content.match(/(^---[\s\S]+?---)([\s\S]*)/);
   if (match) {
     frontmatterContent = match[1];
-    bodyContent = match[2].trim();
+    bodyContent = markdown.slice(match[0].length).trim();
   }
 
-  const frontmatterJson = parseYaml(
-    frontmatterContent.replace(/^---|---$/g, "").trim()
-  );
+  const parseYamlToJson = (yaml: string): Record<string, any> => {
+    const lines = yaml.split("\n");
+    const result: Record<string, any> = {};
+
+    lines.forEach((line) => {
+      const [key, ...rest] = line.split(":");
+      const value = rest.join(":").trim();
+      if (key && value !== undefined) {
+        result[key.trim()] = value;
+      }
+    });
+
+    return result;
+  };
+
+  const frontmatterJson = parseYamlToJson(frontmatterContent);
 
   return {
     frontmatter: frontmatterJson,

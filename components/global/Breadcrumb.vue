@@ -18,7 +18,7 @@ const GenerateCrumbs = (fullPath: string) => {
       path = `${path}/${param}`;
       const label = param
         .split("-")
-        .map((item) => Capitalize(t(item) ?? item))
+        .map((item) => Capitalize(item))
         .join(" ");
       crumbs.value.push({
         label,

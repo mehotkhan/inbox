@@ -30,14 +30,14 @@ const editEnable = ref(false);
               size="md"
               color="primary"
               variant="ghost"
-              to="/create"
+              to="create"
             />
             <UButton
               label="افزودن محصول"
               size="md"
               color="primary"
               variant="ghost"
-              to="/create"
+              to="create"
             />
           </div>
 
