@@ -148,10 +148,12 @@ export default () => {
     return await $dexie.events
       .orderBy("created_at")
       .filter(
-        (event: NostrEvent) => event.kind == 14
-        // event.tags.some(
-        //   (tag) => tag[0] === "e" && tag[1] === currentChannelId.value
-        // )
+        (event: NostrEvent) =>
+          event.kind == 14 &&
+          (event.pubkey === certs.value.pub ||
+            event.tags.some(
+              (tag) => tag[0] === "p" && tag[1] === certs.value.pub
+            ))
       )
       .reverse()
       .toArray();
