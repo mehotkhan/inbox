@@ -101,10 +101,11 @@ export default defineNuxtConfig({
     markdown: {
       toc: { depth: 3, searchDepth: 3 },
     },
-    highlight: {
-      theme: "github-dark",
-      preload: ["ts", "js", "css", "json", "go"],
-    },
+    highlight: false,
+    // highlight: {
+    //   theme: "github-dark",
+    //   preload: ["ts", "js", "css", "json", "go"],
+    // },
   },
 
   i18n: {
