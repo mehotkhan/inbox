@@ -3,10 +3,13 @@ const props = defineProps({
   banner: { type: Boolean, required: false, default: true },
 });
 const { locale } = useI18n();
-const data = await queryContent(locale.value + "/notes")
-  .where({ banner: props.banner })
-  .sort({ date: -1 })
-  .findOne();
+
+const { data } = await useAsyncData("banner-data", () =>
+  queryContent(locale.value + "/notes")
+    .where({ banner: props.banner })
+    .sort({ date: -1 })
+    .findOne()
+);
 </script>
 <template>
   <div>

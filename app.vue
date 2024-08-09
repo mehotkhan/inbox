@@ -27,8 +27,9 @@ useHead({
     },
   ],
 });
-
-registerNew();
+onMounted(() => {
+  registerNew();
+});
 </script>
 <template>
   <Html

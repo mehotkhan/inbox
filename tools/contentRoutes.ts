@@ -1,25 +1,31 @@
 import fs from "fs";
 import { generatePath } from "@nuxt/content/transformers/path-meta";
 
-export const GenerateRoutes = (routes: string[]) => {
-  let contents: string[] = [];
-  for (const i in routes) {
-    contents = contents.concat(Generating(routes[i]));
-  }
+export const generateRoutes = (languages = ["en", "fa"]) => {
+  const contents = languages.flatMap((lang) => {
+    return generateRoutesForLanguage(lang);
+  });
   return contents;
 };
 
-const Generating = (path: string, files_: string[] = []) => {
-  files_ = files_ || [];
-  const route = "content/" + path;
-  const files = fs.readdirSync(route);
-  for (const i in files) {
-    const name = route + "/" + files[i];
-    if (fs.statSync(name).isDirectory()) {
-      Generating(name, files_);
-    } else {
-      files_.push(generatePath(name.replace("content", "").replace(".md", "")));
+const generateRoutesForLanguage = (lang: string) => {
+  const path = `content/${lang}`;
+  return scanDirectory(path);
+};
+
+const scanDirectory = (directory: string, files = []) => {
+  const items = fs.readdirSync(directory);
+
+  items.forEach((item) => {
+    const fullPath = `${directory}/${item}`;
+    if (fs.statSync(fullPath).isDirectory()) {
+      scanDirectory(fullPath, files);
+    } else if (fullPath.endsWith(".md")) {
+      files.push(
+        generatePath(fullPath.replace("content", "").replace(".md", ""))
+      );
     }
-  }
-  return files_;
+  });
+
+  return files;
 };

@@ -1,5 +1,5 @@
 // import viteCompression from "vite-plugin-compression";
-// import { GenerateRoutes } from "./tools/contentRoutes";
+import { generateRoutes } from "./tools/contentRoutes";
 
 export default defineNuxtConfig({
   ssr: true,
@@ -61,20 +61,21 @@ export default defineNuxtConfig({
       websocket: true,
       tasks: true,
     },
-    // preset: "cloudflare-pages",
+    preset: "cloudflare-pages",
     // static: true,
     // compressPublicAssets: true,
     // minify: true,
     prerender: {
       crawlLinks: true,
-      // routes: GenerateRoutes(["notes", "shop"]),
+      routes: generateRoutes(), // Use the optimized route generator
     },
   },
 
-  experimental: {
-    renderJsonPayloads: true,
-    viewTransition: true,
-  },
+  // experimental: {
+  //   renderJsonPayloads: true,
+  //   viewTransition: true,
+  //   logLevel: "debug",
+  // },
   image: {
     dir: "assets/content",
     format: ["webp"],
@@ -84,13 +85,12 @@ export default defineNuxtConfig({
   //   id: "G-78646PGVN1",
   // },
 
-  // routeRules: {
-  //   "/**": { prerender: true },
-  //   "/notes/**": { ssr: true },
-  //   "/shop/**": { ssr: true },
-  //   "/dashboard/**": { ssr: false },
-  //   "/profile/**": { ssr: false },
-  // },
+  routeRules: {
+    "/**": { prerender: true }, // Prerender (SSG) all routes by default
+    "/api/**": { ssr: true }, // Keep server-side rendering for specific API routes
+    "/nostr/**": { ssr: true }, // Keep server-side rendering for specific API routes
+    "/webrtc/**": { ssr: true }, // Keep server-side rendering for specific API routes
+  },
   content: {
     markdown: {
       toc: { depth: 3, searchDepth: 3 },

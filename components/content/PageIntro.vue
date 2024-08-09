@@ -1,8 +1,4 @@
-<script lang="ts" setup>
-// const props = defineProps({
-// data: { type: Object, required: true, default: {} },
-// });
-</script>
+<script lang="ts" setup></script>
 <template>
   <ContentQuery v-slot="{ data }" :path="$route.path" find="one">
     <div
