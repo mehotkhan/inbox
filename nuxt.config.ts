@@ -1,4 +1,4 @@
-// import viteCompression from "vite-plugin-compression";
+import viteCompression from "vite-plugin-compression";
 import { generateRoutes } from "./tools/contentRoutes";
 
 export default defineNuxtConfig({
@@ -46,36 +46,38 @@ export default defineNuxtConfig({
     pageTransition: { name: "page", mode: "in-out" },
   },
 
-  // vite: {
-  //   plugins: [viteCompression({ algorithm: "brotliCompress" })],
-  //   build: {
-  //     watch: {},
-  //     sourcemap: false,
-  //     minify: true,
-  //     rollupOptions: { treeshake: false },
-  //   },
-  // },
+  vite: {
+    plugins: [viteCompression({ algorithm: "brotliCompress" })],
+    build: {
+      watch: {},
+      sourcemap: false,
+      minify: true,
+      rollupOptions: { treeshake: false },
+    },
+  },
 
   nitro: {
     experimental: {
       websocket: true,
       tasks: true,
     },
-    preset: "cloudflare-pages",
+    // preset: "cloudflare-pages",
     // static: true,
-    // compressPublicAssets: true,
-    // minify: true,
+    compressPublicAssets: true,
+    minify: true,
     prerender: {
-      crawlLinks: true,
+      crawlLinks: false,
+      failOnError: false,
+      concurrency: 12,
       routes: generateRoutes(), // Use the optimized route generator
     },
   },
 
-  // experimental: {
-  //   renderJsonPayloads: true,
-  //   viewTransition: true,
-  //   logLevel: "debug",
-  // },
+  experimental: {
+    renderJsonPayloads: true,
+    viewTransition: true,
+    // logLevel: "debug",
+  },
   image: {
     dir: "assets/content",
     format: ["webp"],
@@ -92,6 +94,10 @@ export default defineNuxtConfig({
     "/webrtc/**": { ssr: true }, // Keep server-side rendering for specific API routes
   },
   content: {
+    experimental: {
+      clientDB: true,
+    },
+    documentDriven: true,
     markdown: {
       toc: { depth: 3, searchDepth: 3 },
     },
