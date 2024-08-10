@@ -23,7 +23,7 @@
           class="flex max-h-[20rem]"
           :src="data?.thumbnail"
           :alt="data?.title"
-          :placeholder="[300, 300]"
+          :placeholder="[400, 400]"
         />
       </div>
     </div>

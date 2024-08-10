@@ -30,7 +30,7 @@ const { profile } = useUser();
         class="flex w-[20rem] rounded-full"
         src="https://avatars.githubusercontent.com/u/739984?v=4"
         :alt="profile?.displayName"
-        :placeholder="[300, 300]"
+        :placeholder="[400, 400]"
       />
     </div>
   </div>

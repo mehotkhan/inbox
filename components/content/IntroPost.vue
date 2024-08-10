@@ -3,10 +3,9 @@ const props = defineProps({
   banner: { type: Boolean, required: false, default: true },
 });
 const { locale } = useI18n();
-const config = useRuntimeConfig();
 
 const { data } = await useAsyncData("banner-data", () =>
-  queryContent(locale.value ?? config.public.language + "/notes")
+  queryContent(locale.value + "/notes")
     .where({ banner: props.banner })
     .sort({ date: -1 })
     .findOne()
@@ -50,7 +49,7 @@ const { data } = await useAsyncData("banner-data", () =>
             class="flex max-h-[30rem]"
             :src="data?.thumbnail"
             :alt="data?.title"
-            :placeholder="[300, 300]"
+            :placeholder="[400, 400]"
           />
         </div>
       </div>
