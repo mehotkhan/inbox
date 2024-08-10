@@ -19,7 +19,8 @@ const redirects: RouteRecordRaw[] = [
     path: "/",
     name: "index",
     redirect: (to) => {
-      return "/fa";
+      const config = useRuntimeConfig();
+      return "/" + config.public.language;
     },
   },
 ];

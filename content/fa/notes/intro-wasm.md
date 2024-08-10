@@ -1,6 +1,6 @@
 ---
 title: آشنایی با WASM
-thumbnail: web-assembly-logo.png
+thumbnail: content/web-assembly-logo.png
 description: " وب‌اسمبلی (انگلیسی: WebAssembly) یا وَسم (انگلیسی: Wasm، اغلب به
   طور مخفف) استانداردی باز است که یک فرمت کدی باینری و قابل حمل برای برنامه‌های
   اجرایی،برای اجرا در محیط های جاوا اسکریپ است .هدف اصلی وب‌اسمبلی میسر کردن
@@ -125,7 +125,7 @@ const initWasm = () => {
       function (obj) {
         wasm = obj.instance;
         go.run(wasm);
-      },
+      }
     );
   }
 };

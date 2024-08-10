@@ -3,9 +3,10 @@ const props = defineProps({
   banner: { type: Boolean, required: false, default: true },
 });
 const { locale } = useI18n();
+const config = useRuntimeConfig();
 
 const { data } = await useAsyncData("banner-data", () =>
-  queryContent(locale.value + "/notes")
+  queryContent(locale.value ?? config.public.language + "/notes")
     .where({ banner: props.banner })
     .sort({ date: -1 })
     .findOne()

@@ -6,7 +6,7 @@ tags:
   - Vue
   - PWA
   - JamStack
-thumbnail: Building-Progressive-Web-Applications-with-Vuejs.webp
+thumbnail: content/Building-Progressive-Web-Applications-with-Vuejs.webp
 description:
   Progressive web apps (PWAs) were initially introduced by Google in 2015
   and proved to bring many advantages to the web platform. In this book, we

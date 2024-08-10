@@ -1,7 +1,7 @@
 ---
 title: تماس من
 date: 2023-08-12T04:29:59.358Z
-thumbnail: physics.webp
+thumbnail: content/physics.webp
 description: اوپن سورس وب دولوپر :)
 ---
 

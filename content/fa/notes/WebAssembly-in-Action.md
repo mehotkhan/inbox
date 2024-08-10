@@ -1,6 +1,6 @@
 ---
 title: WebAssembly in Action
-thumbnail: wasm-in-actions.png
+thumbnail: content/wasm-in-actions.png
 description: WebAssembly in Action introduces the WebAssembly stack and walks
   you through the process of writing and running browser-based applications.
   Expert developer Gerard Gallant gives you a firm foundation of the structure
