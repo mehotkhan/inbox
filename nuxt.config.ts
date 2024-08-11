@@ -25,9 +25,10 @@ export default defineNuxtConfig({
       github: "",
       linkedin: "",
       twitter: '""',
-      color: "#e5e7eb",
+      language: "",
       githubToken: "",
       githubRepo: "",
+      color: "#e5e7eb",
     },
   },
 

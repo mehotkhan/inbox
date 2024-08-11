@@ -1,9 +1,10 @@
-<script lang="ts">
+<script setup lang="ts">
 const { locale } = useI18n();
+const { isOwner } = useOwner();
 </script>
 <template>
   <h1 class="flex text-2xl items-center mx-5 font-FarhangDot">
-    <NuxtLink :to="`/${locale}`">
+    <NuxtLink :to="isOwner ? `/${locale}/dashboard` : `/${locale}`">
       <div class="flex items-baseline">
         <div class="font-hairline">
           {{ $t("titleFirst") + "" }}

@@ -1,12 +1,10 @@
 <script lang="ts" setup>
-const props = defineProps({
-  banner: { type: Boolean, required: false, default: true },
-});
 const { locale } = useI18n();
+const config = useRuntimeConfig();
 
 const { data } = await useAsyncData("banner-data", () =>
-  queryContent(locale.value + "/notes")
-    .where({ banner: props.banner })
+  queryContent(locale.value ?? config.app.language)
+    .where({ banner: true })
     .sort({ date: -1 })
     .findOne()
 );
