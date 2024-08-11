@@ -1,4 +1,4 @@
-import viteCompression from "vite-plugin-compression";
+// import viteCompression from "vite-plugin-compression";
 import { generateRoutes } from "./tools/contentRoutes";
 
 export default defineNuxtConfig({
@@ -10,35 +10,24 @@ export default defineNuxtConfig({
   modules: [
     "@nuxt/ui",
     "@nuxt/content",
-    // "nuxt-gtag",
     "@nuxt/image",
     "@nuxtjs/i18n",
-    // "nitro-cloudflare-dev",
     "@nuxt/eslint",
     "nuxt-tiptap-editor",
   ],
 
-  // extends: ["nuxt-seo-kit"],
   runtimeConfig: {
-    githubToken: process.env.GITHUB_TOKEN,
-    githubRepo: process.env.GITHUB_REPO,
     app: {
-      title: process.env.SITE_NAME,
-      description: process.env.SITE_DESCRIPTIONS,
-      titleFirst: process.env.SITE_TITLE_FIRST,
-      titleSecond: process.env.SITE_TITLE_SECOND,
-      github: process.env.GITHUB,
-      linkedin: process.env.LINKEDIN,
-      twitter: process.env.TWITTER,
-      favicon: "/favicon.ico",
-      // icon: "/icons.png",
+      title: "",
+      description: "",
+      titleFirst: "",
+      titleSecond: "",
+      github: "",
+      linkedin: "",
+      twitter: '""',
       color: "#e5e7eb",
-    },
-    public: {
-      siteUrl: process.env.PUBLIC_SITE_URL,
-      siteName: process.env.SITE_NAME,
-      siteDescription: process.env.SITE_DESCRIPTIONS,
-      language: process.env.SITE_LANGUAGE,
+      githubToken: "",
+      githubRepo: "",
     },
   },
 
@@ -46,15 +35,15 @@ export default defineNuxtConfig({
     pageTransition: { name: "page", mode: "in-out" },
   },
 
-  vite: {
-    plugins: [viteCompression({ algorithm: "brotliCompress" })],
-    build: {
-      watch: {},
-      sourcemap: false,
-      minify: true,
-      rollupOptions: { treeshake: false },
-    },
-  },
+  // vite: {
+  //   plugins: [viteCompression({ algorithm: "brotliCompress" })],
+  //   build: {
+  //     watch: {},
+  //     sourcemap: false,
+  //     minify: true,
+  //     rollupOptions: { treeshake: false },
+  //   },
+  // },
 
   nitro: {
     experimental: {
@@ -69,17 +58,15 @@ export default defineNuxtConfig({
       crawlLinks: false,
       failOnError: false,
       concurrency: 12,
-      routes: generateRoutes(), // Use the optimized route generator
+      routes: generateRoutes(),
     },
   },
 
   experimental: {
-    // renderJsonPayloads: true,
+    renderJsonPayloads: true,
     viewTransition: true,
-    // logLevel: "debug",
   },
   image: {
-    // dir: "assets/content",
     format: ["webp"],
   },
 

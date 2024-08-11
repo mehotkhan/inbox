@@ -18,12 +18,12 @@ useHead({
   ],
 
   link: [
-    { rel: "icon", type: "image/x-icon", href: runtimeConfig.app.favicon },
+    { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
     {
       rel: "icon",
       type: "image/png",
       sizes: "192x192",
-      href: runtimeConfig.app.icon,
+      href: "/icon.png",
     },
   ],
 });

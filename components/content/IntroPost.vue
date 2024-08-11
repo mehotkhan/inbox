@@ -46,7 +46,7 @@ const { data } = await useAsyncData("banner-data", () =>
             preload
             loading="lazy"
             sizes="sm:100vw md:50vw lg:400px"
-            class="flex max-h-[30rem]"
+            class="flex w-full max-w-[25rem]"
             :src="data?.thumbnail"
             :alt="data?.title"
             :placeholder="[400, 400]"

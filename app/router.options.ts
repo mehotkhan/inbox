@@ -15,14 +15,14 @@ const redirects: RouteRecordRaw[] = [
   //   },
   //   component: h("div"),
   // },
-  {
-    path: "/",
-    name: "index",
-    redirect: (to) => {
-      const config = useRuntimeConfig();
-      return "/" + config.public.language;
-    },
-  },
+  // {
+  //   path: "/",
+  //   name: "index",
+  //   redirect: (to) => {
+  //     const { locale } = useI18n();
+  //     return "/" + locale.value;
+  //   },
+  // },
 ];
 
 // https://router.vuejs.org/api/interfaces/routeroptions.html
