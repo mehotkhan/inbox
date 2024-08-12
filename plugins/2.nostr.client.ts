@@ -11,10 +11,10 @@ export default defineNuxtPlugin(() => {
   const { status, data, send, open, close } = useWebSocket(relayURL, {
     immediate: false,
     autoReconnect: {
-      retries: 3,
-      delay: 1000,
+      retries: 5,
+      delay: 2000,
       onFailed() {
-        console.log("Failed to connect WebSocket after 3 retries");
+        console.log("Failed to connect WebSocket after 5 retries");
       },
     },
   });
