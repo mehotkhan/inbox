@@ -3,7 +3,7 @@ import type { Event as NostrEvent } from "nostr-tools";
 
 export default defineNuxtPlugin(() => {
   const BASEURL = useRequestURL();
-  const relayURL = `${BASEURL.protocol === "http:" ? "ws" : "wss"}://${BASEURL.host}/nostr/nostr`;
+  const relayURL = `${BASEURL.protocol === "http:" ? "ws" : "wss"}://${BASEURL.host}/nostr-relay`;
 
   const { $dexie } = useNuxtApp();
   const { loggedIn, profile } = useUser();
@@ -30,7 +30,6 @@ export default defineNuxtPlugin(() => {
       open();
     }
   });
-
   watch(status, (newStatus) => {
     if (newStatus === "OPEN") {
       sendREQMessage();
@@ -45,7 +44,7 @@ export default defineNuxtPlugin(() => {
       console.error("Failed to parse incoming message", error);
     }
   });
-
+  let timer: any = null;
   const sendREQMessage = () => {
     const subscriptionId = "my-subscription-id";
     const filter = {
@@ -53,10 +52,15 @@ export default defineNuxtPlugin(() => {
       authors: [profile.value?.pub],
     };
     const reqMessage = JSON.stringify(["REQ", subscriptionId, filter]);
-    send(reqMessage);
-    // console.log("REQ message sent:", reqMessage);
+    timer = setInterval(() => {
+      console.log("req");
+      send(reqMessage);
+    }, 5000);
   };
 
+  onUnmounted(() => {
+    clearInterval(timer);
+  });
   const handleIncomingEvent = async (event: NostrEvent) => {
     try {
       console.log();
@@ -86,6 +90,7 @@ export default defineNuxtPlugin(() => {
   };
 
   const sendEVENTMessage = async (event: NostrEvent) => {
+    delete event.seen;
     send(JSON.stringify(["EVENT", event]));
   };
   return {

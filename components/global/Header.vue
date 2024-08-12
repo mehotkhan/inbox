@@ -8,9 +8,11 @@
         <MainMenu class="text-md hidden md:text-sm lg:contents" />
       </div>
       <div class="flex gap-2 text-md">
-        <LanguageSelector class="" />
-        <DarkMode class="" />
-        <MemberAvatarButton />
+        <ClientOnly>
+          <LanguageSelector class="" />
+          <DarkMode class="" />
+          <MemberAvatarButton />
+        </ClientOnly>
       </div>
     </div>
   </header>

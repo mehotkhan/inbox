@@ -25,7 +25,7 @@ const editEnable = ref(false);
               @click="editEnable = !editEnable"
             />
 
-            <UButton
+            <!-- <UButton
               label="افزودن یادداشت"
               size="md"
               color="primary"
@@ -38,7 +38,7 @@ const editEnable = ref(false);
               color="primary"
               variant="ghost"
               to="/create"
-            />
+            /> -->
           </div>
 
           <span class="text-[.98rem] p-2"> ۶ کاربر آنلاین </span>

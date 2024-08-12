@@ -78,7 +78,7 @@ export default defineNuxtConfig({
   routeRules: {
     "/**": { prerender: true }, // Prerender (SSG) all routes by default
     "/api/**": { ssr: true }, // Keep server-side rendering for specific API routes
-    "/nostr/**": { ssr: true }, // Keep server-side rendering for specific API routes
+    "/nostr-relay": { ssr: true }, // Keep server-side rendering for specific API routes
     "/webrtc/**": { ssr: true }, // Keep server-side rendering for specific API routes
   },
   content: {

@@ -6,7 +6,7 @@ import { drizzle as D1Drizzle } from "drizzle-orm/d1";
 
 export const initDrizzle: BetterSQLite3Database | DrizzleD1Database = (
   cloudflare?: any
-) => {
+): any => {
   if (process.env.DB) {
     // return D1Drizzle(cloudflare);
     return D1Drizzle(process?.env?.DB);

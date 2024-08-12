@@ -48,11 +48,8 @@ export default defineNuxtPlugin(() => {
                     for (const event of events) {
                       if (!event.seen) {
                         try {
-                          const body = await $fetch("/nostr/create", {
-                            method: "post",
-                            body: event,
-                          });
-                          console.log(body);
+                          const { $sendEVENTMessage } = useNuxtApp();
+                          await $sendEVENTMessage(event);
                           // Update the event to mark it as seen
                           // event.seen = true;
                           console.log("send");

@@ -24,6 +24,7 @@
     "@worker-tools/structured-json": "0.1.0-pre.4",
     "better-sqlite3": "^11.1.2",
     "cookie": "^0.6.0",
+    "crossws": "github:unjs/crossws",
     "dexie": "^4.0.8",
     "drizzle-orm": "^0.33.0",
     "fido2-lib": "^3.5.3",
