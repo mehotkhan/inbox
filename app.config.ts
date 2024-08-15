@@ -38,11 +38,11 @@ export default defineAppConfig({
       _path: "/notes",
       menu_order: 99,
     },
-    {
-      title: "shop",
-      _path: "/shop",
-      menu_order: 99,
-    },
+    // {
+    //   title: "shop",
+    //   _path: "/shop",
+    //   menu_order: 99,
+    // },
     {
       title: "about",
       _path: "/about",
