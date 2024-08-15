@@ -10,4 +10,4 @@ thumbnail: content/physics.webp
 
 یک داستان طولانی
 
-<LazyComments />
+<Comments />

@@ -16,8 +16,8 @@
   "dependencies": {
     "@noble/curves": "^1.5.0",
     "@noble/hashes": "^1.4.0",
-    "@tiptap/extension-bubble-menu": "^2.5.9",
-    "@tiptap/extension-placeholder": "^2.5.9",
+    "@tiptap/extension-bubble-menu": "^2.6.2",
+    "@tiptap/extension-placeholder": "^2.6.2",
     "@vueuse/components": "^10.11.1",
     "@vueuse/core": "^10.11.1",
     "@vueuse/rxjs": "^10.11.1",
@@ -33,7 +33,7 @@
     "luxon": "^3.5.0",
     "nostr-tools": "^2.7.2",
     "nuxt": "^3.12.4",
-    "nuxt-tiptap-editor": "^1.2.0",
+    "nuxt-tiptap-editor": "^1.2.1",
     "sass": "^1.77.8",
     "tiptap-markdown": "^0.8.10",
     "web-uuid": "0.1.0-pre.1",
@@ -49,7 +49,7 @@
     "@nuxtjs/i18n": "^8.3.3",
     "@types/better-sqlite3": "^7.6.11",
     "@types/luxon": "^3.4.2",
-    "@types/node": "^22.2.0",
+    "@types/node": "^22.3.0",
     "drizzle-kit": "^0.24.0",
     "ejs": "^3.1.10",
     "eslint": "^9.9.0",
@@ -58,6 +58,6 @@
     "typescript": "^5.5.4",
     "vite-plugin-compression": "^0.5.1",
     "vue-router": "^4.4.3",
-    "wrangler": "^3.70.0"
+    "wrangler": "^3.71.0"
   }
 }

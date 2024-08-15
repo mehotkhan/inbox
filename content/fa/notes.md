@@ -9,4 +9,4 @@ thumbnail: content/library.jpg
 
 ## جدیدترین ورودی ها
 
-...<LazyPostArchives path="/notes/"/>
+<PostArchives path="/notes/"/>

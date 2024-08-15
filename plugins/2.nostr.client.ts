@@ -44,7 +44,7 @@ export default defineNuxtPlugin(() => {
       console.error("Failed to parse incoming message", error);
     }
   });
-  let timer: any = null;
+  // let timer: any = null;
   const sendREQMessage = () => {
     const subscriptionId = "my-subscription-id";
     const filter = {
@@ -52,15 +52,16 @@ export default defineNuxtPlugin(() => {
       authors: [profile.value?.pub],
     };
     const reqMessage = JSON.stringify(["REQ", subscriptionId, filter]);
-    timer = setInterval(() => {
+    setInterval(() => {
       console.log("req");
       send(reqMessage);
     }, 5000);
   };
 
-  onUnmounted(() => {
-    clearInterval(timer);
-  });
+  // onUnmounted(() => {
+  //   clearInterval(timer);
+  // });
+
   const handleIncomingEvent = async (event: NostrEvent) => {
     try {
       console.log();

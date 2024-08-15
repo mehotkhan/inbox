@@ -11,4 +11,4 @@ description: "Inbox Page"
 
 ## Latest Entry
 
-...<PostArchives />
+<PostArchives />

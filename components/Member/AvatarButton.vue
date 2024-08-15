@@ -1,5 +1,6 @@
 <script setup>
 const { profile } = useUser();
+const { locale } = useI18n();
 
 const items = [
   [
@@ -13,7 +14,7 @@ const items = [
     {
       label: "پروفایل",
       icon: "i-heroicons-user",
-      to: "/profile",
+      to:  `/${locale.value}/profile`,
     },
     {
       label: "۳ اطلاعیه جدید",

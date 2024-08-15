@@ -3,7 +3,6 @@ title: "صفحه نخست"
 description: "صندوق ورودی :)"
 ---
 
-
 <div>
 
 <IntroPost />
@@ -12,4 +11,4 @@ description: "صندوق ورودی :)"
 
 ## جدیدترین ورودی ها
 
-...<PostArchives />
+<PostArchives />

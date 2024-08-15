@@ -9,4 +9,4 @@ thumbnail: content/bagche.webp
 
 ## جدیدترین ورودی ها
 
-...<LazyPostArchives path="/shop/"/>
+<PostArchives path="/shop/"/>

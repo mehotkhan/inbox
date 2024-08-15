@@ -5,8 +5,10 @@ description: "اطلاعات حساب کاربری"
 
 امروز چند شنبه چندم چند دوازدهم است :)
 
-...<LazyMemberIntro />
+<div>
 
-...<LazyCommentsArchive />
+<MemberIntro />
 
-...
+</div>
+
+<AdminTabs />
