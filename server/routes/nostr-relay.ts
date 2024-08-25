@@ -8,7 +8,7 @@ export default defineWebSocketHandler({
   //   console.log(`[ws] upgrading ${req.url} :`, cookies.userPub);
   // },
   open: (peer) => {
-    const cookies = cookie.parse(peer?.headers?.get("cookie"));
+    const cookies = cookie.parse(peer.headers["cookie"]);
     if (!cookies.userPub) {
       peer.terminate();
       console.log("pub cookie not fond in ws");

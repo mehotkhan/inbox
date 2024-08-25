@@ -42,7 +42,8 @@ const { currentComments } = useComments();
     <UCard
       v-for="comment in currentComments"
       :key="comment.id"
-      class="text-base bg-white rounded-lg dark:bg-gray-900 mb-10 w-full"
+      class="text-base dark:bg-gray-900 mb-10 w-full"
+      :ui="{ring:'ring-0',shadow:'shadow-none',base:'border-r-4 border-primary',rounded:'rounded-sm'}"
     >
       <template #header>
         <div class="w-full flex justify-between">

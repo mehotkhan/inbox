@@ -1,8 +1,7 @@
 export default defineAppConfig({
   ui: {
-    primary: "black",
+    primary: "blue",
     gray: "cool",
-    icons: "all",
     breadcrumb: {
       ol: "p-0 m-0",
     },
@@ -12,12 +11,10 @@ export default defineAppConfig({
     },
     card: {
       divide: "divide-none",
-
       background: "bg-white dark:bg-gray-900",
       rounded: "rounded-sm",
       ring: "ring-0 ring-gray-200 dark:ring-gray-800",
       shadow: "shadow-md",
-
       header: {
         padding: "px-3 py-3 sm:px-4",
         base: "border-0",
