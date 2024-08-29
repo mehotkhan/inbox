@@ -1,9 +1,9 @@
-// import viteCompression from "vite-plugin-compression";
+import viteCompression from "vite-plugin-compression";
 import { generateRoutes } from "./tools/contentRoutes";
 
 export default defineNuxtConfig({
   ssr: true,
-  future: { compatibilityVersion: 4 },
+  // future: { compatibilityVersion: 4 },
   css: ["@/assets/scss/base.scss", "@/assets/scss/extra.scss"],
   devtools: { enabled: false },
 
@@ -36,20 +36,20 @@ export default defineNuxtConfig({
     pageTransition: { name: "page", mode: "in-out" },
   },
 
-  // vite: {
-  //   plugins: [viteCompression({ algorithm: "brotliCompress" })],
-  //   build: {
-  //     watch: {},
-  //     sourcemap: false,
-  //     minify: true,
-  //     rollupOptions: { treeshake: false },
-  //   },
-  // },
+  vite: {
+    plugins: [viteCompression({ algorithm: "brotliCompress" })],
+    build: {
+      watch: {},
+      sourcemap: false,
+      minify: true,
+      rollupOptions: { treeshake: false },
+    },
+  },
 
   nitro: {
     experimental: {
       websocket: true,
-      tasks: true,
+      // tasks: true,
     },
     // preset: "cloudflare-pages",
     // static: true,
@@ -64,31 +64,31 @@ export default defineNuxtConfig({
   },
 
   experimental: {
-    renderJsonPayloads: true,
+    // renderJsonPayloads: true,
     viewTransition: true,
   },
-  image: {
-    format: ["webp"],
-  },
+  // image: {
+  //   format: ["webp"],
+  // },
 
   // gtag: {
   //   id: "G-78646PGVN1",
   // },
 
-  routeRules: {
-    "/**": { prerender: true }, // Prerender (SSG) all routes by default
-    "/api/**": { ssr: true }, // Keep server-side rendering for specific API routes
-    "/nostr-relay": { ssr: true }, // Keep server-side rendering for specific API routes
-    "/webrtc/**": { ssr: true }, // Keep server-side rendering for specific API routes
-  },
+  // routeRules: {
+  //   "/**": { prerender: true }, // Prerender (SSG) all routes by default
+  //   "/api/**": { ssr: true }, // Keep server-side rendering for specific API routes
+  //   "/nostr-relay": { ssr: true }, // Keep server-side rendering for specific API routes
+  //   "/webrtc/**": { ssr: true }, // Keep server-side rendering for specific API routes
+  // },
   content: {
-    experimental: {
-      clientDB: true,
-    },
-    documentDriven: true,
-    markdown: {
-      toc: { depth: 3, searchDepth: 3 },
-    },
+    // experimental: {
+    //   clientDB: true,
+    // },
+    // documentDriven: true,
+    // markdown: {
+    //   toc: { depth: 3, searchDepth: 3 },
+    // },
     // highlight: false,
     highlight: {
       theme: "github-dark",
@@ -125,5 +125,5 @@ export default defineNuxtConfig({
       theme: "github-dark",
     },
   },
-  compatibilityDate: "2024-07-04",
+  // compatibilityDate: "2024-07-04",
 });
