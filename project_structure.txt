@@ -1,0 +1,157 @@
+.
+├── app
+│   └── router.options.ts
+├── app.config.ts
+├── app.vue
+├── assets
+│   ├── fonts
+│   │   ├── FarhangVariableDot.woff
+│   │   └── FarhangVariable.woff
+│   ├── jungles.json
+│   └── scss
+│       ├── base.scss
+│       └── extra.scss
+├── components
+│   ├── admin
+│   │   ├── CreatePost.vue
+│   │   └── EditPost.vue
+│   ├── calendar
+│   │   ├── EventCalendar.vue
+│   │   └── Week.vue
+│   ├── comments
+│   │   ├── Archive.vue
+│   │   ├── CreateForm.vue
+│   │   └── Lists.vue
+│   ├── Editor.vue
+│   ├── global
+│   │   ├── Breadcrumb.vue
+│   │   ├── ContentToc.vue
+│   │   ├── DarkMode.vue
+│   │   ├── Header.vue
+│   │   ├── LanguageSelector.client.vue
+│   │   ├── LogoArea.vue
+│   │   ├── MainMenu.vue
+│   │   └── Social.vue
+│   ├── Member
+│   │   ├── AvatarButton.client.vue
+│   │   ├── UpdateProfile.vue
+│   │   └── Webauth
+│   │       ├── Modal.vue
+│   │       └── Tips.vue
+│   ├── Social
+│   │   ├── ChannelDetails.vue
+│   │   ├── MemberDetails.vue
+│   │   └── StreamFilters.vue
+│   └── Support
+│       ├── Call.vue
+│       ├── Chats.vue
+│       ├── ContactsIntro.vue
+│       ├── Conversation.vue
+│       ├── Home.vue
+│       ├── InputForm.vue
+│       └── Start.vue
+├── composables
+│   ├── admin
+│   │   └── useOwner.ts
+│   ├── comments
+│   │   └── useComments.ts
+│   ├── global
+│   │   ├── useApi.ts
+│   │   ├── useDark.ts
+│   │   ├── useLang.ts
+│   │   ├── useScreen.ts
+│   │   └── useSticky.ts
+│   ├── messages
+│   │   ├── useMessages.ts
+│   │   ├── useStream.ts
+│   │   └── useSupport.ts
+│   ├── tools
+│   │   └── useLiveQuery.ts
+│   └── user
+│       └── useUser.ts
+├── drizzle.config.ts
+├── .env
+├── eslint.config.mjs
+├── .github
+│   └── workflows
+│       └── template-sync.yml
+├── .gitignore
+├── layouts
+│   └── default.vue
+├── locales
+│   ├── en.json
+│   └── fa.json
+├── main.db
+├── migrations
+│   ├── 0000_gigantic_tyger_tiger.sql
+│   └── meta
+│       ├── 0000_snapshot.json
+│       └── _journal.json
+├── .npmrc
+├── nuxt.config.ts
+├── .nvmrc
+├── package.json
+├── pages
+│   ├── create.vue
+│   └── [...slug].vue
+├── plugins
+│   ├── 1.dexie.client.ts
+│   └── 2.nostr.client.ts
+├── project_structure.txt
+├── public
+│   ├── admin
+│   │   ├── config.yml
+│   │   ├── index.html
+│   │   └── style.css
+│   ├── favicon.ico
+│   ├── icon.png
+│   └── icons
+│       ├── android-chrome-192x192.png
+│       ├── android-chrome-512x512.png
+│       ├── apple-touch-icon.png
+│       ├── favicon-16x16.png
+│       └── favicon-32x32.png
+├── README.md
+├── reloadB.sh
+├── server
+│   ├── middleware
+│   │   └── auth.ts
+│   ├── plugins
+│   │   └── init.ts
+│   ├── routes
+│   │   ├── api
+│   │   │   ├── github
+│   │   │   │   ├── auth.ts
+│   │   │   │   ├── callback.ts
+│   │   │   │   └── get-file-data.ts
+│   │   │   └── members
+│   │   │       ├── register.post.ts
+│   │   │       ├── webauth-enable.post.ts
+│   │   │       └── webauth-response.post.ts
+│   │   ├── nostr-relay.ts
+│   │   └── webrtc
+│   │       └── signaling.ts
+│   ├── tasks
+│   │   └── migrate.ts_
+│   ├── tsconfig.json
+│   └── utils
+│       ├── db.ts
+│       ├── nostr.ts
+│       ├── schema.ts
+│       └── tools.ts
+├── tailwind.config.js
+├── .templatesyncignore
+├── tools
+│   └── contentRoutes.ts
+├── tsconfig.json
+├── types
+│   └── index.d.ts
+├── utils
+│   ├── date.ts
+│   ├── jungles.ts
+│   ├── md.ts
+│   ├── tools.ts
+│   └── webauth.ts
+└── wrangler.toml
+
+45 directories, 110 files

@@ -20,7 +20,7 @@ const redirects: RouteRecordRaw[] = [
     name: "index",
     redirect: (to) => {
       const config = useRuntimeConfig();
-      return config.app.language ? "/" + config.app.language : "/fa";
+      return config.app.language ? "/" + config.app.language : "/fa/";
     },
   },
 ];

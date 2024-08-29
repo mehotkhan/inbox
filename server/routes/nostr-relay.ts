@@ -65,8 +65,8 @@ export default defineWebSocketHandler({
 
 const handleREQ = async (peer: any, msg: any) => {
   const subscriptionId = msg[1];
-  const drizzleDb = initDrizzle();
-  const results = await await drizzleDb.select().from(events);
+  const drizzleDb = initDrizzle(peer);
+  const results =  await drizzleDb.select().from(events);
 
   // method to be executed;
   for await (const result of results) {

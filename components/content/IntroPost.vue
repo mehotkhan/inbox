@@ -1,17 +1,16 @@
 <script lang="ts" setup>
 const { locale } = useI18n();
 const config = useRuntimeConfig();
-
-const { data } = await useAsyncData("banner-data", () =>
-  queryContent(locale.value ?? config.app.language)
-    .where({ banner: true })
-    .sort({ date: -1 })
-    .findOne()
-);
 </script>
 <template>
   <div>
-    <ContentRenderer :value="data" class="">
+    <ContentQuery
+      v-slot="{ data }"
+      :path="locale ?? config.app.language"
+      find="one"
+      :where="{ banner: true }"
+      :sort="{ date: -1 }"
+    >
       <div
         class="flex flex-col-reverse md:flex-row justify-between items-center h-screen-md"
       >
@@ -51,6 +50,6 @@ const { data } = await useAsyncData("banner-data", () =>
           />
         </div>
       </div>
-    </ContentRenderer>
+    </ContentQuery>
   </div>
 </template>
