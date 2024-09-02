@@ -3,7 +3,7 @@ import { generateRoutes } from "./tools/contentRoutes";
 
 export default defineNuxtConfig({
   ssr: true,
-  // future: { compatibilityVersion: 4 },
+  future: { compatibilityVersion: 4 },
   css: ["@/assets/scss/base.scss", "@/assets/scss/extra.scss"],
   devtools: { enabled: false },
 
@@ -67,6 +67,7 @@ export default defineNuxtConfig({
     // renderJsonPayloads: true,
     viewTransition: true,
   },
+
   // image: {
   //   format: ["webp"],
   // },
@@ -75,20 +76,21 @@ export default defineNuxtConfig({
   //   id: "G-78646PGVN1",
   // },
 
-  // routeRules: {
-  //   "/**": { prerender: true }, // Prerender (SSG) all routes by default
-  //   "/api/**": { ssr: true }, // Keep server-side rendering for specific API routes
-  //   "/nostr-relay": { ssr: true }, // Keep server-side rendering for specific API routes
-  //   "/webrtc/**": { ssr: true }, // Keep server-side rendering for specific API routes
-  // },
+  routeRules: {
+    "/**": { prerender: true }, // Prerender (SSG) all routes by default
+    "/api/**": { ssr: true }, // Keep server-side rendering for specific API routes
+    "/nostr-relay": { ssr: true }, // Keep server-side rendering for specific API routes
+    "/webrtc/**": { ssr: true }, // Keep server-side rendering for specific API routes
+  },
+
   content: {
     // experimental: {
     //   clientDB: true,
     // },
     // documentDriven: true,
-    // markdown: {
-    //   toc: { depth: 3, searchDepth: 3 },
-    // },
+    markdown: {
+      toc: { depth: 3, searchDepth: 3 },
+    },
     // highlight: false,
     highlight: {
       theme: "github-dark",
@@ -116,14 +118,18 @@ export default defineNuxtConfig({
     defaultLocale: "fa",
     strategy: "prefix",
   },
+
   imports: {
     dirs: ["composables/**"],
   },
+
+  // compatibilityDate: "2024-07-04",
   tiptap: {
     prefix: "Tiptap",
     lowlight: {
       theme: "github-dark",
     },
   },
-  // compatibilityDate: "2024-07-04",
+
+  compatibilityDate: "2024-09-02",
 });

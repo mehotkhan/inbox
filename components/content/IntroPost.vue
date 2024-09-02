@@ -46,7 +46,7 @@ const config = useRuntimeConfig();
             class="flex w-full max-w-[25rem]"
             :src="data?.thumbnail"
             :alt="data?.title"
-            :placeholder="[400, 400]"
+            :placeholder="[400]"
           />
         </div>
       </div>

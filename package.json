@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@noble/curves": "^1.5.0",
-    "@noble/hashes": "^1.4.0",
+    "@noble/hashes": "^1.5.0",
     "@tiptap/extension-bubble-menu": "^2.6.6",
     "@tiptap/extension-placeholder": "^2.6.6",
     "@vueuse/components": "^11.0.3",
@@ -41,15 +41,15 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240821.1",
-    "@iconify-json/uil": "^1.1.9",
+    "@iconify-json/uil": "^1.2.0",
     "@nuxt/content": "^2.13.2",
-    "@nuxt/eslint": "^0.5.4",
+    "@nuxt/eslint": "^0.5.5",
     "@nuxt/image": "npm:@nuxt/image-nightly@latest",
     "@nuxt/ui": "2.18.4",
     "@nuxtjs/i18n": "^8.5.1",
     "@types/better-sqlite3": "^7.6.11",
     "@types/luxon": "^3.4.2",
-    "@types/node": "^22.5.1",
+    "@types/node": "^22.5.2",
     "drizzle-kit": "^0.24.2",
     "ejs": "^3.1.10",
     "eslint": "^9.9.1",
@@ -58,6 +58,6 @@
     "typescript": "^5.5.4",
     "vite-plugin-compression": "^0.5.1",
     "vue-router": "^4.4.3",
-    "wrangler": "^3.72.3"
+    "wrangler": "^3.73.0"
   }
 }
