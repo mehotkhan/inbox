@@ -1,11 +1,13 @@
 <script setup lang="ts">
 const { createChannel } = useComments();
+const { isDev } = useOwner();
+
 onMounted(() => {
   createChannel();
 });
 </script>
 <template>
-  <section class="w-full min-h-20">
+  <section v-if="isDev" class="w-full min-h-20">
     <CommentsCreateForm />
     <CommentsLists />
   </section>

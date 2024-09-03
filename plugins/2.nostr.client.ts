@@ -52,10 +52,10 @@ export default defineNuxtPlugin(() => {
       authors: [profile.value?.pub],
     };
     const reqMessage = JSON.stringify(["REQ", subscriptionId, filter]);
-    setInterval(() => {
-      console.log("req");
-      send(reqMessage);
-    }, 5000);
+    // setInterval(() => {
+    console.log("req");
+    send(reqMessage);
+    // }, 5000);
   };
 
   // onUnmounted(() => {

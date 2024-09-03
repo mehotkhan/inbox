@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { isOwner } = useOwner();
+const { isOwner, isDev } = useOwner();
 </script>
 <template>
   <div class="flex-col flex blog bg-gray-50 dark:bg-gray-800">
@@ -15,8 +15,9 @@ const { isOwner } = useOwner();
       <slot name="app-after" />
       <div id="app-after" />
     </main>
-    <SupportStart />
+    <SupportStart v-if="isDev" />
     <div
+      v-if="isDev"
       class="fixed right-2 bottom-2 bg-gray-200 w-20 py-3 rounded items-center flex justify-around flex-col gap-1"
     >
       <span class="text-md text-black">مدیر؟</span>

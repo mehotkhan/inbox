@@ -9,15 +9,13 @@ description: " وب‌اسمبلی (انگلیسی: WebAssembly) یا وَسم (
 date: 2023-09-12T16:33:46.294Z
 category: آموزش
 banner: false
-comment: true
-dir: rtl
+toc: true
+postInto: true
 tags:
   - wasm
   - golang
   - tinygo
 ---
-
-## آشنایی با WASM
 
 ### مقدمه
 
@@ -124,7 +122,7 @@ npx serve .
 
 **تغییرات در فایل `index.html`**:
 
-`````html
+```html
 <!doctype html>
 
 <html dir="rtl">
@@ -158,11 +156,24 @@ npx serve .
     </script>
   </body>
 </html>
-``` **کد Go برای تابع `add`**: ````go package main import "fmt" func main() {
+```
+
+**کد Go برای تابع `add`**:
+
+```go
+package main import "fmt" func main() {
 fmt.Println("Hello world from Go :)") } //export add func add(x, y int) int {
-return x + y }``` **کامپایل و تست**: ```bash tinygo build -o main.wasm -no-debug
--opt=2 main.go
-`````
+return x + y }
+
+
+```
+
+**کامپایل و تست**:
+
+```bash
+ tinygo build -o main.wasm -no-debug -opt=2 main.go
+
+```
 
 با رفرش کردن صفحه، قادر خواهید بود نتایج محاسبات را مشاهده کنید.
 
@@ -172,7 +183,7 @@ return x + y }``` **کامپایل و تست**: ```bash tinygo build -o main.was
 
 **کد Go برای تغییر DOM**:
 
-````go
+```go
 
 package main
 
@@ -194,14 +205,16 @@ document.Get("body").Call("appendChild", p)
 //export add
 func add(x, y int) int {
 return x + y
-}```
+}
+
+```
 
 **کامپایل و تست**:
 
 ```bash
 tinygo build -o main.wasm -no-debug -opt=2 main.go
 
-````
+```
 
 با رفرش کردن صفحه، المان جدیدی با متن "Hello WASM from Go!" مشاهده خواهید کرد.
 

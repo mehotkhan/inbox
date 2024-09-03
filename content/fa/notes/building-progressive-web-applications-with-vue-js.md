@@ -16,6 +16,9 @@ dir: ltr
 banner: false
 ---
 
+...<PageIntro />
+...
+
 ## Introduction
 
 `From Book`

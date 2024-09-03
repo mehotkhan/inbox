@@ -24,6 +24,9 @@ banner: false
 dir: ltr
 ---
 
+...<PageIntro />
+...
+
 ## Introduction
 
 This book is a step-by-step guide for everyone who wants to get started

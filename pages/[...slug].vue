@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-const { isOwner } = useOwner();
-const { locale } = useI18n();
+const { isOwner, isDev } = useOwner();
+const route = useRoute();
+
 const editEnable = ref(false);
 </script>
 <template>
@@ -13,7 +14,7 @@ const editEnable = ref(false);
   >
     <template #header>
       <div class="flex justify-between pt-5">
-        <Breadcrumb />
+        <Breadcrumb v-if="isDev" />
         <div class="flex gap-4 items-center">
           <div v-if="isOwner">
             <UButton
@@ -40,17 +41,39 @@ const editEnable = ref(false);
               to="/create"
             /> -->
           </div>
-
-          <span class="text-[.98rem] p-2"> ۶ کاربر آنلاین </span>
+          <MemberActivate v-if="route.path === '/profile'" />
         </div>
       </div>
     </template>
-    <ContentDoc v-if="!editEnable" />
+    <ContentDoc v-if="!editEnable" v-slot="{ doc }">
+      <PageIntro v-if="doc?.postInto" />
+      <!-- Table of contents -->
+      <p v-if="doc?.toc" class="text-2xl">{{ $t("contentToc") }}</p>
+      <ol v-if="doc?.toc" class="border-b text-md pb-3">
+        <li v-for="link of doc.body.toc.links" :key="link.id">
+          <a :href="`#${link.id}`">{{ link.text }}</a>
+        </li>
+      </ol>
+      <!-- Main post content -->
+      <ContentRenderer :value="doc" />
+    </ContentDoc>
     <AdminEditPost v-else />
     <template #footer>
       <div class="flex justify-between pt-5 border-t">
-        مثلا کپی رایت :)
-
+        <div class="flex items-center gap-2">
+          <p class="text-xs">
+            {{ $t("DeveloperMode") }}
+          </p>
+          <UToggle
+            v-model="isDev"
+            color="green"
+            size="md"
+            label="آزمایشگاه؟"
+            on-icon="i-heroicons-check-20-solid"
+            off-icon="i-heroicons-x-mark-20-solid"
+          />
+        </div>
+        <p class="text-sm">{{ $t("copyRightText") }}</p>
         <Social class="items-center hidden md:flex" />
       </div>
     </template>
