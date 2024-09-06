@@ -11,3 +11,4 @@ main.db
 deploy.sh
 dist.zip
 .env
+.wrangler
