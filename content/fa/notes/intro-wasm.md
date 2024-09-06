@@ -10,7 +10,7 @@ date: 2023-09-12T16:33:46.294Z
 category: آموزش
 banner: false
 toc: true
-postInto: true
+postIntro: true
 tags:
   - wasm
   - golang

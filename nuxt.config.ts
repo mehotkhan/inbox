@@ -15,6 +15,7 @@ export default defineNuxtConfig({
     "@nuxt/eslint",
     "nuxt-tiptap-editor",
     "nitro-cloudflare-dev",
+    // "@nuxtjs/seo",
   ],
 
   runtimeConfig: {
@@ -52,7 +53,7 @@ export default defineNuxtConfig({
       websocket: true,
       // tasks: true,
     },
-    // preset: "cloudflare-pages",
+    preset: "cloudflare-pages",
     // static: true,
     compressPublicAssets: true,
     minify: true,

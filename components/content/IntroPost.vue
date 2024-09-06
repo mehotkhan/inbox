@@ -26,14 +26,11 @@ const config = useRuntimeConfig();
           <p>
             {{ data?.description }}
           </p>
-          <ul class="flex flex-row mt-0 list-none items-center">
-            <li key="category" class="text-lg">
-              {{ data?.category }}
-              <span class="font-bold text-sm">.</span>
-            </li>
-            <li key="link" class="text-lg underline">
+          <ul class="flex flex-row text-lg list-none items-center">
+            <li v-for="tag of data.tags" :key="tag"># {{ tag }}</li>
+            <li key="link" class="">
               <NuxtLink :external="false" :to="data?._path" class="underline">
-                {{ $t("more") }}
+                , {{ $t("more") }}
               </NuxtLink>
             </li>
           </ul>
