@@ -70,9 +70,9 @@ export default defineNuxtConfig({
     viewTransition: true,
   },
 
-  // image: {
-  //   format: ["webp"],
-  // },
+  image: {
+    format: ["webp"],
+  },
 
   // gtag: {
   //   id: "G-78646PGVN1",
@@ -125,7 +125,6 @@ export default defineNuxtConfig({
     dirs: ["composables/**"],
   },
 
-  // compatibilityDate: "2024-07-04",
   tiptap: {
     prefix: "Tiptap",
     lowlight: {
