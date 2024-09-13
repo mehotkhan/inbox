@@ -5,7 +5,7 @@ const route = useRoute();
 const editEnable = ref(false);
 </script>
 <template>
-  <div class="flex-col flex blog bg-gray-50 dark:bg-gray-800">
+  <div class="flex-col flex">
     <slot name="app-before" />
     <div id="app-before" />
     <Header />
@@ -14,9 +14,10 @@ const editEnable = ref(false);
         <div class="prose md:prose-xl dark:prose-invert">
           <UCard
             :ui="{
-              body: {
-                base: 'min-h-screen',
-              },
+              base: 'min-h-screen',
+              rounded: 'rounded-none',
+              ring: 'ring-none',
+              shadow: 'shadow-none',
             }"
           >
             <template #header>
@@ -55,7 +56,9 @@ const editEnable = ref(false);
 
             <AdminEditPost v-else />
             <template #footer>
-              <div class="flex justify-between pt-5 border-t">
+              <div
+                class="flex flex-col-reverse md:flex-row items-center md:justify-between pt-5 border-t"
+              >
                 <div class="flex items-center gap-2">
                   <p class="text-xs">
                     {{ $t("DeveloperMode") }}
@@ -70,7 +73,7 @@ const editEnable = ref(false);
                   />
                 </div>
                 <p class="text-sm">{{ $t("copyRightText") }}</p>
-                <Social class="items-center hidden md:flex" />
+                <Social class="items-center" />
               </div>
             </template>
           </UCard>

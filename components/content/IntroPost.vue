@@ -37,6 +37,7 @@ const config = useRuntimeConfig();
         </div>
         <div class="basis-2/2 md:basis-1/2 flex justify-end items-center">
           <nuxt-img
+            :modifiers="{ grayscale: true, tint: '#00DC82' }"
             preload
             loading="lazy"
             sizes="sm:100vw md:50vw lg:400px"

@@ -5,3 +5,4 @@ pages_build_output_dir = "dist"
 binding = "DB"                                       # available in your Worker on env.DB
 database_name = "inbox"
 database_id = "9a4c5463-2684-4973-8a04-6c3f5886924c"
+migrations_dir = "migrations"

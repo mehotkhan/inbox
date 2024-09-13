@@ -12,6 +12,7 @@
       </ol>
       <!-- Main post content -->
       <ContentRenderer :value="doc" />
+      <Comments v-if="doc?.comments" />
     </ContentDoc>
   </div>
 </template>

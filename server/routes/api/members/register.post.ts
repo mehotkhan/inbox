@@ -1,3 +1,4 @@
+import { drizzle } from "drizzle-orm/d1";
 import type { Event as NostrEvent } from "nostr-tools";
 
 export default defineEventHandler(async (event) => {
@@ -24,7 +25,7 @@ export default defineEventHandler(async (event) => {
       content: bodyEvent.content,
       sig: bodyEvent.sig,
     };
-    const drizzleDb = initDrizzle(DB);
+    const drizzleDb = drizzle(DB);
     drizzleDb.insert(events).values(newEvent).run();
     drizzleDb.insert(member).values(newUser).run();
     return newEvent;

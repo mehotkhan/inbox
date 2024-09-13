@@ -15,7 +15,6 @@ export default defineNuxtConfig({
     "@nuxt/eslint",
     "nuxt-tiptap-editor",
     "nitro-cloudflare-dev",
-    // "@nuxtjs/seo",
   ],
 
   runtimeConfig: {
@@ -49,24 +48,19 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    experimental: {
-      websocket: true,
-      // tasks: true,
-    },
     preset: "cloudflare-pages",
-    // static: true,
     compressPublicAssets: true,
     minify: true,
     prerender: {
-      crawlLinks: false,
-      failOnError: false,
-      concurrency: 12,
+      // crawlLinks: false,
+      // failOnError: false,
+      // concurrency: 10,
       routes: generateRoutes(),
     },
   },
 
   experimental: {
-    // renderJsonPayloads: true,
+    renderJsonPayloads: true,
     viewTransition: true,
   },
 
@@ -81,19 +75,16 @@ export default defineNuxtConfig({
   routeRules: {
     "/**": { prerender: true }, // Prerender (SSG) all routes by default
     "/api/**": { ssr: true }, // Keep server-side rendering for specific API routes
-    "/nostr-relay": { ssr: true }, // Keep server-side rendering for specific API routes
-    "/webrtc/**": { ssr: true }, // Keep server-side rendering for specific API routes
   },
 
   content: {
-    // experimental: {
-    //   clientDB: true,
-    // },
-    // documentDriven: true,
+    experimental: {
+      clientDB: true,
+    },
+    documentDriven: true,
     markdown: {
       toc: { depth: 3, searchDepth: 3 },
     },
-    // highlight: false,
     highlight: {
       theme: "github-dark",
       preload: ["ts", "js", "css", "json", "go"],

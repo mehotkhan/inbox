@@ -8,13 +8,14 @@ description: WebAssembly in Action introduces the WebAssembly stack and walks
   API.
 date: 2023-09-00
 category: کتاب
-banner: false
-comment: false
-dir: ltr
 tags:
   - wasm
   - golang
   - tinygo
+banner: false
+comment: false
+toc: true
+postIntro: true
 ---
 
 ## About the Book

@@ -45,10 +45,5 @@ export default defineAppConfig({
       _path: "/about",
       menu_order: 99,
     },
-    {
-      title: "contact",
-      _path: "/contact",
-      menu_order: 100,
-    },
   ],
 });

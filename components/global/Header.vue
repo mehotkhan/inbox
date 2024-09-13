@@ -3,16 +3,19 @@ const { isDev } = useOwner();
 </script>
 <template>
   <header
-    class="fixed w-full top-0 bg-gray-200 z-10 border-b-1 border-gray-200 dark:bg-slate-900 dark:border-slate-100"
+    class="fixed w-full top-0 bg-gray-50 z-10 border-b-1 border-gray-200 dark:bg-slate-900 dark:border-slate-100"
   >
-    <div class="flex container justify-between items-center py-4">
+    <div
+      class="flex flex-col md:flex-row container justify-between md:items-center py-4 gap-3 md:gap-0"
+    >
       <div class="flex items-center">
         <LogoArea />
-        <MainMenu class="text-md md:text-sm lg:contents" />
+        <MainMenu class="text-md hidden md:text-sm md:contents" />
       </div>
-      <div class="flex gap-2 text-md">
+      <div class="flex gap-2 text-md items-center justify-end">
         <LanguageSelector class="" />
         <DarkMode class="" />
+        <MobileMenu class="text-md md:hidden" />
         <MemberAvatarButton v-if="isDev" />
       </div>
     </div>

@@ -2,13 +2,14 @@ import { useWebSocket } from "@vueuse/core";
 import type { Event as NostrEvent } from "nostr-tools";
 
 export default defineNuxtPlugin(() => {
-  const BASEURL = useRequestURL();
-  const relayURL = `${BASEURL.protocol === "http:" ? "ws" : "wss"}://${BASEURL.host}/nostr-relay`;
-
+  // const relayURL = isDev()
+  //   ? "http://localhost:8787/"
+  //   : "https://relay.alizemani.ir/";
+  const relayURL = "https://relay.alizemani.ir/";
   const { $dexie } = useNuxtApp();
   const { loggedIn, profile } = useUser();
 
-  const { status, data, send, open, close } = useWebSocket(relayURL, {
+  const { status, data, send, open } = useWebSocket(relayURL, {
     immediate: false,
     autoReconnect: {
       retries: 5,
@@ -64,7 +65,7 @@ export default defineNuxtPlugin(() => {
 
   const handleIncomingEvent = async (event: NostrEvent) => {
     try {
-      console.log();
+      console.log("incoming", event);
       // verifyEvent(event);
       if (event?.id) {
         const dbEvent = await $dexie.events.get({
@@ -93,6 +94,7 @@ export default defineNuxtPlugin(() => {
   const sendEVENTMessage = async (event: NostrEvent) => {
     delete event.seen;
     send(JSON.stringify(["EVENT", event]));
+    console.log("sending", event);
   };
   return {
     provide: {
