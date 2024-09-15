@@ -25,17 +25,16 @@ const { locale } = useI18n();
           <p>
             {{ data?.description }}
           </p>
-          <ul class="flex flex-row text-lg list-none items-center">
-            <li key="link" class="">
-              <NuxtLink :external="false" :to="data?._path" class="underline">
-                {{ $t("more") }}
-              </NuxtLink>
-            </li>
-          </ul>
+          <NuxtLink
+            :external="false"
+            :to="data?._path"
+            class="mx-4 hover:underline"
+          >
+            {{ $t("more") }}...
+          </NuxtLink>
         </div>
         <div class="basis-2/2 md:basis-1/2 flex justify-end items-center">
           <nuxt-img
-            :modifiers="{ grayscale: true, tint: '#00DC82' }"
             preload
             loading="lazy"
             sizes="sm:100vw md:50vw lg:400px"
