@@ -28,22 +28,26 @@ export default defineAppConfig({
     {
       title: "home",
       _path: "/",
-      menu_order: 0,
     },
     {
       title: "notes",
       _path: "/notes",
-      menu_order: 99,
     },
-    // {
-    //   title: "shop",
-    //   _path: "/shop",
-    //   menu_order: 99,
-    // },
+    {
+      title: "books",
+      _path: "/books",
+    },
+    {
+      title: "projects",
+      _path: "/projects",
+    },
     {
       title: "about",
       _path: "/about",
-      menu_order: 99,
+    },
+    {
+      title: "contact",
+      _path: "/contact",
     },
   ],
 });

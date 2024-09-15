@@ -1,12 +1,6 @@
 ---
 title: Getting Started with Ethereum
 date: 2023-01-18T19:14:50.978Z
-category: کتاب
-tags:
-  - NFT
-  - Blockchain
-  - OpenZeppelin
-  - Solidity
 thumbnail: content/6c2b5bfc492ab5d2c7bd898863c7a4db-d.webp
 description: Get started with blockchain development with this step-by-step
   guide. This book takes you all the way from installing requisite software
@@ -21,11 +15,10 @@ description: Get started with blockchain development with this step-by-step
   Ethereum-related technologies broadly and not just focusing on Solidity.
 
 banner: false
-dir: ltr
+toc: true
+postIntro: true
+category: books
 ---
-
-...<PageIntro />
-...
 
 ## Introduction
 

@@ -1,79 +1,58 @@
 ---
-title: Building Progressive Web Applications with Vue.js
-date: 2021/09/11
-category: کتاب
-tags:
-  - Vue
-  - PWA
-  - JamStack
+title: ساخت اپلیکیشن‌های وب تعاملی با Vue.js
+date: 2021-09-11T16:33:46.294Z
 thumbnail: content/Building-Progressive-Web-Applications-with-Vuejs.webp
-description:
-  Progressive web apps (PWAs) were initially introduced by Google in 2015
-  and proved to bring many advantages to the web platform. In this book, we
-  are going to examine how to empower our web apps to be fast and reliable,
-  and to provide an immersive user experience with offline support.
-dir: ltr
-banner: true
+description: اپلیکیشن‌های وب پیشرو (PWAs) اولین بار در سال ۲۰۱۵ توسط گوگل معرفی شدند و مزایای بسیاری را برای پلتفرم وب به همراه داشتند. در این books، ما بررسی می‌کنیم که چگونه می‌توانیم اپلیکیشن‌های وب خود را به اپلیکیشن‌هایی سریع، قابل اعتماد و با تجربه کاربری جذاب و پشتیبانی آفلاین تبدیل کنیم.
+
+banner: false
+toc: true
+postIntro: true
+category: books
 ---
 
-## Introduction
+## مقدمه
 
-`From Book`
+`از books`
 
-Progressive web apps (PWAs) were initially introduced by Google in 2015
-and proved to bring many advantages to the web platform. In this book, we
-are going to examine how to empower our web apps to be fast and reliable,
-and to provide an immersive user experience with offline support.
+اپلیکیشن‌های وب پیشرو (PWAs) اولین بار در سال ۲۰۱۵ توسط گوگل معرفی شدند و مزایای بسیاری را برای پلتفرم وب به همراه داشتند. در این books، ما بررسی می‌کنیم که چگونه می‌توانیم اپلیکیشن‌های وب خود را به اپلیکیشن‌هایی سریع، قابل اعتماد و با تجربه کاربری جذاب و پشتیبانی آفلاین تبدیل کنیم.
 
-### Chapter 1
+## فصل ۱
 
-In Chapter 1, we create our first PWA. I guide you in all the steps you
-need to know to add offline capabilities and to make a simple web app
-a PWA.
+در فصل اول، اولین اپلیکیشن وب پیشروی خود را ایجاد می‌کنیم. من شما را گام‌به‌گام در تمامی مراحل لازم برای افزودن قابلیت‌های آفلاین و تبدیل یک اپلیکیشن وب ساده به PWA همراهی می‌کنم.
 
-### Chapter 2
+## فصل ۲
 
-In Chapter 2, we take a look at the web app manifest, which is a
-simple, but powerful, specification that allows the browsers when can
-install a web app like a native app according to the operating system.
+در فصل دوم، نگاهی به فایل manifest اپلیکیشن وب می‌اندازیم. این فایل مشخصات ساده اما قدرتمندی است که به مرورگرها اجازه می‌دهد تا اپلیکیشن وب را مانند یک اپلیکیشن بومی بر اساس سیستم‌عامل نصب کنند.
 
-### Chapter 3
+## فصل ۳
 
-In Chapter 3, we study service workers, which are an amazing mechanism to
-handle background events with JavaScript.
+در فصل سوم، به بررسی سرویس‌ورکرها می‌پردازیم. سرویس‌ورکرها مکانیزم‌های شگفت‌انگیزی هستند که به ما اجازه می‌دهند رویدادهای پس‌زمینه را با استفاده از جاوااسکریپت مدیریت کنیم.
 
-### Chapter 4
+## فصل ۴
 
-In Chapter 4, we examine cache
-storage and good-practice workflows to keep our offline data updated.
+در فصل چهارم، ذخیره‌سازی کش و فرآیندهای کاری با بهترین روش‌ها برای به‌روز نگه‌داشتن داده‌های آفلاین خود را بررسی می‌کنیم.
 
-### Chapter 5
+## فصل ۵
 
-In Chapter 5, we look at the main features and advantages of using Vue.js, a
-modern JavaScript framework.
+در فصل پنجم، به ویژگی‌ها و مزایای استفاده از Vue.js، یکی از فریم‌ورک‌های مدرن جاوااسکریپت، نگاهی می‌اندازیم.
 
-### Chapter 6
+## فصل ۶
 
-In Chapter 6, we study how to use a database
-supported widely in modern browsers, called IndexedDB, and how we can
-take advantage of its asynchronous capabilities to empower our PWAs.
+در فصل ششم، یاد می‌گیریم که چگونه از یک پایگاه‌داده که در اکثر مرورگرهای مدرن پشتیبانی می‌شود، به نام IndexedDB استفاده کنیم و چگونه می‌توانیم از قابلیت‌های ناهمزمان آن برای تقویت PWAs خود بهره ببریم.
 
-### Chapter 7
+## فصل ۷
 
-In Chapter 7, we look at a simple, but powerful, application programming
-interface, called Background Sync, that will allow our app to make the user
-experience easy.
+در فصل هفتم، با یک رابط برنامه‌نویسی کاربردی ساده اما قدرتمند به نام همگام‌سازی پس‌زمینه (Background Sync) آشنا می‌شویم که تجربه کاربری را در اپلیکیشن‌های ما آسان‌تر می‌کند.
 
-### Chapter 8
+## فصل ۸
 
-In Chapter 8, we improve our engagement with our app
-and examine how to add push notifications to it. Last,
+در فصل هشتم، تعامل خود با اپلیکیشن را بهبود می‌بخشیم و نحوه اضافه کردن اعلان‌های فشاری (Push Notifications) را به آن بررسی می‌کنیم.
 
-### Chapter 9
+## فصل ۹
 
-in Chapter 9, we polish the details of our app and make it available to the world.
+در فصل نهم، جزئیات اپلیکیشن خود را صیقل می‌دهیم و آن را برای عرضه به جهان آماده می‌کنیم.
 
-## How to Get
+## دریافت
 
 - Apress (Buy): [Building Progressive Web Applications with Vue.js : Reliable, Fast, and Engaging Apps with Vue.js](https://www.apress.com/gp/book/9781484253335)
 

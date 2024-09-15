@@ -1,10 +1,6 @@
 ---
-date: 2021/10/11
-tags:
-  - Graph Data
-  - Graph Database
 title: The Practitioner’s Guide to Graph Data
-category: کتاب
+date: 2021-10-11
 thumbnail: content/"The-Practitioners-Guide-To-Graph-Data.webp"
 description:
   Think about the last time you searched for someone on a social media platform.
@@ -14,7 +10,9 @@ description:
   understand how you knew someone.
 
 banner: false
-dir: ltr
+toc: true
+postIntro: true
+category: books
 ---
 
 ## Preface

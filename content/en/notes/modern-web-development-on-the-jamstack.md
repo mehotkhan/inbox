@@ -1,11 +1,6 @@
 ---
 title: Modern Web Development on the JAMstack
-date: 2021/08/11
-category: کتاب
-tags:
-  - Client-Side Processing
-  - PWA
-  - JamStack
+date: 2021-08-11T12:29:12.649Z
 thumbnail: content/Modern-Web-Development-on-the-JAMstack.webp
 description: In just the past few years, a flurry of advancements has greatly
   strengthened the web as a content and application platform. Brows‐ ers are
@@ -14,7 +9,9 @@ description: In just the past few years, a flurry of advancements has greatly
   likely felt this as you’ve witnessed the explo‐ sion of new frontend
   frameworks and API-based services.
 banner: false
-dir: ltr
+toc: true
+postIntro: true
+category: books
 ---
 
 ## Introduction

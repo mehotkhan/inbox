@@ -1,5 +1,5 @@
 import { useWebSocket } from "@vueuse/core";
-import type { Event as NostrEvent } from "nostr-tools";
+import { type Event as NostrEvent } from "nostr-tools";
 
 export default defineNuxtPlugin(() => {
   // const relayURL = isDev()
@@ -65,7 +65,6 @@ export default defineNuxtPlugin(() => {
 
   const handleIncomingEvent = async (event: NostrEvent) => {
     try {
-      console.log("incoming", event);
       // verifyEvent(event);
       if (event?.id) {
         const dbEvent = await $dexie.events.get({

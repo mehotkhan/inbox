@@ -12,6 +12,6 @@ description: "صندوق ورودی :)"
 
 <div class="mt-3">
 
-<CommentsArchive />
+<AdminTabs />
 
 </div>

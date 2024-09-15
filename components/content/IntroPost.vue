@@ -1,12 +1,11 @@
 <script lang="ts" setup>
 const { locale } = useI18n();
-const config = useRuntimeConfig();
 </script>
 <template>
   <div>
     <ContentQuery
       v-slot="{ data }"
-      :path="locale ?? config.app.language"
+      :path="locale + '/notes'"
       find="one"
       :where="{ banner: true }"
       :sort="{ date: -1 }"
@@ -27,10 +26,9 @@ const config = useRuntimeConfig();
             {{ data?.description }}
           </p>
           <ul class="flex flex-row text-lg list-none items-center">
-            <li v-for="tag of data.tags" :key="tag"># {{ tag }}</li>
             <li key="link" class="">
               <NuxtLink :external="false" :to="data?._path" class="underline">
-                , {{ $t("more") }}
+                {{ $t("more") }}
               </NuxtLink>
             </li>
           </ul>

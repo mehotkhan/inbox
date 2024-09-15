@@ -7,4 +7,4 @@ postIntro: true
 
 ## جدیدترین ورودی ها
 
-<PostArchives path="/notes/"/>
+<PostArchives category="notes"/>

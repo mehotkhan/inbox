@@ -1,6 +1,6 @@
 ---
-title: "Home"
-description: "Inbox Page"
+title: "صفحه نخست"
+description: "صندوق ورودی :)"
 ---
 
 <div>
@@ -9,6 +9,6 @@ description: "Inbox Page"
 
 </div>
 
-## Latest Entry
+## جدیدترین ورودی ها
 
 <PostArchives />
