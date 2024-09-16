@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 const { isDark } = useDark();
-const { locale } = useI18n();
+const { locale, t } = useI18n();
 const { registerNew } = useUser();
 const runtimeConfig = useRuntimeConfig();
 useHead({
-  title: runtimeConfig.app.title,
-  titleTemplate: `%s - ${runtimeConfig.app.title}:// ${runtimeConfig.app.description} `,
+  title: t("siteName"),
+  titleTemplate: `%s - ${t("siteName")}:// ${t("description")} `,
 
   meta: [
     { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -13,7 +13,7 @@ useHead({
     {
       hid: "description",
       name: "description",
-      content: runtimeConfig.app.description,
+      content: t("description"),
     },
   ],
 

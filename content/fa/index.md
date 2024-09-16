@@ -11,4 +11,4 @@ description: "صندوق ورودی :)"
 
 ## جدیدترین ورودی ها
 
-<PostArchives  />
+<PostArchives categoty=""  />

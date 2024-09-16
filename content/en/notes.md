@@ -1,10 +1,10 @@
 ---
-title: "یادداشت ها"
-description: "بایگانی و آرشیو"
+title: "Notes"
+description: "Some Random Notes"
 thumbnail: content/library.jpg
 postIntro: true
 ---
 
-## جدیدترین ورودی ها
+## Latest Notes
 
 <PostArchives category="notes"/>

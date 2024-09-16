@@ -1,10 +1,15 @@
 ---
-title: "صفحه نخست"
-description: "صندوق ورودی :)"
+title: "Home"
+description: "Inbox Page"
 ---
+
+
+<div>
 
 <IntroPost />
 
-## جدیدترین ورودی ها
+</div>
+
+## Latest Incoming
 
 <PostArchives />

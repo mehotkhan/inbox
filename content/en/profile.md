@@ -1,9 +1,7 @@
 ---
-title: "پروفایل"
-description: "اطلاعات حساب کاربری"
+title: "Profile"
+description: "User Profile"
 ---
-
-امروز چند شنبه چندم چند دوازدهم است :)
 
 <div>
 

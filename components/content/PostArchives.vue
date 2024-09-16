@@ -26,11 +26,17 @@ const props = defineProps({
           :key="slug"
           class="mb-2"
         >
-          <NuxtLink :external="false" :to="slug" class="">
+          <NuxtLink :to="slug" class="hover:underline">
             {{ title }}
-            <span class="font-thin"> / {{ $t(_category) }} </span>
-            <span class="font-thin"> / {{ formatDateTime(date) }} </span>
           </NuxtLink>
+          /
+          <NuxtLink
+            :to="locale + '/' + _category"
+            class="font-thin hover:underline"
+          >
+            {{ $t(_category) }}
+          </NuxtLink>
+          <span class="font-thin"> / {{ formatDateTime(date) }} </span>
         </li>
       </ol>
     </div>

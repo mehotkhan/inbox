@@ -1,6 +1,6 @@
 ---
-title: "صفحه نخست"
-description: "صندوق ورودی :)"
+title: "داشبورد"
+description: "پنل مدیریت"
 ---
 
 <div class="mt-3">

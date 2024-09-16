@@ -6,4 +6,4 @@ set -e
 rm -rf ./migrations
 npx drizzle-kit generate
 # npx drizzle-kit push
-wrangler d1 migrations apply inbox --local
+npx wrangler d1 migrations apply inbox --local

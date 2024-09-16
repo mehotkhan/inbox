@@ -19,17 +19,13 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     app: {
-      title: "",
-      description: "",
-      titleFirst: "",
-      titleSecond: "",
-      github: "",
-      linkedin: "",
-      twitter: '""',
-      language: "",
-      githubToken: "",
-      githubRepo: "",
+      github: "https://github.com/mehotkhan",
+      linkedin: "https://www.linkedin.com/in/ali-zemani/",
+      twitter: 'https://www.twitter.com/ZemaniAli/',
+      language: "fa",
+      githubRepo: "mehotkhan/Inbox",
       color: "#e5e7eb",
+      githubToken: "",
     },
   },
 
@@ -52,9 +48,6 @@ export default defineNuxtConfig({
     compressPublicAssets: true,
     minify: true,
     prerender: {
-      // crawlLinks: false,
-      // failOnError: false,
-      // concurrency: 10,
       routes: generateRoutes(),
     },
   },

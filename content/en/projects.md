@@ -1,10 +1,10 @@
 ---
-title: "یادداشت ها"
-description: "بایگانی و آرشیو"
+title: "Projects"
+description: "My OpenSource Projects"
 thumbnail: content/library.jpg
 postIntro: true
 ---
 
-## جدیدترین ورودی ها
+## Latest Projects
 
 <PostArchives category="projects"/>

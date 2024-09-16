@@ -1,10 +1,10 @@
 ---
-title: "books"
-description: "معرفی books"
+title: "کتاب خانه"
+description: "معرفی کتاب های کاربردی "
 thumbnail: content/library.jpg
 postIntro: true
 ---
 
-## جدیدترین ورودی ها
+## آخرین کتاب ها
 
 <PostArchives category="books"/>

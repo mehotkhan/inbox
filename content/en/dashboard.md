@@ -1,14 +1,9 @@
 ---
-title: "صفحه نخست"
-description: "صندوق ورودی :)"
+title: "Dashboard"
+description: "Admin Inbox Page"
 ---
 
-<div class="mt-3">
-
 <AdminIntro />
-</div>
-
-...
 
 <div class="mt-3">
 
