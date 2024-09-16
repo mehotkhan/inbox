@@ -15,6 +15,7 @@ export default defineNuxtConfig({
     "@nuxt/eslint",
     "nuxt-tiptap-editor",
     "nitro-cloudflare-dev",
+    "@nuxtjs/seo",
   ],
 
   runtimeConfig: {

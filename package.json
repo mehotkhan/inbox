@@ -16,6 +16,7 @@
   "dependencies": {
     "@noble/curves": "^1.6.0",
     "@noble/hashes": "^1.5.0",
+    "@nuxtjs/seo": "2.0.0-rc.21",
     "@tiptap/extension-bubble-menu": "^2.6.6",
     "@tiptap/extension-placeholder": "^2.6.6",
     "@vueuse/components": "^11.1.0",
