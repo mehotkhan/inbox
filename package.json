@@ -4,7 +4,7 @@
   "description": "my Personal Inbox Page",
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
+    "build": "NODE_OPTIONS=--max_old_space_size=8000 nuxt build",
     "clean": "rm -rf .nuxt dist .output",
     "dev": "VITE_CJS_IGNORE_WARNING=1 nuxt dev",
     "generate": "nuxt generate",
