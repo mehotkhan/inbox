@@ -1,6 +1,6 @@
 ---
 title: تام بامبادیل
-thumbnail: content/"tom-bombadil-and-goldberry.webp"
+thumbnail: content/tom-bombadil-and-goldberry.webp
 date: 2021-09-11
 description:
   نام شخصیتی است در رشته داستان‌های تالکین . در جلد اول سه‌گانهٔ ارباب
