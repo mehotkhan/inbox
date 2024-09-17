@@ -33,12 +33,12 @@ const { locale } = useI18n();
             {{ $t("more") }}...
           </NuxtLink>
         </div>
-        <div class="basis-2/2 md:basis-1/2 flex justify-end items-center">
+        <div class="w-full md:basis-1/2 flex justify-end items-center">
           <nuxt-img
             preload
             loading="lazy"
             sizes="sm:100vw md:50vw lg:400px"
-            class="flex w-full max-w-[25rem]"
+            class="flex w-full md:max-w-[25rem]"
             :src="data?.thumbnail"
             :alt="data?.title"
             :placeholder="[400]"
