@@ -1,9 +1,7 @@
+import { useStorage } from "@vueuse/core";
+
 export default () => {
-  const isDev = useCookie("isDev", {
-    default: () => false,
-    watch: true,
-    maxAge: cookieExpire,
-  });
+  const isDev = useStorage("isDev", false);
 
   const isOwner = useCookie("isOwner", {
     default: () => false,

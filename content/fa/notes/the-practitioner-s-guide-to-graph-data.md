@@ -171,5 +171,3 @@ issues, such as
 ## How to Get
 
 - Oreilly (Buy): [The Practitioner's Guide to Graph Dat: Applying Graph Thinking and Graph Technologies to Solve Complex Problems](https://www.oreilly.com/library/view/the-practitioners-guide/9781492044062/)
-
-- Download From libgen (PDF): [The Practitioner’s Guide To Graph Data: Applying Graph Thinking And Graph Technologies To Solve Complex Problems](http://libgen.is/book/index.php?md5=2F852C74D4139268D520CB3E4B1662D3)

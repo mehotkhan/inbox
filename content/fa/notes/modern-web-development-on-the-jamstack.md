@@ -104,4 +104,3 @@ ing for the web has become fun and fearless all over again.
 
 Download From Netlify (PDF): [oreilly-modern-web-development-on-the-jamstack.pdf](https://www.netlify.com/pdf/oreilly-modern-web-development-on-the-jamstack.pdf)
 
-<hr />

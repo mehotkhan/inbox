@@ -24,5 +24,3 @@ Abstract: Describes Tom's encounters with Goldberry, the River-woman's beautiful
 ## How to Get
 
 - Amazon (Buy): [ The adventures of Tom Bombadil: and other verses from The red book](https://www.amazon.com/Adventures-Tom-Bombadil-Other-Verses/dp/B005XEQ3WM)
-
-- Download From libgen (EPUB): [ The adventures of Tom Bombadil: and other verses from The red book](http://libgen.is/book/index.php?md5=96F2052A1D87E3F045130F5E633AC092)
