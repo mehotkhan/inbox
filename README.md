@@ -1,5 +1,7 @@
-# Jamstack Starter Template
+# Inbox Projects
 
-Nuxt3 + DecapCMS + Cloudflare functins blog starter PAckage
+- Jamstack
+- Cloudflare Developer Stuff
+- Nostr Protocols
 
-# Testing Update
+## DEVELOPER AREA!!!
