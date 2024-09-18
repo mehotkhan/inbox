@@ -17,7 +17,7 @@ export default defineNuxtConfig({
     "nitro-cloudflare-dev",
     "@nuxtjs/seo",
   ],
-
+  // extends: ["nuxt-seo-kit"],
   runtimeConfig: {
     app: {
       github: "https://github.com/mehotkhan",
@@ -59,6 +59,8 @@ export default defineNuxtConfig({
   },
 
   image: {
+    dir: "assets/content",
+
     format: ["webp"],
   },
 
