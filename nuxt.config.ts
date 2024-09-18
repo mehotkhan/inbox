@@ -60,8 +60,6 @@ export default defineNuxtConfig({
   },
 
   image: {
-    dir: "assets/content",
-
     format: ["webp"],
   },
 
