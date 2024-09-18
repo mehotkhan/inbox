@@ -17,6 +17,7 @@ export default defineNuxtConfig({
     "nitro-cloudflare-dev",
     "@nuxtjs/seo",
   ],
+
   // extends: ["nuxt-seo-kit"],
   runtimeConfig: {
     app: {
