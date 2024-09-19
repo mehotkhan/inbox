@@ -9,7 +9,7 @@ import path from 'path';
  * @param {string[]} files - Accumulator for the file paths.
  * @returns {string[]} An array of file paths.
  */
-function getAllFiles(dir, extensions, excludeDirs = ['node_modules', '.git'], files = []) {
+function getAllFiles(dir, extensions, excludeDirs = ['node_modules', '.git', 'dist'], files = []) {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
   for (const entry of entries) {
     const fullPath = path.join(dir, entry.name);
@@ -26,17 +26,32 @@ function getAllFiles(dir, extensions, excludeDirs = ['node_modules', '.git'], fi
 }
 
 /**
- * Extracts I18n keys from file content using regex.
+ * Extracts I18n keys from file content using regex and filters out invalid keys.
  * @param {string} fileContent - The content of the file.
  * @returns {string[]} An array of extracted keys.
  */
 function extractI18Keys(fileContent) {
-  // Match $t('key') or t('key') where 'key' is a string literal without any expressions
+  // Match $t('...') or t("...") and capture the content inside the quotes
   const regex = /(?:\$t|t)\(\s*(['"`])(.*?)\1\s*\)/g;
   const keys = [];
   let match;
   while ((match = regex.exec(fileContent)) !== null) {
-    keys.push(match[1]);
+    const key = match[2];
+
+    // Filter out invalid keys
+    if (
+      !key.includes('/') &&             // Exclude keys with slashes
+      !key.startsWith('#') &&           // Exclude keys starting with '#'
+      key !== '' &&                     // Exclude empty strings
+      key.length > 1 &&                 // Exclude single-character keys
+      !/^[^a-zA-Z0-9]+$/.test(key) &&   // Exclude keys made up entirely of non-alphanumeric characters
+      !/\b(dd|MMM|yyyy)\b/.test(key) && // Exclude date formats
+      !key.includes('\\') &&            // Exclude escape sequences
+      !/(vue-router|sig)/.test(key) &&  // Exclude known technical terms
+      !key.includes('scope')            // Exclude keys containing 'scope'
+    ) {
+      keys.push(key);
+    }
   }
   return keys;
 }
@@ -101,7 +116,7 @@ function main() {
 
   // Define file extensions to scan
   const extensions = ['.ts', '.vue'];
-  const excludeDirs = ['node_modules', '.git'];
+  const excludeDirs = ['node_modules', '.git', 'dist'];
   const files = getAllFiles(projectDir, extensions, excludeDirs);
 
   // Collect all unique translation keys

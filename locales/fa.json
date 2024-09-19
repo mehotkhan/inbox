@@ -1,11 +1,10 @@
 {
-  "\"": "\"",
-  "'": "'",
-  "-": "-",
   "ActiveProfile": "ActiveProfile",
   "ActiveProfileSubmit": "ActiveProfileSubmit",
   "Clear": "Clear",
   "DeveloperMode": "آزمایشگاه: ",
+  "Must be at least 3 characters": "Must be at least 3 characters",
+  "User Activation Successfully": "User Activation Successfully",
   "about": "درباره",
   "avatar": "avatar",
   "books": "کتاب",
@@ -39,7 +38,6 @@
   "pub": "pub",
   "pubkey": "pubkey",
   "publicDetails": "publicDetails",
-  "sig": "sig",
   "siteName": "علی زِمانی",
   "tags": "tags",
   "titleFirst": "علـی",
@@ -47,6 +45,5 @@
   "uniqueDetails": "uniqueDetails",
   "userName": "userName",
   "username": "username",
-  "usernamePlaceHolder": "usernamePlaceHolder",
-  "vue-router": "vue-router"
+  "usernamePlaceHolder": "usernamePlaceHolder"
 }
