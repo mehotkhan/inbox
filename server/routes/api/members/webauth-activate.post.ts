@@ -26,16 +26,14 @@ export default defineEventHandler(async (event) => {
     }
 
     const drizzleDb = drizzle(DB);
-    const existingMember = await drizzleDb
+    const existingMember = drizzleDb
       .select()
       .from(member)
-      .where(eq(member.pub, body.pubKey))
-      .get();
-
-    if (!existingMember) {
+      .where(eq(member.pub, body.pubKey));
+    if (!existingMember.get()) {
       throw createError({
         statusCode: 400,
-        statusMessage: "User Not Found",
+        statusMessage: "user Not Found",
       });
     }
 
