@@ -43,6 +43,7 @@ onMounted(() => {
         <NuxtLoadingIndicator />
         <NuxtPage />
       </NuxtLayout>
+      <UNotifications />
     </Body>
   </Html>
 </template>

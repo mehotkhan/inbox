@@ -14,3 +14,12 @@ export const extractCookies = (cookieStr: any) => {
   });
   return JSON.stringify(output, null, 4);
 };
+/**
+ * Encode an ArrayBuffer to a Base64 string
+ * @param buffer - The ArrayBuffer to encode
+ * @returns Base64 encoded string
+ */
+export const arrayBufferToBase64 = (buffer: ArrayBuffer): string => {
+  const binaryString = String.fromCharCode(...new Uint8Array(buffer));
+  return btoa(binaryString);
+};

@@ -1,53 +1,9 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "6d7efa23-6afe-42bb-9532-49585f931c9a",
+  "id": "e66bdb70-a580-4673-84dc-ff3276ac9401",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
-    "auth_key": {
-      "name": "auth_key",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "integer",
-          "primaryKey": true,
-          "notNull": true,
-          "autoincrement": true
-        },
-        "owner": {
-          "name": "owner",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "challenge": {
-          "name": "challenge",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "auth_key_owner_member_id_fk": {
-          "name": "auth_key_owner_member_id_fk",
-          "tableFrom": "auth_key",
-          "tableTo": "member",
-          "columnsFrom": [
-            "owner"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
     "events": {
       "name": "events",
       "columns": {
@@ -118,6 +74,13 @@
         },
         "pub": {
           "name": "pub",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "priv": {
+          "name": "priv",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
@@ -194,6 +157,13 @@
           "name": "member_pub_unique",
           "columns": [
             "pub"
+          ],
+          "isUnique": true
+        },
+        "member_priv_unique": {
+          "name": "member_priv_unique",
+          "columns": [
+            "priv"
           ],
           "isUnique": true
         },

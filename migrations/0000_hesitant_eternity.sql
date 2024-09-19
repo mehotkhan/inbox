@@ -1,10 +1,3 @@
-CREATE TABLE `auth_key` (
-	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-	`owner` integer,
-	`challenge` text,
-	FOREIGN KEY (`owner`) REFERENCES `member`(`id`) ON UPDATE no action ON DELETE no action
-);
---> statement-breakpoint
 CREATE TABLE `events` (
 	`id` text PRIMARY KEY NOT NULL,
 	`pubkey` text,
@@ -18,6 +11,7 @@ CREATE TABLE `events` (
 CREATE TABLE `member` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`pub` text,
+	`priv` text,
 	`isAdmin` integer DEFAULT false,
 	`isVerified` integer DEFAULT false,
 	`firstName` text,
@@ -30,5 +24,6 @@ CREATE TABLE `member` (
 );
 --> statement-breakpoint
 CREATE UNIQUE INDEX `member_pub_unique` ON `member` (`pub`);--> statement-breakpoint
+CREATE UNIQUE INDEX `member_priv_unique` ON `member` (`priv`);--> statement-breakpoint
 CREATE UNIQUE INDEX `member_userName_unique` ON `member` (`userName`);--> statement-breakpoint
 CREATE UNIQUE INDEX `member_email_unique` ON `member` (`email`);

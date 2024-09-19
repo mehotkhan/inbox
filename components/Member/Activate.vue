@@ -3,7 +3,7 @@ import { z } from "zod";
 import * as Structured from "@worker-tools/structured-json";
 import type { FormSubmitEvent } from "#ui/types";
 const { t } = useI18n();
-const { profile } = useUser();
+const { profile, certs } = useUser();
 
 const toast = useToast();
 const submitting = ref(false);
@@ -42,21 +42,22 @@ const profileActivate = async (event: FormSubmitEvent<Schema>) => {
         pubKey: profile.value.pub,
       },
     });
-    console.log("response: ", response);
     const publicKey = Structured.fromJSON(response);
     if (publicKey) {
       console.log("public key: ", publicKey);
       await handleResponse(publicKey, event.data);
 
       toast.add({
-        title: "ok",
+        title: t("ok"),
         description: t("User Activation Successfully"),
       });
 
       submitting.value = false;
+      isOpen.value = false;
     } else {
       toast.add({
-        title: "error",
+        color: "red",
+        title: t("error"),
         description: t("webauth pubKey not Found"),
       });
 
@@ -70,17 +71,17 @@ const profileActivate = async (event: FormSubmitEvent<Schema>) => {
 
 const handleResponse = async (publicKey, formData) => {
   const cred = await navigator.credentials.create({ publicKey });
-
-  const crdBody = credToJSON(cred);
-  console.log("cred : ", crdBody);
-  const response = await useApi("/api/members/webauth-response", {
+  const crdBody = Structured.toJSON(credToJSON(cred));
+  const response = await $fetch("/api/members/webauth-response", {
     method: "post",
     body: {
-      ...crdBody,
-      ...formData,
+      crdBody,
+      formData,
+      userPub: certs.value.pub,
+      userPriv: certs.value.priv,
     },
   });
-  console.log("response : ", response);
+  console.log("response : ", JSON.parse(response));
 };
 
 // const handleResponse = async (publicKey, formData) => {

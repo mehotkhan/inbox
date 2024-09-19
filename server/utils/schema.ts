@@ -3,6 +3,7 @@ import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
 export const member = sqliteTable("member", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   pub: text("pub").unique(),
+  priv: text("priv").unique(),
   isAdmin: integer("isAdmin", { mode: "boolean" }).default(false),
   isVerified: integer("isVerified", { mode: "boolean" }).default(false),
   firstName: text("firstName"),
@@ -12,12 +13,6 @@ export const member = sqliteTable("member", {
   about: text("about"),
   email: text("email").unique(),
   avatar: text("avatar"),
-});
-
-export const authKey = sqliteTable("auth_key", {
-  id: integer("id").primaryKey({ autoIncrement: true }),
-  owner: integer("owner").references(() => member.id),
-  challenge: text("challenge"),
 });
 
 export const events = sqliteTable("events", {

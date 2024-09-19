@@ -41,7 +41,7 @@ export default () => {
 
       profile.value = {
         firstName: randomName.split(" ")[0],
-        lastName: randomName.split(" ")[1],
+        lastName: randomName.slice(randomName.split(" ")[0]?.length),
         displayName: randomName,
         userName: "",
         about: `یک ${randomName} تازه وارد :)`,

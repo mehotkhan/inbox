@@ -4,6 +4,7 @@ import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/d1";
 import { Fido2Lib } from "fido2-lib";
 import { WebUUID } from "web-uuid";
+import { arrayBufferToBase64 } from "~/server/utils/tools";
 
 if (process.env.NODE_ENV !== "production") {
   global.crypto = global.crypto || crypto;
@@ -24,7 +25,6 @@ export default defineEventHandler(async (event) => {
   try {
     const { DB, inboxKV } = event.context.cloudflare.env;
     const body = await readBody(event);
-    console.log(body);
     if (!body?.pubKey) {
       throw createError({
         statusCode: 400,
@@ -49,7 +49,10 @@ export default defineEventHandler(async (event) => {
       displayName: body.displayName,
     };
     const webAuthChallengeKey = `webauthChallenge:${body.pubKey}`;
-    await inboxKV.put(webAuthChallengeKey, options.challenge);
+    await inboxKV.put(
+      webAuthChallengeKey,
+      arrayBufferToBase64(options.challenge)
+    );
     return Structured.toJSON(options);
   } catch (e: any) {
     throw createError({
