@@ -8,26 +8,26 @@
     "clean": "rm -rf .nuxt dist .output",
     "dev": "VITE_CJS_IGNORE_WARNING=1 nuxt dev",
     "generate": "nuxt generate",
+    "i18:update": "node tools/updateLocale.js",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "i18:update": "node tools/updateLocale.js",
     "preview": "nuxt preview"
   },
   "dependencies": {
     "@noble/curves": "^1.6.0",
     "@noble/hashes": "^1.5.0",
     "@nuxtjs/seo": "2.0.0-rc.21",
+    "@simplewebauthn/browser": "^10.0.0",
+    "@simplewebauthn/server": "^10.0.1",
     "@tiptap/extension-bubble-menu": "^2.7.2",
     "@tiptap/extension-placeholder": "^2.7.2",
     "@vueuse/components": "^11.1.0",
     "@vueuse/core": "^11.1.0",
     "@vueuse/rxjs": "^11.1.0",
-    "@worker-tools/structured-json": "0.1.0-pre.4",
     "better-sqlite3": "^11.3.0",
     "dexie": "^4.0.8",
     "drizzle-orm": "^0.33.0",
-    "fido2-lib": "^3.5.3",
     "h3-zod": "^0.5.3",
     "js-base64": "^3.7.7",
     "luxon": "^3.5.0",
@@ -58,6 +58,6 @@
     "typescript": "^5.6.2",
     "vite-plugin-compression": "^0.5.1",
     "vue-router": "^4.4.5",
-    "wrangler": "^3.78.5"
+    "wrangler": "^3.78.6"
   }
 }
