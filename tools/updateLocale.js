@@ -42,6 +42,7 @@ function extractI18Keys(fileContent) {
     if (
       !key.includes('/') &&             // Exclude keys with slashes
       !key.startsWith('#') &&           // Exclude keys starting with '#'
+      !key.startsWith('nuxt-') &&           // Exclude keys starting with '#'
       key !== '' &&                     // Exclude empty strings
       key.length > 1 &&                 // Exclude single-character keys
       !/^[^a-zA-Z0-9]+$/.test(key) &&   // Exclude keys made up entirely of non-alphanumeric characters
