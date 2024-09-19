@@ -5,9 +5,9 @@ import { Fido2Lib } from "fido2-lib";
 import { WebUUID } from "web-uuid";
 import { arrayBufferToBase64 } from "~/server/utils/tools";
 
-if (process.env.NODE_ENV !== "production") {
-  global.crypto = global.crypto || crypto;
-}
+// if (process.env.NODE_ENV !== "production") {
+// global.crypto = global.crypto || crypto;
+// }
 
 const location =
   process.env.NODE_ENV == "production"

@@ -3,9 +3,9 @@ import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/d1";
 import { Fido2Lib } from "fido2-lib";
 
-if (process.env.NODE_ENV !== "production") {
-  global.crypto = global.crypto || crypto;
-}
+// if (process.env.NODE_ENV !== "production") {
+global.crypto = global.crypto || crypto;
+// }
 
 const location =
   process.env.NODE_ENV == "production"
