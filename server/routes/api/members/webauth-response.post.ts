@@ -1,4 +1,3 @@
-import * as Structured from "@worker-tools/structured-json";
 import crypto from "crypto";
 import { Fido2Lib } from "fido2-lib";
 
@@ -21,7 +20,7 @@ const fido2 = new Fido2Lib({
 export default defineEventHandler(async (event) => {
   try {
     const body = await readBody(event);
-    const data = Structured.fromJSON(body);
+    const data = body.json();
 
     // if (!session.userHandle) throw unauthorized();
 

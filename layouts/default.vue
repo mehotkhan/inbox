@@ -26,7 +26,7 @@ const editEnable = ref(false);
                 <div class="flex gap-4 items-center">
                   <div v-if="isOwner">
                     <UButton
-                      v-if="isOwner"
+                      v-if="isOwner && isDev"
                       :label="editEnable ? 'بستن ویرایش' : 'ویرایش'"
                       size="md"
                       color="primary"
@@ -48,8 +48,10 @@ const editEnable = ref(false);
                       to="/create"
                     /> -->
                   </div>
-                  <MemberActivate v-if="route.path === '/profile'" />
                 </div>
+                <MemberActivate
+                  v-if="route.path.includes('/profile') && !isOwner"
+                />
               </div>
             </template>
             <slot v-if="!editEnable" />
@@ -84,7 +86,6 @@ const editEnable = ref(false);
     </main>
     <SupportStart v-if="isDev" />
     <div
-      v-if="isDev"
       class="fixed right-2 bottom-2 bg-gray-200 w-20 py-3 rounded items-center flex justify-around flex-col gap-1"
     >
       <span class="text-md text-black">مدیر؟</span>

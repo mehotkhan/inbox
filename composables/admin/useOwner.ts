@@ -2,12 +2,7 @@ import { useStorage } from "@vueuse/core";
 
 export default () => {
   const isDev = useStorage("isDev", false);
-
-  const isOwner = useCookie("isOwner", {
-    default: () => false,
-    watch: true,
-    maxAge: cookieExpire,
-  });
+  const isOwner = useStorage("isOwner", false);
 
   const toggleOwner = () => {
     isOwner.value = !isOwner.value;

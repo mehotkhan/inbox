@@ -37,11 +37,13 @@ const handleKeyDown = (event: KeyboardEvent) => {
     class="space-y-4"
     @submit="onSubmit"
   >
-    <UCard class="mb-10 pb-10 border-b" :ui="{ shadow: 'shadow-none' }">
+    <UCard
+      class="mb-10 pb-10 border-b bg-gray-200"
+      :ui="{ shadow: 'shadow-none' }"
+    >
       <template #header>
         <div class="flex justify-between">
           <span> ارسال دیدگاه </span>
-          <span class="font-thin text-sm">۲ نفر در حال نوشتن ۰۰۰</span>
         </div>
       </template>
       <UFormGroup name="textarea" label="دیدگاه شما">

@@ -3,10 +3,14 @@ title: "پروفایل"
 description: "اطلاعات حساب کاربری"
 ---
 
-<div>
+<div class="mt-3">
 
-<MemberIntro />
+<ProfileIntro />
 
 </div>
 
+<div class="mt-3">
+
 <AdminTabs />
+
+</div>

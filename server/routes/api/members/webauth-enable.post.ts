@@ -1,4 +1,3 @@
-import * as Structured from "@worker-tools/structured-json";
 import crypto from "crypto";
 import { Fido2Lib } from "fido2-lib";
 import { WebUUID } from "web-uuid";
@@ -36,8 +35,7 @@ export default defineEventHandler(async (event) => {
     // session.userHandle = username
     // session.challenge = options.challenge
 
-    // return new JSONResponse()
-    return Structured.toJSON(options);
+    return new Response(options);
   } catch (e: any) {
     throw createError({
       statusCode: 400,

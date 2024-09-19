@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const { profile } = useUser();
+const { isDev } = useOwner();
 </script>
 
 <template>

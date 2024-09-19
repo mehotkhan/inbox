@@ -94,7 +94,6 @@ export default function useComments() {
         ...channelEvent,
         seen: false,
       });
-      await $sendEVENTMessage(event);
       return channelEvent;
     }
     return channel;

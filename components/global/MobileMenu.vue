@@ -18,8 +18,8 @@ const items = computed(() => {
   if (isOwner.value) {
     menus.push([
       {
-        label: t("dashboard"),
-        click: () => navigateTo("/dashboard"),
+        label: t("profile"),
+        click: () => navigateTo("/profile"),
       },
     ]);
   }

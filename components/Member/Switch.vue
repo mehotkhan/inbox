@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { z } from "zod";
 import type { FormSubmitEvent } from "#ui/types";
-import * as Structured from "@worker-tools/structured-json";
 const { profile } = useUser();
 
 const toast = useToast();

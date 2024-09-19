@@ -1,6 +1,4 @@
-<script lang="ts" setup>
-const { isDev } = useOwner();
-</script>
+<script lang="ts" setup></script>
 <template>
   <header
     class="fixed w-full top-0 bg-gray-50 z-10 border-b-1 border-gray-200 dark:bg-slate-900 dark:border-slate-100"
@@ -16,7 +14,7 @@ const { isDev } = useOwner();
         <LanguageSelector class="" />
         <DarkMode class="" />
         <MobileMenu class="text-md md:hidden" />
-        <MemberAvatarButton v-if="isDev" />
+        <MemberAvatarButton />
       </div>
     </div>
   </header>

@@ -1,41 +1,52 @@
 <script setup lang="ts">
 import { z } from "zod";
 import type { FormSubmitEvent } from "#ui/types";
-import * as Structured from "@worker-tools/structured-json";
+const { t } = useI18n();
 const { profile } = useUser();
 
 const toast = useToast();
 const submitting = ref(false);
-const isOpen = ref(false);
+const isOpen = ref(true);
 
 const schema = z.object({
-  username: z.string().min(3, "Must be at least 3 characters"),
+  firstName: z.string().min(3, t("Must be at least 3 characters")),
+  lastName: z.string().min(3, t("Must be at least 3 characters")),
+  about: z.string().min(3, t("Must be at least 3 characters")),
+  displayName: z.string().min(3, t("Must be at least 3 characters")),
+  email: z.string().email(5, t("Must be at least 3 characters")),
+  username: z.string().min(3, t("Must be at least 3 characters")),
 });
 
 type Schema = z.output<typeof schema>;
 
 const state = reactive({
-  username: undefined,
+  firstName: profile.value.firstName,
+  lastName: profile.value.lastName,
+  about: profile.value.about,
+  displayName: profile.value.displayName,
+  email: profile.value.email,
+  username: profile.value.username,
 });
 
-const Register = async (event: FormSubmitEvent<Schema>) => {
+const profileActivate = async (event: FormSubmitEvent<Schema>) => {
+  console.log(event.data);
   try {
     submitting.value = true;
-    const body: any = await $fetch("/api/members/webauth-enable", {
+    const body = await $fetch("/api/members/webauth-enable", {
       method: "post",
       body: {
         username: event.data.username,
         displayName: profile.value.displayName,
       },
     });
-    const publicKey = await Structured.fromJSON(body);
+    const publicKey = await body.toJSON();
     console.log("public key: ", publicKey);
 
     await handleResponse(publicKey);
 
     toast.add({
       title: "ok",
-      description: "Register successfully",
+      description: t("User Activation Successfully"),
     });
 
     submitting.value = false;
@@ -84,7 +95,7 @@ const handleResponse = async (publicKey: any) => {
 <template>
   <div>
     <UButton
-      label="فعال سازی حساب"
+      :label="$t('ActiveProfile')"
       size="md"
       color="primary"
       variant="ghost"
@@ -92,44 +103,101 @@ const handleResponse = async (publicKey: any) => {
     />
 
     <UModal v-model="isOpen">
-      <UCard
-        :ui="{
-          ring: '',
-          divide: 'divide-y divide-gray-100 dark:divide-gray-800',
-        }"
-      >
-        <UForm
-          :schema="schema"
-          :state="state"
-          class="space-y-4"
-          @submit="Register"
+      <UForm :schema="schema" :state="state" @submit="profileActivate">
+        <UCard
+          :ui="{
+            body: {
+              base: 'min-h-[20rem]',
+            },
+            ring: '',
+            divide: 'divide-y divide-gray-100 dark:divide-gray-800',
+          }"
         >
-          <UFormGroup label="User Name" name="username">
-            <UInput
-              v-model="state.username"
-              placeholder="write your username"
-            />
-          </UFormGroup>
           <template #header>
-            <h4 class="text-xl">Webauth</h4>
+            <h4 class="text-xl">{{ $t("ActiveProfile") }}</h4>
           </template>
-          <div class="min-h-[20rem]">
-            <MemberWebauthTips />
-          </div>
+          <div class="flex flex-col gap-4">
+            <UDivider :label="$t('publicDetails')" />
 
-          <div class="flex justify-start space-x-3">
-            <UButton
-              type="submit"
-              label="Enable WebAuth"
-              size="xl"
-              :loading="submitting"
-              color="primary"
-              variant="ghost"
-              @click="Register()"
-            />
+            <div class="flex gap-3">
+              <UFormGroup
+                :label="$t('firstName')"
+                name="firstName"
+                class="basis-1/2"
+              >
+                <UInput
+                  v-model="state.firstName"
+                  :placeholder="$t('firstNamePlaceHolder')"
+                />
+              </UFormGroup>
+              <UFormGroup
+                :label="$t('lastName')"
+                name="lastName"
+                class="basis-1/2"
+              >
+                <UInput
+                  v-model="state.lastName"
+                  :placeholder="$t('lastNamePlaceHolder')"
+                />
+              </UFormGroup>
+            </div>
+
+            <UFormGroup
+              :label="$t('displayName')"
+              name="displayName"
+              class="basis-2/2"
+            >
+              <UInput
+                v-model="state.displayName"
+                :placeholder="$t('displayNamePlaceHolder')"
+              />
+            </UFormGroup>
+            <UFormGroup :label="$t('about')" name="about" class="basis-2/2">
+              <UTextarea v-model="state.about" />
+            </UFormGroup>
+            <UDivider :label="$t('uniqueDetails')" />
+
+            <div class="flex gap-3">
+              <UFormGroup :label="$t('email')" name="email" class="basis-1/2">
+                <UInput
+                  v-model="state.email"
+                  :placeholder="$t('emailPlaceHolder')"
+                />
+              </UFormGroup>
+              <UFormGroup
+                :label="$t('username')"
+                name="username"
+                class="basis-1/2"
+              >
+                <UInput
+                  v-model="state.username"
+                  :placeholder="$t('usernamePlaceHolder')"
+                />
+              </UFormGroup>
+            </div>
           </div>
-        </UForm>
-      </UCard>
+          <template #footer>
+            <div class="flex w-full justify-between">
+              <UButton
+                variant="outline"
+                :label="$t('Clear')"
+                size="xl"
+                class="ml-2"
+                @click="form.clear()"
+              />
+
+              <UButton
+                variant="outline"
+                type="submit"
+                :label="$t('ActiveProfileSubmit')"
+                size="xl"
+                :loading="submitting"
+                color="primary"
+              />
+            </div>
+          </template>
+        </UCard>
+      </UForm>
     </UModal>
   </div>
 </template>

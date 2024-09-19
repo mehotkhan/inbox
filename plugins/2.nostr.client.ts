@@ -2,10 +2,10 @@ import { useWebSocket } from "@vueuse/core";
 import type { Event as NostrEvent } from "nostr-tools";
 
 export default defineNuxtPlugin(() => {
-  // const relayURL = isDev()
-  //   ? "http://localhost:8787/"
-  //   : "https://relay.alizemani.ir/";
-  const relayURL = "https://relay.alizemani.ir/";
+  const relayURL = isDev()
+    ? "http://localhost:8787/"
+    : "https://relay.alizemani.ir/";
+  // const relayURL = "https://relay.alizemani.ir/";
   const { $dexie } = useNuxtApp();
   const { loggedIn, profile } = useUser();
 

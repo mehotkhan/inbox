@@ -7,7 +7,7 @@ onMounted(() => {
 });
 </script>
 <template>
-  <section v-if="isDev" class="w-full min-h-20">
+  <section class="w-full min-h-20">
     <CommentsCreateForm />
     <CommentsLists />
   </section>

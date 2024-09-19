@@ -9,7 +9,7 @@ const redirects: RouteRecordRaw[] = [
   //   meta: {
   //     middleware: (to) => {
   //       // const loggedIn = cookieRef<boolean | null>("user-logged-in", false);
-  //       // if (loggedIn.value) return { name: "dashboard" };
+  //       // if (loggedIn.value) return { name: "profile" };
   //       return { name: "login", query: to.query };
   //     },
   //   },
