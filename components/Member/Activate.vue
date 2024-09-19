@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { z } from "zod";
+import * as Structured from "@worker-tools/structured-json";
 import type { FormSubmitEvent } from "#ui/types";
 const { t } = useI18n();
 const { profile } = useUser();
@@ -13,7 +14,7 @@ const schema = z.object({
   lastName: z.string().min(3, t("Must be at least 3 characters")),
   about: z.string().min(3, t("Must be at least 3 characters")),
   displayName: z.string().min(3, t("Must be at least 3 characters")),
-  email: z.string().email(5, t("Must be at least 3 characters")),
+  email: z.string().email(5, t("Must be at least 5 characters")),
   username: z.string().min(3, t("Must be at least 3 characters")),
 });
 
@@ -24,38 +25,82 @@ const state = reactive({
   lastName: profile.value.lastName,
   about: profile.value.about,
   displayName: profile.value.displayName,
-  email: profile.value.email,
-  username: profile.value.username,
+  // email: profile.value.email,
+  // username: profile.value.username,
+  email: "test@test.cc",
+  username: "test",
 });
 
 const profileActivate = async (event: FormSubmitEvent<Schema>) => {
-  console.log(event.data);
   try {
     submitting.value = true;
-    const body = await $fetch("/api/members/webauth-enable", {
+    const response = await $fetch("/api/members/webauth-activate", {
       method: "post",
       body: {
         username: event.data.username,
-        displayName: profile.value.displayName,
+        displayName: event.data.displayName,
+        pubKey: profile.value.pub,
       },
     });
-    const publicKey = await body.toJSON();
-    console.log("public key: ", publicKey);
+    console.log("response: ", response);
+    const publicKey = Structured.fromJSON(response);
+    if (publicKey) {
+      console.log("public key: ", publicKey);
+      await handleResponse(publicKey, event.data);
 
-    await handleResponse(publicKey);
+      toast.add({
+        title: "ok",
+        description: t("User Activation Successfully"),
+      });
 
-    toast.add({
-      title: "ok",
-      description: t("User Activation Successfully"),
-    });
+      submitting.value = false;
+    } else {
+      toast.add({
+        title: "error",
+        description: t("webauth pubKey not Found"),
+      });
 
-    submitting.value = false;
+      submitting.value = false;
+    }
   } catch (error) {
     console.log(error);
     submitting.value = false;
   }
 };
 
+const handleResponse = async (publicKey, formData) => {
+  const cred = await navigator.credentials.create({ publicKey });
+
+  const crdBody = credToJSON(cred);
+  console.log("cred : ", crdBody);
+  const response = await useApi("/api/members/webauth-response", {
+    method: "post",
+    body: {
+      ...crdBody,
+      ...formData,
+    },
+  });
+  console.log("response : ", response);
+};
+
+// const handleResponse = async (publicKey, formData) => {
+//   if (publicKey) {
+//     const cred =
+//       "attestation" in publicKey
+//         ? await navigator.credentials.create({ publicKey })
+//         : await navigator.credentials.get({ publicKey });
+//     const crdBody = credToJSON(cred);
+//     console.log("cred : ", crdBody);
+//     const response = await useApi("/api/members/webauth-response", {
+//       method: "post",
+//       body: {
+//         ...crdBody,
+//         ...formData,
+//       },
+//     });
+//     console.log("response : ", response);
+//   }
+// };
 // const Login = async (username: string) => {
 //   try {
 //     submitting.value = true;
@@ -74,22 +119,6 @@ const profileActivate = async (event: FormSubmitEvent<Schema>) => {
 //     submitting.value = false;
 //   }
 // };
-
-const handleResponse = async (publicKey: any) => {
-  if (publicKey) {
-    const cred =
-      "attestation" in publicKey
-        ? await navigator.credentials.create({ publicKey })
-        : await navigator.credentials.get({ publicKey });
-    const crdBody = await Structured.toJSON(credToJSON(cred));
-    console.log("cred : ", crdBody);
-    const response: any = await useApi("/api/members/webauth-response", {
-      method: "post",
-      body: crdBody,
-    });
-    console.log("response : ", response);
-  }
-};
 </script>
 
 <template>

@@ -23,6 +23,7 @@
     "@vueuse/components": "^11.1.0",
     "@vueuse/core": "^11.1.0",
     "@vueuse/rxjs": "^11.1.0",
+    "@worker-tools/structured-json": "0.1.0-pre.4",
     "better-sqlite3": "^11.3.0",
     "dexie": "^4.0.8",
     "drizzle-orm": "^0.33.0",
