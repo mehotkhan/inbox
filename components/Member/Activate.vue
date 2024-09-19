@@ -15,7 +15,7 @@ const schema = z.object({
   about: z.string().min(3, t("Must be at least 3 characters")),
   displayName: z.string().min(3, t("Must be at least 3 characters")),
   email: z.string().email(5, t("Must be at least 5 characters")),
-  username: z.string().min(3, t("Must be at least 3 characters")),
+  userName: z.string().min(3, t("Must be at least 3 characters")),
 });
 
 type Schema = z.output<typeof schema>;
@@ -26,7 +26,7 @@ const state = reactive({
   about: profile.value.about,
   displayName: profile.value.displayName,
   email: "test@test.cc",
-  username: "test",
+  userName: "test",
 });
 
 // Start WebAuthn registration and handle form submission
@@ -38,7 +38,7 @@ const profileActivate = async (event: FormSubmitEvent<Schema>) => {
     const options = await $fetch("/api/members/webauth-activate", {
       method: "post",
       body: {
-        username: event.data.username,
+        userName: event.data.userName,
         displayName: event.data.displayName,
         pubKey: profile.value.pub,
       },
@@ -161,13 +161,13 @@ const handleResponse = async (attResp, formData) => {
                 />
               </UFormGroup>
               <UFormGroup
-                :label="$t('username')"
-                name="username"
+                :label="$t('userName')"
+                name="userName"
                 class="basis-1/2"
               >
                 <UInput
-                  v-model="state.username"
-                  :placeholder="$t('usernamePlaceHolder')"
+                  v-model="state.userName"
+                  :placeholder="$t('userNamePlaceHolder')"
                 />
               </UFormGroup>
             </div>

@@ -56,7 +56,7 @@ export default defineEventHandler(async (event) => {
           userName: data.formData.userName,
           about: data.formData.about,
           email: data.formData.email,
-          priv: data.formData.userPriv,
+          priv: data.userPriv,
           // Store credential data
           credentialID: Buffer.from(
             verification.registrationInfo?.credentialID || []

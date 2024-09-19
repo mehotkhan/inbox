@@ -41,7 +41,7 @@ export default defineEventHandler(async (event) => {
       rpName: "Inbox",
       rpID: location.hostname,
       userID: new WebUUID(), // Should be the unique user identifier
-      userName: body.username,
+      userName: body.userName,
       userDisplayName: body.displayName,
       attestationType: "none",
       authenticatorSelection: {
