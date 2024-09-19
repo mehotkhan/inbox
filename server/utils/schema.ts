@@ -13,6 +13,8 @@ export const member = sqliteTable("member", {
   about: text("about"),
   email: text("email").unique(),
   avatar: text("avatar"),
+  credentialID: text("credentialID"),
+  credentialPublicKey: text("credentialPublicKey"),
 });
 
 export const events = sqliteTable("events", {

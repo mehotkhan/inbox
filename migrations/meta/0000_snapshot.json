@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "e66bdb70-a580-4673-84dc-ff3276ac9401",
+  "id": "a9b7a6ab-257a-4d46-a0e1-c4e3ab7f1d66",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "events": {
@@ -146,6 +146,20 @@
         },
         "avatar": {
           "name": "avatar",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "credentialID": {
+          "name": "credentialID",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "credentialPublicKey": {
+          "name": "credentialPublicKey",
           "type": "text",
           "primaryKey": false,
           "notNull": false,

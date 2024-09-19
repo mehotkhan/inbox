@@ -5,7 +5,4 @@ export default {
   schema: "./server/utils/schema.ts",
   out: "./migrations",
   breakpoints: true,
-  dbCredentials: {
-    url: "./main.db",
-  },
 } satisfies Config;
