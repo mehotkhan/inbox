@@ -54,7 +54,7 @@ export default () => {
       profile.value = newUser;
       userPub.value = pub;
       await registerToServer(newUser, pub);
-      // loggedIn.value = true;
+      loggedIn.value = true;
     }
   };
   const registerToServer = async (newUser: any, pub: string) => {

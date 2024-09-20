@@ -28,7 +28,7 @@ const { profile } = useUser();
         loading="lazy"
         sizes="sm:100vw md:50vw lg:400px"
         class="flex w-[20rem] rounded-full"
-        src="https://avatars.githubusercontent.com/u/739984?v=4"
+        src="/totoro_render.webp"
         :alt="profile?.displayName"
         :placeholder="[400, 400]"
       />

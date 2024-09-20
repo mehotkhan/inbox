@@ -49,11 +49,21 @@ const items = [
         :ui="{ item: { disabled: 'cursor-text select-text' } }"
         :popper="{ placement: 'bottom-start' }"
       >
-        <UAvatar :alt="profile?.displayName" />
+        <UAvatar
+          :alt="profile?.displayName"
+          src="/totoro_render.webp"
+          size="sm"
+          class="avatar-button"
+        />
 
         <template #account="{ item }">
+          <UAvatar
+            :alt="profile?.displayName"
+            src="/totoro_render.webp"
+            size="sm"
+            class="avatar-button"
+          />
           <p class="text-right w-full flex gap-2 justify-between">
-            <span>{{ $t("LoggedInAs") }}</span>
             <span class="font-bold text-gray-900 dark:text-white">
               {{ profile?.displayName }}
             </span>
@@ -92,3 +102,8 @@ const items = [
     <MemberSwitch v-model:is-open="loginIsOpen" />
   </div>
 </template>
+<style lang="scss">
+.avatar-button img {
+  width: auto !important;
+}
+</style>
