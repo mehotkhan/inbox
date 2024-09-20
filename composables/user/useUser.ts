@@ -38,7 +38,7 @@ export default () => {
       const pub = getPublicKey(priv); // `pk` is a hex string
       const randomName = GenerateIdentity(pub, "fa");
 
-      profile.value = {
+      const newUser = {
         firstName: randomName.split(" ")[0]!,
         lastName: randomName.slice(randomName.split(" ")[0]?.length),
         displayName: randomName,
@@ -51,25 +51,25 @@ export default () => {
         pub,
         priv: bytesToHex(priv),
       };
-
+      profile.value = newUser;
       userPub.value = pub;
-      await registerToServer();
-      loggedIn.value = true;
+      await registerToServer(newUser, pub);
+      // loggedIn.value = true;
     }
   };
-  const registerToServer = async () => {
-    const event: NostrEvent = finalizeEvent(
-      {
-        kind: 0,
-        created_at: Math.floor(Date.now()),
-        tags: [],
-        content: JSON.stringify(profile.value),
-      },
-      hexToBytes(certs.value.priv)
-    );
+  const registerToServer = async (newUser: any, pub: string) => {
     await $fetch("/api/members/register", {
       method: "post",
-      body: event,
+      body: {
+        firstName: newUser.firstName,
+        lastName: newUser.lastName,
+        displayName: newUser.displayName,
+        userName: newUser.userName,
+        about: newUser.about,
+        email: newUser.email,
+        avatar: newUser.avatar,
+        pub: pub,
+      },
     });
   };
 

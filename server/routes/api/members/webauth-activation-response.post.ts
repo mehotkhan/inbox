@@ -63,23 +63,18 @@ export default defineEventHandler(async (event) => {
           ).toString("base64"),
         })
         .where(eq(member.pub, data.userPub));
-      const existingMember: any = await drizzleDb
-        .select()
-        .from(member)
-        .where(eq(member.pub, data.userPub))
-        .get();
       // Return successful authentication response
       return new Response(
         JSON.stringify({
-          firstName: existingMember.firstName,
-          lastName: existingMember.lastName,
-          displayName: existingMember.displayName,
-          userName: existingMember.userName,
-          about: existingMember.about,
-          email: existingMember.email,
-          avatar: existingMember.avatar,
-          pub: existingMember.pub,
-          priv: existingMember.priv,
+          firstName: data.formData.firstName,
+          lastName: data.formData.lastName,
+          displayName: data.formData.displayName,
+          userName: data.formData.userName,
+          about: data.formData.about,
+          email: data.formData.email,
+          priv: data.userPriv,
+          pub: data.pub,
+          avatar: "",
         })
       );
     }
