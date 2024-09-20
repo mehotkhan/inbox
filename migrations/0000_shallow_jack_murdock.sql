@@ -22,7 +22,8 @@ CREATE TABLE `member` (
 	`email` text,
 	`avatar` text,
 	`credentialID` text,
-	`credentialPublicKey` text
+	`credentialPublicKey` text,
+	`counter` integer DEFAULT 0
 );
 --> statement-breakpoint
 CREATE UNIQUE INDEX `member_pub_unique` ON `member` (`pub`);--> statement-breakpoint

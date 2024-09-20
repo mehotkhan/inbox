@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "a9b7a6ab-257a-4d46-a0e1-c4e3ab7f1d66",
+  "id": "a5673dbd-642e-4ddd-8937-b96e86057811",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "events": {
@@ -164,6 +164,14 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
+        },
+        "counter": {
+          "name": "counter",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": 0
         }
       },
       "indexes": {

@@ -7,7 +7,7 @@ const Update = async () => {
   //     submitting.value = true
   //     const body: any = await $fetch('/api/members/webauth-active', {
   //         method: 'post',
-  //         body: { username: 'test', displayName: 'test' }
+  //         body: { userName: 'test', displayName: 'test' }
   //     })
   //     const publicKey = await Structured.fromJSON(body);
   //     console.log('public key: ', publicKey)

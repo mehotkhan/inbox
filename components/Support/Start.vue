@@ -105,7 +105,7 @@ function toggleModal() {
                 src="https://avatars.githubusercontent.com/u/739984?v=4"
                 alt="Avatar"
               />
-              <span> username </span>
+              <span> userName </span>
 
               <div
                 v-if="modalMode === 'chat' || modalMode !== 'chat'"

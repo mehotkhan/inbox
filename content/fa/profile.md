@@ -5,12 +5,12 @@ description: "اطلاعات حساب کاربری"
 
 <div class="mt-3">
 
-<!-- <ProfileIntro /> -->
+<ProfileIntro />
 
 </div>
 
 <div class="mt-3">
 
-<!-- <AdminTabs /> -->
+<AdminTabs />
 
 </div>

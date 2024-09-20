@@ -43,7 +43,12 @@ const { currentComments } = useComments();
       v-for="comment in currentComments"
       :key="comment.id"
       class="text-base dark:bg-gray-900 mb-10 w-full"
-      :ui="{ring:'ring-0',shadow:'shadow-none',base:'border-r-4 border-primary',rounded:'rounded-sm'}"
+      :ui="{
+        ring: 'ring-0',
+        shadow: 'shadow-none',
+        base: 'border-r-4 border-primary',
+        rounded: 'rounded-sm',
+      }"
     >
       <template #header>
         <div class="w-full flex justify-between">
@@ -56,7 +61,7 @@ const { currentComments } = useComments();
               src="https://avatars.githubusercontent.com/u/739984?v=4"
               alt="Avatar"
             />
-            <span> username </span>
+            <span> userName </span>
             <span class="font-thin text-xs">سه ساعت پیش</span>
             <span class="font-thin text-xs">
               {{ comment.seen ? "Send" : "Sending" }}</span

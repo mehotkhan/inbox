@@ -23,7 +23,6 @@ export default () => {
         about: "",
         email: "",
         avatar: "",
-        pub: "",
       };
     },
     maxAge: cookieExpire,
@@ -40,14 +39,13 @@ export default () => {
       const randomName = GenerateIdentity(pub, "fa");
 
       profile.value = {
-        firstName: randomName.split(" ")[0],
+        firstName: randomName.split(" ")[0]!,
         lastName: randomName.slice(randomName.split(" ")[0]?.length),
         displayName: randomName,
         userName: "",
         about: `یک ${randomName} تازه وارد :)`,
         email: "",
         avatar: "",
-        pub,
       };
       certs.value = {
         pub,
@@ -73,10 +71,29 @@ export default () => {
       method: "post",
       body: event,
     });
-    // console.log(body);
   };
 
+  const login = (userAuth: any) => {
+    profile.value = {
+      firstName: userAuth.firstName,
+      lastName: userAuth.lastName,
+      displayName: userAuth.displayName,
+      userName: userAuth.userName,
+      about: userAuth.about,
+      email: userAuth.email,
+      avatar: userAuth.avatar,
+    };
+    certs.value = {
+      pub: userAuth.pub,
+      priv: userAuth.priv,
+    };
+
+    userPub.value = userAuth.pub;
+    loggedIn.value = true;
+    // window.location.reload();
+  };
   return {
+    login,
     loggedIn,
     certs,
     profile,

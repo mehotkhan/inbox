@@ -3,11 +3,12 @@ import { z } from "zod";
 import { startRegistration } from "@simplewebauthn/browser";
 import type { FormSubmitEvent } from "#ui/types";
 const { t } = useI18n();
-const { profile, certs } = useUser();
+const { profile, certs, login } = useUser();
 
 const toast = useToast();
 const submitting = ref(false);
-const isOpen = ref(true);
+const isOpen = ref(false);
+const form = ref();
 
 const schema = z.object({
   firstName: z.string().min(3, t("Must be at least 3 characters")),
@@ -25,8 +26,8 @@ const state = reactive({
   lastName: profile.value.lastName,
   about: profile.value.about,
   displayName: profile.value.displayName,
-  email: "test@test.cc",
-  userName: "test",
+  email: profile.value.email,
+  userName: profile.value.userName,
 });
 
 // Start WebAuthn registration and handle form submission
@@ -40,7 +41,7 @@ const profileActivate = async (event: FormSubmitEvent<Schema>) => {
       body: {
         userName: event.data.userName,
         displayName: event.data.displayName,
-        pubKey: profile.value.pub,
+        pubKey: certs.value.pub,
       },
     });
 
@@ -48,15 +49,15 @@ const profileActivate = async (event: FormSubmitEvent<Schema>) => {
     const attResp = await startRegistration(options);
 
     // Send the credential data back to the server
-    await handleResponse(attResp, event.data);
+    const userAuth = await handleResponse(attResp, event.data);
 
+    login(userAuth); // Update user state after successful login
+    submitting.value = false;
+    isOpen.value = false; // Close the modal
     toast.add({
       title: t("ok"),
       description: t("User Activation Successfully"),
     });
-
-    submitting.value = false;
-    isOpen.value = false;
   } catch (error) {
     console.error(error);
     toast.add({
@@ -71,7 +72,7 @@ const profileActivate = async (event: FormSubmitEvent<Schema>) => {
 // Handle the response from WebAuthn and submit it to the server
 const handleResponse = async (attResp, formData) => {
   try {
-    const response = await $fetch("/api/members/webauth-response", {
+    const response = await $fetch("/api/members/webauth-activation-response", {
       method: "post",
       body: {
         attResp, // WebAuthn attestation response
@@ -80,8 +81,7 @@ const handleResponse = async (attResp, formData) => {
         userPriv: certs.value.priv,
       },
     });
-
-    console.log("Server response: ", response);
+    return JSON.parse(response);
   } catch (error) {
     console.error("Failed to handle WebAuthn response", error);
   }
@@ -99,7 +99,12 @@ const handleResponse = async (attResp, formData) => {
     />
 
     <UModal v-model="isOpen">
-      <UForm :schema="schema" :state="state" @submit="profileActivate">
+      <UForm
+        ref="form"
+        :schema="schema"
+        :state="state"
+        @submit="profileActivate"
+      >
         <UCard
           :ui="{
             body: {

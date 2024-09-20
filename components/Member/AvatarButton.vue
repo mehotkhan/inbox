@@ -1,6 +1,7 @@
 <script setup>
 const { profile } = useUser();
 const { locale } = useI18n();
+const loginIsOpen = ref(false);
 
 const items = [
   [
@@ -14,24 +15,27 @@ const items = [
     {
       label: "پروفایل",
       icon: "i-heroicons-user",
-      to:  `/${locale.value}/profile`,
+      to: `/${locale.value}/profile`,
     },
     {
       label: "۳ اطلاعیه جدید",
       icon: "i-heroicons-bell",
-      // disabled: true,
-      // to: "/profile",
     },
   ],
-
   [
     {
       label: "تغییر حساب",
       icon: "i-heroicons-arrow-left-on-rectangle",
+      click: () => {
+        loginIsOpen.value = true;
+      },
     },
     {
       label: "خروج",
       icon: "i-heroicons-arrow-left-on-rectangle",
+      click: () => {
+        // Implement logout functionality here
+      },
     },
   ],
 ];
@@ -45,11 +49,11 @@ const items = [
         :ui="{ item: { disabled: 'cursor-text select-text' } }"
         :popper="{ placement: 'bottom-start' }"
       >
-        <UAvatar :alt="profile?.displayName"  />
+        <UAvatar :alt="profile?.displayName" />
 
         <template #account="{ item }">
           <p class="text-right w-full flex gap-2 justify-between">
-            <span>ورود به عنوان</span>
+            <span>{{ $t("LoggedInAs") }}</span>
             <span class="font-bold text-gray-900 dark:text-white">
               {{ profile?.displayName }}
             </span>
@@ -57,16 +61,34 @@ const items = [
         </template>
 
         <template #item="{ item }">
-          <NuxtLink :to="item.to" class="flex w-full">
+          <div
+            v-if="item.click"
+            class="flex w-full cursor-pointer"
+            @click="item.click"
+          >
             <span class="truncate">{{ item.label }}</span>
-
+            <UIcon
+              :name="item.icon"
+              class="flex-shrink-0 h-4 w-4 text-gray-400 dark:text-gray-500 ms-auto"
+            />
+          </div>
+          <NuxtLink v-else-if="item.to" :to="item.to" class="flex w-full">
+            <span class="truncate">{{ item.label }}</span>
             <UIcon
               :name="item.icon"
               class="flex-shrink-0 h-4 w-4 text-gray-400 dark:text-gray-500 ms-auto"
             />
           </NuxtLink>
+          <div v-else class="flex w-full cursor-default">
+            <span class="truncate">{{ item.label }}</span>
+            <UIcon
+              :name="item.icon"
+              class="flex-shrink-0 h-4 w-4 text-gray-400 dark:text-gray-500 ms-auto"
+            />
+          </div>
         </template>
       </UDropdown>
     </UChip>
+    <MemberSwitch v-model:is-open="loginIsOpen" />
   </div>
 </template>

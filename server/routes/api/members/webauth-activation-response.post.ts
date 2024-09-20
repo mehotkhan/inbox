@@ -42,7 +42,6 @@ export default defineEventHandler(async (event) => {
           statusMessage: "Registration verification failed",
         });
       }
-
       await inboxKV.delete(webAuthChallengeKey);
 
       const drizzleDb = drizzle(DB);
@@ -58,17 +57,31 @@ export default defineEventHandler(async (event) => {
           email: data.formData.email,
           priv: data.userPriv,
           // Store credential data
-          credentialID: Buffer.from(
-            verification.registrationInfo?.credentialID || []
-          ).toString("base64"),
+          credentialID: verification.registrationInfo?.credentialID,
           credentialPublicKey: Buffer.from(
             verification.registrationInfo?.credentialPublicKey || []
           ).toString("base64"),
         })
         .where(eq(member.pub, data.userPub));
-
-      const result = await drizzleDb.select().from(member).all();
-      return new Response(JSON.stringify(result));
+      const existingMember: any = await drizzleDb
+        .select()
+        .from(member)
+        .where(eq(member.pub, data.userPub))
+        .get();
+      // Return successful authentication response
+      return new Response(
+        JSON.stringify({
+          firstName: existingMember.firstName,
+          lastName: existingMember.lastName,
+          displayName: existingMember.displayName,
+          userName: existingMember.userName,
+          about: existingMember.about,
+          email: existingMember.email,
+          avatar: existingMember.avatar,
+          pub: existingMember.pub,
+          priv: existingMember.priv,
+        })
+      );
     }
   } catch (e: any) {
     throw createError({
