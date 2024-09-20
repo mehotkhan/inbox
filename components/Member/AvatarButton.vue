@@ -1,5 +1,5 @@
 <script setup>
-const { profile } = useUser();
+const { profile, logout } = useUser();
 const { locale } = useI18n();
 const loginIsOpen = ref(false);
 
@@ -34,6 +34,7 @@ const items = [
       label: "خروج",
       icon: "i-heroicons-arrow-left-on-rectangle",
       click: () => {
+        logout();
         // Implement logout functionality here
       },
     },

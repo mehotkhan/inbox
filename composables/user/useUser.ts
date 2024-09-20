@@ -1,6 +1,5 @@
-import { bytesToHex, hexToBytes } from "@noble/hashes/utils";
-import type { Event as NostrEvent } from "nostr-tools";
-import { finalizeEvent, generateSecretKey, getPublicKey } from "nostr-tools";
+import { bytesToHex } from "@noble/hashes/utils";
+import { generateSecretKey, getPublicKey } from "nostr-tools";
 
 export default () => {
   const loggedIn = useCookie("loggedIn", {
@@ -92,7 +91,12 @@ export default () => {
     loggedIn.value = true;
     // window.location.reload();
   };
+  const logout = () => {
+    loggedIn.value = false;
+    window.location.reload();
+  };
   return {
+    logout,
     login,
     loggedIn,
     certs,
