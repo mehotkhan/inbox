@@ -23,8 +23,6 @@ export default defineEventHandler(async (event) => {
       about: body.about || "",
       avatar: body.avatar || "",
       pub: body.pub,
-      priv: body.priv || "",
-      // Add other fields as necessary, ensuring they match your schema
     };
 
     // Insert the new user into the database
