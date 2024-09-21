@@ -23,7 +23,7 @@ export default defineNuxtConfig({
     app: {
       github: "https://github.com/mehotkhan",
       linkedin: "https://www.linkedin.com/in/ali-zemani/",
-      twitter: 'https://www.twitter.com/ZemaniAli/',
+      twitter: "https://www.twitter.com/ZemaniAli/",
       language: "fa",
       githubRepo: "mehotkhan/Inbox",
       color: "#e5e7eb",
@@ -36,6 +36,13 @@ export default defineNuxtConfig({
   },
 
   vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: "modern",
+        },
+      },
+    },
     plugins: [viteCompression({ algorithm: "brotliCompress" })],
     build: {
       watch: {},

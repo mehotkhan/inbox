@@ -35,7 +35,6 @@ const items = [
       icon: "i-heroicons-arrow-left-on-rectangle",
       click: () => {
         logout();
-        // Implement logout functionality here
       },
     },
   ],
