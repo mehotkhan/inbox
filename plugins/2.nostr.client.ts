@@ -1,5 +1,6 @@
+import { hexToBytes } from "@noble/hashes/utils";
 import { useWebSocket } from "@vueuse/core";
-import type { Event as NostrEvent } from "nostr-tools";
+import { finalizeEvent, type Event as NostrEvent } from "nostr-tools";
 
 export default defineNuxtPlugin(() => {
   const relayURL = isDev()
@@ -7,9 +8,9 @@ export default defineNuxtPlugin(() => {
     : "https://relay.alizemani.ir/";
   // const relayURL = "https://relay.alizemani.ir/";
   const { $dexie } = useNuxtApp();
-  const { loggedIn, profile } = useUser();
+  const { loggedIn,certs } = useUser();
 
-  const { status, data, send, open } = useWebSocket(relayURL, {
+  const { status, data, send, open ,close} = useWebSocket(relayURL, {
     immediate: false,
     autoReconnect: {
       retries: 5,
@@ -32,46 +33,96 @@ export default defineNuxtPlugin(() => {
     }
   });
   watch(status, (newStatus) => {
+    console.log(newStatus)
     if (newStatus === "OPEN") {
-      sendREQMessage();
+      // sendREQMessage();
     }
   });
 
   watch(data, (newData) => {
     try {
       const incomingEvent = JSON.parse(newData);
-      handleIncomingEvent(incomingEvent[2]);
+      handleIncomingMessage(incomingEvent);
     } catch (error) {
       console.error("Failed to parse incoming message", error);
     }
   });
-  // let timer: any = null;
-  const sendREQMessage = () => {
-    const subscriptionId = "my-subscription-id";
-    const filter = {
-      kinds: [0, 1, 2],
-      authors: [profile.value?.pub],
-    };
-    const reqMessage = JSON.stringify(["REQ", subscriptionId, filter]);
-    // setInterval(() => {
-    console.log("req");
-    send(reqMessage);
-    // }, 5000);
+ 
+  const handleIncomingMessage = async (message: any) => {
+    console.log('incomig',message)
+    const messageType = message[0];
+    switch (messageType) {
+      case "AUTH":
+        await sendAuthMessage(message[1]);
+        break;
+      case "EVENT":
+        await handleIncomingEvent(message[2]);
+        break;
+      case "EOSE":
+        // Handle End of Subscription Event
+        break; 
+      case "CLOSED":
+        close()
+        // Handle End of Subscription Event
+        break;
+      case "OK":
+        // Handle OK responses
+        break;
+      case "NOTICE":
+        // Handle Notices
+        break;
+      default:
+        console.log("Unknown message type", messageType);
+    }
   };
+  const sendAuthMessage = async (challenge: string) => {
+    const pubKey = certs.value?.pub;
+    const privKey = certs.value?.priv;
 
-  // onUnmounted(() => {
-  //   clearInterval(timer);
-  // });
+    if (!pubKey || !privKey) {
+      console.error("Missing pubkey or privkey for authentication");
+      return;
+    }
 
+ 
+    const authEvent: NostrEvent = finalizeEvent(
+      {
+        created_at: Math.floor(Date.now() / 1000),
+        kind: 22242,
+        tags: [
+          ["relay", relayURL],
+          ["challenge", challenge],
+        ],
+        content: "",
+      },
+      hexToBytes(certs.value.priv)
+    );
+
+
+    // Send AUTH message
+    send(JSON.stringify(["AUTH", authEvent]));
+  };
+ // const sendREQMessage = () => {
+  //   const subscriptionId = "my-subscription-id";
+  //   const filter = {
+  //     kinds: [0, 1, 2],
+  //     authors: [profile.value?.pub],
+  //   };
+  //   const reqMessage = JSON.stringify(["REQ", subscriptionId, filter]);
+  //   // setInterval(() => {
+  //   console.log("req");
+  //   send(reqMessage);
+  //   // }, 5000);
+  // };
+ 
   const handleIncomingEvent = async (event: NostrEvent) => {
     try {
-      // verifyEvent(event);
       if (event?.id) {
         const dbEvent = await $dexie.events.get({
           id: event.id,
         });
         if (dbEvent) {
-          // update seen feild in db
+          // update seen field in db
           await $dexie.events.update(event.id, { seen: true });
         } else {
           $dexie.events.add({
@@ -89,9 +140,7 @@ export default defineNuxtPlugin(() => {
       console.log("bad event", error);
     }
   };
-
   const sendEVENTMessage = async (event: NostrEvent) => {
-    delete event.seen;
     send(JSON.stringify(["EVENT", event]));
     console.log("sending", event);
   };
