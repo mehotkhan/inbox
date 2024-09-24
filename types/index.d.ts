@@ -29,8 +29,7 @@ declare global {
     status: "draft" | "sending" | "send" | "published" | "spam";
   }
 
-  interface MemberProfile {
-    id?: number;
+  interface UserProfile {
     firstName: string;
     lastName: string;
     displayName: string;
@@ -38,7 +37,9 @@ declare global {
     about: string;
     email: string;
     avatar: string;
+  }
+  type UserCerts = {
     pub: string;
     priv: string;
-  }
+  };
 }

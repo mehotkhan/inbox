@@ -1,30 +1,18 @@
 import { bytesToHex } from "@noble/hashes/utils";
 import { generateSecretKey, getPublicKey } from "nostr-tools";
+import { useStorage } from "@vueuse/core";
 
 export default () => {
-  const loggedIn = useCookie("loggedIn", {
-    default: () => false,
-    maxAge: cookieExpire,
-  });
-  const certs = useCookie("current-certs", {
-    default: () => {
-      return { pub: "", priv: "" };
-    },
-    maxAge: cookieExpire,
-  });
-  const profile = useCookie("current-user", {
-    default: () => {
-      return {
-        firstName: "",
-        lastName: "",
-        displayName: "",
-        userName: "",
-        about: "",
-        email: "",
-        avatar: "",
-      };
-    },
-    maxAge: cookieExpire,
+  const loggedIn = useStorage("loggedIn", false);
+  const certs = useStorage<UserCerts>("current-certs", { pub: "", priv: "" });
+  const profile = useStorage<UserProfile>("current-user", {
+    firstName: "",
+    lastName: "",
+    displayName: "",
+    userName: "",
+    about: "",
+    email: "",
+    avatar: "",
   });
   const userPub = useCookie("userPub", {
     default: () => "",

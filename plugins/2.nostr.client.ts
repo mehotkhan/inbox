@@ -3,14 +3,16 @@ import { useWebSocket } from "@vueuse/core";
 import { finalizeEvent, type Event as NostrEvent } from "nostr-tools";
 
 export default defineNuxtPlugin(() => {
+  const authID = ref("");
+  const userValidated = ref(false);
   const relayURL = isDev()
     ? "http://localhost:8787/"
     : "https://relay.alizemani.ir/";
   // const relayURL = "https://relay.alizemani.ir/";
   const { $dexie } = useNuxtApp();
-  const { loggedIn,certs } = useUser();
+  const { loggedIn, certs } = useUser();
 
-  const { status, data, send, open ,close} = useWebSocket(relayURL, {
+  const { data, send, open, close } = useWebSocket(relayURL, {
     immediate: false,
     autoReconnect: {
       retries: 5,
@@ -22,20 +24,11 @@ export default defineNuxtPlugin(() => {
   });
 
   if (loggedIn.value) {
-    console.log("connect");
     open();
   }
-  console.log("mount", loggedIn.value);
-
   watch(loggedIn, (newStatus) => {
     if (newStatus) {
       open();
-    }
-  });
-  watch(status, (newStatus) => {
-    console.log(newStatus)
-    if (newStatus === "OPEN") {
-      sendREQMessage();
     }
   });
 
@@ -47,9 +40,8 @@ export default defineNuxtPlugin(() => {
       console.error("Failed to parse incoming message", error);
     }
   });
- 
+
   const handleIncomingMessage = async (message: any) => {
-    console.log('incomig',message)
     const messageType = message[0];
     switch (messageType) {
       case "AUTH":
@@ -60,14 +52,17 @@ export default defineNuxtPlugin(() => {
         break;
       case "EOSE":
         // Handle End of Subscription Event
-        break; 
+        break;
       case "CLOSED":
-        console.log('force close ')
-        close()
-        // Handle End of Subscription Event
+        userValidated.value = false;
+        close();
         break;
       case "OK":
         // Handle OK responses
+        if (!userValidated.value && message[1] === authID.value) {
+          userValidated.value = true;
+          sendREQMessage();
+        }
         break;
       case "NOTICE":
         // Handle Notices
@@ -85,37 +80,28 @@ export default defineNuxtPlugin(() => {
       return;
     }
 
- 
     const authEvent: NostrEvent = finalizeEvent(
       {
         created_at: Math.floor(Date.now() / 1000),
         kind: 22242,
-        tags: [
-          ["relay", relayURL],
-          ["challenge", challenge],
-        ],
+        tags: [["challenge", challenge]],
         content: "",
       },
       hexToBytes(certs.value.priv)
     );
-
-
+    authID.value = authEvent.id;
     // Send AUTH message
     send(JSON.stringify(["AUTH", authEvent]));
   };
- const sendREQMessage = () => {
-    const subscriptionId = "my-subscription-id";
-    const filter = {
-      kinds: [0, 1, 2],
-      authors: [certs.value?.pub],
-    };
-    const reqMessage = JSON.stringify(["REQ", subscriptionId, filter]);
-    // setInterval(() => {
+
+  const sendREQMessage = () => {
     console.log("req");
+    const subscriptionId = "my-subscription-id";
+    const filter = {};
+    const reqMessage = JSON.stringify(["REQ", subscriptionId, filter]);
     send(reqMessage);
-    // }, 5000);
   };
- 
+
   const handleIncomingEvent = async (event: NostrEvent) => {
     try {
       if (event?.id) {

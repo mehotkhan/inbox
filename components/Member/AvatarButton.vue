@@ -2,7 +2,11 @@
 const { profile, logout } = useUser();
 const { locale } = useI18n();
 const loginIsOpen = ref(false);
+const isClient = ref(false);
 
+onMounted(() => {
+  isClient.value = true;
+});
 const items = [
   [
     {
@@ -45,6 +49,7 @@ const items = [
   <div class="relative flex">
     <UChip text="۳" size="xl" color="green" position="top-left">
       <UDropdown
+        v-if="isClient"
         :items="items"
         :ui="{ item: { disabled: 'cursor-text select-text' } }"
         :popper="{ placement: 'bottom-start' }"
