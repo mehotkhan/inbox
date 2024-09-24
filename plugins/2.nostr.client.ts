@@ -35,7 +35,7 @@ export default defineNuxtPlugin(() => {
   watch(status, (newStatus) => {
     console.log(newStatus)
     if (newStatus === "OPEN") {
-      // sendREQMessage();
+      sendREQMessage();
     }
   });
 
@@ -62,6 +62,7 @@ export default defineNuxtPlugin(() => {
         // Handle End of Subscription Event
         break; 
       case "CLOSED":
+        console.log('force close ')
         close()
         // Handle End of Subscription Event
         break;
@@ -102,18 +103,18 @@ export default defineNuxtPlugin(() => {
     // Send AUTH message
     send(JSON.stringify(["AUTH", authEvent]));
   };
- // const sendREQMessage = () => {
-  //   const subscriptionId = "my-subscription-id";
-  //   const filter = {
-  //     kinds: [0, 1, 2],
-  //     authors: [profile.value?.pub],
-  //   };
-  //   const reqMessage = JSON.stringify(["REQ", subscriptionId, filter]);
-  //   // setInterval(() => {
-  //   console.log("req");
-  //   send(reqMessage);
-  //   // }, 5000);
-  // };
+ const sendREQMessage = () => {
+    const subscriptionId = "my-subscription-id";
+    const filter = {
+      kinds: [0, 1, 2],
+      authors: [certs.value?.pub],
+    };
+    const reqMessage = JSON.stringify(["REQ", subscriptionId, filter]);
+    // setInterval(() => {
+    console.log("req");
+    send(reqMessage);
+    // }, 5000);
+  };
  
   const handleIncomingEvent = async (event: NostrEvent) => {
     try {
