@@ -7,7 +7,7 @@ export default defineNuxtPlugin(() => {
   const userValidated = ref(false);
   const relayURL = isDev()
     ? "http://localhost:8787/"
-    : "https://relay.alizemani.ir/";
+    : "https://inbox.alizemani.ir/nostr-relay";
   // const relayURL = "https://relay.alizemani.ir/";
   const { $dexie } = useNuxtApp();
   const { loggedIn, certs } = useUser();
@@ -43,6 +43,7 @@ export default defineNuxtPlugin(() => {
 
   const handleIncomingMessage = async (message: any) => {
     const messageType = message[0];
+    console.log('incoming',message)
     switch (messageType) {
       case "AUTH":
         await sendAuthMessage(message[1]);
