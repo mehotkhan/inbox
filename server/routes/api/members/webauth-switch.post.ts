@@ -54,8 +54,6 @@ export default defineEventHandler(async (event) => {
       allowCredentials: [
         {
           id: existingMember?.credentialID,
-          type: "public-key",
-          transports: ["usb", "ble", "nfc", "internal"],
         },
       ],
     });
