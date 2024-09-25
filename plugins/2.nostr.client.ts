@@ -59,7 +59,6 @@ export default defineNuxtPlugin(() => {
         close();
         break;
       case "OK":
-        coso
         // Handle OK responses
         if (!userValidated.value && message[1] === authID.value) {
           userValidated.value = true;
