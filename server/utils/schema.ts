@@ -20,19 +20,21 @@ export const member = sqliteTable("member", {
   counter: integer("counter").default(0), // Counter to prevent replay attacks during authentication
 });
 
-export const events = sqliteTable("events", {
-  id: text("id").primaryKey(),
-  pubkey: text("pubkey"),
-  created_at: integer("created_at"),
-  kind: integer("kind"),
-  tags: text("tags"),
-  content: text("content"),
-  sig: text("sig"),
+export const events = sqliteTable('events', {
+	id: text('id').primaryKey(),
+	pubkey: text('pubkey'),
+	created_at: integer('created_at'),
+	kind: integer('kind'),
+	tags: text('tags'),
+	content: text('content'),
+	sig: text('sig'),
+	isVerified: integer('isVerified', { mode: 'boolean' }).default(false),
 });
 
 // Event
 export type SelectEvent = typeof events.$inferSelect;
 export type InsertEvent = typeof events.$inferInsert;
+
 
 // member
 export type SelectMember = typeof member.$inferSelect;

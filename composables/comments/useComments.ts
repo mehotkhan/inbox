@@ -112,7 +112,7 @@ export default function useComments() {
       .reverse()
       .limit(20)
       .toArray();
-  }, []);
+  }, [currentChannelId]);
 
   const allComments = useLiveQuery(async () => {
     return await $dexie.events

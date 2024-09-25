@@ -71,7 +71,6 @@ const { currentComments } = useComments();
             <UButton
               variant="ghost"
               color="white"
-              label="گزینه ها"
               trailing-icon="i-heroicons-chevron-down-20-solid"
             />
           </UDropdown>

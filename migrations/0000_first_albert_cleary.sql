@@ -5,7 +5,8 @@ CREATE TABLE `events` (
 	`kind` integer,
 	`tags` text,
 	`content` text,
-	`sig` text
+	`sig` text,
+	`isVerified` integer DEFAULT false
 );
 --> statement-breakpoint
 CREATE TABLE `member` (
