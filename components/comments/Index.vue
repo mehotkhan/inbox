@@ -1,11 +1,4 @@
-<script setup lang="ts">
-const { createChannel } = useComments();
-const { isDev } = useOwner();
-
-onMounted(() => {
-  createChannel();
-});
-</script>
+<script setup lang="ts"></script>
 <template>
   <section class="w-full min-h-20">
     <CommentsCreateForm />

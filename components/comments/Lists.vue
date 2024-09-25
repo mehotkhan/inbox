@@ -1,39 +1,4 @@
 <script setup lang="ts">
-const items = [
-  [
-    {
-      label: "Edit",
-      icon: "i-heroicons-pencil-square-20-solid",
-      shortcuts: ["E"],
-      click: () => {
-        console.log("Edit");
-      },
-    },
-    {
-      label: "Duplicate",
-      icon: "i-heroicons-document-duplicate-20-solid",
-      shortcuts: ["D"],
-      disabled: true,
-    },
-  ],
-  [
-    {
-      label: "Archive",
-      icon: "i-heroicons-archive-box-20-solid",
-    },
-    {
-      label: "Move",
-      icon: "i-heroicons-arrow-right-circle-20-solid",
-    },
-  ],
-  [
-    {
-      label: "Delete",
-      icon: "i-heroicons-trash-20-solid",
-      shortcuts: ["⌘", "D"],
-    },
-  ],
-];
 const { currentComments } = useComments();
 </script>
 
@@ -57,23 +22,20 @@ const { currentComments } = useComments();
               chip-color="primary"
               chip-text=""
               chip-position="top-right"
+              src="/totoro_render.webp"
               size="sm"
-              src="https://avatars.githubusercontent.com/u/739984?v=4"
-              alt="Avatar"
+              class="avatar-button"
             />
             <span> userName </span>
-            <span class="font-thin text-xs">سه ساعت پیش</span>
+          </div>
+          <div class="flex gap-2">
             <span class="font-thin text-xs">
-              {{ comment.seen ? "Send" : "Sending" }}</span
+              {{ comment.seen ? $t("Send") : $t("Sending") }}</span
+            >
+            <span class="font-thin text-xs">
+              {{ eventFormatTimeAgo(comment.created_at) }}</span
             >
           </div>
-          <UDropdown :items="items" :popper="{ placement: 'bottom-start' }">
-            <UButton
-              variant="ghost"
-              color="white"
-              trailing-icon="i-heroicons-chevron-down-20-solid"
-            />
-          </UDropdown>
         </div>
       </template>
       <p class="text-gray-500 dark:text-gray-400">

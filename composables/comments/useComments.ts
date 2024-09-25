@@ -1,6 +1,6 @@
+import { hexToBytes } from "@noble/hashes/utils";
 import type { Event as NostrEvent } from "nostr-tools";
 import { finalizeEvent } from "nostr-tools";
-import { hexToBytes } from "@noble/hashes/utils";
 
 export default function useComments() {
   const { certs } = useUser();
@@ -8,12 +8,7 @@ export default function useComments() {
   const sending = ref(false);
   const count = ref(10);
   const currentChannelId = ref<string | null>(null);
-  const route = useRoute();
-
-  onMounted(async () => {
-    const channel = await createChannel();
-    currentChannelId.value = channel.id;
-  });
+  const route = useRoute(); // useRoute is reactive
 
   const sendComment = async (message: string) => {
     sending.value = true;
@@ -74,31 +69,6 @@ export default function useComments() {
     sending.value = false;
   };
 
-  const createChannel = async () => {
-    const path = route.fullPath;
-    const channel = await $dexie.events.get({
-      content: path,
-    });
-    if (!channel) {
-      const channelEvent: NostrEvent = finalizeEvent(
-        {
-          kind: 40,
-          created_at: Math.floor(Date.now()),
-          tags: [],
-          content: path,
-        },
-        hexToBytes(certs.value.priv)
-      );
-
-      $dexie.events.add({
-        ...channelEvent,
-        seen: false,
-      });
-      return channelEvent;
-    }
-    return channel;
-  };
-
   const currentComments = useLiveQuery(async () => {
     return await $dexie.events
       .orderBy("created_at")
@@ -130,6 +100,40 @@ export default function useComments() {
       .count();
   }, []);
 
+  const getCurrentChannelID = async (path: string) => {
+    try {
+      const channel = await $dexie?.events?.get({
+        content: path,
+        kind: 40,
+      });
+      if (channel) {
+        currentChannelId.value = channel?.id;
+      } else {
+        const channelResponse: any = await $fetch(
+          "/api/comments/getCommentId",
+          {
+            params: { path },
+          }
+        );
+        $dexie?.events.add({
+          ...channelResponse,
+          seen: true,
+        });
+        currentChannelId.value = channelResponse.id;
+      }
+    } catch (e: any) {
+      console.log(e);
+    }
+  };
+  // Watch the route directly
+  watch(
+    () => route.path, // Watch the fullPath directly
+    (newPath) => {
+      getCurrentChannelID(newPath);
+    },
+    { immediate: true } // This ensures the watcher fires immediately
+  );
+
   return {
     allCommentsCount,
     count,
@@ -138,6 +142,5 @@ export default function useComments() {
     sendReplay,
     allComments,
     currentComments,
-    createChannel,
   };
 }

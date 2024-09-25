@@ -43,12 +43,12 @@ export default defineNuxtPlugin(() => {
 
   const handleIncomingMessage = async (message: any) => {
     const messageType = message[0];
-    console.log('incoming event',message)
+    // console.log('incoming event',message)
     switch (messageType) {
       case "AUTH":
         await sendAuthMessage(message[1]);
         break;
-        case "EVENT":
+      case "EVENT":
         await handleIncomingEvent(message[2]);
         break;
       case "EOSE":
@@ -105,24 +105,24 @@ export default defineNuxtPlugin(() => {
 
   const handleIncomingEvent = async (event: NostrEvent) => {
     try {
-      console.log('savaing to db')
-        const dbEvent = await $dexie.events.get({
-          id: event.id,
+      console.log("savaing to db");
+      const dbEvent = await $dexie.events.get({
+        id: event.id,
+      });
+      if (dbEvent) {
+        // update seen field in db
+        await $dexie.events.update(event.id, { seen: true });
+      } else {
+        $dexie.events.add({
+          ...event,
+          tags: JSON.parse(event.tags),
+          seen: true,
         });
-        if (dbEvent) {
-          // update seen field in db
-          await $dexie.events.update(event.id, { seen: true });
-        } else {
-          $dexie.events.add({
-            ...event,
-            tags: JSON.parse(event.tags),
-            seen: true,
-          });
-        }
-        if (event?.kind === 0) {
-          const userProfile = JSON.parse(event.content);
-          $dexie.members.put(userProfile);
-        }
+      }
+      if (event?.kind === 0) {
+        const userProfile = JSON.parse(event.content);
+        $dexie.members.put(userProfile);
+      }
     } catch (error) {
       console.log("bad event", error);
     }
