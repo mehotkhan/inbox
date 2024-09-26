@@ -8,6 +8,7 @@ description: " وب‌اسمبلی (انگلیسی: WebAssembly) یا وَسم (
   بتواند در محیط‌های دیگر، هم اجرا و تعبیه گردد."
 date: 2023-09-12T16:33:46.294Z
 banner: false
+comments: true
 toc: true
 postIntro: true
 category: notes

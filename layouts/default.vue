@@ -4,12 +4,17 @@ const route = useRoute();
 
 const editEnable = ref(false);
 </script>
+
 <template>
-  <div class="flex-col flex">
+  <div class="flex flex-col">
     <slot name="app-before" />
     <div id="app-before" />
+
+    <!-- Header Section -->
     <Header />
-    <main class="flex min-h-screen mt-[3rem]">
+
+    <!-- Main Content -->
+    <main class="flex min-h-screen mt-12">
       <div class="container">
         <div class="prose md:prose-xl dark:prose-invert">
           <UCard
@@ -20,6 +25,7 @@ const editEnable = ref(false);
               shadow: 'shadow-none',
             }"
           >
+            <!-- Header Slot -->
             <template #header>
               <div class="flex justify-between pt-5">
                 <Breadcrumb v-if="isDev" />
@@ -33,7 +39,11 @@ const editEnable = ref(false);
                       variant="ghost"
                       @click="editEnable = !editEnable"
                     />
-                    <!-- <UButton
+                    <!-- 
+                      Commented Buttons 
+                    -->
+                    <!-- 
+                    <UButton
                       label="افزودن یادداشت"
                       size="md"
                       color="primary"
@@ -46,7 +56,8 @@ const editEnable = ref(false);
                       color="primary"
                       variant="ghost"
                       to="/create"
-                    /> -->
+                    /> 
+                    -->
                   </div>
                 </div>
                 <MemberActivate
@@ -54,22 +65,23 @@ const editEnable = ref(false);
                 />
               </div>
             </template>
-            <slot v-if="!editEnable" />
 
+            <!-- Content Slot -->
+            <slot v-if="!editEnable" />
             <AdminEditPost v-else />
+
+            <!-- Footer Slot -->
             <template #footer>
               <div
                 class="flex flex-col-reverse md:flex-row items-center md:justify-between pt-5 border-t"
               >
                 <div class="flex items-center gap-2">
-                  <p class="text-xs">
-                    {{ $t("DeveloperMode") }}
-                  </p>
+                  <p class="text-xs">{{ $t("DeveloperMode") }}</p>
                   <UToggle
                     v-model="isDev"
                     color="green"
                     size="md"
-                    label="آزمایشگاه؟"
+                    :label="$t('LABS?')"
                     on-icon="i-heroicons-check-20-solid"
                     off-icon="i-heroicons-x-mark-20-solid"
                   />
@@ -81,14 +93,19 @@ const editEnable = ref(false);
           </UCard>
         </div>
       </div>
+
       <slot name="app-after" />
       <div id="app-after" />
     </main>
+
+    <!-- Developer Support -->
     <SupportStart v-if="isDev" />
+
+    <!-- Admin Toggle -->
     <div
       class="fixed right-2 bottom-2 bg-gray-200 w-20 py-3 rounded items-center flex justify-around flex-col gap-1"
     >
-      <span class="text-md text-black">مدیر؟</span>
+      <span class="text-md text-black">{{ $t("Owner Mode?") }}</span>
       <UToggle
         v-model="isOwner"
         color="green"

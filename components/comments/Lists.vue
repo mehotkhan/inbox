@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const { currentComments } = useComments();
+const { profile } = useUser();
 </script>
 
 <template>
@@ -7,12 +8,13 @@ const { currentComments } = useComments();
     <UCard
       v-for="comment in currentComments"
       :key="comment.id"
-      class="text-base dark:bg-gray-900 mb-10 w-full"
+      class="dark:bg-gray-900 mb-10 w-full"
       :ui="{
         ring: 'ring-0',
         shadow: 'shadow-none',
-        base: 'border-r-4 border-primary',
+        base: 'border-b',
         rounded: 'rounded-sm',
+        body: { padding: 'px-5 py-2 sm:py-3 sm:px-5' },
       }"
     >
       <template #header>
@@ -26,23 +28,32 @@ const { currentComments } = useComments();
               size="sm"
               class="avatar-button"
             />
-            <span> userName </span>
+            <span class="text-base font-medium">
+              {{ profile.displayName }}
+            </span>
           </div>
-          <div class="flex gap-2">
-            <span class="font-thin text-xs">
-              {{ comment.seen ? $t("Send") : $t("Sending") }}</span
-            >
-            <span class="font-thin text-xs">
-              {{ eventFormatTimeAgo(comment.created_at) }}</span
-            >
+          <div class="flex gap-2 text-sm">
+            <span> {{ comment.seen ? $t("Send") : $t("Sending") }}</span>
           </div>
         </div>
       </template>
-      <p class="text-gray-500 dark:text-gray-400">
+
+      <span class="text-gray-500 dark:text-gray-400 text-base">
         {{ comment.content }}
-      </p>
+      </span>
+
       <template #footer>
-        <div class="flex justify-end gap-3">پاسخ</div>
+        <div class="flex justify-between items-center text-sm">
+          <span> {{ eventFormatTimeAgo(comment.created_at) }}</span>
+          <UButton
+            variant="none"
+            color="gray"
+            size="sm"
+            :ui="{ rounded: 'rounded-md' }"
+          >
+            {{ $t("Reply") }}
+          </UButton>
+        </div>
       </template>
     </UCard>
   </div>

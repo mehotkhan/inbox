@@ -37,7 +37,7 @@ export const eventFormatTimeAgo = (inputDate: number) => {
     return DateTime.fromMillis(inputDate)
       .reconfigure({ outputCalendar: "persian" })
       .setLocale("fa")
-      .toRelative({ unit: "minutes", round: false });
+      .toRelative();
   } else {
     return DateTime.fromSeconds(inputDate)
       .reconfigure({ outputCalendar: "iso8601" })

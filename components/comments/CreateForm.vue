@@ -30,29 +30,39 @@ const handleKeyDown = (event: KeyboardEvent) => {
 </script>
 
 <template>
-  <UForm
-    ref="form"
-    :schema="schema"
-    :state="state"
-    class="space-y-4"
-    @submit="onSubmit"
-  >
+  <UForm ref="form" :schema="schema" :state="state" @submit="onSubmit">
     <UCard
-      class="mb-10 pb-10 border-b bg-gray-200"
-      :ui="{ shadow: 'shadow-none' }"
+      class="border rounded-md mb-10"
+      :ui="{
+        shadow: 'shadow-none',
+        body: { padding: 'px-4 pt-3 pb-0 sm:p-3' },
+        footer: { padding: 'px-3 py-2 sm:px-3' },
+      }"
     >
-      <template #header>
-        <div class="flex justify-between">
-          <span> ارسال دیدگاه </span>
-        </div>
-      </template>
-      <UFormGroup name="textarea" label="دیدگاه شما">
-        <UTextarea v-model="state.message" @keydown="handleKeyDown" />
+      <UFormGroup name="textarea">
+        <UTextarea
+          v-model="state.message"
+          :placeholder="$t('Write Your Comment')"
+          :padded="false"
+          variant="none"
+          class="w-full mt-2"
+          size="lg"
+          autoresize
+          @keydown="handleKeyDown"
+        />
       </UFormGroup>
+      <UDivider />
       <template #footer>
-        <div class="flex justify-end gap-3">
-          <UButton variant="outline" size="xl" type="submit" :loading="sending">
-            ارسال
+        <div class="flex justify-end">
+          <UButton
+            variant="outline"
+            size="md"
+            color="gray"
+            type="submit"
+            :loading="sending"
+            :ui="{ rounded: 'rounded-md' }"
+          >
+            {{ $t("Send Comment") }}
           </UButton>
         </div>
       </template>
