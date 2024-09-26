@@ -1,13 +1,12 @@
 import { schnorr } from "@noble/curves/secp256k1";
 import { sha256 } from "@noble/hashes/sha256";
 import { bytesToHex, hexToBytes } from "@noble/hashes/utils";
-import { useStorage } from "@vueuse/core";
 
 export async function useApi<T>(
   request: Parameters<typeof $fetch<T>>[0],
-  opts?: Parameters<typeof $fetch<T>>[1],
+  opts?: Parameters<typeof $fetch<T>>[1]
 ) {
-  const profile: any = useStorage("current-user", {});
+  const { certs } = useUser();
   let requestString = "";
   if (opts?.method === "get") {
     requestString = JSON.stringify(opts?.params);
@@ -15,24 +14,19 @@ export async function useApi<T>(
     requestString = JSON.stringify(opts.body);
   }
 
-  const sig = getRequestSign(requestString, profile);
-  // console.log("sig: ", sig);
-  // console.log("pub: ", profile.value.pub);
-  // console.log("body: ", opts);
+  const sig = getRequestSign(requestString, certs.value);
   return $fetch<T, R>(request, {
     ...opts,
     headers: {
-      ownerPub: profile.value.pub,
       requestSign: sig,
       ...opts?.headers,
     },
   });
 }
 
-const getRequestSign = (requestString: string, profile: any): string => {
-  console.log("profile priv? ", profile.value.pub);
+const getRequestSign = (requestString: string, certs: UserCerts): string => {
   return bytesToHex(
-    schnorr.sign(getEventHash(requestString), hexToBytes(profile.value.priv)),
+    schnorr.sign(getEventHash(requestString), hexToBytes(certs.priv))
   );
 };
 

@@ -1,5 +1,7 @@
 <script lang="ts" setup>
-const { isOwner, isDev } = useOwner();
+const { isDev } = useOwner();
+const { userRole } = useUser();
+
 const route = useRoute();
 
 const editEnable = ref(false);
@@ -30,9 +32,9 @@ const editEnable = ref(false);
               <div class="flex justify-between pt-5">
                 <Breadcrumb v-if="isDev" />
                 <div class="flex gap-4 items-center">
-                  <div v-if="isOwner">
+                  <div v-if="userRole === 'Owner'">
                     <UButton
-                      v-if="isOwner && isDev"
+                      v-if="isDev"
                       :label="editEnable ? 'بستن ویرایش' : 'ویرایش'"
                       size="md"
                       color="primary"
@@ -60,9 +62,6 @@ const editEnable = ref(false);
                     -->
                   </div>
                 </div>
-                <MemberActivate
-                  v-if="route.path.includes('/profile') && !isOwner"
-                />
               </div>
             </template>
 
@@ -100,20 +99,5 @@ const editEnable = ref(false);
 
     <!-- Developer Support -->
     <SupportStart v-if="isDev" />
-
-    <!-- Admin Toggle -->
-    <div
-      class="fixed right-2 bottom-2 bg-gray-200 w-20 py-3 rounded items-center flex justify-around flex-col gap-1"
-    >
-      <span class="text-md text-black">{{ $t("Owner Mode?") }}</span>
-      <UToggle
-        v-model="isOwner"
-        color="green"
-        size="xl"
-        title="is Admin"
-        on-icon="i-heroicons-check-20-solid"
-        off-icon="i-heroicons-x-mark-20-solid"
-      />
-    </div>
   </div>
 </template>

@@ -13,7 +13,6 @@ CREATE TABLE `member` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`pub` text,
 	`priv` text,
-	`isAdmin` integer DEFAULT false,
 	`isVerified` integer DEFAULT false,
 	`firstName` text,
 	`lastName` text,

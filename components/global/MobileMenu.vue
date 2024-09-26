@@ -1,9 +1,7 @@
 <script setup lang="ts">
 const { t } = useI18n();
-const { isOwner } = useOwner();
-
+const { userRole } = useUser();
 const appConfig = useAppConfig();
-
 const items = computed(() => {
   const menus: any[] = [];
   appConfig.menuItems.forEach((menu: any) => {
@@ -15,7 +13,7 @@ const items = computed(() => {
     ]);
   });
 
-  if (isOwner.value) {
+  if (userRole.value === "Owner") {
     menus.push([
       {
         label: t("profile"),

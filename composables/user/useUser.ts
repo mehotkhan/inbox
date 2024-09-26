@@ -1,10 +1,11 @@
 import { bytesToHex } from "@noble/hashes/utils";
-import { generateSecretKey, getPublicKey } from "nostr-tools";
 import { useStorage } from "@vueuse/core";
+import { generateSecretKey, getPublicKey } from "nostr-tools";
 
 export default () => {
   const loggedIn = useStorage("loggedIn", false);
   const certs = useStorage<UserCerts>("current-certs", { pub: "", priv: "" });
+  const userRole = useStorage<UserRole>("current-role", "NewComer");
   const profile = useStorage<UserProfile>("current-user", {
     firstName: "",
     lastName: "",
@@ -19,6 +20,7 @@ export default () => {
     maxAge: cookieExpire,
     watch: true,
   });
+
   const registerNew = async () => {
     if (!loggedIn.value) {
       const priv = generateSecretKey(); // `sk` is a hex string
@@ -41,6 +43,7 @@ export default () => {
       profile.value = newUser;
       userPub.value = pub;
       await registerToServer(newUser, pub);
+      await loadUserRole();
       loggedIn.value = true;
     }
   };
@@ -59,8 +62,13 @@ export default () => {
       },
     });
   };
+  const loadUserRole = async () => {
+    const rolesResponse: UserRole = await $fetch("/api/members/getRole");
+    console.log("role?: ", rolesResponse);
+    userRole.value = rolesResponse;
+  };
 
-  const login = (userAuth: any) => {
+  const login = async (userAuth: any) => {
     profile.value = {
       firstName: userAuth.firstName,
       lastName: userAuth.lastName,
@@ -77,12 +85,16 @@ export default () => {
 
     userPub.value = userAuth.pub;
     loggedIn.value = true;
-    // window.location.reload();
+    await loadUserRole();
   };
   const logout = () => {
     loggedIn.value = false;
     window.location.reload();
   };
+
+  onMounted(() => {
+    loadUserRole();
+  });
   return {
     logout,
     login,
@@ -90,5 +102,6 @@ export default () => {
     certs,
     profile,
     registerNew,
+    userRole,
   };
 };

@@ -39,6 +39,17 @@ export default defineEventHandler(async (event) => {
       });
     }
 
+    // add to Nostr
+    // const event: NostrEvent = finalizeEvent(
+    //   {
+    //     kind: 0,
+    //     created_at: Math.floor(Date.now()),
+    //     tags: [],
+    //     content: JSON.stringify(profile.value),
+    //   },
+    //   hexToBytes(certs.value.priv)
+    // );
+
     // Return the inserted user data
     return insertedUser;
   } catch (e: any) {

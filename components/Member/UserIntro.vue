@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { profile } = useUser();
+const { profile, userRole } = useUser();
 </script>
 
 <template>
@@ -18,7 +18,9 @@ const { profile } = useUser();
       <div class="flex flex-row mt-0 list-none items-center gap-2">
         <span class="text-lg">
           <span class="font-bold text-xl"> # </span>
-          کاربر عادی
+          {{
+            userRole === "Verified" ? $t("Verified Member") : $t("New Comer")
+          }}
         </span>
       </div>
     </div>

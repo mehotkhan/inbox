@@ -1,10 +1,10 @@
 <script setup lang="ts">
-const { isOwner } = useOwner();
+const { userRole } = useUser();
 </script>
 
 <template>
   <div>
-    <MemberOwnerIntro v-if="isOwner" />
+    <MemberOwnerIntro v-if="userRole === 'Owner'" />
     <MemberUserIntro v-else />
   </div>
 </template>

@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 const appConfig = useAppConfig();
 const route = useRoute();
-const { isOwner } = useOwner();
+const { userRole } = useUser();
 const { locale } = useI18n();
 </script>
 
 <template>
   <ul class="list-none flex mt-8">
-    <li v-if="isOwner" key="profile">
+    <li v-if="userRole === 'Owner'" key="profile">
       <NuxtLink
         :external="false"
         :to="`/${locale}/profile`"

@@ -42,4 +42,5 @@ declare global {
     pub: string;
     priv: string;
   };
+  type UserRole = "NewComer" | "Verified" | "Owner";
 }
