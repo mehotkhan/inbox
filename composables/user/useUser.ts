@@ -92,9 +92,6 @@ export default () => {
     window.location.reload();
   };
 
-  onMounted(() => {
-    loadUserRole();
-  });
   return {
     logout,
     login,

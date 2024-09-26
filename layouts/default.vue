@@ -62,6 +62,7 @@ const editEnable = ref(false);
                     -->
                   </div>
                 </div>
+                <MemberActivate v-if="route.path.includes('/profile')" />
               </div>
             </template>
 

@@ -62,7 +62,7 @@ export default defineNuxtConfig({
   },
 
   experimental: {
-    renderJsonPayloads: true,
+    // renderJsonPayloads: true,
     viewTransition: true,
   },
 
@@ -80,10 +80,10 @@ export default defineNuxtConfig({
   },
 
   content: {
-    experimental: {
-      clientDB: true,
-    },
-    documentDriven: true,
+    // experimental: {
+    //   clientDB: true,
+    // },
+    // documentDriven: true,
     markdown: {
       toc: { depth: 3, searchDepth: 3 },
     },
