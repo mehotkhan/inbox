@@ -46,7 +46,7 @@ export default defineEventHandler(async (event) => {
       userDisplayName: body.displayName,
       attestationType: "none",
       authenticatorSelection: {
-        userVerification: "preferred",
+        userVerification: "required",
       },
     });
     const webAuthChallengeKey = `webauthChallenge:${body.pubKey}`;

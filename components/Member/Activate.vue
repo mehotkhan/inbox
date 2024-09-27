@@ -91,7 +91,7 @@ const handleResponse = async (attResp, formData) => {
 <template>
   <div>
     <UButton
-      :label="$t('ActiveProfile')"
+      :label="$t('Activation Profile')"
       size="md"
       color="primary"
       variant="ghost"
@@ -190,7 +190,7 @@ const handleResponse = async (attResp, formData) => {
               <UButton
                 variant="outline"
                 type="submit"
-                :label="$t('ActiveProfileSubmit')"
+                :label="$t('Active Profile')"
                 size="xl"
                 :loading="submitting"
                 color="primary"

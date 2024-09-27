@@ -16,7 +16,7 @@ const editEnable = ref(false);
     <Header />
 
     <!-- Main Content -->
-    <main class="flex min-h-screen mt-12">
+    <main class="flex min-h-screen">
       <div class="container">
         <div class="prose md:prose-xl dark:prose-invert">
           <UCard
