@@ -1,20 +1,11 @@
 export default defineAppConfig({
   ui: {
-    primary: "blue",
-    gray: "cool",
-    breadcrumb: {
-      ol: "p-0 m-0",
-    },
-    verticalNavigation: {
-      size: "text-md",
-      ol: "order-none",
-    },
     card: {
       divide: "divide-none",
-      background: "bg-white dark:bg-gray-900",
+      background: "bg-white dark:bg-gray-800",
       rounded: "rounded-sm",
-      ring: "ring-0 ring-gray-200 dark:ring-gray-800",
-      shadow: "shadow-md",
+      ring: "ring-0 ring-gray-200 dark:ring-gray-700",
+      shadow: "shadow-md  ",
       header: {
         padding: "px-3 py-3 sm:px-4",
         base: "border-0",

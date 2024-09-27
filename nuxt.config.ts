@@ -45,10 +45,9 @@ export default defineNuxtConfig({
     },
     plugins: [viteCompression({ algorithm: "brotliCompress" })],
     build: {
-      watch: {},
       sourcemap: false,
       minify: true,
-      rollupOptions: { treeshake: false },
+      rollupOptions: { treeshake: true },
     },
   },
 
@@ -80,10 +79,9 @@ export default defineNuxtConfig({
   },
 
   content: {
-    // experimental: {
-    //   clientDB: true,
-    // },
-    // documentDriven: true,
+    experimental: {
+      clientDB: true,
+    },
     markdown: {
       toc: { depth: 3, searchDepth: 3 },
     },
@@ -113,7 +111,6 @@ export default defineNuxtConfig({
     defaultLocale: "fa",
     strategy: "prefix",
   },
-
   imports: {
     dirs: ["composables/**"],
   },
