@@ -22,6 +22,7 @@
     "@simplewebauthn/server": "^10.0.1",
     "@tiptap/extension-bubble-menu": "^2.8.0",
     "@tiptap/extension-placeholder": "^2.8.0",
+    "@tiptap/extension-text-style": "^2.8.0",
     "@vueuse/components": "^11.1.0",
     "@vueuse/core": "^11.1.0",
     "@vueuse/rxjs": "^11.1.0",
