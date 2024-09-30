@@ -61,7 +61,7 @@ export default defineNuxtConfig({
   },
 
   experimental: {
-    // renderJsonPayloads: true,
+    renderJsonPayloads: true,
     viewTransition: true,
   },
 

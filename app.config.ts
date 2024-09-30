@@ -1,6 +1,5 @@
 export default defineAppConfig({
   ui: {
-    primary: "#1D4ED8",
     card: {
       divide: "divide-none",
       background: "bg-white dark:bg-gray-800",
