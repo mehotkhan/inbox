@@ -1,5 +1,5 @@
 <script setup>
-const { streamTimeLimit, streamSorting } = useStream()
+const { streamTimeLimit, streamSorting } = useStream();
 </script>
 <template>
   <div class="relative w-full items-center flex justify-end">
@@ -7,7 +7,7 @@ const { streamTimeLimit, streamSorting } = useStream()
       v-model="streamTimeLimit"
       :options="timeFilter"
       size="xl"
-      variant="none"
+      variant="outline"
       :ui="{
         ring: 'ring-0',
         shadow: 'shadow-0',
@@ -25,7 +25,7 @@ const { streamTimeLimit, streamSorting } = useStream()
       size="xl"
       :options="streamOrder"
       class="w-full mr-2 w-25 cursor-pointer"
-      variant="none"
+      variant="outline"
       :ui="{
         ring: 'ring-0',
         shadow: 'shadow-0',

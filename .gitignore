@@ -12,3 +12,6 @@ deploy.sh
 dist.zip
 .env
 .wrangler
+
+*.toml
+wrangler.toml

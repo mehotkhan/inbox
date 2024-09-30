@@ -1,16 +1,8 @@
+import type { Event } from "nostr-tools";
+
 export { MyInterface };
 
 declare global {
-  type NostrEvent = {
-    id: string;
-    pubkey: string;
-    created_at: number;
-    kind: number;
-    tags: any[];
-    content: string;
-    sig: string;
-  };
-
   type NostrFilter = {
     ids?: string[];
     kinds?: number[];
@@ -43,4 +35,9 @@ declare global {
     priv: string;
   };
   type UserRole = "NewComer" | "Verified" | "Owner";
+
+  interface NostrEvent extends Omit<Event, "tags"> {
+    status?: "Draft" | "Sending" | "Sent" | "Seen" | "New" | Received;
+    tags: string | string[][];
+  }
 }

@@ -1,13 +1,22 @@
-<script setup>
+<script setup lang="ts">
 const { profile, logout } = useUser();
 const { locale } = useI18n();
 const loginIsOpen = ref(false);
 const isClient = ref(false);
+const { $dexie } = useNuxtApp();
 
+const newMessages = useLiveQuery(async () => {
+  return await $dexie.events
+    .orderBy("created_at")
+    .filter((event: NostrEvent) => event.status === "New")
+    .count();
+}, []);
+
+console.log(newMessages.value);
 onMounted(() => {
   isClient.value = true;
 });
-const items = [
+const items = computed(() => [
   [
     {
       label: "",
@@ -22,7 +31,7 @@ const items = [
       to: `/${locale.value}/profile`,
     },
     {
-      label: "۳ اطلاعیه جدید",
+      label: `${locale.value == "fa" ? convertToPersianNumbers(newMessages.value ?? 0) : newMessages.value} اطلاعیه جدید`,
       icon: "i-heroicons-bell",
     },
   ],
@@ -42,12 +51,19 @@ const items = [
       },
     },
   ],
-];
+]);
 </script>
 
 <template>
   <div class="relative flex">
-    <UChip text="۳" size="xl" color="green" position="top-left">
+    <UChip
+      :text="
+        locale == 'fa' ? convertToPersianNumbers(newMessages) : newMessages
+      "
+      size="xl"
+      color="green"
+      position="top-left"
+    >
       <UDropdown
         v-if="isClient"
         :items="items"

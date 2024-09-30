@@ -1,5 +1,4 @@
 import { hexToBytes } from "@noble/hashes/utils";
-import type { Event as NostrEvent } from "nostr-tools";
 import { finalizeEvent } from "nostr-tools";
 
 export default function useComments() {
@@ -33,7 +32,7 @@ export default function useComments() {
 
     $dexie.events.add({
       ...event,
-      seen: false,
+      status: "Sending",
     });
 
     sending.value = false;
@@ -63,7 +62,7 @@ export default function useComments() {
 
     $dexie.events.add({
       ...event,
-      seen: false,
+      status: "Sending",
     });
 
     sending.value = false;
@@ -73,10 +72,10 @@ export default function useComments() {
     return await $dexie.events
       .orderBy("created_at")
       .filter(
-        (event: NostrEvent) =>
-          event.kind == 42 &&
+        (event: any) =>
+          event.kind === 42 &&
           event.tags.some(
-            (tag) => tag[0] === "e" && tag[1] === currentChannelId.value
+            (tag: any) => tag[0] === "e" && tag[1] === currentChannelId.value
           )
       )
       .reverse()
@@ -87,7 +86,7 @@ export default function useComments() {
   const allComments = useLiveQuery(async () => {
     return await $dexie.events
       .orderBy("created_at")
-      .filter((event: NostrEvent) => event.kind == 42)
+      .filter((event: any) => event.kind == 42)
       .reverse()
       .limit(count.value)
       .toArray();
@@ -96,7 +95,7 @@ export default function useComments() {
   const allCommentsCount = useLiveQuery(async () => {
     return await $dexie.events
       .orderBy("created_at")
-      .filter((event: NostrEvent) => event.kind == 42)
+      .filter((event: any) => event.kind == 42)
       .count();
   }, []);
 
@@ -117,7 +116,7 @@ export default function useComments() {
         );
         $dexie?.events.add({
           ...channelResponse,
-          seen: true,
+          status: "Sending",
         });
         currentChannelId.value = channelResponse.id;
       }

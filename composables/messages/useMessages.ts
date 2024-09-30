@@ -34,7 +34,7 @@ export default () => {
     const eventF = finalizeEvent(event, hexToBytes(senderPrivateKey));
     $dexie.events.add({
       ...eventF,
-      seen: false,
+      status: "Sending",
     });
     conversationKey.value = bytesToHex(randomKey);
     return true;

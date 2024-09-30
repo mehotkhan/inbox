@@ -5,28 +5,15 @@ import type {
   Table,
 } from "dexie";
 import Dexie from "dexie";
-import type { Event as NostrEvent } from "nostr-tools";
-
-interface ExtendedEvent extends NostrEvent {
-  seen?: boolean;
-}
-
-interface MemberProfile {
-  id?: number;
-  pub: string;
-}
 
 export default defineNuxtPlugin(() => {
   class Database extends Dexie {
-    events!: Table<ExtendedEvent, number>;
-    members!: Table<MemberProfile, number>;
+    events!: Table<NostrEvent, string>;
 
     constructor() {
-      super("blog");
-      this.version(4).stores({
-        events:
-          "++id, kind, tags, message, content, created_at, pubkey, sig, seen",
-        members: "++id, pub",
+      super("inbox");
+      this.version(1).stores({
+        events: "++id, kind,content, created_at, tags ,pubkey,status",
       });
 
       this.use({
@@ -44,9 +31,9 @@ export default defineNuxtPlugin(() => {
                     await downlevelTable.mutate(req);
 
                   if (req.type === "add" && tableName === "events") {
-                    const events = req.values as ExtendedEvent[];
+                    const events = req.values as NostrEvent[];
                     for (const event of events) {
-                      if (!event.seen) {
+                      if (event.status === "Sending") {
                         try {
                           const { $sendEVENTMessage } = useNuxtApp();
                           await $sendEVENTMessage(event);

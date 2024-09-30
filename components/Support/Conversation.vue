@@ -49,7 +49,7 @@ const { decryptMessage } = useMessages();
                 {{ currentTicket?.topic }}
               </h3>
               <span>
-                {{ message.seen ? "Send" : "Sending" }}
+                {{ message.status }}
               </span>
             </div>
 

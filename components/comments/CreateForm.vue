@@ -44,7 +44,7 @@ const handleKeyDown = (event: KeyboardEvent) => {
           v-model="state.message"
           :placeholder="$t('Write Your Comment')"
           :padded="false"
-          variant="none"
+          variant="ghost"
           class="w-full mt-2"
           size="lg"
           autoresize

@@ -33,7 +33,7 @@ const { profile } = useUser();
             </span>
           </div>
           <div class="flex gap-2 text-sm">
-            <span> {{ comment.seen ? $t("Send") : $t("Sending") }}</span>
+            <span> {{ comment.status }}</span>
           </div>
         </div>
       </template>
@@ -46,7 +46,7 @@ const { profile } = useUser();
         <div class="flex justify-between items-center text-sm">
           <span> {{ eventFormatTimeAgo(comment.created_at) }}</span>
           <UButton
-            variant="none"
+            variant="outline"
             color="gray"
             size="sm"
             :ui="{ rounded: 'rounded-md' }"

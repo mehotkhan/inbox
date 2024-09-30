@@ -1,16 +1,19 @@
 import { hexToBytes } from "@noble/hashes/utils";
 import { useWebSocket } from "@vueuse/core";
-import { finalizeEvent, type Event as NostrEvent } from "nostr-tools";
-
+import { finalizeEvent, type Event } from "nostr-tools";
+interface NostrEvent extends Event {
+  isVerified?: boolean;
+}
 export default defineNuxtPlugin(() => {
   const authID = ref("");
   const userValidated = ref(false);
+  const { $dexie } = useNuxtApp();
+  const { loggedIn, certs } = useUser();
+
+  // Determine the relay URL based on the environment
   const relayURL = isDev()
     ? "http://localhost:8787/"
     : "https://inbox.alizemani.ir/nostr-relay";
-  // const relayURL = "https://inbox.alizemani.ir/nostr-relay";
-  const { $dexie } = useNuxtApp();
-  const { loggedIn, certs } = useUser();
 
   const { data, send, open, close } = useWebSocket(relayURL, {
     immediate: false,
@@ -18,66 +21,83 @@ export default defineNuxtPlugin(() => {
       retries: 5,
       delay: 2000,
       onFailed() {
-        console.log("Failed to connect WebSocket after 5 retries");
+        console.error("Failed to connect WebSocket after 5 retries");
       },
     },
   });
 
-  if (loggedIn.value) {
-    open();
-  }
-  watch(loggedIn, (newStatus) => {
-    if (newStatus) {
+  // Open or close the WebSocket based on the logged-in status
+  watchEffect(() => {
+    if (loggedIn.value) {
       open();
+    } else {
+      close();
     }
   });
 
+  // Handle incoming WebSocket messages
   watch(data, (newData) => {
     try {
-      const incomingEvent = JSON.parse(newData);
-      handleIncomingMessage(incomingEvent);
+      const incomingMessage = JSON.parse(newData);
+      handleIncomingMessage(incomingMessage);
     } catch (error) {
-      console.error("Failed to parse incoming message", error);
+      console.error("Failed to parse incoming message:", error);
     }
   });
 
+  // Function to handle different types of incoming messages
   const handleIncomingMessage = async (message: any) => {
-    const messageType = message[0];
-    // console.log('incoming event',message)
+    const [messageType, ...args] = message;
+
     switch (messageType) {
       case "AUTH":
-        await sendAuthMessage(message[1]);
+        await sendAuthMessage(args[0]);
         break;
       case "EVENT":
-        await handleIncomingEvent(message[2]);
+        await handleIncomingEvent(args[1]);
         break;
       case "EOSE":
-        // Handle End of Subscription Event
+        // Handle End of Subscription Event if needed
         break;
       case "CLOSED":
         userValidated.value = false;
         close();
         break;
       case "OK":
-        // Handle OK responses
-        if (!userValidated.value && message[1] === authID.value) {
-          userValidated.value = true;
-          sendREQMessage();
-        }
+        await handleOKMessage(args);
         break;
       case "NOTICE":
-        // Handle Notices
+        // Handle Notices if needed
         break;
       default:
-        console.log("Unknown message type", messageType);
+        console.warn("Unknown message type:", messageType);
     }
   };
+
+  // Function to handle "OK" messages
+  const handleOKMessage = async (args: any[]) => {
+    const [eventId] = args;
+    console.log("OK message for event ID:", eventId);
+
+    const dbEvent = await $dexie.events.get({ id: eventId });
+
+    if (dbEvent) {
+      console.log("Event exists in DB, updating status to 'Sent'");
+      await $dexie.events.update(eventId, { status: "Sent" });
+    }
+
+    if (!userValidated.value && eventId === authID.value) {
+      userValidated.value = true;
+      sendREQMessage();
+    }
+  };
+
+  // Function to send an authentication message
   const sendAuthMessage = async (challenge: string) => {
-    const pubKey = certs.value?.pub;
     const privKey = certs.value?.priv;
 
-    if (!pubKey || !privKey) {
-      console.error("Missing pubkey or privkey for authentication");
+    if (!privKey) {
+      console.error("Missing private key for authentication");
       return;
     }
 
@@ -88,49 +108,50 @@ export default defineNuxtPlugin(() => {
         tags: [["challenge", challenge]],
         content: "",
       },
-      hexToBytes(certs.value.priv)
+      hexToBytes(privKey)
     );
+
     authID.value = authEvent.id;
-    // Send AUTH message
     send(JSON.stringify(["AUTH", authEvent]));
   };
 
+  // Function to send a REQ message
   const sendREQMessage = () => {
-    console.log("req");
+    console.log("Sending REQ message");
     const subscriptionId = "my-subscription-id";
     const filter = {};
     const reqMessage = JSON.stringify(["REQ", subscriptionId, filter]);
     send(reqMessage);
   };
 
+  // Function to handle incoming events
   const handleIncomingEvent = async (event: NostrEvent) => {
     try {
-      console.log("savaing to db");
-      const dbEvent = await $dexie.events.get({
-        id: event.id,
-      });
-      if (dbEvent) {
-        // update seen field in db
-        await $dexie.events.update(event.id, { seen: true });
-      } else {
-        $dexie.events.add({
+      const dbEvent = await $dexie.events.get({ id: event.id });
+      console.log(event.isVerified);
+      if (dbEvent && event.isVerified) {
+        await $dexie.events.update(event.id, { status: "Sent" });
+      } else if (!dbEvent) {
+        await $dexie.events.add({
           ...event,
-          tags: JSON.parse(event.tags),
-          seen: true,
+          tags:
+            typeof event.tags === "string"
+              ? JSON.parse(event.tags)
+              : event.tags,
+          status: "New",
         });
       }
-      if (event?.kind === 0) {
-        const userProfile = JSON.parse(event.content);
-        $dexie.members.put(userProfile);
-      }
     } catch (error) {
-      console.log("bad event", error);
+      console.error("Error saving event:", error);
     }
   };
+
+  // Function to send an EVENT message
   const sendEVENTMessage = async (event: NostrEvent) => {
     send(JSON.stringify(["EVENT", event]));
-    console.log("sending", event);
+    console.log("Sent event:", event);
   };
+
   return {
     provide: {
       sendEVENTMessage,
