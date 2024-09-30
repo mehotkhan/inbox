@@ -2,7 +2,7 @@ import viteCompression from "vite-plugin-compression";
 import { generateRoutes } from "./tools/contentRoutes";
 
 export default defineNuxtConfig({
-  ssr: true,
+  // ssr: true,
   future: { compatibilityVersion: 4 },
   css: ["@/assets/scss/base.scss", "@/assets/scss/extra.scss"],
   devtools: { enabled: false },
@@ -15,7 +15,7 @@ export default defineNuxtConfig({
     "@nuxt/eslint",
     "nuxt-tiptap-editor",
     "nitro-cloudflare-dev",
-    "@nuxtjs/seo",
+    // "@nuxtjs/seo",
   ],
 
   // extends: ["nuxt-seo-kit"],
@@ -55,6 +55,7 @@ export default defineNuxtConfig({
     preset: "cloudflare-pages",
     compressPublicAssets: true,
     minify: true,
+    // static: true,
     prerender: {
       routes: generateRoutes(),
     },
