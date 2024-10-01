@@ -60,5 +60,5 @@ export default defineEventHandler(async (event) => {
         : "NewComer";
 
   console.log("User server role:", userRole);
-  return userRole;
+  return `userRole,owner:${OWNER_PUB},user:${userPub}`;
 });
