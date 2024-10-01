@@ -8,11 +8,22 @@ export default defineEventHandler(async (event) => {
   if (!userPub) {
     throw createError({
       statusCode: 400,
-      statusMessage: "Missing Pub!",
+      statusMessage: "Missing userPub from cookie!",
     });
   }
 
   const { DB, OWNER_PUB } = event.context.cloudflare.env;
+
+  // if (!OWNER_PUB) {
+  //   throw createError({
+  //     statusCode: 500,
+  //     statusMessage: "OWNER_PUB is not set in environment variables!",
+  //   });
+  // }
+
+  // console.log("userPub:", userPub);
+  // console.log("OWNER_PUB:", OWNER_PUB);
+
   const drizzleDb = drizzle(DB);
 
   // Fetch the existing member
@@ -36,9 +47,13 @@ export default defineEventHandler(async (event) => {
     .where(eq(member.pub, userPub))
     .run();
 
+  // Normalize the public keys
+  const normalizedUserPub = userPub.trim();
+  const normalizedOwnerPub = OWNER_PUB.trim();
+
   // Determine the user role
   const userRole =
-    userPub === OWNER_PUB
+    normalizedUserPub === normalizedOwnerPub
       ? "Owner"
       : existingMember.isVerified
         ? "Verified"
