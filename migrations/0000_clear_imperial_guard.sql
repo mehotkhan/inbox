@@ -21,6 +21,7 @@ CREATE TABLE `member` (
 	`about` text,
 	`email` text,
 	`avatar` text,
+	`lastActivity` integer,
 	`credentialID` text,
 	`credentialPublicKey` text,
 	`counter` integer DEFAULT 0

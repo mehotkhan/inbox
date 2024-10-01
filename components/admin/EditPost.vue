@@ -8,7 +8,7 @@ const { data } = await useAsyncData("page-data", () =>
   queryContent(route.path).findOne()
 );
 
-const fileData = await $fetch("/api/github/get-file-data", {
+const fileData = await $fetch("/serverless-api/github/get-file-data", {
   method: "post",
   body: { name: data.value._file },
 });

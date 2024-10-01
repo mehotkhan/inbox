@@ -39,7 +39,7 @@ const profileSwitch = async (event: FormSubmitEvent<Schema>) => {
     submitting.value = true;
 
     // Fetch authentication options from server
-    const options = await $fetch("/api/members/webauth-switch", {
+    const options = await $fetch("/serverless-api/members/webauth-switch", {
       method: "post",
       body: {
         userName: event.data.userName,
@@ -73,13 +73,16 @@ const profileSwitch = async (event: FormSubmitEvent<Schema>) => {
 // Handle the response from WebAuthn and submit it to the server
 const handleResponse = async (authResp, userName: string) => {
   try {
-    const response = await $fetch("/api/members/webauth-switch-response", {
-      method: "post",
-      body: {
-        authResp, // WebAuthn authentication response
-        userName, // Username provided by the user
-      },
-    });
+    const response = await $fetch(
+      "/serverless-api/members/webauth-switch-response",
+      {
+        method: "post",
+        body: {
+          authResp, // WebAuthn authentication response
+          userName, // Username provided by the user
+        },
+      }
+    );
     return JSON.parse(response);
   } catch (error) {
     console.error("Failed to handle WebAuthn response", error);

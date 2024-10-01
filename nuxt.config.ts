@@ -76,7 +76,7 @@ export default defineNuxtConfig({
 
   routeRules: {
     "/**": { prerender: true }, // Prerender (SSG) all routes by default
-    "/api/**": { ssr: true }, // Keep server-side rendering for specific API routes
+    "/serverless-api/**": { ssr: true }, // Keep server-side rendering for specific API routes
   },
 
   content: {
@@ -110,7 +110,7 @@ export default defineNuxtConfig({
     // lazy: true,
     langDir: "locales",
     defaultLocale: "fa",
-    strategy: "prefix_except_default",
+    // strategy: "prefix",
   },
   imports: {
     dirs: ["composables/**"],

@@ -109,7 +109,7 @@ export default function useComments() {
         currentChannelId.value = channel?.id;
       } else {
         const channelResponse: any = await $fetch(
-          "/api/comments/getCommentId",
+          "/serverless-api/comments/getCommentId",
           {
             params: { path },
           }

@@ -12,6 +12,7 @@ export const member = sqliteTable("member", {
   about: text("about"), // About the user
   email: text("email").unique(), // User's unique email address
   avatar: text("avatar"), // User's avatar URL
+  lastActivity: integer("lastActivity"),
 
   // WebAuthn-specific fields:
   credentialID: text("credentialID"), // User's WebAuthn credential ID (base64 encoded)

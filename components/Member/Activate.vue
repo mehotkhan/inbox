@@ -36,7 +36,7 @@ const profileActivate = async (event: FormSubmitEvent<Schema>) => {
     submitting.value = true;
 
     // Fetch registration options from server
-    const options = await $fetch("/api/members/webauth-activate", {
+    const options = await $fetch("/serverless-api/members/webauth-activate", {
       method: "post",
       body: {
         userName: event.data.userName,
@@ -72,15 +72,18 @@ const profileActivate = async (event: FormSubmitEvent<Schema>) => {
 // Handle the response from WebAuthn and submit it to the server
 const handleResponse = async (attResp, formData) => {
   try {
-    const response = await $fetch("/api/members/webauth-activation-response", {
-      method: "post",
-      body: {
-        attResp, // WebAuthn attestation response
-        formData, // Form data (user details)
-        userPub: certs.value.pub,
-        userPriv: certs.value.priv,
-      },
-    });
+    const response = await $fetch(
+      "/serverless-api/members/webauth-activation-response",
+      {
+        method: "post",
+        body: {
+          attResp, // WebAuthn attestation response
+          formData, // Form data (user details)
+          userPub: certs.value.pub,
+          userPriv: certs.value.priv,
+        },
+      }
+    );
     return JSON.parse(response);
   } catch (error) {
     console.error("Failed to handle WebAuthn response", error);

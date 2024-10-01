@@ -1,37 +1,51 @@
 import { schnorr } from "@noble/curves/secp256k1";
 import { sha256 } from "@noble/hashes/sha256";
 import { bytesToHex, hexToBytes } from "@noble/hashes/utils";
+import type { UseFetchOptions } from "nuxt/app";
 
-export async function useApi<T>(
-  request: Parameters<typeof $fetch<T>>[0],
-  opts?: Parameters<typeof $fetch<T>>[1]
+export default async function useSignedFetch<T>(
+  url: string | (() => string),
+  options?: UseFetchOptions<T>
 ) {
   const { certs } = useUser();
-  let requestString = "";
-  if (opts?.method === "get") {
-    requestString = JSON.stringify(opts?.params);
-  } else if (opts?.method === "post") {
-    requestString = JSON.stringify(opts.body);
+  let requestData = "";
+
+  // Determine request data for signing
+  const method = options?.method?.toUpperCase() || "GET";
+
+  if (method === "GET") {
+    const params = options?.params || {};
+    requestData = JSON.stringify(params);
+  } else if (method === "POST") {
+    const body = options?.body || {};
+    requestData = JSON.stringify(body);
   }
 
-  const sig = getRequestSign(requestString, certs.value);
-  return $fetch<T, R>(request, {
-    ...opts,
-    headers: {
-      requestSign: sig,
-      ...opts?.headers,
-    },
+  // Generate signature
+  const sig = getRequestSign(requestData, certs.value);
+
+  // Add requestSign to headers
+  const headers = {
+    ...(options?.headers || {}),
+    requestSign: sig,
+  };
+
+  // Use useFetch with the signed request
+  return useFetch<T>(url, {
+    ...options,
+    headers,
+    // Use a custom fetch instance if required
+    $fetch: useNuxtApp().$api,
   });
 }
 
-const getRequestSign = (requestString: string, certs: UserCerts): string => {
-  return bytesToHex(
-    schnorr.sign(getEventHash(requestString), hexToBytes(certs.priv))
-  );
+const getRequestSign = (data: string, certs: UserCerts): string => {
+  const hash = getEventHash(data);
+  return bytesToHex(schnorr.sign(hash, hexToBytes(certs.priv)));
 };
 
 const getEventHash = (input: string): string => {
   const encoder = new TextEncoder();
-  const requestHash = sha256(encoder.encode(input));
-  return bytesToHex(requestHash);
+  const hash = sha256(encoder.encode(input));
+  return bytesToHex(hash);
 };

@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "54c62f12-70d0-47b2-935d-2aa23f6a1219",
+  "id": "06c6936c-dc57-4334-9302-f1180d62397d",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "events": {
@@ -147,6 +147,13 @@
         "avatar": {
           "name": "avatar",
           "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "lastActivity": {
+          "name": "lastActivity",
+          "type": "integer",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false

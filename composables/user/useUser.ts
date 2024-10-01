@@ -43,12 +43,12 @@ export default () => {
       profile.value = newUser;
       userPub.value = pub;
       await registerToServer(newUser, pub);
-      await loadUserRole();
       loggedIn.value = true;
+      await whoAmI();
     }
   };
   const registerToServer = async (newUser: any, pub: string) => {
-    await $fetch("/api/members/register", {
+    await $fetch("/serverless-api/members/register", {
       method: "post",
       body: {
         firstName: newUser.firstName,
@@ -62,10 +62,12 @@ export default () => {
       },
     });
   };
-  const loadUserRole = async () => {
-    const rolesResponse: UserRole = await $fetch("/api/members/getRole");
-    console.log("role?: ", rolesResponse);
-    userRole.value = rolesResponse;
+  const whoAmI = async () => {
+    if (loggedIn.value) {
+      const { data } = await useApi("/serverless-api/members/me");
+      console.log("role?: ", data.value);
+      userRole.value = data.value;
+    }
   };
 
   const login = async (userAuth: any) => {
@@ -85,7 +87,7 @@ export default () => {
 
     userPub.value = userAuth.pub;
     loggedIn.value = true;
-    await loadUserRole();
+    await whoAmI();
   };
   const logout = () => {
     loggedIn.value = false;
@@ -100,5 +102,6 @@ export default () => {
     profile,
     registerNew,
     userRole,
+    whoAmI,
   };
 };
