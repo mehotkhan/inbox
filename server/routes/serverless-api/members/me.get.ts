@@ -47,18 +47,14 @@ export default defineEventHandler(async (event) => {
     .where(eq(member.pub, userPub))
     .run();
 
-  // Normalize the public keys
-  const normalizedUserPub = userPub.trim();
-  const normalizedOwnerPub = OWNER_PUB.trim();
-
   // Determine the user role
   const userRole =
-    normalizedUserPub === normalizedOwnerPub
+    userPub === event.context.cloudflare.env.OWNER_PUB
       ? "Owner"
       : existingMember.isVerified
         ? "Verified"
         : "NewComer";
 
   console.log("User server role:", userRole);
-  return `userRole,owner:${OWNER_PUB},user:${userPub}`;
+  return `userRole,owner:${event.context.cloudflare.env.OWNER_PUB},user:${userPub}`;
 });
