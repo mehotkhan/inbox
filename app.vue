@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const { isDark } = useDark();
 const { locale, t } = useI18n();
-const { registerNew, whoAmI } = useUser();
+const { registerNew } = useUser();
 const runtimeConfig = useRuntimeConfig();
 useHead({
   title: t("siteName"),
@@ -29,7 +29,6 @@ useHead({
 });
 onMounted(() => {
   registerNew();
-  whoAmI();
 });
 </script>
 <template>
