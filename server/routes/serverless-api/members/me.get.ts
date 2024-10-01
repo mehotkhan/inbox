@@ -33,12 +33,12 @@ export default defineEventHandler(async (event) => {
   await drizzleDb
     .update(member)
     .set({ lastActivity: Date.now() })
-    .where(eq(member.id, existingMember.id))
+    .where(eq(member.pub, userPub))
     .run();
 
   // Determine the user role
   const userRole =
-    existingMember.pub === OWNER_PUB
+    userPub === OWNER_PUB
       ? "Owner"
       : existingMember.isVerified
         ? "Verified"
