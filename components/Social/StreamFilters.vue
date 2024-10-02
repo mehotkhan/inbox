@@ -7,7 +7,7 @@ const { streamTimeLimit, streamSorting } = useStream();
       v-model="streamTimeLimit"
       :options="timeFilter"
       size="xl"
-      variant="outline"
+      variant="none"
       :ui="{
         ring: 'ring-0',
         shadow: 'shadow-0',
@@ -25,7 +25,7 @@ const { streamTimeLimit, streamSorting } = useStream();
       size="xl"
       :options="streamOrder"
       class="w-full mr-2 w-25 cursor-pointer"
-      variant="outline"
+      variant="none"
       :ui="{
         ring: 'ring-0',
         shadow: 'shadow-0',

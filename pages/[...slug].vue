@@ -1,8 +1,4 @@
-<script lang="ts" setup>
-const { whoAmI } = useUser();
-
-whoAmI();
-</script>
+<script lang="ts" setup></script>
 
 <template>
   <div class="min-h-[30rem]">

@@ -19,7 +19,11 @@ const { profile, userRole } = useUser();
         <span class="text-lg">
           <span class="font-bold text-xl"> # </span>
           {{
-            userRole === "Verified" ? $t("Verified Member") : $t("New Comer")
+            userRole === "Owner"
+              ? $t("Owner")
+              : userRole === "Verified"
+                ? $t("Verified Member")
+                : $t("New Comer")
           }}
         </span>
       </div>
@@ -28,8 +32,8 @@ const { profile, userRole } = useUser();
       <nuxt-img
         preload
         loading="lazy"
-        sizes="sm:100vw md:50vw lg:400px"
-        class="flex w-[20rem] rounded-full"
+        sizes="sm:50vw md:20vw lg:200px"
+        class="flex w-[18rem] rounded-full"
         src="/totoro_render.webp"
         :alt="profile?.displayName"
         :placeholder="[400, 400]"

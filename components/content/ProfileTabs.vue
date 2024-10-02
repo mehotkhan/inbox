@@ -1,15 +1,23 @@
 <script setup lang="ts">
 import { useStorage } from "@vueuse/core";
+const { $dexie } = useNuxtApp();
+const { locale } = useI18n();
 
+const newMessages = useLiveQuery(async () => {
+  return await $dexie.events
+    .orderBy("created_at")
+    .filter((event: NostrEvent) => event.status === "New")
+    .count();
+}, []);
 const { t } = useI18n();
 
 const adminTabs: any = useStorage("admin-tabs", "inbox");
 
-const items = [
+const items = computed(() => [
   {
     label: t("inbox"),
     slot: "inbox",
-    count: 0,
+    count: newMessages.value,
   },
   {
     label: t("contacts"),
@@ -21,7 +29,7 @@ const items = [
     slot: "comments",
     count: 1,
   },
-];
+]);
 </script>
 
 <template>
@@ -36,9 +44,14 @@ const items = [
             @click="adminTabs = item.slot"
           >
             <UChip
-              :text="item.count"
-              size="2xl"
+              :text="
+                locale == 'fa'
+                  ? convertToPersianNumbers(item.count)
+                  : item.count
+              "
+              size="3xl"
               color="gray"
+              variant="none"
               position="top-left"
               :show="item.count > 0"
             >

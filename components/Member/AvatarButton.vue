@@ -59,8 +59,8 @@ const items = computed(() => [
       :text="
         locale == 'fa' ? convertToPersianNumbers(newMessages) : newMessages
       "
-      size="xl"
-      color="green"
+      size="2xl"
+      color="gray"
       position="top-left"
     >
       <UDropdown
@@ -72,7 +72,7 @@ const items = computed(() => [
         <UAvatar
           :alt="profile?.displayName"
           src="/totoro_render.webp"
-          size="sm"
+          size="xs"
           class="avatar-button"
         />
 

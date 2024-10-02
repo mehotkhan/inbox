@@ -3,8 +3,8 @@ const { userRole } = useUser();
 </script>
 
 <template>
-  <div>
+  <div class="mt-10">
     <ProfileTabs v-if="userRole === 'Owner'" />
-    <PostArchives v-else  />
+    <PostArchives v-else />
   </div>
 </template>

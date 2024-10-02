@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { vElementVisibility } from "@vueuse/components";
+const { userRole } = useUser();
 
 const { allComments, count, allCommentsCount } = useComments();
 const loadMore = () => {
@@ -26,7 +27,10 @@ const loadMore = () => {
               / <SocialChannelDetails :pub="comment.tags[0][1]" />
             </span>
           </span>
-          <div class="text-xs flex gap-2 group-hover:flex">
+          <div
+            v-if="userRole === 'Owner'"
+            class="text-xs flex gap-2 group-hover:flex"
+          >
             <span>تایید</span>
             <span>اسپم</span>
             <span>حذف</span>

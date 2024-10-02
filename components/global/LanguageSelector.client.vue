@@ -12,7 +12,6 @@ const availableLocales = computed(() => {
     <NuxtLink
       v-for="loc in availableLocales"
       :key="loc.code"
-      :external="true"
       :to="switchLocalePath(loc.code)"
     >
       {{ loc.name }}
