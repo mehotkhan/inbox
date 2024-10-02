@@ -3,7 +3,7 @@ import { drizzle } from "drizzle-orm/d1";
 
 export default defineEventHandler(async (event) => {
   const userPub = getCookie(event, "userPub");
-
+  const { ownerPub } = useRuntimeConfig(event);
   // Validate required fields
   if (!userPub) {
     throw createError({
@@ -12,18 +12,17 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const { DB, OWNER_PUB } = event.context.cloudflare.env;
-  const adminPub = process?.env?.OWNER_PUB ?? OWNER_PUB
+  const { DB } = event.context.cloudflare.env;
   const drizzleDb = drizzle(DB);
-  
+
   // Update the lastActivity field to the current timestamp
-  const currentMember:any = await drizzleDb
-  .update(member)
-  .set({ lastActivity: Date.now() })
-  .where(eq(member.pub, userPub))
-  .returning()
-  .get()
-  
+  const currentMember: any = await drizzleDb
+    .update(member)
+    .set({ lastActivity: Date.now() })
+    .where(eq(member.pub, userPub))
+    .returning()
+    .get();
+
   if (!currentMember) {
     throw createError({
       statusCode: 400,
@@ -32,15 +31,17 @@ export default defineEventHandler(async (event) => {
   }
   // Determine the user role
   const userRole =
-    userPub === adminPub
+    userPub === ownerPub
       ? "Owner"
       : currentMember.isVerified
         ? "Verified"
         : "NewComer";
 
   return {
-    isVerified: currentMember.isVerified ,
-    lastActivity: currentMember.lastActivity ,
-    role:userRole
+    isVerified: currentMember.isVerified,
+    lastActivity: currentMember.lastActivity,
+    ownerPub,
+    userPub,
+    role: userRole,
   };
 });

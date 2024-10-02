@@ -20,6 +20,8 @@ export default defineNuxtConfig({
 
   // extends: ["nuxt-seo-kit"],
   runtimeConfig: {
+    ownerPub: "",
+    appPriv: "",
     app: {
       github: "https://github.com/mehotkhan",
       linkedin: "https://www.linkedin.com/in/ali-zemani/",

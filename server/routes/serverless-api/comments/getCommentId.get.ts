@@ -7,6 +7,8 @@ import { finalizeEvent } from "nostr-tools";
 export default defineEventHandler(async (event) => {
   try {
     const query = getQuery(event);
+    const { appPriv } = useRuntimeConfig(event);
+
     // Validate required fields
     if (!query.path) {
       throw createError({
@@ -14,7 +16,7 @@ export default defineEventHandler(async (event) => {
         statusMessage: "Missing path!",
       });
     }
-    const { DB, APP_CERTS_PRIV } = event.context.cloudflare.env;
+    const { DB } = event.context.cloudflare.env;
     const commentPath: string = query.path.toString();
     const drizzleDb = drizzle(DB);
     const existingEvent = await drizzleDb
@@ -32,7 +34,7 @@ export default defineEventHandler(async (event) => {
           tags: [],
           content: commentPath,
         },
-        hexToBytes(APP_CERTS_PRIV)
+        hexToBytes(appPriv)
       );
       const newEvent: InsertEvent = {
         id: channelEvent.id,
