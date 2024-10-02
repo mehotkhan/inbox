@@ -8,10 +8,13 @@ const { data } = await useAsyncData("page-data", () =>
   queryContent(route.path).findOne()
 );
 
-const fileData = await $fetch("/serverless-api/github/get-file-data", {
-  method: "post",
-  body: { name: data.value._file },
-});
+const { data: fileData } = await useApi(
+  "/serverless-api/github/get-file-data",
+  {
+    method: "post",
+    body: { name: data.value._file },
+  }
+);
 
 const testData = await extractMarkdownData(decode(fileData.content));
 

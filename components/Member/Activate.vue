@@ -36,17 +36,20 @@ const profileActivate = async (event: FormSubmitEvent<Schema>) => {
     submitting.value = true;
 
     // Fetch registration options from server
-    const options = await $fetch("/serverless-api/members/webauth-activate", {
-      method: "post",
-      body: {
-        userName: event.data.userName,
-        displayName: event.data.displayName,
-        pubKey: certs.value.pub,
-      },
-    });
+    const { data }: any = await useApi(
+      "/serverless-api/members/webauth-activate",
+      {
+        method: "post",
+        body: {
+          userName: event.data.userName,
+          displayName: event.data.displayName,
+          pubKey: certs.value.pub,
+        },
+      }
+    );
 
     // Start WebAuthn registration
-    const attResp = await startRegistration(options);
+    const attResp = await startRegistration(data.value);
 
     // Send the credential data back to the server
     const userAuth = await handleResponse(attResp, event.data);
@@ -72,7 +75,7 @@ const profileActivate = async (event: FormSubmitEvent<Schema>) => {
 // Handle the response from WebAuthn and submit it to the server
 const handleResponse = async (attResp, formData) => {
   try {
-    const response = await $fetch(
+    const { data }: any = await useApi(
       "/serverless-api/members/webauth-activation-response",
       {
         method: "post",
@@ -84,7 +87,7 @@ const handleResponse = async (attResp, formData) => {
         },
       }
     );
-    return JSON.parse(response);
+    return JSON.parse(data.value);
   } catch (error) {
     console.error("Failed to handle WebAuthn response", error);
   }

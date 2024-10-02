@@ -2,7 +2,7 @@
 
 # abort on errors
 set -e
-
+rm -rf .wrangler
 rm -rf ./migrations
 npx drizzle-kit generate
 # npx drizzle-kit push

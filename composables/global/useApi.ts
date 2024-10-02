@@ -11,7 +11,7 @@ export default async function useSignedFetch<T>(
   let requestData = "";
 
   // Determine request data for signing
-  const method = options?.method?.toUpperCase() || "GET";
+  const method = options?.method || "GET";
 
   if (method === "GET") {
     const params = options?.params || {};

@@ -12,7 +12,6 @@ const newMessages = useLiveQuery(async () => {
     .count();
 }, []);
 
-console.log(newMessages.value);
 onMounted(() => {
   isClient.value = true;
 });

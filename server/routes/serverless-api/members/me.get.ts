@@ -13,37 +13,34 @@ export default defineEventHandler(async (event) => {
   }
 
   const { DB, OWNER_PUB } = event.context.cloudflare.env;
+  const adminPub = process?.env?.OWNER_PUB ?? OWNER_PUB
   const drizzleDb = drizzle(DB);
-
-  // Fetch the existing member
-  const existingMember = await drizzleDb
-    .select()
-    .from(member)
-    .where(eq(member.pub, userPub))
-    .get();
-
-  if (!existingMember) {
+  
+  // Update the lastActivity field to the current timestamp
+  const currentMember:any = await drizzleDb
+  .update(member)
+  .set({ lastActivity: Date.now() })
+  .where(eq(member.pub, userPub))
+  .returning()
+  .get()
+  
+  if (!currentMember) {
     throw createError({
       statusCode: 400,
       statusMessage: "User Not Found",
     });
   }
-
-  // Update the lastActivity field to the current timestamp
-  await drizzleDb
-    .update(member)
-    .set({ lastActivity: Date.now() })
-    .where(eq(member.pub, userPub))
-    .run();
-
   // Determine the user role
   const userRole =
-    userPub === OWNER_PUB
+    userPub === adminPub
       ? "Owner"
-      : existingMember.isVerified
+      : currentMember.isVerified
         ? "Verified"
         : "NewComer";
 
-  console.log("User server role:", userRole);
-  return userRole;
+  return {
+    isVerified: currentMember.isVerified ,
+    lastActivity: currentMember.lastActivity ,
+    role:userRole
+  };
 });

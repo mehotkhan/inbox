@@ -108,17 +108,17 @@ export default function useComments() {
       if (channel) {
         currentChannelId.value = channel?.id;
       } else {
-        const channelResponse: any = await $fetch(
+        const { data }: any = await useApi(
           "/serverless-api/comments/getCommentId",
           {
             params: { path },
           }
         );
         $dexie?.events.add({
-          ...channelResponse,
+          ...data.value,
           status: "Sending",
         });
-        currentChannelId.value = channelResponse.id;
+        currentChannelId.value = data.value.id;
       }
     } catch (e: any) {
       console.log(e);

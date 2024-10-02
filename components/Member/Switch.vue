@@ -39,15 +39,18 @@ const profileSwitch = async (event: FormSubmitEvent<Schema>) => {
     submitting.value = true;
 
     // Fetch authentication options from server
-    const options = await $fetch("/serverless-api/members/webauth-switch", {
-      method: "post",
-      body: {
-        userName: event.data.userName,
-      },
-    });
+    const { data }: any = await useApi(
+      "/serverless-api/members/webauth-switch",
+      {
+        method: "post",
+        body: {
+          userName: event.data.userName,
+        },
+      }
+    );
 
     // Start WebAuthn authentication
-    const authResp = await startAuthentication(options);
+    const authResp = await startAuthentication(data.value);
 
     // Send the credential data back to the server
     const userAuth = await handleResponse(authResp, event.data.userName);
