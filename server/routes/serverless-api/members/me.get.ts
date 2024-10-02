@@ -3,10 +3,10 @@ import { drizzle } from "drizzle-orm/d1";
 
 export default defineEventHandler(async (event) => {
   const userPub = getCookie(event, "userPub");
-  const { ownerPub } = useRuntimeConfig();
-  const ownerPub_2 = process.env.NUXT_OWNER_PUB;
-
-  console.log(process.env.NUXT_OWNER_PUB);
+  // const { ownerPub } = useRuntimeConfig();
+  const runtimeConfig = useRuntimeConfig();
+  const ownerPub = runtimeConfig.ownerPub;
+  const ownerPub_2 = runtimeConfig.ownerPubSecond;
   // Validate required fields
   if (!userPub) {
     throw createError({

@@ -21,6 +21,7 @@ export default defineNuxtConfig({
   // extends: ["nuxt-seo-kit"],
   runtimeConfig: {
     ownerPub: "",
+    ownerPubSecond: process.env.NUXT_OWNER_PUB,
     appPriv: "",
     app: {
       github: "https://github.com/mehotkhan",
