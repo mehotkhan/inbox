@@ -102,7 +102,7 @@ export default function useComments() {
   const getCurrentChannelID = async (path: string) => {
     try {
       const channel = await $dexie?.events?.get({
-        content: path,
+        content: path.trim(),
         kind: 40,
       });
       if (channel) {
