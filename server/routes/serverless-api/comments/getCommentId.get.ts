@@ -7,8 +7,6 @@ import { finalizeEvent } from "nostr-tools";
 export default defineEventHandler(async (event) => {
   try {
     const query = getQuery(event);
-    const appPriv = process.env.NUXT_APP_PRIV!;
-
     // Validate required fields
     if (!query.path) {
       throw createError({
@@ -16,7 +14,7 @@ export default defineEventHandler(async (event) => {
         statusMessage: "Missing path!",
       });
     }
-    const { DB } = event.context.cloudflare.env;
+    const { DB, APP_CERTS_PRIV } = event.context.cloudflare.env;
     const commentPath: string = query.path.toString();
     const drizzleDb = drizzle(DB);
     const existingEvent = await drizzleDb
@@ -34,7 +32,7 @@ export default defineEventHandler(async (event) => {
           tags: [],
           content: commentPath,
         },
-        hexToBytes(appPriv)
+        hexToBytes(APP_CERTS_PRIV)
       );
       const newEvent: InsertEvent = {
         id: channelEvent.id,

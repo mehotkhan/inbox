@@ -3,10 +3,7 @@ import { drizzle } from "drizzle-orm/d1";
 
 export default defineEventHandler(async (event) => {
   const userPub = getCookie(event, "userPub");
-  // const { ownerPub } = useRuntimeConfig();
-  const runtimeConfig = useRuntimeConfig();
-  const ownerPub = runtimeConfig.ownerPub;
-  const ownerPub_2 = runtimeConfig.ownerPubSecond;
+
   // Validate required fields
   if (!userPub) {
     throw createError({
@@ -15,7 +12,9 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const { DB } = event.context.cloudflare.env;
+  const { DB, OWNER_PUB } = event.context.cloudflare.env;
+  const owners: string[] = OWNER_PUB.split(",");
+
   const drizzleDb = drizzle(DB);
 
   // Update the lastActivity field to the current timestamp
@@ -33,19 +32,16 @@ export default defineEventHandler(async (event) => {
     });
   }
   // Determine the user role
-  const userRole =
-    userPub === ownerPub
-      ? "Owner"
-      : currentMember.isVerified
-        ? "Verified"
-        : "NewComer";
+  const userRole = owners.includes(userPub)
+    ? "Owner"
+    : currentMember.isVerified
+      ? "Verified"
+      : "NewComer";
 
   return {
     isVerified: currentMember.isVerified,
     lastActivity: currentMember.lastActivity,
-    ownerPub_2,
-    ownerPub,
-    userPub,
+    OWNER_PUB,
     role: userRole,
   };
 });
