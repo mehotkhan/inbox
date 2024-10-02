@@ -33,7 +33,7 @@ const { profile, userRole } = useUser();
         preload
         loading="lazy"
         sizes="sm:50vw md:20vw lg:200px"
-        class="flex w-[18rem] rounded-full"
+        class="flex w-[15rem] rounded-full"
         src="/totoro_render.webp"
         :alt="profile?.displayName"
         :placeholder="[400, 400]"

@@ -13,6 +13,7 @@ onMounted(() => {
       v-if="isClient"
       variant="link"
       class="text-md cursor-pointer"
+      color="gray"
       @click="toggleDark()"
     >
       <UIcon :name="!isDark ? 'i-heroicons-sun' : 'i-heroicons-moon'" />

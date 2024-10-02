@@ -36,9 +36,9 @@ const greeting = getGreeting();
 <template>
   <div>
     <div
-      class="flex flex-col-reverse md:flex-row justify-between h-screen-sm pb-10"
+      class="flex md:gap-10 flex-col-reverse md:flex-row justify-between h-screen-sm pb-10"
     >
-      <div class="basis-2/2 md:basis-2/5 flex flex-col justify-between w-full">
+      <div class="basis-2/2 md:basis-5/12 flex flex-col justify-between w-full">
         <div>
           <h2>{{ greeting }}</h2>
           <h3>{{ $t("Today") }} {{ formattedDate }}</h3>
@@ -57,7 +57,7 @@ const greeting = getGreeting();
           </p>
         </div>
       </div>
-      <div class="basis-2/2 md:basis-2/5 h-full">
+      <div class="basis-2/2 md:basis-6/12 h-full">
         <CalendarWeek />
       </div>
     </div>
