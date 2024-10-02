@@ -7,7 +7,7 @@ import { finalizeEvent } from "nostr-tools";
 export default defineEventHandler(async (event) => {
   try {
     const query = getQuery(event);
-    const { appPriv } = useRuntimeConfig(event);
+    const appPriv = process.env.NUXT_APP_PRIV!;
 
     // Validate required fields
     if (!query.path) {
