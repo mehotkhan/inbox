@@ -1,13 +1,9 @@
 <script setup lang="ts">
 const { locale } = useI18n();
-const { userRole } = useUser();
 </script>
 <template>
   <h1 class="flex text-3xl md:text-4xl items-center mx-5 text-center w-full">
-    <NuxtLink
-      :to="userRole === 'Owner' ? `/${locale}/profile` : `/${locale}`"
-      class="flex items-baseline"
-    >
+    <NuxtLink :to="`/${locale}`" class="flex items-baseline">
       <span class="font-hairline">
         {{ $t("titleFirst") + "" }}
       </span>

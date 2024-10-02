@@ -4,7 +4,7 @@ const { userRole } = useUser();
 
 <template>
   <div>
-    <MemberOwnerIntro v-if="userRole === 'Owner'" />
-    <MemberUserIntro v-else />
+    <ProfileTabs v-if="userRole === 'Owner'" />
+    <PostArchives v-else  />
   </div>
 </template>

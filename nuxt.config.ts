@@ -110,7 +110,7 @@ export default defineNuxtConfig({
     // lazy: true,
     langDir: "locales",
     defaultLocale: "fa",
-    // strategy: "prefix",
+    strategy: "prefix",
   },
   imports: {
     dirs: ["composables/**"],

@@ -19,6 +19,8 @@ const props = defineProps({
     :path="locale + '/notes/'"
     :sort="{ date: -1 }"
   >
+    <h2>{{ $t("Latest Incoming") }}</h2>
+
     <div v-if="data?.length > 0" class="px-5 md:m-0">
       <ol>
         <li

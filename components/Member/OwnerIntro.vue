@@ -1,6 +1,36 @@
 <script setup lang="ts">
-const { profile } = useUser();
-const { isDev } = useOwner();
+import { DateTime } from "luxon";
+import { useI18n } from "vue-i18n";
+const { locale, t } = useI18n();
+
+function formatDate(inputDate: string) {
+  if (locale.value === "fa") {
+    return DateTime.fromISO(inputDate)
+      .reconfigure({ outputCalendar: "persian" })
+      .setLocale("fa")
+      .toFormat("cccc dd MMMM yyyy");
+  } else {
+    return DateTime.fromISO(inputDate)
+      .reconfigure({ outputCalendar: "iso8601" })
+      .setLocale("en")
+      .toFormat("cccc dd MMMM yyyy");
+  }
+}
+
+function getGreeting() {
+  const hour = DateTime.now().setLocale(locale.value).hour;
+  if (hour >= 5 && hour < 12) {
+    return t("Good morning :)");
+  } else if (hour >= 12 && hour < 17) {
+    return t("Good afternoon :)");
+  } else {
+    return t("Good evening :)");
+  }
+}
+
+const today = DateTime.now().toISO();
+const formattedDate = formatDate(today);
+const greeting = getGreeting();
 </script>
 
 <template>
@@ -9,11 +39,8 @@ const { isDev } = useOwner();
   >
     <div class="basis-2/2 md:basis-3/5 flex flex-col justify-between w-full">
       <div>
-        <h2 class="">صبح بخیر :)</h2>
-        <h3 class="">امروز دوشنبه ۱۵ مرداد ۱۴۰۳</h3>
-      </div>
-      <div>
-        <p>۱ پیام جدید، ۵ فروش جدید، ۳ دیدگاه جدید</p>
+        <h2>{{ greeting }}</h2>
+        <h3>{{ $t("Today") }} {{ formattedDate }}</h3>
       </div>
     </div>
     <div class="basis-2/2 md:basis-2/5 h-full">

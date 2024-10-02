@@ -5,10 +5,9 @@ description: "صندوق ورودی :)"
 
 <div>
 
-<IntroPost />
+<HomeIntro />
 
 </div>
 
-## جدیدترین ورودی ها
 
-<PostArchives categoty=""  />
+<HomeLists />

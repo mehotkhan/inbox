@@ -7,19 +7,7 @@ const { locale } = useI18n();
 
 <template>
   <ul class="list-none flex mt-8">
-    <li v-if="userRole === 'Owner'" key="profile">
-      <NuxtLink
-        :external="false"
-        :to="`/${locale}/profile`"
-        class="hover:text-black py-1 px-5 dark:hover:text-gray-200"
-        :class="
-          locale + route.path === locale + '/profile'
-            ? 'router-link-active'
-            : ''
-        "
-        >{{ $t("profile") }}</NuxtLink
-      >
-    </li>
+    
     <li v-for="menu in appConfig.menuItems" :key="menu._path">
       <NuxtLink
         :external="false"

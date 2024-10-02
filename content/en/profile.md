@@ -5,11 +5,12 @@ description: "User Profile"
 
 <div class="mt-3">
 
-<ProfileIntro />
+<UserIntro />
+
 </div>
 
 <div class="mt-3">
 
-<AdminTabs />
+<ProfileTabs />
 
 </div>

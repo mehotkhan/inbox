@@ -6,10 +6,9 @@ description: "Inbox Page"
 
 <div>
 
-<IntroPost />
+<HomeIntro />
 
 </div>
 
-## Latest Incoming
 
-<PostArchives />
+<HomeLists />

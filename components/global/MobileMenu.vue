@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const { t } = useI18n();
-const { userRole } = useUser();
 const appConfig = useAppConfig();
 const items = computed(() => {
   const menus: any[] = [];
@@ -13,14 +12,6 @@ const items = computed(() => {
     ]);
   });
 
-  if (userRole.value === "Owner") {
-    menus.push([
-      {
-        label: t("profile"),
-        click: () => navigateTo("/profile"),
-      },
-    ]);
-  }
   return menus;
 });
 </script>
