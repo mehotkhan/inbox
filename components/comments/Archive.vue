@@ -10,7 +10,7 @@ const loadMore = () => {
 </script>
 <template>
   <div>
-    <ul v-if="allComments?.length > 0">
+    <ol v-if="allComments?.length > 0">
       <li v-for="comment in allComments" :key="comment.id" class="mb-2 group">
         <div class="flex justify-between">
           <span :external="false" class="">
@@ -27,14 +27,6 @@ const loadMore = () => {
               / <SocialChannelDetails :pub="comment.tags[0][1]" />
             </span>
           </span>
-          <div
-            v-if="userRole === 'Owner'"
-            class="text-xs flex gap-2 group-hover:flex"
-          >
-            <span>تایید</span>
-            <span>اسپم</span>
-            <span>حذف</span>
-          </div>
         </div>
       </li>
       <li
@@ -43,7 +35,7 @@ const loadMore = () => {
       >
         ....
       </li>
-    </ul>
-    <p v-else>هیچی نیست :)</p>
+    </ol>
+    <p v-else>{{ $t("Noting is Here :(") }}</p>
   </div>
 </template>

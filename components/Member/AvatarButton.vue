@@ -32,6 +32,7 @@ const items = computed(() => [
     {
       label: `${locale.value == "fa" ? convertToPersianNumbers(newMessages.value ?? 0) : newMessages.value} اطلاعیه جدید`,
       icon: "i-heroicons-bell",
+      to: `/${locale.value}/profile`,
     },
   ],
   [

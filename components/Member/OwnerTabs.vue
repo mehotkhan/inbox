@@ -11,7 +11,7 @@ const newMessages = useLiveQuery(async () => {
 }, []);
 const { t } = useI18n();
 
-const adminTabs: any = useStorage("profile-tabs", "inbox");
+const adminTabs: any = useStorage("admin-tabs", "inbox");
 
 const items = computed(() => [
   {
@@ -19,12 +19,14 @@ const items = computed(() => [
     slot: "inbox",
     count: newMessages.value,
   },
-
+  {
+    label: t("Contents"),
+    slot: "contents",
+  },
   {
     label: t("comments"),
     slot: "comments",
   },
-
   {
     label: t("contacts"),
     slot: "contacts",
@@ -88,6 +90,10 @@ const items = computed(() => [
     <div>
       <MemberInbox v-if="adminTabs === 'inbox'" />
       <CommentsArchive v-if="adminTabs === 'comments'" />
+      <PostArchives v-if="adminTabs === 'contents'" />
+      <div>
+        <p v-if="adminTabs === 'contacts'">{{ $t("Noting is Here :(") }}</p>
+      </div>
     </div>
   </div>
 </template>

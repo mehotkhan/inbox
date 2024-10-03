@@ -2,7 +2,6 @@ import viteCompression from "vite-plugin-compression";
 import { generateRoutes } from "./tools/contentRoutes";
 
 export default defineNuxtConfig({
-  // ssr: true,
   future: { compatibilityVersion: 4 },
   css: ["@/assets/scss/base.scss", "@/assets/scss/extra.scss"],
   devtools: { enabled: false },
@@ -20,9 +19,9 @@ export default defineNuxtConfig({
 
   // extends: ["nuxt-seo-kit"],
   runtimeConfig: {
-    ownerPub: "",
-    ownerPubSecond: process.env.NUXT_OWNER_PUB,
-    appPriv: "",
+    aiToken: "",
+    clAccountId: "",
+    githubToken: "",
     app: {
       github: "https://github.com/mehotkhan",
       linkedin: "https://www.linkedin.com/in/ali-zemani/",
@@ -30,7 +29,6 @@ export default defineNuxtConfig({
       language: "fa",
       githubRepo: "mehotkhan/Inbox",
       color: "#e5e7eb",
-      githubToken: "",
     },
   },
 
@@ -58,7 +56,6 @@ export default defineNuxtConfig({
     preset: "cloudflare-pages",
     compressPublicAssets: true,
     minify: true,
-    // static: true,
     prerender: {
       routes: generateRoutes(),
     },
