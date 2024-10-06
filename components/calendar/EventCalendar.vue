@@ -136,7 +136,6 @@ const dayClick = (day: any) => {
           <UButton
             icon="i-heroicons-chevron-right"
             size="sm"
-            color="gray-200"
             variant="link"
             @click="monthSelector++"
           />
@@ -145,7 +144,6 @@ const dayClick = (day: any) => {
           <UButton
             icon="i-heroicons-calendar"
             size="sm"
-            color="gray-200"
             variant="link"
             @click="monthSelector = 0"
           />
@@ -154,7 +152,6 @@ const dayClick = (day: any) => {
           <UButton
             icon="i-heroicons-chevron-left"
             size="sm"
-            color="gray-200"
             variant="link"
             @click="monthSelector--"
           />

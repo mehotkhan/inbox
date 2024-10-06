@@ -3,7 +3,6 @@ import { drizzle } from "drizzle-orm/d1";
 
 export default defineEventHandler(async (event) => {
   const userPub = getCookie(event, "userPub");
-
   // Validate required fields
   if (!userPub) {
     throw createError({

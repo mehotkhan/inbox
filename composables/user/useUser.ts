@@ -64,8 +64,8 @@ export default () => {
   };
   const whoAmI = async () => {
     if (loggedIn.value) {
-      const { data }:any = await useApi("/serverless-api/members/me");
-      userRole.value =  data?.value?.role || " NewComer";
+      const data = await singedApi("/serverless-api/members/me");
+      userRole.value = data?.role;
     }
   };
 

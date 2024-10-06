@@ -27,8 +27,8 @@ useHead({
     },
   ],
 });
+whoAmI();
 onMounted(() => {
-  whoAmI();
   registerNew();
 });
 </script>

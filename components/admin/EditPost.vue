@@ -8,13 +8,10 @@ const { data } = await useAsyncData("page-data", () =>
   queryContent(route.path).findOne()
 );
 
-const { data: fileData } = await useApi(
-  "/serverless-api/github/get-file-data",
-  {
-    method: "post",
-    body: { name: data.value._file },
-  }
-);
+const fileData = await singedApi("/serverless-api/github/get-file-data", {
+  method: "post",
+  body: { name: data.value._file },
+});
 
 const testData = await extractMarkdownData(decode(fileData.content));
 

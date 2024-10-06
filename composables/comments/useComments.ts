@@ -108,17 +108,14 @@ export default function useComments() {
       if (channel) {
         currentChannelId.value = channel?.id;
       } else {
-        const { data }: any = await useApi(
-          "/serverless-api/comments/getCommentId",
-          {
-            params: { path },
-          }
-        );
+        const data = await singedApi("/serverless-api/comments/getCommentId", {
+          params: { path },
+        });
         $dexie?.events.add({
           ...data.value,
           status: "Sending",
         });
-        currentChannelId.value = data.value.id;
+        currentChannelId.value = data.id;
       }
     } catch (e: any) {
       console.log(e);
