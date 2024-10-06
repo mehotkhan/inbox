@@ -41,7 +41,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20240925.0",
+    "@cloudflare/workers-types": "^4.20241004.0",
     "@iconify-json/uil": "^1.2.0",
     "@nuxt/content": "^2.13.2",
     "@nuxt/eslint": "^0.5.7",
@@ -53,7 +53,7 @@
     "@types/node": "^22.7.4",
     "drizzle-kit": "^0.24.2",
     "ejs": "^3.1.10",
-    "eslint": "^9.11.1",
+    "eslint": "^9.12.0",
     "nitro-cloudflare-dev": "^0.1.6",
     "prettier": "^3.3.3",
     "tailwindcss-animate": "^1.0.7",
@@ -61,6 +61,6 @@
     "typescript": "^5.6.2",
     "vite-plugin-compression": "^0.5.1",
     "vue-router": "^4.4.5",
-    "wrangler": "^3.79.0"
+    "wrangler": "^3.80.0"
   }
 }

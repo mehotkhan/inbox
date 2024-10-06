@@ -131,47 +131,34 @@ const dayClick = (day: any) => {
       <span class="text-3xl font-semibold text-gray-800"
         >{{ monthName }} {{ yearName }}</span
       >
-      <div class="flex items-center space-x-2">
-        <button
-          aria-label="calendar forward"
-          class="p-2 text-gray-600 hover:text-gray-800 focus:text-gray-800"
-          @click="monthSelector++"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-5 h-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </button>
-        <button
-          aria-label="calendar backward"
-          class="p-2 text-gray-600 hover:text-gray-800 focus:text-gray-800"
-          @click="monthSelector--"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-5 h-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-        </button>
+      <div class="flex items-center">
+        <UTooltip :text="$t('Next Month')">
+          <UButton
+            icon="i-heroicons-chevron-right"
+            size="sm"
+            color="gray-200"
+            variant="link"
+            @click="monthSelector++"
+          />
+        </UTooltip>
+        <UTooltip :text="$t('Current Month')">
+          <UButton
+            icon="i-heroicons-calendar"
+            size="sm"
+            color="gray-200"
+            variant="link"
+            @click="monthSelector = 0"
+          />
+        </UTooltip>
+        <UTooltip :text="$t('Previous Month')">
+          <UButton
+            icon="i-heroicons-chevron-left"
+            size="sm"
+            color="gray-200"
+            variant="link"
+            @click="monthSelector--"
+          />
+        </UTooltip>
       </div>
     </div>
 
@@ -190,7 +177,7 @@ const dayClick = (day: any) => {
         <div
           v-for="day in days"
           :key="day"
-          class="flex flex-col items-center justify-center p-2 bg-white rounded-md hover:bg-blue-100 cursor-pointer"
+          class="flex flex-col items-center justify-center p-2 rounded-md hover:bg-blue-100 cursor-pointer"
           :class="day.dayClass"
           @click="dayClick(day)"
         >
