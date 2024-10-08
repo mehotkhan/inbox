@@ -147,14 +147,20 @@ export default defineNuxtPlugin(() => {
   };
 
   // Function to send an EVENT message
-  const sendEVENTMessage = async (event: NostrEvent) => {
+  const sendEVENTMessage = (event: NostrEvent) => {
     send(JSON.stringify(["EVENT", event]));
     console.log("Sent event:", event);
   };
-
+  const sendOwnerMessage = (
+    event: NostrEvent,
+    actionType: "deny" | "approve"
+  ) => {
+    send(JSON.stringify(["OWNER", event, actionType]));
+  };
   return {
     provide: {
       sendEVENTMessage,
+      sendOwnerMessage,
     },
   };
 });

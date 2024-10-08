@@ -3,6 +3,8 @@ import { useStorage } from "@vueuse/core";
 import { generateSecretKey, getPublicKey } from "nostr-tools";
 
 export default () => {
+  const { $wipeDexie } = useNuxtApp();
+
   const loggedIn = useStorage("loggedIn", false);
   const certs = useStorage<UserCerts>("current-certs", { pub: "", priv: "" });
   const userRole = useStorage<UserRole>("current-role", "NewComer");
@@ -90,6 +92,7 @@ export default () => {
   };
   const logout = () => {
     loggedIn.value = false;
+    $wipeDexie();
     window.location.reload();
   };
 

@@ -36,17 +36,8 @@ export default defineNuxtPlugin(() => {
                       if (event.status === "Sending") {
                         try {
                           const { $sendEVENTMessage } = useNuxtApp();
-                          await $sendEVENTMessage(event);
-                          // Update the event to mark it as seen
-                          // event.seen = true;
+                          $sendEVENTMessage(event);
                           console.log("send");
-                          // await downlevelTable.mutate({
-                          //   type: "put",
-                          //   values: [event],
-                          //   keys: [event.id],
-                          //   trans: req.trans,
-                          //   wantResults: false,
-                          // });
                         } catch (error) {
                           console.error("Error syncing event:", error);
                         }
@@ -62,13 +53,31 @@ export default defineNuxtPlugin(() => {
         },
       });
     }
+
+    // Wipe all data in the database and reload the database schema
+    async wipeDataOnLogout() {
+      try {
+        // Clear all tables in the database
+        await this.delete();
+
+        // Reinitialize the database
+        this.version(1).stores({
+          events: "++id, kind,content, created_at, tags ,pubkey,status",
+        });
+        console.log("Database wiped and reinitialized on logout.");
+      } catch (error) {
+        console.error("Error wiping database on logout:", error);
+      }
+    }
   }
 
   const dexie = new Database();
 
+  // Provide the dexie instance to the app and add the logout wipe functionality
   return {
     provide: {
       dexie,
+      wipeDexie: dexie.wipeDataOnLogout.bind(dexie),
     },
   };
 });

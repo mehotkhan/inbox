@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { vElementVisibility } from "@vueuse/components";
-const { userRole } = useUser();
 
 const { allComments, count, allCommentsCount } = useComments();
 const loadMore = () => {

@@ -3,11 +3,13 @@ import { finalizeEvent } from "nostr-tools";
 
 export default function useComments() {
   const { certs } = useUser();
-  const { $dexie } = useNuxtApp();
+  const { $dexie, $sendOwnerMessage } = useNuxtApp();
+  const toast = useToast();
+  const { t } = useI18n();
   const sending = ref(false);
   const count = ref(10);
   const currentChannelId = ref<string | null>(null);
-  const route = useRoute(); // useRoute is reactive
+  const route = useRoute();
 
   const sendComment = async (message: string) => {
     sending.value = true;
@@ -123,13 +125,29 @@ export default function useComments() {
   };
   // Watch the route directly
   watch(
-    () => route.path, // Watch the fullPath directly
+    () => route.path,
     (newPath) => {
       getCurrentChannelID(newPath);
     },
-    { immediate: true } // This ensures the watcher fires immediately
+    { immediate: true }
   );
 
+  const approveComment = (event: NostrEvent) => {
+    toast.add({
+      title: t("Approve"),
+      description: t("Comment Approved"),
+    });
+    $sendOwnerMessage(event, "approve");
+  };
+
+  const denyComment = (event: NostrEvent) => {
+    $sendOwnerMessage(event, "deny");
+    toast.add({
+      title: t("Deny"),
+      color: "red",
+      description: t("Comment Denied"),
+    });
+  };
   return {
     allCommentsCount,
     count,
@@ -138,5 +156,7 @@ export default function useComments() {
     sendReplay,
     allComments,
     currentComments,
+    approveComment,
+    denyComment,
   };
 }

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { vElementVisibility } from "@vueuse/components";
 const { userRole } = useUser();
+const { approveComment, denyComment } = useComments();
 const { $dexie } = useNuxtApp();
 const count = ref(10);
 const allInbox = useLiveQuery(async () => {
@@ -43,11 +44,19 @@ const loadMore = () => {
             </span>
 
             <span v-if="userRole === 'Owner'" class="font-hairline text-md">
-              / <UButton variant="link" :label="$t('Approve')"
+              /
+              <UButton
+                variant="link"
+                :label="$t('Approve')"
+                @click="approveComment(comment)"
             /></span>
             <span v-if="userRole === 'Owner'" class="font-hairline text-md">
               /
-              <UButton variant="link" :label="$t('Deny')" color="red"
+              <UButton
+                variant="link"
+                :label="$t('Deny')"
+                color="red"
+                @click="denyComment(comment)"
             /></span>
           </span>
         </div>
