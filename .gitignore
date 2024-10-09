@@ -5,6 +5,7 @@ node_modules
 .cache
 .output
 dist
+dist_build
 pnpm-lock.yaml
 .env
 .wrangler

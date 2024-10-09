@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "NODE_OPTIONS=--max_old_space_size=8000 nuxt build",
-    "clean": "rm -rf .nuxt dist .output",
+    "clean": "rm -rf .nuxt dist .output dist_build",
+    "cloudflare": "NITRO_PRESET=cloudflare_pages npm run build && mkdir dist_build && cp -r dist/_worker.js dist_build/_worker.js && npm run generate && cp -r dist_build/_worker.js dist/_worker.js",
     "dev": "VITE_CJS_IGNORE_WARNING=1 nuxt dev",
     "generate": "nuxt generate",
     "i18:update": "node tools/updateLocale.js",
