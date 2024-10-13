@@ -2,6 +2,7 @@ import { verifyAuthenticationResponse } from "@simplewebauthn/server";
 import crypto from "crypto";
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/d1";
+import { base64urlToBuffer } from "~/server/utils/tools";
 
 if (process.env.NODE_ENV !== "production") {
   global.crypto = global.crypto || crypto;
@@ -18,7 +19,9 @@ export default defineEventHandler(async (event) => {
   try {
     const data = await readBody(event);
     const drizzleDb = drizzle(DB);
+
     console.log("username?", data.userName);
+
     // Find the user by userName
     const existingMember: any = await drizzleDb
       .select()
@@ -32,6 +35,7 @@ export default defineEventHandler(async (event) => {
         statusMessage: "User Not Found",
       });
     }
+
     const webAuthChallengeKey = `webauthChallenge:${existingMember.pub}`;
     const webAuthChallenge = await inboxKV.get(webAuthChallengeKey);
 
@@ -42,19 +46,23 @@ export default defineEventHandler(async (event) => {
       });
     }
 
-    // Verify authentication response
+    // Decode the stored credentialPublicKey and credentialID
+    const credentialPublicKeyBuffer = base64urlToBuffer(
+      existingMember.credentialPublicKey
+    );
+    const credentialIDBuffer = base64urlToBuffer(existingMember.credentialID);
+
+    // Verify authentication response using updated v11 API
     const verification = await verifyAuthenticationResponse({
       response: data.authResp,
       expectedChallenge: webAuthChallenge,
       expectedOrigin: location.origin,
       expectedRPID: location.hostname,
-      authenticator: {
-        credentialPublicKey: Buffer.from(
-          existingMember.credentialPublicKey,
-          "base64"
-        ),
-        credentialID: existingMember.credentialID,
+      credential: {
+        id: credentialIDBuffer, // Renamed from credentialID
+        publicKey: credentialPublicKeyBuffer, // Renamed from credentialPublicKey
         counter: existingMember.counter || 0, // The stored counter from the user's previous authentication
+        transports: ["usb", "ble", "nfc", "internal"], // Optional, based on the authenticator used
       },
     });
 

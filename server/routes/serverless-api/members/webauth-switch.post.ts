@@ -47,6 +47,7 @@ export default defineEventHandler(async (event) => {
         statusMessage: "User does not have any registered credentials",
       });
     }
+
     // Generate authentication options
     const options = await generateAuthenticationOptions({
       rpID: location.hostname,

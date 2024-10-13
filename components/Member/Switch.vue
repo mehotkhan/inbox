@@ -30,7 +30,7 @@ const schema = z.object({
 type Schema = z.output<typeof schema>;
 
 const state = reactive<Schema>({
-  userName: undefined,
+  userName: "",
 });
 
 // Start WebAuthn authentication and handle form submission
@@ -38,7 +38,7 @@ const profileSwitch = async (event: FormSubmitEvent<Schema>) => {
   try {
     submitting.value = true;
 
-    // Fetch authentication options from server
+    // Fetch authentication options from the server
     const data = await singedApi("/serverless-api/members/webauth-switch", {
       method: "post",
       body: {
@@ -46,8 +46,10 @@ const profileSwitch = async (event: FormSubmitEvent<Schema>) => {
       },
     });
 
-    // Start WebAuthn authentication
-    const authResp = await startAuthentication(data);
+    // Start WebAuthn authentication using updated syntax
+    const authResp = await startAuthentication({
+      optionsJSON: data, // Pass the options inside an object as per v11 changes
+    });
 
     // Send the credential data back to the server
     const userAuth = await handleResponse(authResp, event.data.userName);
@@ -73,7 +75,7 @@ const profileSwitch = async (event: FormSubmitEvent<Schema>) => {
 // Handle the response from WebAuthn and submit it to the server
 const handleResponse = async (authResp, userName: string) => {
   try {
-    const response = await $fetch(
+    const response = await singedApi(
       "/serverless-api/members/webauth-switch-response",
       {
         method: "post",

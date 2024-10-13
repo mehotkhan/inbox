@@ -26,11 +26,12 @@ export default defineEventHandler(async (event) => {
     }
 
     const drizzleDb = drizzle(DB);
-    const existingMember = drizzleDb
+    const existingMember = await drizzleDb
       .select()
       .from(member)
       .where(eq(member.pub, body.pubKey))
       .get();
+
     if (!existingMember) {
       throw createError({
         statusCode: 400,
@@ -38,10 +39,11 @@ export default defineEventHandler(async (event) => {
       });
     }
 
+    // Refactor generateRegistrationOptions to use an object as per v11.0.0 changes
     const options = await generateRegistrationOptions({
-      rpName: "Inbox",
-      rpID: location.hostname,
-      userID: new WebUUID(), // Should be the unique user identifier
+      rpName: "Inbox", // Required name for the relying party
+      rpID: location.hostname, // The hostname of the relying party
+      userID: new WebUUID(), // A unique user identifier
       userName: body.userName,
       userDisplayName: body.displayName,
       attestationType: "none",
@@ -49,8 +51,10 @@ export default defineEventHandler(async (event) => {
         userVerification: "required",
       },
     });
+
     const webAuthChallengeKey = `webauthChallenge:${body.pubKey}`;
     await inboxKV.put(webAuthChallengeKey, options.challenge);
+
     return options;
   } catch (e: any) {
     throw createError({

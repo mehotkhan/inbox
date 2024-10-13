@@ -35,7 +35,7 @@ const profileActivate = async (event: FormSubmitEvent<Schema>) => {
   try {
     submitting.value = true;
 
-    // Fetch registration options from server
+    // Fetch registration options from the server
     const data = await singedApi("/serverless-api/members/webauth-activate", {
       method: "post",
       body: {
@@ -45,13 +45,15 @@ const profileActivate = async (event: FormSubmitEvent<Schema>) => {
       },
     });
 
-    // Start WebAuthn registration
-    const attResp = await startRegistration(data);
+    // Start WebAuthn registration using updated object-based argument
+    const attResp = await startRegistration({
+      optionsJSON: data, // Pass options inside an object as per v11 changes
+    });
 
-    // Send the credential data back to the server
+    // Handle the WebAuthn response
     const userAuth = await handleResponse(attResp, event.data);
 
-    login(userAuth); // Update user state after successful login
+    login(userAuth); // Update user state after successful activation
     submitting.value = false;
     isOpen.value = false; // Close the modal
     toast.add({

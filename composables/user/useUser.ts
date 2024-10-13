@@ -72,6 +72,7 @@ export default () => {
   };
 
   const login = async (userAuth: any) => {
+    console.log(userAuth);
     profile.value = {
       firstName: userAuth.firstName,
       lastName: userAuth.lastName,

@@ -28,23 +28,28 @@ export default defineEventHandler(async (event) => {
     }
 
     if (data.attResp.response.attestationObject != null) {
-      // Verify registration (attestation)
+      // Verify registration (attestation) using updated API structure
       const verification = await verifyRegistrationResponse({
         response: data.attResp,
         expectedChallenge: webAuthChallenge,
         expectedOrigin: location.origin,
         expectedRPID: location.hostname,
       });
+
       console.log("verify", verification.verified);
+
       if (!verification.verified) {
         throw createError({
           statusCode: 400,
           statusMessage: "Registration verification failed",
         });
       }
+
       await inboxKV.delete(webAuthChallengeKey);
 
       const drizzleDb = drizzle(DB);
+
+      // Update the user record with the new credential information
       await drizzleDb
         .update(member)
         .set({
@@ -56,14 +61,15 @@ export default defineEventHandler(async (event) => {
           about: data.formData.about,
           email: data.formData.email,
           priv: data.userPriv,
-          // Store credential data
-          credentialID: verification.registrationInfo?.credentialID,
+          // Store credential data using the updated WebAuthnCredential structure
+          credentialID: verification.registrationInfo?.credential.id, // Updated from credentialID
           credentialPublicKey: Buffer.from(
-            verification.registrationInfo?.credentialPublicKey || []
-          ).toString("base64"),
+            verification.registrationInfo?.credential.publicKey || []
+          ).toString("base64"), // Updated from credentialPublicKey
         })
         .where(eq(member.pub, data.userPub));
-      // Return successful authentication response
+
+      // Return the updated user data
       return new Response(
         JSON.stringify({
           firstName: data.formData.firstName,
@@ -73,7 +79,7 @@ export default defineEventHandler(async (event) => {
           about: data.formData.about,
           email: data.formData.email,
           priv: data.userPriv,
-          pub: data.pub,
+          pub: data.userPub,
           avatar: "",
         })
       );
