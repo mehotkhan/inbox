@@ -45,7 +45,7 @@
     "@cloudflare/workers-types": "^4.20241011.0",
     "@iconify-json/uil": "^1.2.1",
     "@nuxt/content": "^2.13.2",
-    "@nuxt/eslint": "^0.5.7",
+    "@nuxt/eslint": "^0.6.0",
     "@nuxt/image": "npm:@nuxt/image-nightly@latest",
     "@nuxt/ui": "2.18.7",
     "@nuxtjs/i18n": "^8.5.5",

@@ -24,7 +24,8 @@ export default defineEventHandler(async (event) => {
     const httpMethod = event.method?.toUpperCase();
 
     if (httpMethod === "GET") {
-      const queryParams = getQuery(event) || {};
+      // const queryParams = getQuery(event) || {};
+      const queryParams = {};
       const queryString = JSON.stringify(queryParams);
 
       const isValid = schnorr.verify(

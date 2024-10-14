@@ -19,6 +19,7 @@ export default defineNuxtConfig({
 
   // extends: ["nuxt-seo-kit"],
   runtimeConfig: {
+    openaiToken: "",
     aiToken: "",
     clAccountId: "",
     githubToken: "",

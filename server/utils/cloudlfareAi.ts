@@ -1,6 +1,6 @@
 export const cloudflareAI = async (model: string, input: any) => {
   const { aiToken, clAccountId } = useRuntimeConfig();
-  const response = await fetch(
+  const aiResponse = await fetch(
     `https://api.cloudflare.com/client/v4/accounts/${clAccountId}/ai/run/${model}`,
     {
       headers: { Authorization: `Bearer ${aiToken}` },
@@ -8,5 +8,7 @@ export const cloudflareAI = async (model: string, input: any) => {
       body: JSON.stringify(input),
     }
   );
+  const response = await aiResponse.json();
+
   return response;
 };

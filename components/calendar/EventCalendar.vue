@@ -17,16 +17,45 @@ const visibleCalendar = ref<boolean>(false);
 const selectedEventIds = ref<number[]>([]); // Store selected event IDs as an array
 
 // Sample events with unique IDs and colors
-const events = ref([
-  { id: 0, date: "2024-10-05", title: "random", color: "#ddd" },
-  { id: 1, date: "2024-10-05", title: "Meeting with Team", color: "#ff5c5c" },
-  { id: 2, date: "2024-10-11", title: "Doctor Appointment", color: "#4caf50" },
-  { id: 3, date: "2024-10-21", title: "Project Deadline", color: "#ff9800" },
-]);
+// const events = ref([
+//   { id: 0, date: "2024-10-05", title: "random", color: "#ddd" },
+//   { id: 1, date: "2024-10-05", title: "Meeting with Team", color: "#ff5c5c" },
+//   { id: 2, date: "2024-10-11", title: "Doctor Appointment", color: "#4caf50" },
+//   { id: 3, date: "2024-10-21", title: "Project Deadline", color: "#ff9800" },
+// ]);
+// Events ref to store events fetched from the API
+const events = ref<any[]>([]);
 
-onMounted(() => {
+// Fetch events from the API for a given date
+const fetchEvents = async (date: DateTime) => {
+  const year = date.year;
+  const month = date.month;
+  const day = date.day;
+
+  try {
+    const response = await singedApi(
+      `/serverless-api/events/todayEvents?year=${year}&month=${month}&day=${day}`
+    );
+    if (response.events) {
+      return response.events.map((event, index) => ({
+        id: index,
+        date: date.toISODate(),
+        title: event.description,
+        color: event.is_holiday ? "#ff5c5c" : "#4caf50",
+      }));
+    }
+  } catch (error) {
+    console.error("Error fetching events: ", error);
+  }
+};
+
+// Fetch and set today's events on mount
+onMounted(async () => {
   const localParts = props.inputDate.toLocaleParts();
   dayOffset.value = localParts[2].value;
+  const todayEvents = await fetchEvents(props.inputDate);
+  console.log(todayEvents);
+  events.value = todayEvents; // Load only today's events
 });
 
 watch(
@@ -96,6 +125,7 @@ const weekGenerator = (rangeDays) => {
       ],
       hasEvent: dayEvents.length > 0,
       events: dayEvents, // Storing events for easier access
+      fullDate: day.s,
     });
   });
 };
@@ -111,10 +141,15 @@ watch(range, async (newRange) => {
   weekGenerator(newRange);
 });
 
-const dayClick = (day: any) => {
+const dayClick = async (day: any) => {
+  const todayEvents = await fetchEvents(day.fullDate);
+  console.log(todayEvents);
+  events.value = todayEvents;
+
   if (day.hasEvent && day.events.length) {
-    console.log(`Event IDs: ${day.events.map((event) => event.id).join(", ")}`);
     selectedEventIds.value = day.events.map((event) => event.id); // Set all event IDs for the day as selected
+  } else {
+    selectedEventIds.value = [];
   }
   emit("daySelect", day);
   visibleCalendar.value = false;
