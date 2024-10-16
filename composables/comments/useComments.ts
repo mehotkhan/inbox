@@ -126,8 +126,8 @@ export default function useComments() {
   // Watch the route directly
   watch(
     () => route.path,
-    (newPath) => {
-      getCurrentChannelID(newPath);
+    (newPath: string) => {
+      if (newPath.includes("/notes/")) getCurrentChannelID(newPath);
     },
     { immediate: true }
   );
