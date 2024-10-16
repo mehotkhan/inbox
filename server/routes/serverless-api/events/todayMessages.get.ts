@@ -11,6 +11,7 @@ export default defineEventHandler(async (event) => {
   // Check if today's message is already cached in KV
   let generatedMessage = await inboxKV.get(todayKvKey);
   if (!generatedMessage) {
+
     const todayEventsKey = `calendar:events:${today.toFormat("yyyy/MM/dd")}`;
     let todayEvents = await inboxKV.get(todayEventsKey);
 
@@ -50,11 +51,12 @@ export default defineEventHandler(async (event) => {
       },
       inboxConfig
     );
-
+    if (aiResponse?.result?.response) {
+      await inboxKV.put(todayKvKey, aiResponse?.result?.response);
+    }
     // Cache the generated response in KV and set the final generated message
     generatedMessage =
       aiResponse?.result?.response || "Failed to generate a response.";
-    await inboxKV.put(todayKvKey, generatedMessage);
   }
 
   return { message: generatedMessage };
