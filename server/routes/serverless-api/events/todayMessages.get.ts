@@ -34,7 +34,7 @@ export default defineEventHandler(async (event) => {
       {
         role: "system",
         content:
-          "Based on the events you provide, generate a text to describe today",
+          "بر اساس رخدادهایی که داده میشود امروز را توصیف کن",
       },
       {
         role: "user",
