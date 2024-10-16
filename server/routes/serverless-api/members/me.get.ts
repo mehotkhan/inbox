@@ -11,8 +11,10 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const { DB, OWNER_PUB } = event.context.cloudflare.env;
-  const owners: string[] = OWNER_PUB.split(",");
+  const { DB } = event.context.cloudflare.env;
+  const { ownersPub } = event.context.inboxConfig;
+
+  const owners: string[] = ownersPub.split(",");
 
   const drizzleDb = drizzle(DB);
 
@@ -40,7 +42,7 @@ export default defineEventHandler(async (event) => {
   return {
     isVerified: currentMember.isVerified,
     lastActivity: currentMember.lastActivity,
-    OWNER_PUB,
+    ownersPub,
     role: userRole,
   };
 });

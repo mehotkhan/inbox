@@ -16,8 +16,8 @@ function renderBody(status: any, content: any) {
   return blob;
 }
 
-export async function onRequest(context: any) {
-  const { request, env } = context;
+export async function onRequest(event: any) {
+  const { request, inboxConfig } = event.context;
 
   try {
     const url = new URL(request.url);
@@ -32,11 +32,11 @@ export async function onRequest(context: any) {
           accept: "application/json",
         },
         body: JSON.stringify({
-          client_id: env.GITHUB_CLIENT_ID,
-          client_secret: env.GITHUB_CLIENT_SECRET,
+          client_id: inboxConfig.githubClientIdD,
+          client_secret: inboxConfig.githubToken,
           code,
         }),
-      },
+      }
     );
     const result: any = await response.json();
     if (result.error) {
@@ -59,7 +59,7 @@ export async function onRequest(context: any) {
       },
       status: 200,
     });
-  } catch (error) {
+  } catch (error: any) {
     return new Response(error.message, {
       headers: {
         "content-type": "text/html;charset=UTF-8",

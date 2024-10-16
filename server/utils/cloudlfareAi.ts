@@ -1,5 +1,9 @@
-export const cloudflareAI = async (model: string, input: any) => {
-  const { aiToken, clAccountId } = useRuntimeConfig();
+export const cloudflareAI = async (
+  model: string,
+  input: any,
+  inboxConfig: any
+) => {
+  const { aiToken, clAccountId } = inboxConfig;
   const aiResponse = await fetch(
     `https://api.cloudflare.com/client/v4/accounts/${clAccountId}/ai/run/${model}`,
     {

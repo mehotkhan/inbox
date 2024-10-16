@@ -1,6 +1,7 @@
 import { DateTime } from "luxon";
 
 export default defineEventHandler(async (event) => {
+  const { inboxConfig } = event.context;
   // Get today's date using Luxon for easier date management
   const today = DateTime.now().setZone("Asia/Tehran"); // Adjust the timezone if needed
   const year = today.year;
@@ -16,9 +17,6 @@ export default defineEventHandler(async (event) => {
 
   // Map the descriptions of today's events
   const desEvents = todayJson.events.map((event: any) => event.description);
-
-  // Debugging - log event descriptions
-  // console.log(desEvents);
 
   // Prepare content for Cloudflare AI, combining today's events
   const content = `  ${desEvents.join(", ")}`;
@@ -41,7 +39,8 @@ export default defineEventHandler(async (event) => {
     {
       messages,
       max_tokens: 1000,
-    }
+    },
+    inboxConfig
   );
 
   // Extract and return the AI-generated response

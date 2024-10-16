@@ -71,7 +71,5 @@ module.exports = {
     require("@tailwindcss/typography"),
     require("@tailwindcss/container-queries"),
     require("@tailwindcss/aspect-ratio"),
-    require("tailwindcss-animate"), // Add animation plugin for transitions
-    require("tailwindcss-children"), // Plugin to style child elements easily
   ],
 };
