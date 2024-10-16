@@ -1,7 +1,8 @@
 import { DateTime } from "luxon";
 
 export default defineEventHandler(async (event) => {
-  const { inboxKV, inboxConfig } = event.context.cloudflare.env;
+  const { inboxKV } = event.context.cloudflare.env;
+  const { inboxConfig } = event.context;
 
   // Get today's date using Luxon in the specified timezone
   const today = DateTime.now().setZone("Asia/Tehran");
