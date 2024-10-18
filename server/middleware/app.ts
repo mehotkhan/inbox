@@ -13,14 +13,14 @@ export default defineEventHandler(async (event) => {
       githubClientId: "",
       githubRepo: "",
     };
+    const { inboxKV } = event.context.cloudflare.env;
+    const appConfigKey = "app:config";
 
     if (process.env.NODE_ENV === "production") {
-      const { inboxKV } = event.context.cloudflare.env;
-      const appConfigKey = "app:config";
-
       const appConfig = await inboxKV.get(appConfigKey);
       config = JSON.parse(appConfig);
     } else {
+      //DEVELOPER AREA!!
       const {
         ownersPub,
         inboxPriv,
@@ -42,6 +42,7 @@ export default defineEventHandler(async (event) => {
         githubClientId,
         githubRepo,
       };
+      await inboxKV.put(appConfigKey, JSON.stringify(config));
     }
 
     event.context.inboxConfig = config;
