@@ -23,17 +23,16 @@ export default defineEventHandler(async (event) => {
     }
 
     const todayJson = JSON.parse(todayEvents);
-    const desEvents = todayJson.events
+    const eventDescriptions = todayJson.events
       .map((event: any) => event.description)
       .join(", ");
-    const userContent = `  ${desEvents}`;
+    const userContent = `رخدادهای امروز: ${eventDescriptions}`;
 
     // Define the conversation messages for the GPT-4 model
     const messages = [
       {
         role: "system",
-        content:
-          "بر اساس رخدادهایی که داده میشود امروز را توصیف کن، زبان فارسی معیار کشور ایران و با لحنی دوستانه و صمیمی",
+        content: "بر اساس رخدادهایی که داده میشود، امروز توصیف کن.",
       },
       {
         role: "user",
@@ -46,7 +45,9 @@ export default defineEventHandler(async (event) => {
       "@hf/nousresearch/hermes-2-pro-mistral-7b",
       {
         messages,
-        max_tokens: 5000,
+        max_tokens: 1000,
+        temperature: 2.5, // Adjusted for better generation
+        top_p: 0.9, // Adjusted for quality
       },
       inboxConfig
     );
