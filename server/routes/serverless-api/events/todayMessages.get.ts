@@ -11,7 +11,6 @@ export default defineEventHandler(async (event) => {
   // Check if today's message is already cached in KV
   let generatedMessage = await inboxKV.get(todayKvKey);
   if (!generatedMessage) {
-
     const todayEventsKey = `calendar:events:${today.toFormat("yyyy/MM/dd")}`;
     let todayEvents = await inboxKV.get(todayEventsKey);
 
@@ -34,7 +33,7 @@ export default defineEventHandler(async (event) => {
       {
         role: "system",
         content:
-          "بر اساس رخدادهایی که داده میشود امروز را توصیف کن",
+          "بر اساس رخدادهایی که داده میشود امروز را توصیف کن، زبان فارسی معیار کشور ایران و با لحنی دوستانه و صمیمی",
       },
       {
         role: "user",
@@ -47,7 +46,7 @@ export default defineEventHandler(async (event) => {
       "@hf/nousresearch/hermes-2-pro-mistral-7b",
       {
         messages,
-        max_tokens: 1000,
+        max_tokens: 5000,
       },
       inboxConfig
     );
