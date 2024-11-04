@@ -33,10 +33,10 @@
     "h3-zod": "^0.5.3",
     "js-base64": "^3.7.7",
     "luxon": "^3.5.0",
-    "nostr-tools": "^2.9.4",
-    "nuxt": "^3.13.2",
+    "nostr-tools": "^2.10.1",
+    "nuxt": "^3.14.0",
     "nuxt-tiptap-editor": "^2.0.0",
-    "sass": "^1.80.5",
+    "sass": "^1.80.6",
     "tiptap-markdown": "^0.8.10",
     "web-uuid": "0.1.0-pre.1",
     "zod": "^3.23.8"
@@ -48,18 +48,18 @@
     "@nuxt/eslint": "^0.6.1",
     "@nuxt/image": "npm:@nuxt/image-nightly@latest",
     "@nuxt/ui": "2.18.7",
-    "@nuxtjs/i18n": "^8.5.5",
+    "@nuxtjs/i18n": "^9.0.0",
     "@types/better-sqlite3": "^7.6.11",
     "@types/luxon": "^3.4.2",
-    "@types/node": "^22.8.5",
-    "drizzle-kit": "^0.27.0",
+    "@types/node": "^22.8.7",
+    "drizzle-kit": "^0.27.1",
     "ejs": "^3.1.10",
-    "eslint": "^9.13.0",
+    "eslint": "^9.14.0",
     "nitro-cloudflare-dev": "^0.2.1",
     "prettier": "^3.3.3",
     "typescript": "^5.6.3",
     "vite-plugin-compression": "^0.5.1",
     "vue-router": "^4.4.5",
-    "wrangler": "^3.84.0"
+    "wrangler": "^3.84.1"
   }
 }
