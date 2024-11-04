@@ -8,7 +8,7 @@ const { profile } = useUser();
     <UCard
       v-for="comment in currentComments"
       :key="comment.id"
-      class="dark:bg-gray-900 mb-10 w-full"
+      class="mb-10 w-full"
       :ui="{
         ring: 'ring-0',
         shadow: 'shadow-none',
