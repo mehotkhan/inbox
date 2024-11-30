@@ -120,7 +120,7 @@ const items = computed(() => [
         </template>
       </UDropdown>
     </UChip>
-    <MemberSwitch v-model:is-open="loginIsOpen" />
+    <!-- <MemberSwitch v-model:is-open="loginIsOpen" /> -->
   </div>
 </template>
 <style lang="scss">

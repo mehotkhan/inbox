@@ -13,7 +13,6 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@nuxt/eslint",
     "nitro-cloudflare-dev",
-    "nuxt-tiptap-editor",
     // "@nuxtjs/seo",
   ],
 
@@ -113,18 +112,11 @@ export default defineNuxtConfig({
     ],
     // lazy: true,
     langDir: "locales",
-    defaultLocale: "fa",
+    defaultLocale: "en",
     strategy: "prefix",
   },
   imports: {
     dirs: ["composables/**"],
-  },
-
-  tiptap: {
-    prefix: "Tiptap",
-    lowlight: {
-      theme: "github-dark",
-    },
   },
 
   compatibilityDate: "2024-09-02",

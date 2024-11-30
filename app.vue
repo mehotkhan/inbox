@@ -3,10 +3,19 @@ const { isDark } = useDark();
 const { locale, t } = useI18n();
 const { registerNew, whoAmI } = useUser();
 const runtimeConfig = useRuntimeConfig();
+import * as locales from '@nuxt/ui/locale'
+
+
+const lang = computed(() => locales[locale.value].code)
+const dir = computed(() => locales[locale.value].dir)
+
 useHead({
   title: t("siteName"),
   titleTemplate: `%s - ${t("siteName")}:// ${t("description")} `,
-
+  htmlAttrs: {
+    lang,
+    dir
+  },
   meta: [
     { name: "viewport", content: "width=device-width, initial-scale=1" },
     { name: "theme-color", content: runtimeConfig.app.color },
@@ -31,20 +40,19 @@ whoAmI();
 onMounted(() => {
   registerNew();
 });
+
+// const dlocale=computed(()=>locale.value ==='fa'?'fa_ir':'en')
 </script>
 <template>
-  <Html
-    :dir="locale === 'fa' ? 'rtl' : 'ltr'"
-    :lang="locale"
-    :class="isDark ? 'dark' : 'light'"
-  >
-    <Body class="dark:bg-slate-800">
-      <NuxtLayout>
-        <!-- <SeoKit /> -->
+  <UApp  >
+      <NuxtLayout class="dark:bg-slate-800">
         <NuxtLoadingIndicator />
         <NuxtPage />
       </NuxtLayout>
-      <UNotifications />
-    </Body>
-  </Html>
+  </UApp>
 </template>
+<style>
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+</style>

@@ -28,7 +28,6 @@
     "pinia",
     "schnorr",
     "simplewebauthn",
-    "tiptap",
     "treeshake",
     "typechain",
     "unplugin",
