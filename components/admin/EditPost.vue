@@ -58,10 +58,10 @@ const isTyping = (data: string) => {
       @submit="onSubmit"
     >
       <div class="flex w-full justify-between pb-3 gap-3 items-end">
-        <UFormGroup name="title" label="عنوان" class="basis-10/12" size="md">
+        <UFormField name="title" label="عنوان" class="basis-10/12" size="md">
           <UInput v-model="state.title" />
-        </UFormGroup>
-        <UFormGroup
+        </UFormField>
+        <UFormField
           name="category"
           label="دسته بدنی"
           class="basis-2/12"
@@ -73,7 +73,7 @@ const isTyping = (data: string) => {
             :options="options"
           />    -->
           <UInput v-model="state.category" placeholder="Select..." />
-        </UFormGroup>
+        </UFormField>
         <UButtonGroup
           orientation="horizontal"
           class="basis-1/12 flex justify-end h-10"

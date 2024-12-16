@@ -2,150 +2,126 @@ import fs from 'fs';
 import path from 'path';
 
 /**
- * Recursively retrieves all files with the specified extensions from the given directory, excluding specified directories.
- * @param {string} dir - The directory to scan.
+ * Retrieves all files with the specified extensions from the given directory, excluding specified directories.
+ * @param {string} dir - Directory to scan.
  * @param {string[]} extensions - Array of file extensions to include.
  * @param {string[]} excludeDirs - Array of directory names to exclude.
- * @param {string[]} files - Accumulator for the file paths.
- * @returns {string[]} An array of file paths.
+ * @param {string[]} files - Accumulator for file paths.
+ * @returns {string[]} List of file paths.
  */
-function getAllFiles(dir, extensions, excludeDirs = ['node_modules', '.git', 'dist'], files = []) {
+const getAllFiles = (dir, extensions, excludeDirs = ['node_modules', '.git', 'dist'], files = []) => {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
   for (const entry of entries) {
     const fullPath = path.join(dir, entry.name);
 
-    if (entry.isDirectory()) {
-      if (!excludeDirs.includes(entry.name)) {
-        getAllFiles(fullPath, extensions, excludeDirs, files);
-      }
+    if (entry.isDirectory() && !excludeDirs.includes(entry.name)) {
+      getAllFiles(fullPath, extensions, excludeDirs, files);
     } else if (extensions.includes(path.extname(entry.name))) {
       files.push(fullPath);
     }
   }
   return files;
-}
+};
 
 /**
- * Extracts I18n keys from file content using regex and filters out invalid keys.
- * @param {string} fileContent - The content of the file.
- * @returns {string[]} An array of extracted keys.
+ * Extracts I18n keys from file content using regex.
+ * @param {string} content - File content.
+ * @returns {string[]} Extracted keys.
  */
-function extractI18Keys(fileContent) {
-  // Match $t('...') or t("...") and capture the content inside the quotes
-  const regex = /(?:\$t|t)\(\s*(['"`])(.*?)\1\s*\)/g;
+const extractI18Keys = (content) => {
+  const regex = /(?:\$t|t)\(\s*(['"])(.*?)\1\s*\)/g;
   const keys = [];
   let match;
-  while ((match = regex.exec(fileContent)) !== null) {
+  while ((match = regex.exec(content)) !== null) {
     const key = match[2];
-
-    // Filter out invalid keys
     if (
-      !key.includes('/') &&             // Exclude keys with slashes
-      !key.startsWith('#') &&           // Exclude keys starting with '#'
-      !key.startsWith('nuxt-') &&           // Exclude keys starting with '#'
-      key !== '' &&                     // Exclude empty strings
-      key.length > 1 &&                 // Exclude single-character keys
-      !/^[^a-zA-Z0-9]+$/.test(key) &&   // Exclude keys made up entirely of non-alphanumeric characters
-      !/\b(dd|MMM|yyyy)\b/.test(key) && // Exclude date formats
-      !key.includes('\\') &&            // Exclude escape sequences
-      !/(vue-router|sig)/.test(key) &&  // Exclude known technical terms
-      !key.includes('scope')            // Exclude keys containing 'scope'
+      !key.includes('/') &&
+      !key.startsWith('#') &&
+      !key.startsWith('nuxt-') &&
+      key.length > 1 &&
+      !/^[^a-zA-Z0-9]+$/.test(key) &&
+      !/\b(dd|MMM|yyyy)\b/.test(key) &&
+      !key.includes('\\') &&
+      !/(vue-router|sig)/.test(key) &&
+      !key.includes('scope')
     ) {
       keys.push(key);
     }
   }
   return keys;
-}
+};
 
 /**
- * Reads a JSON file and parses its content.
- * @param {string} filePath - The path to the JSON file.
- * @returns {Object} An object representing the JSON content.
+ * Reads and parses JSON content from a file.
+ * @param {string} filePath - Path to the JSON file.
+ * @returns {Object} Parsed JSON object.
  */
-function readJson(filePath) {
-  if (fs.existsSync(filePath)) {
-    const content = fs.readFileSync(filePath, 'utf8');
-    try {
-      return JSON.parse(content);
-    } catch (error) {
-      console.error(`Error parsing JSON file at ${filePath}:`, error);
-      return {};
-    }
-  } else {
+const readJson = (filePath) => {
+  try {
+    return fs.existsSync(filePath)
+      ? JSON.parse(fs.readFileSync(filePath, 'utf8'))
+      : {};
+  } catch (error) {
+    console.error(`Error reading JSON at ${filePath}:`, error);
     return {};
   }
-}
+};
 
 /**
- * Merges new keys into the existing JSON object, avoiding duplicates.
- * @param {Object} existing - The existing JSON object.
- * @param {Set<string>} keys - A set of new keys to add.
- * @returns {Object} The updated JSON object.
+ * Updates an existing JSON object with a set of keys.
+ * @param {Object} existing - Existing JSON object.
+ * @param {Set<string>} keys - Set of valid keys.
+ * @returns {Object} Updated JSON object.
  */
-function mergeKeys(existing, keys) {
-  const result = { ...existing };
-  for (const key of keys) {
-    if (!(key in result)) {
-      result[key] = key; // Use the key as both key and value for default translation
-    }
-  }
-  return result;
-}
+const updateKeys = (existing, keys) => {
+  const updated = {};
+  keys.forEach((key) => {
+    updated[key] = key in existing ? existing[key] : key; // Default to key as value if missing
+  });
+  return updated;
+};
 
 /**
- * Sorts the keys of an object alphabetically.
- * @param {Object} obj - The object whose keys are to be sorted.
- * @returns {Object} A new object with sorted keys.
+ * Sorts an object's keys alphabetically.
+ * @param {Object} obj - The object to sort.
+ * @returns {Object} New object with sorted keys.
  */
-function sortKeys(obj) {
-  const sortedKeys = Object.keys(obj).sort();
-  const sortedObj = {};
-  for (const key of sortedKeys) {
-    sortedObj[key] = obj[key];
-  }
-  return sortedObj;
-}
+const sortKeys = (obj) =>
+  Object.keys(obj)
+    .sort()
+    .reduce((sorted, key) => {
+      sorted[key] = obj[key];
+      return sorted;
+    }, {});
 
 /**
- * Main function to execute the script.
+ * Main function to update and sort locale files.
  */
-function main() {
+const main = () => {
   const projectDir = process.cwd();
-  const localeDir = path.join(projectDir, 'locales'); // Adjust if your locales directory is different
+  const localeDir = path.join(projectDir, 'i18n', 'locales');
   const faJsonPath = path.join(localeDir, 'fa.json');
   const enJsonPath = path.join(localeDir, 'en.json');
 
-  // Define file extensions to scan
-  const extensions = ['.ts', '.vue'];
-  const excludeDirs = ['node_modules', '.git', 'dist'];
-  const files = getAllFiles(projectDir, extensions, excludeDirs);
+  const files = getAllFiles(projectDir, ['.ts', '.vue']);
 
-  // Collect all unique translation keys
   const allKeys = new Set();
-  for (const file of files) {
+  files.forEach((file) => {
     const content = fs.readFileSync(file, 'utf8');
-    const keys = extractI18Keys(content);
-    keys.forEach((key) => allKeys.add(key));
-  }
+    extractI18Keys(content).forEach((key) => allKeys.add(key));
+  });
 
-  // Read existing locale files
   const faJson = readJson(faJsonPath);
   const enJson = readJson(enJsonPath);
 
-  // Merge new keys into the locale files
-  const updatedFaJson = mergeKeys(faJson, allKeys);
-  const updatedEnJson = mergeKeys(enJson, allKeys);
+  const updatedFaJson = sortKeys(updateKeys(faJson, allKeys));
+  const updatedEnJson = sortKeys(updateKeys(enJson, allKeys));
 
-  // Sort the keys alphabetically
-  const sortedFaJson = sortKeys(updatedFaJson);
-  const sortedEnJson = sortKeys(updatedEnJson);
+  fs.writeFileSync(faJsonPath, JSON.stringify(updatedFaJson, null, 2), 'utf8');
+  fs.writeFileSync(enJsonPath, JSON.stringify(updatedEnJson, null, 2), 'utf8');
 
-  // Write the updated locale files
-  fs.writeFileSync(faJsonPath, JSON.stringify(sortedFaJson, null, 2), 'utf8');
-  fs.writeFileSync(enJsonPath, JSON.stringify(sortedEnJson, null, 2), 'utf8');
+  console.log(`Updated locale files: ${allKeys.size} keys processed.`);
+};
 
-  console.log(`Updated fa.json and en.json with ${allKeys.size} keys.`);
-}
-
-// Execute the main function
+// Execute script
 main();

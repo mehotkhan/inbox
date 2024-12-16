@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@nuxt/eslint",
     "nitro-cloudflare-dev",
+    "nuxt-auth-utils"
     // "@nuxtjs/seo",
   ],
 
@@ -94,7 +95,6 @@ export default defineNuxtConfig({
       preload: ["ts", "js", "css", "json", "go"],
     },
   },
-
   i18n: {
     locales: [
       {
@@ -112,8 +112,11 @@ export default defineNuxtConfig({
     ],
     // lazy: true,
     langDir: "locales",
-    defaultLocale: "en",
-    strategy: "prefix",
+    defaultLocale: "fa",
+    strategy: "no_prefix",
+    experimental: {
+      localeDetector: "localeDetector.ts",
+    },
   },
   imports: {
     dirs: ["composables/**"],

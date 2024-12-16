@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { z } from "zod";
-import { startAuthentication } from "@simplewebauthn/browser";
+// import { startAuthentication } from "@simplewebauthn/browser";
 import type { FormSubmitEvent } from "#ui/types";
 const { t } = useI18n();
 const { login } = useUser();
@@ -39,22 +39,22 @@ const profileSwitch = async (event: FormSubmitEvent<Schema>) => {
     submitting.value = true;
 
     // Fetch authentication options from the server
-    const data = await singedApi("/serverless-api/members/webauth-switch", {
-      method: "post",
-      body: {
-        userName: event.data.userName,
-      },
-    });
+    // const data = await singedApi("/serverless-api/members/webauth-switch", {
+    //   method: "post",
+    //   body: {
+    //     userName: event.data.userName,
+    //   },
+    // });
 
     // Start WebAuthn authentication using updated syntax
-    const authResp = await startAuthentication({
-      optionsJSON: data, // Pass the options inside an object as per v11 changes
-    });
+    // const authResp = await startAuthentication({
+    //   optionsJSON: data, // Pass the options inside an object as per v11 changes
+    // });
 
     // Send the credential data back to the server
-    const userAuth = await handleResponse(authResp, event.data.userName);
+    // const userAuth = await handleResponse(authResp, event.data.userName);
 
-    login(userAuth); // Update user state after successful login
+    // login(userAuth); // Update user state after successful login
     submitting.value = false;
     modelIsOpen.value = false; // Close the modal
     toast.add({
@@ -110,7 +110,7 @@ const handleResponse = async (authResp, userName: string) => {
         </template>
         <div class="flex flex-col gap-4">
           <div class="flex gap-3">
-            <UFormGroup
+            <UFormField
               :label="$t('userName')"
               name="userName"
               class="basis-full"
@@ -119,7 +119,7 @@ const handleResponse = async (authResp, userName: string) => {
                 v-model="state.userName"
                 :placeholder="$t('userNamePlaceHolder')"
               />
-            </UFormGroup>
+            </UFormField>
           </div>
         </div>
         <template #footer>

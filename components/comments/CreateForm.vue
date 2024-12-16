@@ -39,7 +39,7 @@ const handleKeyDown = (event: KeyboardEvent) => {
         footer: { padding: 'px-3 py-2 sm:px-3' },
       }"
     >
-      <UFormGroup name="textarea">
+      <UFormField name="textarea">
         <UTextarea
           v-model="state.message"
           :placeholder="$t('Write Your Comment')"
@@ -50,8 +50,8 @@ const handleKeyDown = (event: KeyboardEvent) => {
           autoresize
           @keydown="handleKeyDown"
         />
-      </UFormGroup>
-      <UDivider />
+      </UFormField>
+      <USeparator />
       <template #footer>
         <div class="flex justify-end">
           <UButton

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { z } from "zod";
-import { startRegistration } from "@simplewebauthn/browser";
+// import { startRegistration } from "@simplewebauthn/browser";
 import type { FormSubmitEvent } from "#ui/types";
 const { t } = useI18n();
 const { profile, certs, login } = useUser();
@@ -36,24 +36,24 @@ const profileActivate = async (event: FormSubmitEvent<Schema>) => {
     submitting.value = true;
 
     // Fetch registration options from the server
-    const data = await singedApi("/serverless-api/members/webauth-activate", {
-      method: "post",
-      body: {
-        userName: event.data.userName,
-        displayName: event.data.displayName,
-        pubKey: certs.value.pub,
-      },
-    });
+    // const data = await singedApi("/serverless-api/members/webauth-activate", {
+    //   method: "post",
+    //   body: {
+    //     userName: event.data.userName,
+    //     displayName: event.data.displayName,
+    //     pubKey: certs.value.pub,
+    //   },
+    // });
 
     // Start WebAuthn registration using updated object-based argument
-    const attResp = await startRegistration({
-      optionsJSON: data, // Pass options inside an object as per v11 changes
-    });
+    // const attResp = await startRegistration({
+    //   optionsJSON: data, // Pass options inside an object as per v11 changes
+    // });
 
     // Handle the WebAuthn response
-    const userAuth = await handleResponse(attResp, event.data);
+    // const userAuth = await handleResponse(attResp, event.data);
 
-    login(userAuth); // Update user state after successful activation
+    // login(userAuth); // Update user state after successful activation
     submitting.value = false;
     isOpen.value = false; // Close the modal
     toast.add({
@@ -123,10 +123,10 @@ const handleResponse = async (attResp, formData) => {
             <h4 class="text-xl">{{ $t("ActiveProfile") }}</h4>
           </template>
           <div class="flex flex-col gap-4">
-            <UDivider :label="$t('publicDetails')" />
+            <USeparator :label="$t('publicDetails')" />
 
             <div class="flex gap-3">
-              <UFormGroup
+              <UFormField
                 :label="$t('firstName')"
                 name="firstName"
                 class="basis-1/2"
@@ -135,8 +135,8 @@ const handleResponse = async (attResp, formData) => {
                   v-model="state.firstName"
                   :placeholder="$t('firstNamePlaceHolder')"
                 />
-              </UFormGroup>
-              <UFormGroup
+              </UFormField>
+              <UFormField
                 :label="$t('lastName')"
                 name="lastName"
                 class="basis-1/2"
@@ -145,10 +145,10 @@ const handleResponse = async (attResp, formData) => {
                   v-model="state.lastName"
                   :placeholder="$t('lastNamePlaceHolder')"
                 />
-              </UFormGroup>
+              </UFormField>
             </div>
 
-            <UFormGroup
+            <UFormField
               :label="$t('displayName')"
               name="displayName"
               class="basis-2/2"
@@ -157,20 +157,20 @@ const handleResponse = async (attResp, formData) => {
                 v-model="state.displayName"
                 :placeholder="$t('displayNamePlaceHolder')"
               />
-            </UFormGroup>
-            <UFormGroup :label="$t('about')" name="about" class="basis-2/2">
+            </UFormField>
+            <UFormField :label="$t('about')" name="about" class="basis-2/2">
               <UTextarea v-model="state.about" />
-            </UFormGroup>
-            <UDivider :label="$t('uniqueDetails')" />
+            </UFormField>
+            <USeparator :label="$t('uniqueDetails')" />
 
             <div class="flex gap-3">
-              <UFormGroup :label="$t('email')" name="email" class="basis-1/2">
+              <UFormField :label="$t('email')" name="email" class="basis-1/2">
                 <UInput
                   v-model="state.email"
                   :placeholder="$t('emailPlaceHolder')"
                 />
-              </UFormGroup>
-              <UFormGroup
+              </UFormField>
+              <UFormField
                 :label="$t('userName')"
                 name="userName"
                 class="basis-1/2"
@@ -179,7 +179,7 @@ const handleResponse = async (attResp, formData) => {
                   v-model="state.userName"
                   :placeholder="$t('userNamePlaceHolder')"
                 />
-              </UFormGroup>
+              </UFormField>
             </div>
           </div>
           <template #footer>

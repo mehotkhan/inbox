@@ -64,7 +64,7 @@ const items = computed(() => [
       color="gray"
       position="top-left"
     >
-      <UDropdown
+      <UDropdownMenu
         v-if="isClient"
         :items="items"
         :ui="{ item: { disabled: 'cursor-text select-text' } }"
@@ -118,7 +118,7 @@ const items = computed(() => [
             />
           </div>
         </template>
-      </UDropdown>
+      </UDropdownMenu>
     </UChip>
     <!-- <MemberSwitch v-model:is-open="loginIsOpen" /> -->
   </div>

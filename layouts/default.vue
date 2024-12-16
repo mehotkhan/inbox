@@ -17,18 +17,15 @@ const editEnable = ref(false);
 
     <!-- Main Content -->
     <main class="flex min-h-screen">
-      <div class="container">
+      <div class=" mx-auto w-7xl">
         <div class="prose md:prose-xl dark:prose-invert">
           <UCard
             :ui="{
-              base: 'min-h-screen',
-              rounded: 'rounded-none',
-              ring: 'ring-none',
-              shadow: 'shadow-none',
+              root: 'ring-0 shadow-none bg-transparent',
             }"
           >
             <!-- Header Slot -->
-            <template #header>
+            <!-- <template #header>
               <div class="flex justify-between pt-5">
                 <Breadcrumb v-if="isDev" />
                 <div class="flex gap-4 items-center">
@@ -40,7 +37,7 @@ const editEnable = ref(false);
                       color="primary"
                       variant="ghost"
                       @click="editEnable = !editEnable"
-                    />
+                    /> -->
                     <!-- 
                       Commented Buttons 
                     -->
@@ -60,11 +57,11 @@ const editEnable = ref(false);
                       to="/create"
                     /> 
                     -->
-                  </div>
-                </div>
+                  <!-- </div>
+                </div> -->
                 <!-- <MemberActivate v-if="route.path.includes('/profile')" /> -->
-              </div>
-            </template>
+              <!-- </div> -->
+            <!-- </template> -->
 
             <!-- Content Slot -->
             <slot v-if="!editEnable" />
@@ -77,7 +74,7 @@ const editEnable = ref(false);
               >
                 <div class="flex items-center gap-2">
                   <p class="text-xs">{{ $t("DeveloperMode") }}</p>
-                  <UToggle
+                  <USwitch
                     v-model="isDev"
                     color="green"
                     size="md"

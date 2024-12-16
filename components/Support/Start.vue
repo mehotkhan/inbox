@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+۰<script lang="ts" setup>
 const {
   changeView,
   modalMode,
@@ -29,7 +29,7 @@ function toggleModal() {
 <template>
   <div>
     <UButton
-      class="fixed left-2 bottom-2 shadow-md rounded-full cursor-pointer text-4xl z-20 support-button p-3 transition-all text-black bg-gray-200 dark:bg-slate-700 border-2 border-gray-300 dark:border-slate-800"
+      class="fixed left-2 bottom-2 shadow-md rounded-full cursor-pointer text-4xl z-100 support-button p-3 transition-all text-black bg-gray-200 dark:bg-slate-700 border-2 border-gray-300 dark:border-slate-800"
       @click="toggleModal"
     >
       <UIcon v-if="!modalBoxIsOpen" name="i-heroicons-chat-bubble-left-right" />
@@ -38,23 +38,12 @@ function toggleModal() {
     <UCard
       v-if="modalBoxIsOpen"
       :ui="{
-        body: {
-          base: 'h-full border-0 overflow-hidden bg-gray-100',
-          padding: 'p-0 sm:p-0',
-        },
-        rounded: 'rounded-xl md:rounded-xl',
-        divide: 'divide-0',
-        ring: 'ring-1',
-        header: {
-          base: 'z-10 h-30 relative',
-          background: 'bg-gray-300 h-30',
-          padding: 'px-5 pt-4 pb-2',
-        },
-        footer: {
-          base: 'absolute bottom-0 w-full grid w-full grid-cols-3  items-center border-t-2 border-gray-100 ',
-          background: 'bg-gray-100',
-          padding: 'px-0 py-3',
-        },
+          root: 'h-full border-0 overflow-hidden bg-gray-100 p-0 sm:p-0 rounded-xl md:rounded-xl  -0 ring-1',
+          header: 'z-10 h-15 relative bg-gray-300  px-5 pt-4 pb-2 ',
+          footer: 'absolute bottom-0 w-full grid w-full grid-cols-3  items-center  ',
+          // background: 'bg-gray-100',
+          // padding: 'px-0 py-3',
+        // },
       }"
       :class="
         expanded

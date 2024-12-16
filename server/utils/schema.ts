@@ -1,5 +1,27 @@
 import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
 
+
+
+// Users Table
+// export const users = sqliteTable("users", {
+//   id: integer("id").primaryKey({ autoIncrement: true }),
+//   username: text("username").notNull().unique(),
+//   firstName: text("firstName").notNull(),
+//   lastName: text("lastName").notNull(),
+//   displayName: text("displayName").default(""),
+//   about: text("about").default(""),
+//   email: text("email").unique(),
+//   avatar: text("avatar").default(""),
+//   password: text("password").notNull(),
+//   salt: text("salt").notNull(), 
+//   createdAt: integer("created_at", { mode: "timestamp" }).notNull(),
+//   lastLoginAt: integer("last_login_at", { mode: "timestamp" }),
+//   updatedAt: integer("updated_at", { mode: "timestamp" }),
+// },  (t) => []
+// );
+
+
+
 export const member = sqliteTable("member", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   pub: text("pub").unique(), // Public key for user identification
@@ -18,7 +40,8 @@ export const member = sqliteTable("member", {
   credentialID: text("credentialID"), // User's WebAuthn credential ID (base64 encoded)
   credentialPublicKey: text("credentialPublicKey"), // User's WebAuthn public key (base64 encoded)
   counter: integer("counter").default(0), // Counter to prevent replay attacks during authentication
-});
+},  (t) => []
+);
 
 export const events = sqliteTable("events", {
   id: text("id").primaryKey(),
@@ -29,7 +52,8 @@ export const events = sqliteTable("events", {
   content: text("content"),
   sig: text("sig"),
   isVerified: integer("isVerified", { mode: "boolean" }).default(false),
-});
+},  (t) => []
+);
 
 // Event
 export type SelectEvent = typeof events.$inferSelect;

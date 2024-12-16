@@ -17,7 +17,7 @@ const items = computed(() => {
 </script>
 
 <template>
-  <UDropdown :items="items" :popper="{ placement: 'bottom-start' }">
+  <UDropdownMenu :items="items" :popper="{ placement: 'bottom-start' }">
     <UIcon name="i-heroicons-bars-4" class="flex" aria-hidden="true" />
-  </UDropdown>
+  </UDropdownMenu>
 </template>

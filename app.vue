@@ -1,14 +1,13 @@
 <script lang="ts" setup>
-const { isDark } = useDark();
+import * as locales from '@nuxt/ui/locale';
 const { locale, t } = useI18n();
 const { registerNew, whoAmI } = useUser();
 const runtimeConfig = useRuntimeConfig();
-import * as locales from '@nuxt/ui/locale'
 
+const lang = computed(() => locales[locale.value]?.code ?? 'fa')
+const dir = computed(() => locales[locale.value]?.dir ??'rtl')
 
-const lang = computed(() => locales[locale.value].code)
-const dir = computed(() => locales[locale.value].dir)
-
+ 
 useHead({
   title: t("siteName"),
   titleTemplate: `%s - ${t("siteName")}:// ${t("description")} `,
@@ -44,8 +43,8 @@ onMounted(() => {
 // const dlocale=computed(()=>locale.value ==='fa'?'fa_ir':'en')
 </script>
 <template>
-  <UApp  >
-      <NuxtLayout class="dark:bg-slate-800">
+  <UApp :locale="locales[locale]" >
+    <NuxtLayout class="dark:bg-slate-800">
         <NuxtLoadingIndicator />
         <NuxtPage />
       </NuxtLayout>
@@ -53,6 +52,10 @@ onMounted(() => {
 </template>
 <style>
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 @import "@nuxt/ui";
+:root {
+  font-family: FarhangDot;
+}
 
 </style>
