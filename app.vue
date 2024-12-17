@@ -1,19 +1,17 @@
 <script lang="ts" setup>
-import * as locales from '@nuxt/ui/locale';
 const { locale, t } = useI18n();
 const { registerNew, whoAmI } = useUser();
 const runtimeConfig = useRuntimeConfig();
 
-const lang = computed(() => locales[locale.value]?.code ?? 'fa')
-const dir = computed(() => locales[locale.value]?.dir ??'rtl')
+const dir = computed(() => (locale.value === "en" ? "ltr" : "rtl"));
 
- 
+// console.log(dir.value, lang.value);
 useHead({
   title: t("siteName"),
   titleTemplate: `%s - ${t("siteName")}:// ${t("description")} `,
   htmlAttrs: {
-    lang,
-    dir
+    lang: locale.value,
+    dir,
   },
   meta: [
     { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -39,15 +37,13 @@ whoAmI();
 onMounted(() => {
   registerNew();
 });
-
-// const dlocale=computed(()=>locale.value ==='fa'?'fa_ir':'en')
 </script>
 <template>
-  <UApp :locale="locales[locale]" >
+  <UApp>
     <NuxtLayout class="dark:bg-slate-800">
-        <NuxtLoadingIndicator />
-        <NuxtPage />
-      </NuxtLayout>
+      <NuxtLoadingIndicator />
+      <NuxtPage />
+    </NuxtLayout>
   </UApp>
 </template>
 <style>
@@ -57,5 +53,4 @@ onMounted(() => {
 :root {
   font-family: FarhangDot;
 }
-
 </style>

@@ -1,6 +1,11 @@
 <script setup lang="ts">
+const updateIsOpen = ref(false);
+const changePasswordIsOpen = ref(false);
+const { loggedIn, user, clear } = useUserSession();
+const { $wipeDexie } = useNuxtApp();
 const { profile, logout } = useUser();
-const { locale } = useI18n();
+
+const { locale, t } = useI18n();
 const loginIsOpen = ref(false);
 const isClient = ref(false);
 const { $dexie } = useNuxtApp();
@@ -44,10 +49,28 @@ const items = computed(() => [
       },
     },
     {
-      label: "خروج",
-      icon: "i-heroicons-arrow-left-on-rectangle",
+      label: t("Update Profile"),
+      icon: "i-heroicons-user",
       click: () => {
-        logout();
+        updateIsOpen.value = true;
+      },
+    },
+    {
+      label: t("Change Password"),
+      icon: "i-heroicons-key",
+      click: () => {
+        changePasswordIsOpen.value = true;
+      },
+    },
+  ],
+  [
+    {
+      label: t("Exit"),
+      icon: "i-heroicons-arrow-left-on-rectangle",
+      click: async () => {
+        await $wipeDexie();
+        await clear();
+        window.location.reload();
       },
     },
   ],
@@ -61,14 +84,16 @@ const items = computed(() => [
         locale == 'fa' ? convertToPersianNumbers(newMessages) : newMessages
       "
       size="2xl"
-      color="gray"
       position="top-left"
     >
       <UDropdownMenu
-        v-if="isClient"
         :items="items"
-        :ui="{ item: { disabled: 'cursor-text select-text' } }"
-        :popper="{ placement: 'bottom-start' }"
+        :content="{
+          align: 'end',
+          side: 'bottom',
+          sideOffset: 8,
+        }"
+        class="w-48"
       >
         <UAvatar
           :alt="profile?.displayName"
@@ -91,7 +116,7 @@ const items = computed(() => [
           </p>
         </template>
 
-        <template #item="{ item }">
+        <template #item="{ item }: any">
           <div
             v-if="item.click"
             class="flex w-full cursor-pointer"
@@ -121,6 +146,8 @@ const items = computed(() => [
       </UDropdownMenu>
     </UChip>
     <!-- <MemberSwitch v-model:is-open="loginIsOpen" /> -->
+     <UpdateMember v-model:is-open="updateIsOpen" />  
+      <ChangePassword v-model:is-open="changePasswordIsOpen" />  
   </div>
 </template>
 <style lang="scss">

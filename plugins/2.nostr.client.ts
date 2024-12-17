@@ -27,13 +27,13 @@ export default defineNuxtPlugin(() => {
   });
 
   // Open or close the WebSocket based on the logged-in status
-  watchEffect(() => {
-    if (loggedIn.value) {
-      open();
-    } else {
-      close();
-    }
-  });
+  // watchEffect(() => {
+  //   if (loggedIn.value) {
+  //     open();
+  //   } else {
+  //     close();
+  //   }
+  // });
 
   // Handle incoming WebSocket messages
   watch(data, (newData) => {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { locale, locales } = useI18n();
-const switchLocalePath = useSwitchLocalePath();
+const { setLocale } = useI18n();
 
 const availableLocales = computed(() => {
   return locales.value.filter((i) => i.code !== locale.value);
@@ -9,13 +9,15 @@ const availableLocales = computed(() => {
 
 <template>
   <div class="items-center flex pt-1">
-    <NuxtLink
+    <UButton
       v-for="loc in availableLocales"
       :key="loc.code"
-      :external="true"
-      :to="switchLocalePath(loc.code)"
+      class="cursor-pointer"
+      size="xs"
+      variant="ghost"
+      @click="setLocale(loc.code)"
     >
-      {{ loc.name }}
-    </NuxtLink>
+      {{ loc.code !== "fa" ? $t("English") : $t("Persian") }}
+    </UButton>
   </div>
 </template>

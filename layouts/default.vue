@@ -76,7 +76,6 @@ const editEnable = ref(false);
                   <p class="text-xs">{{ $t("DeveloperMode") }}</p>
                   <USwitch
                     v-model="isDev"
-                    color="green"
                     size="md"
                     :label="$t('LABS?')"
                     on-icon="i-heroicons-check-20-solid"
@@ -96,6 +95,6 @@ const editEnable = ref(false);
     </main>
 
     <!-- Developer Support -->
-    <SupportStart v-if="isDev" />
+    <SupportStart   />
   </div>
 </template>
