@@ -1,15 +1,6 @@
 {
   // https://v3.nuxtjs.org/concepts/typescript
   "extends": "./.nuxt/tsconfig.json",
-  "compilerOptions": {
-    "sourceMap": false,
-    "strict": true,
-    "target": "es2020",
-    "module": "CommonJS",
-    "verbatimModuleSyntax": false,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true
-  },
+
   "includes": ["types/*.d.ts"]
 }

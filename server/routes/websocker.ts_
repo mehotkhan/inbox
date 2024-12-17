@@ -1,0 +1,45 @@
+import { DurableObject } from "cloudflare:workers";
+import crossws from "crossws/adapters/cloudflare-durable";
+
+const ws = crossws({
+  // bindingName: "$DurableObject",
+  // instanceName: "crossws",
+  hooks: {
+    message: console.log,
+    open(peer) {
+      peer.subscribe("chat");
+      peer.publish("chat", { user: "server", message: `${peer} joined!` });
+    },
+  },
+});
+
+export default {
+  async fetch(request, env, context) {
+    if (request.headers.get("upgrade") === "websocket") {
+      return ws.handleUpgrade(request, env, context);
+    }
+    return new Response(
+      `<script>new WebSocket("ws://localhost:3000").addEventListener("open", (e) => e.target.send("Hello from client!"));</script>`,
+      { headers: { "content-type": "text/html" } },
+    );
+  },
+};
+
+export class $DurableObject extends DurableObject {
+  constructor(state, env) {
+    super(state, env);
+    ws.handleDurableInit(this, state, env);
+  }
+
+  fetch(request) {
+    return ws.handleDurableUpgrade(this, request);
+  }
+
+  webSocketMessage(client, message) {
+    return ws.handleDurableMessage(this, client, message);
+  }
+
+  webSocketClose(client, code, reason, wasClean) {
+    return ws.handleDurableClose(this, client, code, reason, wasClean);
+  }
+}

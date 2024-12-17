@@ -1,6 +1,32 @@
 import fs from 'fs';
 import path from 'path';
 
+
+/**
+ * Extracts menuItems titles from app.config.ts using regex.
+ */
+const extractMenuTitles = (configPath) => {
+  if (!fs.existsSync(configPath)) return [];
+
+  const content = fs.readFileSync(configPath, "utf-8");
+  const titles = [];
+
+  // Regex to match the menuItems array and its objects
+  const menuItemsRegex = /menuItems\s*:\s*\[\s*([\s\S]*?)\s*\]/m;
+  const titleRegex = /title\s*:\s*['"](.+?)['"]/g;
+
+  const menuMatch = content.match(menuItemsRegex);
+  if (menuMatch) {
+    const menuContent = menuMatch[1];
+    let titleMatch;
+    while ((titleMatch = titleRegex.exec(menuContent)) !== null) {
+      titles.push(titleMatch[1]);
+    }
+  }
+
+  return titles;
+};
+
 /**
  * Retrieves all files with the specified extensions from the given directory, excluding specified directories.
  * @param {string} dir - Directory to scan.
@@ -102,6 +128,7 @@ const main = () => {
   const localeDir = path.join(projectDir, 'i18n', 'locales');
   const faJsonPath = path.join(localeDir, 'fa.json');
   const enJsonPath = path.join(localeDir, 'en.json');
+  const appConfigPath = path.join(projectDir, "app.config.ts");
 
   const files = getAllFiles(projectDir, ['.ts', '.vue']);
 
@@ -111,6 +138,11 @@ const main = () => {
     extractI18Keys(content).forEach((key) => allKeys.add(key));
   });
 
+  // 2. Extract titles from app.config.ts menuItems
+  const menuTitles = extractMenuTitles(appConfigPath);
+  menuTitles.forEach((title) => allKeys.add(title));
+
+  // 3. Read and update locale JSON files
   const faJson = readJson(faJsonPath);
   const enJson = readJson(enJsonPath);
 
